@@ -1,0 +1,44 @@
+fairness	Fairness
+how_to_play	How To Play
+best_mode	Bets Made
+total_won	Total Won
+bet_amount	Bet Amount
+pls_select_sector	Please select Sector
+pls_login_to	Please login to the
+spin	SPIN
+block	Block
+player	Player
+prediction	Prediction
+result	Result
+bet	Bet
+payout	Payout
+fairness_text	The winning numbers are random and not known in advance. Random Number Generator based  on TRON hash block and operated by smart contract in TRON.network You can use Player's Address and Block Number to check winning numbers.
+bet_id	Player's Address:
+block_number	Block Number:
+result_2	Result:
+send	Send
+referrals	Referrals
+referrals_text	Get rewarded just by referring your friends! Enjoy lifetime rewards just by referring your friends! Receive 0.2% of all their winnings. All rewards are sent out automatically through our smart contracts. Just copy the link above and share it to all your friends!
+how_1	1. Make sure you have a TRONLink wallet. For more information on how to create one, <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">click here</a>.
+how_2	2. To play you must own TRX, the underlying cryptocurrency that powers the TRON network.
+how_3	3. Set your BET AMOUNT. This is the amount of TRX you will be betting.
+how_4	4. Select the SECTOR.
+how_5	5. Click SPIN to place your bet. The smart contracts will then randomly generate a sector number.
+how_6	6. If the sector number is equal your prediction then you WIN! Payout = BET AMOUNT * SECTOR.
+how_7	Still have questions? Join our <a href="https://t.me/gamesontron" target="_blank"> telegram group</a> and we'll be more than happy to help!
+network_err	Network error
+tsc_err	Tron Smart Contract is not awalable now. Please try later.
+need_tron	Need TRONLink
+tron_text	Please login to your TRONLink wallet. If you do not have TRONLink wallet installed please <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">download the chrome extension.</a> Only using Chrome browser availble.
+wagered	Wagered
+balance	Balance
+my_bets	My Bets
+all_bets	All Bets
+high_rollers	High Rollers
+rare_wins	Rare Wins
+history	History
+money	Money
+poker_dice	Poker Dice
+crypto_slots	Crypto Slots
+dividends	Dividends
+soon	soon

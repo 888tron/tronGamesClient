@@ -1,0 +1,44 @@
+fairness	Juego limpio
+how_to_play	Cómo jugar
+best_mode	Apuestas hechas
+total_won	Total ganado
+bet_amount	Cantidad de la apuesta
+pls_select_sector	Por favor, seleccione Sector
+pls_login_to	Por favor, inicie sesión en el
+spin	GIRAR
+block	Bloquear
+player	Jugador
+prediction	Predicción
+result	Resultado
+bet	Apuesta
+payout	Pagar
+fairness_text	Los números ganadores son aleatorios y no son conocidos por adelantado. Generador de números Randon basado en el bloque de hash TRON y operado por contrato inteligente en la red TRON. Usted puede usar la identificación de apuesta y el número de bloque para verificar los números ganadores.
+bet_id	Id de la apuesta:
+block_number	Número de bloque:
+result_2	Resultado:
+send	Enviar
+referrals	Referencias
+referrals_text	¡Consigue recompensas solo por recomendar a tus amigos! ¡Disfruta de las recompensas de por vida con solo recomendar a tus amigos! Recibe el 0,2% de todas sus ganancias. Todas las recompensas se envían automáticamente a través de nuestros contratos inteligentes. ¡Solo copia el enlace de arriba y compártelo con todos tus amigos!
+how_1	1. Asegúrese de tener una billetera TRONLink. Obtener más información cómo crear uno, <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">click here</a>.
+how_2	2. Para jugar debe poseer TRX, la criptomoneda subyacente que alimenta la red TRON.
+how_3	3. Establezca su CANTIDAD DE LA APUESTA. Esta es la cantidad de TRX que apostarás.
+how_4	4. Seleccione el SECTOR.
+how_5	5. Haga clic en GIRAR para colocar su apuesta. Los contratos inteligentes generarán aleatoriamente un número de sector.
+how_6	6. Si el número de sector es igual a su predicción, entonces GANAS! Pago = CANTIDAD DE LA APUESTA * SECTOR.
+how_7	¿Todavía usted tiene preguntas? ¡Únase a nuestro  <a href="https://t.me/gamesontron" target="_blank"> telegram group</a> y con gusto le ayudamos! 
+network_err	Error de red
+tsc_err	Tron Smart Contract no está disponible ahora. Por favor, intente mas tarde.
+need_tron	Necesita TRONLink
+tron_text	Por favor, inicie la sesión en su billetera TRONLink. Si no tiene instalada la billetera TRONLink, <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank"> descargue la extensión de Chrome. </a>  Disponible solo usando el navegador Chrome.
+wagered	Wagered
+balance	Balance
+my_bets	My Bets
+all_bets	All Bets
+high_rollers	High Rollers
+rare_wins	Rare Wins
+history	History
+money	Dinero
+poker_dice	Poker Dice
+crypto_slots	Crypto Slots
+dividends	Dividends
+soon	soon

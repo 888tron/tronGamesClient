@@ -1,0 +1,44 @@
+fairness	公平的游戏
+how_to_play	如何玩
+best_mode	下注
+total_won	总盈利
+bet_amount	投注数额
+pls_select_sector	请选择一个区域
+pls_login_to	请登录
+spin	旋转
+block	模块
+player	玩家
+prediction	预测
+result	结果
+bet	赌注
+payout	付款
+fairness_text	随机数码生成器建立在哈希值之上，任何人事先都不知道。 您可以编入您的赌注ID和投注的区块编号，并确保得到的值和析出编号相匹配。
+bet_id	赌注id
+block_number	模块编号：
+result_2	结果
+send	发送
+referrals	转交
+referrals_text	通过推荐您的朋友获得奖励!请享受奖励，只需通过向您的朋友推荐链接！获得他们所有中注0.2％的奖励。所有奖励都通过我们的智能合约自动发出。您只需复制上面的链接并分享给您的所有朋友！
+how_1	1. 请确认，您有一个TRONLink钱包。 为得到如何创建的更多信息, <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">click here</a>.
+how_2	2. 为玩游戏，你必须有TRX，这是TRON网络的主要加密货币。
+how_3	3. 设置下注金额。 这是您要下注的TRX金额。
+how_4	4. 请选择区域。
+how_5	5. 点击旋转进行下注。 智能合约将随机生成幸运数字。
+how_6	6.如果区域号等于您的预测，那么您将获胜！ 支付= 赌注 * 区域。
+how_7	还有其他问题吗？ 加入我们的<a href="https://t.me/gamesontron" target="_blank">电报组</a>，我们将竭诚为您服务！
+network_err	网路错误
+tsc_err	Tron Smart Contract目前无法使用。 请稍后再试。
+need_tron	需要 TRONLink
+tron_text	登录您的TRONLink钱包。 如果您没有TRONLink钱包，请<a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">下载Chrome扩展程序</a> 仅适用于Chrome浏览器。
+wagered	Wagered
+balance	Balance
+my_bets	My Bets
+all_bets	All Bets
+high_rollers	High Rollers
+rare_wins	Rare Wins
+history	History
+money	錢
+poker_dice	Poker Dice
+crypto_slots	Crypto Slots
+dividends	Dividends
+soon	soon

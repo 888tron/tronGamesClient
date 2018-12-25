@@ -1,0 +1,44 @@
+fairness	Adil Oyun
+how_to_play	Nasıl oynanır
+best_mode	Yapılan Bahisler
+total_won	Toplam Kazanılan
+bet_amount	Bahis Tutarı
+pls_select_sector	Lütfen sektör seçiniz
+pls_login_to	Lütfen giriş yapınız
+spin	Çevirmek
+block	Blok
+player	Oyuncu
+prediction	Tahmin
+result	Sonuç
+bet	Bahis 
+payout	Ödeme
+fairness_text	Rasgele sayı generatörü, önceden kimsenin bilmediği Tron bloğunun karma değeri üzerine kurulmuştur. Bahsinizin numarasını ve bahsin yapıldığı blok numarasını ekleyebilir ve elde edilen değerin ve ortaya çıkan sayı ile eşleştiğinden emin olabilirsiniz.
+bet_id	Id Bahisler:
+block_number	Blok Numarası
+result_2	Sonuç:
+send	Gönder
+referrals	Yönlendirmeler
+referrals_text	Arkadaşlarınızı davet ederek kazanmaya devam edin! Bağlantıyı arkadaşlarınızla paylaşarak ödüllerin tadını çıkarın! Tüm kazançların %0.2'sini alın. Tüm ödüller akıllı sözleşmelerimiz sayesendi otomatik olarak gönderilir. Sadece yukarıdaki bağlantıyı kopyalayın ve tüm arkadaşlarınızla paylaşın!
+how_1	1. TRONLink cüzdanınızın olduğundan emin olun. Cüzdan oluşturmak için ayrıntılı bilgiye ulaşmak için <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">tıklayın</a>.
+how_2	2. Oynamak için TRX'iniz olmalıdır, bu TRON ağının ana kripto para birimidir.
+how_3	3. Bahis tutarı giriniz. Bu bahis yapacağınız TRX tutarıdır.
+how_4	4. Sektör seçiniz.
+how_5	5. Bahis yapmak için ÇEVİR'e tıklayın. Akıllı sözleşmeler rastgele şanslı sayı geliştirecek.
+how_6	6. Sektör numarası tahmininize eşitse, o zaman KAZANACAKSINIZ! Ödeme = BAHİS * SEKTÖR.
+how_7	Sorularınız mı var? Bizim <a href="https://t.me/gamesontron" target="_blank"> telegram grubumuza</a> katılın, Size yardımcı olmaktan mutluluk duyacaktır!
+network_err	Ağ Hatası
+tsc_err	Tron Smart Contract şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.
+need_tron	TRONLink gerekmektedir.
+tron_text	TRONLink cüzdanınıza giriş yapın. Bir TRONLink cüzdanınız yoksa, lütfen  <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank"> bağlantısından Сhrome</a> uzantısını indirin. Yalnızca Chrome tarayıcısı için kullanılabilir.
+wagered	Bahis yapıldı
+balance	Bakiye
+my_bets	Bahislerim
+all_bets	Tüm Bahisler
+high_rollers	Büyük Bahisler
+rare_wins	Nadir Kazançlar
+history	Tarih
+money	Para
+poker_dice	Poker Taşları
+crypto_slots	Kripto yuva
+dividends	Kar Payı
+soon	Yakında

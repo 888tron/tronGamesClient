@@ -1,0 +1,44 @@
+fairness	게임의 공정성
+how_to_play	게임 방법
+best_mode	베팅이 접수되었습니다
+total_won	당첨
+bet_amount	베팅 금액
+pls_select_sector	섹터를 선택하여 주십시오.
+pls_login_to	로그인 하여 주십시오.
+spin	스핀
+block	블록
+player	플레이어
+prediction	예측
+result	결과
+bet	베팅
+payout	지불금액
+fairness_text	당첨된 번호는 랜덤이며  Tron블록의 해시를 기반으로하고 사전에 알려지지 않습니다. TRON.network에서 베팅 ID 및 블록넘버를 이용하여 당첨 번호를 확인하실 수 있습니다.
+bet_id	베팅 아이디 :
+block_number	블록 넘버 :
+result_2	결과 :
+send	보내기
+referrals	추천
+referrals_text	친구를 추천하여 보상을 받으세요! 친구들에게 링크를 공유하면 전체 수익의 0.2%를 받아보실 수 있습니다. 모든 수익은 자동으로 스마트 계약을 통해 입금됩니다. 상단에 있는 링크를 복사하여 친구들에게 공유해보세요! 
+how_1	1. TRON Link 금고를 확인하십시오. 만드는 방법에 대한 자세한 내용은  <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">여기를 클릭하여  </a> 를 참조하십시오.
+how_2	2. 플레이하기 위해서는 TRX를 갖고 있어야 합니다. TRX는 TRON에서 기본적인 암호 화폐입니다.
+how_3	3. 귀하의 베팅금액을 설정하십시오. 이 베팅금액을 TRX금액입니다.
+how_4	4. 섹터를 선택하여 주십시오.
+how_5	5. SPIN을 클릭하시고 베팅하십시오. 스마트 계약들은 랜덤으로 섹터 넘버를 생성할 것 입니다.
+how_6	6. 섹터 넘버가 귀하의 예측과 같게되면 귀하는 이기게 되는 것입니다! 페이아웃 = 베팅 금액 * 섹터.
+how_7	문의상항이 있으시면 고객센터로 연락주십시오! <a href="https://t.me/gamesontron" target="_blank"> 
+network_err	네트워크 에러입니다.
+tsc_err	Tron 스마트계약은 현재 사용이 불가능합니다. 나중에 다시 시도하여 주십시오.
+need_tron	TRONLink가 필요합니다.
+tron_text	TRON 금고에 로그인하십시오. TRONLink 금고가 없으신 경우에는 Chrome 확장 프로그램을 https://goo.gl/Yb4NRU 방문하여 다운로드하십시오. (Chrome 브라우저만 사용할 수 있습니다)
+wagered	Wagered
+balance	Balance
+my_bets	My Bets
+all_bets	All Bets
+high_rollers	High Rollers
+rare_wins	Rare Wins
+history	History
+money	돈
+poker_dice	Poker Dice
+crypto_slots	Crypto Slots
+dividends	Dividends
+soon	soon
