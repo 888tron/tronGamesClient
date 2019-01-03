@@ -102,28 +102,6 @@ function updateMyBalance() {
     }
 }
 
-function updateData() {
-    log("getTotalBetWin");
-    return app.contract2.getTotalBetWin().call().then(getTotalBetWin => {
-
-        app.betCount = getTotalBetWin.betCountClosed.toNumber();
-
-        log(' betSum = ' + (getTotalBetWin.betSum.toNumber() / 1000000) +
-            ' winSum = ' + (getTotalBetWin.winSum.toNumber() / 1000000) +
-            ' betCountClosed = ' + app.betCount +
-            ' betCount = ' + getTotalBetWin.betCount.toNumber()
-        );
-
-        $('.betsCount').html(app.betCount.toString());
-
-        $('.totalWon').html(trx(getTotalBetWin.winSum.toNumber()));
-
-    })
-        .catch(err => {
-            logError(err);
-            return updateData();
-        });
-}
 
 function trx(balance) {
     return Math.round(balance / 1000000) + ' TRX';
@@ -329,11 +307,18 @@ function onFairness() {
     var blocknumber = $('#blocknumber').val();
 
     if (betId && blocknumber) {
-        app.contract2.getWinValue(betId, blocknumber).call().then(res => {
 
-            log('getWinValue', res)
-            $('#randomResult').html(res.toString() === '100' ? 'Please use last 250 blocks for check' : res.toString());
-        })
+        app.tronWeb2.contract().at(wheelAddress).then(res => {
+
+            res.getWinValue(betId, blocknumber).call().then(res => {
+
+                log('getWinValue', res)
+                $('#randomResult').html(res.toString() === '100' ? 'Please use last 250 blocks for check' : res.toString());
+            })
+
+        }, err => {
+            logError("contractAt", err)
+        });
     }
 }
 
@@ -401,57 +386,28 @@ function start() {
     });
 
 
-    app.tronWeb2.contract().at(wheelAddress).then(res => {
-        app.contract2 = res;
+    console.log("contractAddress = " + wheelAddress);
 
-        console.log("contractAddress = " + wheelAddress);
+    app.minBet = 10;
+    app.maxBet = 1000;
 
+    log('minBet', app.minBet);
+    log('maxBet', app.maxBet);
 
-        /* log('bets ===========');
-         app.contract2.getPlayerBets('TQCesZGRjuxiMwdPvTaPQdFEpDSMTjM7jS', 0, 1000000).call().then(bets => {
-            log('bets ===========', bets, true);
+    setBetMin();
 
-            log('',app.tronWeb2.address.fromHex(bets.playerBets[1]));
-         });*/
+    //updateData().then(getLastBets);
 
+    getLastBets();
 
-        log(app.contract2);
-
-
-        /*app.contract2.getMinMaxBet().call().then(minMaxBet => {
-            app.minBet = minMaxBet.min / 1000000;
-            app.maxBet = minMaxBet.max / 1000000;
-
-            log('minBet', app.minBet);
-            log('maxBet', app.maxBet);
-
-            setBetMin();
-        });*/
-
-        app.minBet = 10;
-        app.maxBet = 1000;
-
-        log('minBet', app.minBet);
-        log('maxBet', app.maxBet);
-
-        setBetMin();
-
-        //updateData().then(getLastBets);
-
-        getLastBets();
-
-        updateMyBalance();
-        updateTop();
+    updateMyBalance();
+    updateTop();
 
 
-        /*get("https://api.shasta.trongrid.io/event/contract/"+contractAddress+"/", res => {
-            console.log(res);
-        });*/
+    /*get("https://api.shasta.trongrid.io/event/contract/"+contractAddress+"/", res => {
+        console.log(res);
+    });*/
 
-
-    }, err => {
-        logError("contractAt", err)
-    });
 
 }
 

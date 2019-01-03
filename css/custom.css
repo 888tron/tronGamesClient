@@ -5,6 +5,10 @@ body {
     background-image: url(../img/4.jpg);
 }
 
+.text-lighten {
+    color: #D3D3D3;
+}
+
 .navbar-brand {
     font-size: 1rem;
 }
@@ -496,6 +500,47 @@ th {
 
 .switch input:disabled + label::before {
     background-color: #e9ecef;
+}
+
+.progress-dividends {
+    height: 42px;
+}
+
+.progress-dividends span {
+    font-size: 24px;
+}
+
+.dividends-input {
+    background-color: rgba(0, 0, 0, .9);
+    font-size: 24px;
+}
+
+.split-block {
+    position: relative;
+}
+
+.split-block:after, .split-block:before{
+    content: '';
+    position: absolute;
+    height: 38px;
+    width: 117px;
+    background-image: url('../img/split.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 3px;
+}
+
+.split-block:after {
+    right: -125px;
+}
+.split-block:before {
+    left: -125px;
+}
+
+@media (max-width: 991px) {
+    .split-block:after, .split-block:before{
+        display: none;
+    }
 }
 
 footer {

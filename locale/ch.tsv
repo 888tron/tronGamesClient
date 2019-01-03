@@ -30,15 +30,46 @@ network_err	网路错误
 tsc_err	Tron Smart Contract目前无法使用。 请稍后再试。
 need_tron	需要 TRONLink
 tron_text	登录您的TRONLink钱包。 如果您没有TRONLink钱包，请<a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">下载Chrome扩展程序</a> 仅适用于Chrome浏览器。
-wagered	Wagered
-balance	Balance
-my_bets	My Bets
-all_bets	All Bets
-high_rollers	High Rollers
-rare_wins	Rare Wins
-history	History
-money	錢
-poker_dice	Poker Dice
-crypto_slots	Crypto Slots
-dividends	Dividends
-soon	soon
+wagered	投注金额
+balance	余额
+my_bets	我的赌注
+all_bets	所有的赌注
+high_rollers	大赌注
+rare_wins	罕见的胜利
+history	历史
+money	钱
+poker_dice	掷骰子扑克戏
+crypto_slots	加密槽
+dividends	股息
+soon	很快
+play	（请玩
+to_mine	TRX获得1个代币888）
+stage	阶段
+next_stage	下一阶段
+available_dividends	可用股息
+total_of 	共计
+frozen_across	网上已冻结-您
+available	可得到
+withdrawn	可允许
+freeze	冻结
+frozen	冻结的
+unfreeze	解冻
+wtithdraw_text	请登录您的TRONLink钱包。 如果您没有安装TRONLink钱包，请转到<a href="http://u6.gg/gmc5D" target="_blank"> http://u6.gg/gmc5D </a>并下载Chrome扩展程序。 （TRONbet目前只在Chrome中提供）
+freezing	冻结
+freezing_text	1.要获得股息，必须将代币888冻结到水平结束并在其结束后解冻。<br> 2。股息仅对冻结代币888发行。<br> 3。为冻结1的最小888代币数。 <br> 4。在等级结束后对代币888进行解冻时，股息将由智能合约的内部交易自动收取。<br> 5。如果冻结时，在帐户中已有冻结代币，则旧代币会自动解冻，然后整个金额完全冻结。如果在旧代币上产生股息，它们会通过内部智能合约交易自动转移到玩家的钱包中。 <br> 6。冻结和解冻代币888消耗几个TRX，必须在执行交易时，钱包里有它们。
+withdraw	撤消
+token_about	888 Token代币
+token_title_1	什么是888代币及其用途是什么？
+token_text_1	888代币是TRON区块链上的TRC20代币。 总共可以开采100000000888个代币（有关代币888分配的信息，请查看我们的白皮书）。 代币888的持有人将向TRX支付股息，具体取决于他们拥有多少888个代币。
+token_title_2	什么是股息？ 为什么股息规模会发生变化？
+token_text_2	股息从888TRON.com的净收入中分配。 股息池将根据888TRON.com的用户奖金和输掉的钱不断变化。
+token_title_3	可以买888代币吗？
+token_text_3	888代币无法直接购买。 它只能通过888TRON.com游戏获得。 将来，将在DEX和其他加密交易所上提供888代币。
+token_title_4	我取了888代币，在哪里可以看到它们？
+token_text_4	可以将888代币添加到Tronlink。 为此，请选择代币部分并添加地址 "TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3"。 之后你可以处理它们。
+token_title_5	获得红利后，我的888代币会被烧掉吗？
+token_text_5	不，如果您未决定在加密交易中兑换它们，888代币将永远与您同在。 只要您的钱包有888代币，您就可以从888TRON.com获得股息。 如果您拥有的888代币数量不随时间变化，则您收到的股息金额可能会随着时间的推移而减少。
+token_title_6	888代币现在多少钱？ 我现在可以兑换888代币吗？
+token_text_6	您可以查看“红利”项，查找有关888代币的实时信息。 888代币的价格将取决于整个888TRON.com平台和社区。 888代币可以在将来通过加密交易进行兑换。
+token_title_7	我需要取888代币吗？
+token_text_7	要获得股息，必须取888代币，然后冻结，直到股息分配期结束，并在结束后解冻。 非冻结代币不会获得股息。 解冻后，股息将通过智能合约自动转入您的账户。

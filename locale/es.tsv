@@ -40,5 +40,36 @@ history	History
 money	Dinero
 poker_dice	Poker Dice
 crypto_slots	Crypto Slots
-dividends	Dividends
-soon	soon
+dividends	Los dividendos
+soon	pronto
+play	empezar
+to_mine	TRX para minar 1 Token 888
+stage	Escenario
+next_stage	Siguiente etapa
+available_dividends	Dividendos disponibles
+total_of 	Un total de
+frozen_across	está congelado en toda la red - Recibirá
+available	Disponible
+withdrawn	Retirado
+freeze	Congelar
+frozen	Congelado
+unfreeze	Descongelar
+wtithdraw_text	Por favor ingrese a su billetera TRONLink. Si no tiene instalada la billetera TRONLink, visite <a href="http://u6.gg/gmc5D" target="_blank">http://u6.gg/gmc5D</a> y descargue la extensión de Chrome. (TRONbet solo está disponible usando el navegador Chrome por el momento)
+freezing	Congelación
+freezing_text	1. Para recibir dividendos, los tokens 888 deben ser congelado hasta el final del nivel y descongelarse después de terminar el nivel. <br> 2. Los dividendos se emiten solo en Tokens congelados 888. <br> 3. El número mínimo de fichas es de 888 para la congelación 1. <br> 4. Cuando los 888 Tokens se descongelan después del final del nivel, los dividendos se cargan automáticamente mediante la transacción interna del contrato inteligente. <br> 5. Si ya tiene algunos tokens congelados en su cuenta para congelar una nueva porción, la porción anterior se descongelará automáticamente, entonces la cantidad total se congela por completo. Si se han acumulado dividendos a la parte anterior de tokens, se transfieren automáticamente a la cartera del jugador con una transacción interna de contrato inteligente. <br> 6. Los procesos de congelación y descongelación de 888 Tokens requerirán varios TRX, por lo que es necesario tenerlos en su billetera cuando realice transacciones.
+withdraw	Retirar
+token_about	About 888 Token
+token_title_1	What is 888 Token and what is it used for?
+token_text_1	888 Token is a TRC20 Token on the TRON blockchain. A total of 100,000,000 888 tokens can be mined (for information about how 888 token is distributed please check our whitepaper). 888 Token holders will be paid dividends in TRX depending on how many 888 Tokens they own.
+token_title_2	What is dividends? And why do dividends fluctuate?
+token_text_2	Dividends are derived from 888TRON.com’s net revenue, in other words the house edge. The dividend pool will fluctuate constantly depending on users winning and losing on 888TRON.com.
+token_title_3	Can I purchase 888?
+token_text_3	888 cannot be bought directly, and can only be mined just by playing on 888TRON.com. In the future, 888 tokens will be available on DEXs and other crypto exchanges.
+token_title_4	I’ve withdrawn my 888 tokens, where can I see them?
+token_text_4	You can add your 888 tokens to Tron Link. Choose Tokens section and press add address "TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3". Once your 888 tokens will be added you can manage them up to your own choice.  
+token_title_5	After we get paid dividends, will our 888 tokens be burned?
+token_text_5	No! 888 tokens will be with you forever unless you decide to exchange it on a DEX. As long as you have 888 tokens in your wallet, you will receive dividends from 888TRON.com. If the number of 888 tokens you own doesn’t change over time, the amount of dividends you get paid may decrease over time.
+token_title_6	How much is 888 tokens worth right now? Can I exchange my 888 tokens now?
+token_text_6	A You can check the “Dividends” tab to find real time information about 888. The value of 888 will depend on the whole 888TRON.com platform and community. 888 Tokens can be exchanged on DEX and other crypto exchanges in the future.
+token_title_7	How do I receive dividends on my 888 tokens?
+token_text_7	To receive dividends, you need to withdraw your 888 tokens, then freeze them till the dividends distribution period is over and unfreeze your tokens afterwards. Those tokens that were not frozen at the end of each mining level do not participate in dividends distribution. Dividends will be transferred to your account automatically by the smart contract after your 888 tokens are unfrozen.

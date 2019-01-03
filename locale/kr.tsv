@@ -19,7 +19,7 @@ result_2	결과 :
 send	보내기
 referrals	추천
 referrals_text	친구를 추천하여 보상을 받으세요! 친구들에게 링크를 공유하면 전체 수익의 0.2%를 받아보실 수 있습니다. 모든 수익은 자동으로 스마트 계약을 통해 입금됩니다. 상단에 있는 링크를 복사하여 친구들에게 공유해보세요! 
-how_1	1. TRON Link 금고를 확인하십시오. 만드는 방법에 대한 자세한 내용은  <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">여기를 클릭하여  </a> 를 참조하십시오.
+how_1	1. TRON Link 지갑을 확인하십시오. 만드는 방법에 대한 자세한 내용은  <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">여기를 클릭하여  </a> 를 참조하십시오.
 how_2	2. 플레이하기 위해서는 TRX를 갖고 있어야 합니다. TRX는 TRON에서 기본적인 암호 화폐입니다.
 how_3	3. 귀하의 베팅금액을 설정하십시오. 이 베팅금액을 TRX금액입니다.
 how_4	4. 섹터를 선택하여 주십시오.
@@ -29,16 +29,47 @@ how_7	문의상항이 있으시면 고객센터로 연락주십시오! <a href="
 network_err	네트워크 에러입니다.
 tsc_err	Tron 스마트계약은 현재 사용이 불가능합니다. 나중에 다시 시도하여 주십시오.
 need_tron	TRONLink가 필요합니다.
-tron_text	TRON 금고에 로그인하십시오. TRONLink 금고가 없으신 경우에는 Chrome 확장 프로그램을 https://goo.gl/Yb4NRU 방문하여 다운로드하십시오. (Chrome 브라우저만 사용할 수 있습니다)
-wagered	Wagered
-balance	Balance
-my_bets	My Bets
-all_bets	All Bets
-high_rollers	High Rollers
-rare_wins	Rare Wins
-history	History
+tron_text	TRON 지갑에 로그인하십시오. TRONLink 금고가 없으신 경우에는 Chrome 확장 프로그램을 https://goo.gl/Yb4NRU 방문하여 다운로드하십시오. (Chrome 브라우저만 사용할 수 있습니다)
+wagered	배당받은
+balance	밸런스
+my_bets	나의 베팅
+all_bets	모든 베팅
+high_rollers	하이 롤러
+rare_wins	멋진 승리
+history	기록
 money	돈
-poker_dice	Poker Dice
-crypto_slots	Crypto Slots
-dividends	Dividends
-soon	soon
+poker_dice	포커다이스
+crypto_slots	암호화된 슬롯
+dividends	배당금
+soon	빨리
+play	플레이
+to_mine	마이닝에서 1개의 토큰888에 해당되는 TRX 
+stage	스테이지
+next_stage	다음 스테이지
+available_dividends	유효한 배당금
+total_of 	총
+frozen_across	받을수 있는 부분은 네트워크에 동결되였습니다
+available	유효한
+withdrawn	철회
+freeze	동결
+frozen	동결된
+unfreeze	동결취소
+wtithdraw_text	TRONLink지갑에 로그인하십시오.TRONLink지갑을 만들지 않았을 경우 아래 링크를 열어보세요<a href=" http://u6.gg/gmc5D" target="_blank"></a> http://u6.gg/gmc5D 에서 크롬확장을 다운하세요 . (TRONbet는 유일한 사용가능한 크롬 브라우즈입니다.)
+freezing	동결되고 있습니다
+freezing_text	1.수익은 레벨이 오를때 토큰888을 동결시켜야 하고 나중에 동결을 철회하십시오.<br>2.수익은 동결시킨 상태에서만 발생합니다.<br>3.동결할수 있는 최소 토큰888의 개수는 1입니다.<br>4.레벨이 올라간후 토큰888의 동결철회를 하려면 내부 스마트계약 거래에 의해 배당금이 자동으로 완성됩니다.<br>5.이미 동결된 토큰이 있을 경우 자동으로 철회되고 전체 금액이 다시 동결됩니다.토큰으로 인한 배당금이 발생될시 내부 스마트계약거래로 플레이어의 지갑에 자동이체됩니다.<br>6.토큰888의 동결 및 철회는 어느정도 TRX를 소비하고 이체시 지갑에 보유하고 있어야 합니다.
+withdraw	철회
+token_about	토큰888에 관하여
+token_title_1	토큰888 및 용도?
+token_text_1	토큰 888은 블록체인TRON의 토큰TRC20입니다. 총 10억개의 토큰888을 얻을수 있습니다. (토큰888의 배분에 관한 정보는 백서를 통해 확인하십시오). 토큰888의 소유자들은 갖고 있는 토큰888의 개수에 따라 배당금TRX을 지급받을수 있습니다.
+token_title_2	배당금이란? 왜 배당금은 변동될까요?
+token_text_2	배당금은 888TRON.com의 순수익에서 배분됩니다. 배당금은 888TRON.com에서 사용자의 승패에 따라 지속적으로 변동됩니다.
+token_title_3	토큰888을 구입할수 있을까요?
+token_text_3	토큰888은 직접 구매할수 없고 오직888TRON.com에서 게임을 해야 얻을수 있습니다. 토큰888은 DEX 및 기타 보안거래소에서 사용할수 있습니다.
+token_title_4	이미 철회한 상태에서 토큰888을 어디에서 볼수 있을까요?
+token_text_4	토큰888은 Tronlink에서 추가할수 있습니다. 토큰 섹션을 선택하고 "TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3" 에서 정보를 입력하신뒤 처분할수 있습니다.
+token_title_5	배당금을 받은후 나의 토큰888은 없어질까요?
+token_text_5	아닙니다. DEX에서 교환을 결정하지 않는 한 토큰888은 영구적으로 유지됩니다.지갑에 토큰888이 있으면 888TRON.com에서 배당금을 받게 됩니다. 소유하고 있는 토큰888 개수는 시간에 따라 변하지 않고 받는 배당금은 시간에 따라 줄어들게 됩니다. 
+token_title_6	현재 토큰888의 가치는? 현재 토큰888을 교화가능여부는?
+token_text_6	"배당금"탭에서 토큰888에 관한 실시간 정보를 체크할수 있습니다. 토큰888의 가치는 전체 플랫폼 888TRON.com과 커뮤니티와 상관됩니다. 토큰888은 DEX 및 기타 보안거래소에서 교환할수 있습니다.
+token_title_7	토큰888의 배당금은 어떻게 받습니까?
+token_text_7	배당금을 받으려면 토큰888을 철회한후 배당분배가 끝난뒤 동결을 취소해야 합니다.동결을 취소하지 않은 토큰은 배당금을 받지 못합니다.배당금은 동결취소뒤 귀하의 계정으로 자동이체됩니다.

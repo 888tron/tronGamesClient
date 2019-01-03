@@ -1,13 +1,16 @@
-const wheelAddress = 'TQ1tETQGm53WPBFiju7qg74eJEgfQKZxAa';
-const betsAddress = 'TWG2gcm39isT5t9WZTSHZHYNuahy8f6Rjj';
+const gameManagerAddress = 'TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe';
+const dividendsDataAddress = 'TP52deyiu4Ptu986xSVgoju8bbqjG8r96u';
+const dividendsControllerAddress = 'TWtpFqRon6CHXQ2e2jh8NHgtJesVVymn9H';
+const wheelAddress = 'TFYuKYeGRgmKLqHyCY1Q3XUTGXKU89NCeh';
+const tokenAddress = 'TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3';
 
 const host = 'https://888tron.com';
 //const host = 'http://localhost:3000';
 
 const app = this;
 
-app.minBet = 10;
-app.maxBet = 1000;
+app.minBet = 50;
+app.maxBet = 5000;
 app.betAmount = minBet;
 
 const GameState = {
@@ -56,7 +59,7 @@ window.onload = function () {
 
     //app.tronWeb2.setDefaultBlock('latest');
 
-    if (isTronlinkLogin()) {
+    if (getTronlinkAddress()) {
 
         log('tronlink', this.tronWeb.defaultAddress.base58);
 
@@ -64,22 +67,177 @@ window.onload = function () {
             'user_id': this.tronWeb.defaultAddress.base58
         });
 
-        getTronlinkContract();
+        getTronlinkGameManagerContract();
     }
 
     start();
 
+    updateDividendsData();
+    setInterval(updateDividendsData, 5000);
+
 };
 
-function getTronlinkContract() {
-    return this.contract ? Promise.resolve(this.contract) : this.tronWeb.contract().at(wheelAddress).then(res => {
+async function onDividendShow() {
+    updateDividendsData();
+    $('#dividendsModal').modal('show');
+}
+
+function updateDividendsData() {
+
+    const money = (value, f) => {
+        return ((value.toNumber ? value.toNumber() : value) / 1000000).toFixed(f === undefined ? 2 : f);
+    };
+
+    getDividendsDataContract().then(dividendsData => {
+        dividendsData.getCurrentLevel().call()
+            .then(level => {
+                let _level = level.toNumber();
+
+                $('.dividendsCurrentStage').html(_level + 1);
+                $('.dividendsNextStage').html(_level + 2);
+
+                $('.dividendsCurrentStagePrice').html(700 + _level * 20);
+                $('.dividendsNextStagePrice').html(700 + (_level + 1) * 20);
+
+
+                if (getTronlinkAddress()) {
+
+                    dividendsData.getPlayerToMintableAmount(getTronlinkAddress()).call()
+                        .then(getPlayerToMintableAmount => {
+                            log('getPlayerToMintableAmount', getPlayerToMintableAmount);
+
+                        });
+
+
+                    dividendsData.getPlayerToFrozenAmount(getTronlinkAddress()).call()
+                        .then(playerFrozen => {
+                            log('playerFrozen ' + getTronlinkAddress(), playerFrozen);
+
+                            $('.dividendsUnfreezableTokens').html(money(playerFrozen));
+
+                            dividendsData.getLevelToDividends(_level).call()
+                                .then(dividends => {
+                                    $('.dividendsSum').html(money(dividends) + ' TRX');
+
+                                    dividendsData.getLevelToFrozenSum(_level).call()
+                                        .then(levelFrozen => {
+                                            $('.dividendsTokenFrozen').html(money(levelFrozen) + ' Tokens 888');
+
+                                            $('.dividendsAvailableWithdraw').html(money(
+                                                dividends.toNumber() * playerFrozen.toNumber() / levelFrozen.toNumber()
+                                            ) + ' TRX');
+
+                                        });
+
+                                });
+
+
+                            getTokenContract().then(token => {
+                                token.balanceOf(getTronlinkAddress()).call().then(balance => {
+                                    $('.dividendsFreezableTokens').html(money(balance));
+
+
+                                    $('.Token888Count').html(money(balance.toNumber() + playerFrozen.toNumber()));
+
+                                });
+                            });
+                        });
+                } else {
+                    dividendsData.getLevelToDividends(_level).call()
+                        .then(dividends => {
+                            $('.dividendsSum').html(money(dividends) + ' TRX');
+
+                            dividendsData.getLevelToFrozenSum(_level).call()
+                                .then(levelFrozen => {
+                                    $('.dividendsTokenFrozen').html(money(levelFrozen) + ' Tokens 888');
+
+                                });
+                        });
+                }
+
+
+            });
+
+
+        dividendsData.getPlayersTokenSum().call()
+            .then(playersTokenSum => {
+                const sum = playersTokenSum.toNumber();
+                const size = 1000000000000;
+                const value = sum % size;
+                const max = (Math.floor(sum / size) + 1) * size;
+
+                $('.dividendsProgressText').html(money(value, 2) + '/' + money(max, 0));
+
+                $('.dividendsProgress')
+                    .css("width", Math.ceil((value / max) * 100) + "%")
+                    .attr("aria-valuenow", value)
+                    .attr("aria-valuemax", max);
+            });
+
+
+        if (getTronlinkAddress()) {
+            getDividendsControllerContract().then(dividendsController => {
+
+                dividendsController.mintTokenAvailable(getTronlinkAddress()).call()
+                    .then(myMintTokenAvailable => {
+
+                        log('myMintTokenAvailable', myMintTokenAvailable);
+
+                        $('.dividendsMintableTokens').html(money(myMintTokenAvailable));
+                    });
+
+
+            });
+        }
+    });
+
+
+}
+
+function getDividendsDataContract() {
+    return this.dividendsData ? Promise.resolve(this.dividendsData) : app.tronWeb2.contract().at(dividendsDataAddress).then(res => {
+        this.dividendsData = res;
+        return Promise.resolve(this.dividendsData);
+    });
+}
+
+function getDividendsControllerContract() {
+    return this.dividendsController ? Promise.resolve(this.dividendsController) : app.tronWeb2.contract().at(dividendsControllerAddress).then(res => {
+        this.dividendsController = res;
+        return Promise.resolve(this.dividendsController);
+    });
+}
+
+function getTronlinkDividendsControllerContract() {
+    return this.dividendsControllerTronlink ? Promise.resolve(this.dividendsControllerTronlink) : this.tronWeb.contract().at(dividendsControllerAddress).then(res => {
+        this.dividendsControllerTronlink = res;
+        return Promise.resolve(this.dividendsControllerTronlink);
+    });
+}
+
+function getTokenContract() {
+    return this.token ? Promise.resolve(this.token) : app.tronWeb2.contract().at(tokenAddress).then(res => {
+        this.token = res;
+        return Promise.resolve(this.token);
+    });
+}
+
+function getTronlinkTokenContract() {
+    return this.tokenTronlink ? Promise.resolve(this.tokenTronlink) : this.tronWeb.contract().at(tokenAddress).then(res => {
+        this.tokenTronlink = res;
+        return Promise.resolve(this.tokenTronlink);
+    });
+}
+
+function getTronlinkGameManagerContract() {
+    return this.contract ? Promise.resolve(this.contract) : this.tronWeb.contract().at(gameManagerAddress).then(res => {
         this.contract = res;
         return Promise.resolve(this.contract);
     });
 }
 
 function updateMyBalance() {
-    if (isTronlinkLogin()) {
+    if (getTronlinkAddress()) {
         this.tronWeb.trx.getUnconfirmedBalance().then(balance => {
             const newBalance = balance / 1000000;
             if (app.myBalance && app.myBalance < newBalance) {
@@ -233,7 +391,7 @@ function updateTables() {
 }
 
 function isMyBet(bet) {
-    return isTronlinkLogin() && bet.player === this.tronWeb.defaultAddress.base58;
+    return getTronlinkAddress() && bet.player === this.tronWeb.defaultAddress.base58;
 }
 
 function setTableData(table, data) {
@@ -396,8 +554,8 @@ function start() {
             setBetMin();
         });*/
 
-        app.minBet = 10;
-        app.maxBet = 1000;
+        app.minBet = 50;
+        app.maxBet = 5000;
 
         log('minBet', app.minBet);
         log('maxBet', app.maxBet);
@@ -654,22 +812,11 @@ function myEasing(k) {
     return (14.495 * tc * ts + -41.9825 * ts * ts + 44.18 * tc + -21.19 * ts + 5.4975 * t);
 }
 
-function isTronlinkLogin() {
+function getTronlinkAddress() {
     if (this.tronWeb && this.tronWeb.defaultAddress && this.tronWeb.defaultAddress.base58) {
-
-        //log('tronlink', this.tronWeb.defaultAddress.base58);
-
-        return true;
+        return this.tronWeb.defaultAddress.base58;
     }
-    return false;
-}
-
-function setBonusWallets() {
-    this.contract.setBonusWallets(['TGHL59JTiiRQh6P378cn8h8yRbCwNQ2mVx'], [100]).send({
-        shouldPollResponse: true
-    }).then(res => {
-        log('setBonusWallets', res);
-    });
+    return null;
 }
 
 
@@ -705,6 +852,57 @@ function onByBet(txId, betAmount, selectedSector, autoBet) {
     });
 }
 
+function bytes32(...values) {
+    const res = values.map(v => {
+        const str = tronWeb.toHex(v).substr(2);
+        const h = '0x0000000000000000000000000000000000000000000000000000000000000000';
+        return h.substr(0, h.length - str.length) + str;
+    });
+    //log(res);
+    return res;
+}
+
+function onMint() {
+    if (!getTronlinkAddress()) {
+        $('#tronLinkModal').modal();
+    } else {
+        getTronlinkDividendsControllerContract().then(
+            dividendsControllerTronlink => {
+                dividendsControllerTronlink.mintTokens().send().then(res => {
+                });
+            }
+        )
+    }
+}
+
+function onFreeze() {
+    if (!getTronlinkAddress()) {
+        $('#tronLinkModal').modal();
+    } else {
+        getTronlinkTokenContract().then(
+            token => {
+                token.balanceOf(getTronlinkAddress()).call().then(balance => {
+                    token.approveAndCall(dividendsControllerAddress, balance.toNumber(), '0x0').send().then(res => {
+                    });
+                });
+            }
+        )
+    }
+}
+
+function onUnfreeze() {
+    if (!getTronlinkAddress()) {
+        $('#tronLinkModal').modal();
+    } else {
+        getTronlinkDividendsControllerContract().then(
+            dividendsControllerTronlink => {
+                dividendsControllerTronlink.unfreezeTokens().send().then(res => {
+                });
+            }
+        )
+    }
+}
+
 function createBet() {
 
     console.log('createBet');
@@ -713,11 +911,11 @@ function createBet() {
         'event_category': 'game'
     });
 
-    if (!isTronlinkLogin()) {
+    if (!getTronlinkAddress()) {
         $('#tronLinkModal').modal();
     } else {
 
-        getTronlinkContract().then(contract => {
+        getTronlinkGameManagerContract().then(contract => {
 
             app.selectedSector = $('#sectorGroup input:radio:checked').val();
 
@@ -727,7 +925,10 @@ function createBet() {
 
             isWorking(isWorkingRes => {
                     if (isWorkingRes) {
-                        contract.createBet(app.selectedSector, 0).send({
+
+                        log(wheelAddress + ' ' + getTronlinkAddress() + ' ' + 0 + ' ' + bytes32(app.selectedSector));
+
+                        contract.createBet(wheelAddress, getTronlinkAddress(), 0, bytes32(app.selectedSector)).send({
                             shouldPollResponse: false,
                             callValue: app.betAmount * 1000000
                         }).then(txId => {

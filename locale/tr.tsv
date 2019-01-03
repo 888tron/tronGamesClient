@@ -42,3 +42,34 @@ poker_dice	Poker Taşları
 crypto_slots	Kripto yuva
 dividends	Kar Payı
 soon	Yakında
+play	(Oyun
+to_mine	Benim için TRX 1 Token 888)
+stage	Aşama
+next_stage	Sıradaki aşama
+available_dividends	Kullanılabilir Temettüler
+total_of 	Toplamda
+frozen_across	ağda donmuş -
+available	Mevcut
+withdrawn	çekilmiş
+freeze	Donmak
+frozen	Dondurulmuş
+unfreeze	eritmek
+wtithdraw_text	Lütfen TRONLink cüzdanınıza giriş yapın. TRONLink cüzdanınız kurulu değilse, lütfen <a href="http://u6.gg/gmc5D" target="_blank">http://u6.gg/gmc5D</a> adresini ziyaret edin ve krom uzantısını indirin. (TRONbet şimdilik yalnızca Chrome tarayıcısı kullanılarak kullanılabilir)
+freezing	Dondurucu
+freezing_text	1. Temettü alabilmek için, bir seviye sonundan önce 888 Jetonunuzu dondurmanız ve seviye sona erdikten sonra bunları dondurmanız gerekir. <br>2. Temettüler yalnızca dondurulmuş olan 888 Jetona tahakkuk ettirilecektir. <br>3. Biri, dondurulması gereken minimum 888 Jeton sayısıdır. <br>4. 888 Jetonlar seviyenin bitiminden sonra donduğunda, akıllı kontrat yoluyla bir iç işlemle temettüler otomatik olarak tahakkuk ettirilir. <br>5. Yeni bir bölümü dondururken hesabınızda zaten donmuş belirteçler varsa, önceki bölüm otomatik olarak donacaktır ve belirteçlerin sayısı donmuş olacaktır. Jetonların önceki kısmına temettü biriktirilmişse, akıllı sözleşme aracılığıyla dahili bir işlemle otomatik olarak oyuncunun cüzdanına aktarılır. <br>6. 888 Jetonun dondurulması ve çözülmesi işlemi birkaç TRX alacaktır, bu yüzden işlem yaparken onları cüzdanınızda bulundurmanız gerekir.
+withdraw	Çekil
+token_about	About 888 Token
+token_title_1	What is 888 Token and what is it used for?
+token_text_1	888 Token is a TRC20 Token on the TRON blockchain. A total of 100,000,000 888 tokens can be mined (for information about how 888 token is distributed please check our whitepaper). 888 Token holders will be paid dividends in TRX depending on how many 888 Tokens they own.
+token_title_2	What is dividends? And why do dividends fluctuate?
+token_text_2	Dividends are derived from 888TRON.com’s net revenue, in other words the house edge. The dividend pool will fluctuate constantly depending on users winning and losing on 888TRON.com.
+token_title_3	Can I purchase 888?
+token_text_3	888 cannot be bought directly, and can only be mined just by playing on 888TRON.com. In the future, 888 tokens will be available on DEXs and other crypto exchanges.
+token_title_4	I’ve withdrawn my 888 tokens, where can I see them?
+token_text_4	You can add your 888 tokens to Tron Link. Choose Tokens section and press add address "TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3". Once your 888 tokens will be added you can manage them up to your own choice.  
+token_title_5	After we get paid dividends, will our 888 tokens be burned?
+token_text_5	No! 888 tokens will be with you forever unless you decide to exchange it on a DEX. As long as you have 888 tokens in your wallet, you will receive dividends from 888TRON.com. If the number of 888 tokens you own doesn’t change over time, the amount of dividends you get paid may decrease over time.
+token_title_6	How much is 888 tokens worth right now? Can I exchange my 888 tokens now?
+token_text_6	A You can check the “Dividends” tab to find real time information about 888. The value of 888 will depend on the whole 888TRON.com platform and community. 888 Tokens can be exchanged on DEX and other crypto exchanges in the future.
+token_title_7	How do I receive dividends on my 888 tokens?
+token_text_7	To receive dividends, you need to withdraw your 888 tokens, then freeze them till the dividends distribution period is over and unfreeze your tokens afterwards. Those tokens that were not frozen at the end of each mining level do not participate in dividends distribution. Dividends will be transferred to your account automatically by the smart contract after your 888 tokens are unfrozen.
