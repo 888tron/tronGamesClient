@@ -236,6 +236,13 @@ function getTronlinkReferralsContract() {
     });
 }
 
+function getWheelContract() {
+    return this.wheel ? Promise.resolve(this.wheel) : app.tronWeb2.contract().at(wheelAddress).then(res => {
+        this.wheel = res;
+        return Promise.resolve(res);
+    });
+}
+
 function updateMyBalance() {
     if (getTronlinkAddress()) {
         this.tronWeb.trx.getUnconfirmedBalance().then(balance => {
@@ -258,29 +265,6 @@ function updateMyBalance() {
 
         });
     }
-}
-
-function updateData() {
-    log("getTotalBetWin");
-    return app.contract2.getTotalBetWin().call().then(getTotalBetWin => {
-
-        app.betCount = getTotalBetWin.betCountClosed.toNumber();
-
-        log(' betSum = ' + (getTotalBetWin.betSum.toNumber() / 1000000) +
-            ' winSum = ' + (getTotalBetWin.winSum.toNumber() / 1000000) +
-            ' betCountClosed = ' + app.betCount +
-            ' betCount = ' + getTotalBetWin.betCount.toNumber()
-        );
-
-        $('.betsCount').html(app.betCount.toString());
-
-        $('.totalWon').html(trx(getTotalBetWin.winSum.toNumber()));
-
-    })
-        .catch(err => {
-            logError(err);
-            return updateData();
-        });
 }
 
 function trx(balance) {
@@ -487,10 +471,10 @@ function onFairness() {
     var blocknumber = $('#blocknumber').val();
 
     if (betId && blocknumber) {
-        app.contract2.getWinValue(betId, blocknumber).call().then(res => {
-
-            log('getWinValue', res)
-            $('#randomResult').html(res.toString() === '100' ? 'Please use last 250 blocks for check' : res.toString());
+        getWheelContract().then(wheel => {
+            wheel.getWinValue(betId, blocknumber).call().then(res => {
+                $('#randomResult').html(res.toString() === '100' ? 'Please use last 250 blocks for check' : res.toString());
+            })
         })
     }
 }
@@ -531,15 +515,10 @@ function getUrlVars() {
 }
 
 const refStart = 'https://888tron.com/?r=';
-app.parentRefUserId = 0;
 
 function start() {
 
     app.parentRef = getUrlVars()['r'];
-
-    getRefToUserId(app.parentRef).then(userId => {
-        app.parentRefUserId = userId;
-    });
 
     updateReferralLink();
 
@@ -557,52 +536,17 @@ function start() {
     });
 
 
-    app.tronWeb2.contract().at(wheelAddress).then(res => {
-        app.contract2 = res;
-
-        console.log("contractAddress = " + wheelAddress);
-
-
-        /* log('bets ===========');
-         app.contract2.getPlayerBets('TQCesZGRjuxiMwdPvTaPQdFEpDSMTjM7jS', 0, 1000000).call().then(bets => {
-            log('bets ===========', bets, true);
-
-            log('',app.tronWeb2.address.fromHex(bets.playerBets[1]));
-         });*/
-
-
-        log(app.contract2);
-
-
-        /*app.contract2.getMinMaxBet().call().then(minMaxBet => {
-            app.minBet = minMaxBet.min / 1000000;
-            app.maxBet = minMaxBet.max / 1000000;
-
-            log('minBet', app.minBet);
-            log('maxBet', app.maxBet);
-
-            setBetMin();
-        });*/
+    getWheelContract().then(res => {
 
         app.minBet = 50;
         app.maxBet = 5000;
 
-        log('minBet', app.minBet);
-        log('maxBet', app.maxBet);
-
         setBetMin();
-
-        //updateData().then(getLastBets);
 
         getLastBets();
 
         updateMyBalance();
         updateTop();
-
-
-        /*get("https://api.shasta.trongrid.io/event/contract/"+contractAddress+"/", res => {
-            console.log(res);
-        });*/
 
 
     }, err => {
@@ -945,6 +889,8 @@ function getAddressToUserId(address) {
 }
 
 function getRefToUserId(ref) {
+    if (!ref) return Promise.resolve(0);
+
     return getTronlinkReferralsContract().then(
         referrrals => {
             return referrrals.getRefToUserId(ref).call().then(userId => {
@@ -1025,7 +971,6 @@ function onUnfreeze() {
 }
 
 function createBet() {
-    log('app.parentRefUserId', app.parentRefUserId);
 
     gtag('event', 'spin', {
         'event_category': 'game'
@@ -1046,30 +991,34 @@ function createBet() {
             isWorking(isWorkingRes => {
                     if (isWorkingRes) {
 
-                        log(wheelAddress + ' ' + getTronlinkAddress() + ' ' + 0 + ' ' + bytes32(app.selectedSector));
+                        getRefToUserId(app.parentRef).then(parentRefUserId => {
+                            log('parentRefUserId', parentRefUserId);
 
-                        contract.createBet(wheelAddress, getTronlinkAddress(), app.parentRefUserId, bytes32(app.selectedSector)).send({
-                            shouldPollResponse: false,
-                            callValue: app.betAmount * 1000000
-                        }).then(txId => {
-                            this.lastBetHash = txId;
+                            log(wheelAddress + ' ' + getTronlinkAddress() + ' ' + 0 + ' ' + bytes32(app.selectedSector));
 
-                            onByBet(txId, app.betAmount, selectedSector, isAutoBet());
+                            getWheelContract().then(wheel => {
+                                wheel.getBetCount().call().then(lastBetCount => {
 
-                            console.log(txId);
-                            createBetStart();
+                                    contract.createBet(wheelAddress, getTronlinkAddress(), parentRefUserId, bytes32(app.selectedSector)).send({
+                                        shouldPollResponse: false,
+                                        callValue: app.betAmount * 1000000
+                                    }).then(txId => {
+                                        this.lastBetHash = txId;
 
-                            checkResult((err, res) => {
-                                if (err) {
-                                    betErrorStop(err);
-                                } else {
-                                    console.log(res);
-                                }
-                            }, this.lastBetHash, 0);
+                                        onByBet(txId, app.betAmount, selectedSector, isAutoBet());
 
-                        }, err => {
-                            console.log(err);
-                        })
+                                        console.log(txId);
+                                        createBetStart();
+
+                                        //setTimeout(watchBet, 1000, lastBetCount, getTronlinkAddress());
+
+                                    }, err => {
+                                        console.log(err);
+                                    })
+
+                                });
+                            });
+                        });
                     } else {
                         $('#isNotWorkingModal').modal();
                     }
@@ -1078,6 +1027,61 @@ function createBet() {
 
         });
     }
+}
+
+function watchBet(offset, player) {
+    getWheelContract().then(wheel => {
+        wheel.getBets(offset, count).call().then(data => {
+            for (let i = 0; i < data.length; i++) {
+
+                const bet = readBet(offset + i, wheelAddress, data[i]);
+                logLine('bet', bet);
+
+                if (bet.player === player) {
+                    if (bet.blockNumber) {
+
+                    } else {
+                        break;
+                    }
+                }
+
+            }
+
+            setTimeout(watchBet, 1000, offset + i, player);
+
+        });
+    });
+
+}
+
+function readBet(id, game, data) {
+    //log('res', res);
+
+    const bet = {
+        player: app.tronWeb2.address.fromHex('41' + data.substr(data.length - 40)),
+        betValue: app.tronWeb2.toBigNumber('0x' + data.substr(data.length - 42, 2)).toNumber(),
+        winIndex: app.tronWeb2.toBigNumber('0x' + data.substr(data.length - 44, 2)).toNumber(),
+        amount: app.tronWeb2.toBigNumber('0x' + data.substr(data.length - 50, 6)).toNumber(),
+        blockNumber: app.tronWeb2.toBigNumber('0x' + data.substr(data.length - 58, 8)).toNumber(),
+        ref: app.tronWeb2.toBigNumber('0x' + data.substr(data.length - 64, 6)).toNumber(),
+    };
+
+    bet.winValue = [0, 6, 2, 5, 2, 10, 2, 5, 2, 6, 2, 5, 2, 6, 2, 10, 2, 5, 2, 20, 2][bet.winIndex];
+    bet.winAmount = 0;
+
+    bet.id = id;
+    bet.game = game;
+
+    if (bet.winIndex < 100) {
+        bet.winAmount = bet.betValue === bet.winValue ? (bet.amount * bet.betValue) : 0;
+    } else if (bet.winIndex > 100) {
+        bet.winAmount = bet.amount;
+    }
+
+    //logLine('parse bet',bet);
+
+    return bet;
+
 }
 
 function checkResult(callback, txId, index) {
