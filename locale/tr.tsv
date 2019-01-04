@@ -73,3 +73,5 @@ token_title_6	How much is 888 tokens worth right now? Can I exchange my 888 toke
 token_text_6	A You can check the “Dividends” tab to find real time information about 888. The value of 888 will depend on the whole 888TRON.com platform and community. 888 Tokens can be exchanged on DEX and other crypto exchanges in the future.
 token_title_7	How do I receive dividends on my 888 tokens?
 token_text_7	To receive dividends, you need to withdraw your 888 tokens, then freeze them till the dividends distribution period is over and unfreeze your tokens afterwards. Those tokens that were not frozen at the end of each mining level do not participate in dividends distribution. Dividends will be transferred to your account automatically by the smart contract after your 888 tokens are unfrozen.
+alreadyExist	Already exist!
+copy_link	Copy the link
