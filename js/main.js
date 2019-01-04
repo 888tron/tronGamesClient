@@ -3,6 +3,7 @@ const dividendsDataAddress = 'TP52deyiu4Ptu986xSVgoju8bbqjG8r96u';
 const dividendsControllerAddress = 'TWtpFqRon6CHXQ2e2jh8NHgtJesVVymn9H';
 const wheelAddress = 'TFYuKYeGRgmKLqHyCY1Q3XUTGXKU89NCeh';
 const tokenAddress = 'TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3';
+const referralsAddress = 'THT2BGGDjaph4wwaJfJ6p4sw5aoDXbkHF8';
 
 const host = 'https://888tron.com';
 //const host = 'http://localhost:3000';
@@ -82,6 +83,7 @@ async function onDividendShow() {
     $('#dividendsModal').modal('show');
 }
 
+
 function updateDividendsData() {
 
     const money = (value, f) => {
@@ -102,16 +104,9 @@ function updateDividendsData() {
 
                 if (getTronlinkAddress()) {
 
-                    dividendsData.getPlayerToMintableAmount(getTronlinkAddress()).call()
-                        .then(getPlayerToMintableAmount => {
-                            log('getPlayerToMintableAmount', getPlayerToMintableAmount);
-
-                        });
-
-
                     dividendsData.getPlayerToFrozenAmount(getTronlinkAddress()).call()
                         .then(playerFrozen => {
-                            log('playerFrozen ' + getTronlinkAddress(), playerFrozen);
+                            //log('playerFrozen ' + getTronlinkAddress(), playerFrozen);
 
                             $('.dividendsUnfreezableTokens').html(money(playerFrozen));
 
@@ -181,7 +176,7 @@ function updateDividendsData() {
                 dividendsController.mintTokenAvailable(getTronlinkAddress()).call()
                     .then(myMintTokenAvailable => {
 
-                        log('myMintTokenAvailable', myMintTokenAvailable);
+                        //log('myMintTokenAvailable', myMintTokenAvailable);
 
                         $('.dividendsMintableTokens').html(money(myMintTokenAvailable));
                     });
@@ -190,8 +185,6 @@ function updateDividendsData() {
             });
         }
     });
-
-
 }
 
 function getDividendsDataContract() {
@@ -233,6 +226,13 @@ function getTronlinkGameManagerContract() {
     return this.contract ? Promise.resolve(this.contract) : this.tronWeb.contract().at(gameManagerAddress).then(res => {
         this.contract = res;
         return Promise.resolve(this.contract);
+    });
+}
+
+function getTronlinkReferralsContract() {
+    return this.referralsTronlink ? Promise.resolve(this.referralsTronlink) : this.tronWeb.contract().at(referralsAddress).then(res => {
+        this.referralsTronlink = res;
+        return Promise.resolve(this.referralsTronlink);
     });
 }
 
@@ -518,7 +518,37 @@ function getTransactionInfo(transactionID, callback) {
     }).catch(err => callback(err));
 }
 
+function getUrlVars() {
+    var vars = {};
+    var href = document.location.href;
+    var tmp = document.location.search.substr(1).split('&');
+    var i = tmp.length;
+    while (i--) {
+        var v = tmp[i].split('=');
+        vars[v[0]] = decodeURIComponent(v[1]);
+    }
+    return vars;
+}
+
+const refStart = 'https://888tron.com/?r=';
+app.parentRefUserId = 0;
+
 function start() {
+
+    app.parentRef = getUrlVars()['r'];
+
+    getRefToUserId(app.parentRef).then(userId => {
+        app.parentRefUserId = userId;
+    });
+
+    updateReferralLink();
+
+    $('#referralText').bind('keyup blur', function () {
+            var node = $(this);
+            let txt = node.val();
+            node.val(txt.replace(/[^a-zA-Z0-9\_\-]/g, ''));
+        }
+    );
 
     $('#betAmount').focusout(() => setBetAmount($('#betAmount').val()));
 
@@ -875,6 +905,20 @@ function onMint() {
     }
 }
 
+function onCopyRef() {
+
+    const ref = $('#referralText').val();
+
+    $('#referralText').val(refStart + ref);
+
+    var copyText = document.getElementById("referralText");
+
+    copyText.select();
+    document.execCommand("copy");
+
+    $('#referralText').val(ref);
+}
+
 function onFreeze() {
     if (!getTronlinkAddress()) {
         $('#tronLinkModal').modal();
@@ -884,6 +928,83 @@ function onFreeze() {
                 token.balanceOf(getTronlinkAddress()).call().then(balance => {
                     token.approveAndCall(dividendsControllerAddress, balance.toNumber(), '0x0').send().then(res => {
                     });
+                });
+            }
+        )
+    }
+}
+
+function getAddressToUserId(address) {
+    return getTronlinkReferralsContract().then(
+        referrrals => {
+            return referrrals.getAddressToUserId(address).call().then(userId => {
+                return userId.toNumber();
+            });
+        }
+    )
+}
+
+function getRefToUserId(ref) {
+    return getTronlinkReferralsContract().then(
+        referrrals => {
+            return referrrals.getRefToUserId(ref).call().then(userId => {
+                return userId.toNumber();
+            });
+        }
+    )
+}
+
+function getAddressToRefLink(address) {
+    return getTronlinkReferralsContract().then(
+        referrrals => {
+            return referrrals.getAddressToUserId(address).call().then(userId => {
+                const _userId = userId.toNumber();
+
+                log('userId', _userId);
+
+                if (_userId) {
+                    return referrrals.getUserIdToRef(userId).call().then(ref => {
+                        return ref;
+                    });
+                } else {
+                    return "";
+                }
+            });
+        }
+    )
+}
+
+function updateReferralLink() {
+    if (getTronlinkAddress()) {
+        getAddressToRefLink(getTronlinkAddress()).then(ref => {
+            if (ref) {
+                $('#referralText').val(ref);
+            }
+        });
+    } else {
+        setTimeout(updateReferralLink, 3000);
+    }
+}
+
+function onBuyLink() {
+    if (!getTronlinkAddress()) {
+        $('#tronLinkModal').modal();
+    } else {
+        const ref = $('#referralText').val();
+
+        getTronlinkReferralsContract().then(
+            referrrals => {
+                referrrals.getRefToUserId(ref).call().then(userId => {
+                    if (userId.toNumber() || ref.length === 0) {
+                        $('#alreadyExistModal').modal();
+                    } else {
+                        referrrals.buyRef(ref).send({
+                            shouldPollResponse: true,
+                            callValue: 8880000
+                        }).then(() => {
+                            updateReferralLink();
+                        });
+                    }
                 });
             }
         )
@@ -904,8 +1025,7 @@ function onUnfreeze() {
 }
 
 function createBet() {
-
-    console.log('createBet');
+    log('app.parentRefUserId', app.parentRefUserId);
 
     gtag('event', 'spin', {
         'event_category': 'game'
@@ -928,7 +1048,7 @@ function createBet() {
 
                         log(wheelAddress + ' ' + getTronlinkAddress() + ' ' + 0 + ' ' + bytes32(app.selectedSector));
 
-                        contract.createBet(wheelAddress, getTronlinkAddress(), 0, bytes32(app.selectedSector)).send({
+                        contract.createBet(wheelAddress, getTronlinkAddress(), app.parentRefUserId, bytes32(app.selectedSector)).send({
                             shouldPollResponse: false,
                             callValue: app.betAmount * 1000000
                         }).then(txId => {

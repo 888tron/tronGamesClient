@@ -114,12 +114,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span class="soon-item  position-relative">
-                            <i class="fas fa-user-friends"></i>
-                            <span data-locale="referrals">Referrals</span>
-                            <span class="soon" data-locale="soon">soon</span>
-                        </span>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#referralModal">
+                        <i class="fas fa-user-friends"></i>
+                        <span data-locale="referrals">Referrals</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -571,18 +568,22 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p data-locale="referrals_text">Скоро будет добавлена возможность создавать собственную реферальную
-                    ссылку. При игре по реферальной ссылке часть дохода от игры будет отправляться владельцу ссылки.
-                    Оставьте Вашу почту, мы сообщим, когда данная функция станет доступной.</p>
-                <form>
+                <p data-locale="referrals_text">Get rewarded just by referring your friends! Enjoy lifetime rewards just
+                    by referring your friends! Receive 0.2% of all their BETS. All rewards are sent out
+                    automatically through our smart contracts. Just copy the link above and share it to all your
+                    friends! </p>
+                <form class="form-inline">
                     <div class="form-group">
-                        <label for="email" class="col-form-label">Email:</label>
-                        <input type="email" class="form-control" id="email">
+                        <label for="referralText">https://888tron.com/?r=</label>
+                        <input type="text" id="referralText" class="form-control mx-sm-3" style="width: 164px;" placeholder="my_referral_name">
+                        <button type="button" class="btn btn-primary" onclick="onBuyLink()">8.88 TRX</button>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-locale="send">Send</button>
+
+                <button type="button" class="btn btn-primary" onclick="onCopyRef()">Copy the link</button>
+
             </div>
         </div>
     </div>
@@ -612,6 +613,20 @@
                     AMOUNT * SECTOR.</p>
                 <p data-locale="how_7">Still have questions? Join our telegram group and we'll be more than happy to
                     help!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="alreadyExistModal" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-content-dark">
+            <div class="modal-header">
+                <span data-locale="alreadyExist" style="color: red">Already exist!</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         </div>
     </div>
@@ -724,7 +739,8 @@
                         <div class="border border-secondary p-1 dividends-input rounded mt-3 dividendsUnfreezableTokens">
                             0
                         </div>
-                        <a href="#" class="btn btn-success mt-3" data-locale="unfreeze" onclick="onUnfreeze()">Unfreeze</a>
+                        <a href="#" class="btn btn-success mt-3" data-locale="unfreeze"
+                           onclick="onUnfreeze()">Unfreeze</a>
                     </div>
                 </div>
             </div>
@@ -764,7 +780,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p data-locale="freezing_text">1. In order to receive dividends, you should freeze your 888 Tokens before the end of a level and unfreeze them after the level ends.<br>2. Dividends will be accrued only to those 888 Tokens which have been frozen.<br>3. One is the minimum number of 888 Tokens that should be frozen.<br>4. When 888 Tokens are unfrozen after the end of the level, dividends will be accrued automatically by an internal transaction through the smart contract.<br>5. If you already have some frozen tokens on your account when freezing a new portion, the previous portion will be automatically unfrozen and the entire number of tokens will be frozen. If dividends have been accrued to the previous portion of tokens, they will be automatically transferred to the player’s wallet by an internal transaction through the smart contract.<br>6. The processes of freezing and unfreezing 888 Tokens will take several TRX, which is why it is necessary to have them in your wallet when making transactions.
+                <p data-locale="freezing_text">1. In order to receive dividends, you should freeze your 888 Tokens
+                    before the end of a level and unfreeze them after the level ends.<br>2. Dividends will be accrued
+                    only to those 888 Tokens which have been frozen.<br>3. One is the minimum number of 888 Tokens that
+                    should be frozen.<br>4. When 888 Tokens are unfrozen after the end of the level, dividends will be
+                    accrued automatically by an internal transaction through the smart contract.<br>5. If you already
+                    have some frozen tokens on your account when freezing a new portion, the previous portion will be
+                    automatically unfrozen and the entire number of tokens will be frozen. If dividends have been
+                    accrued to the previous portion of tokens, they will be automatically transferred to the player’s
+                    wallet by an internal transaction through the smart contract.<br>6. The processes of freezing and
+                    unfreezing 888 Tokens will take several TRX, which is why it is necessary to have them in your
+                    wallet when making transactions.
                 </p>
             </div>
         </div>
@@ -783,19 +809,38 @@
             </div>
             <div class="modal-body">
                 <strong data-locale="token_title_1">What is 888 Token and what is it used for?</strong>
-                <p class="text-lighten" data-locale="token_text_1">888 Token is a TRC20 Token on the TRON blockchain. A total of 100,000,000 888 tokens can be mined (for information about how 888 token is distributed please check our whitepaper). 888 Token holders will be paid dividends in TRX depending on how many 888 Tokens they own.</p>
+                <p class="text-lighten" data-locale="token_text_1">888 Token is a TRC20 Token on the TRON blockchain. A
+                    total of 100,000,000 888 tokens can be mined (for information about how 888 token is distributed
+                    please check our whitepaper). 888 Token holders will be paid dividends in TRX depending on how many
+                    888 Tokens they own.</p>
                 <strong data-locale="token_title_2">What is dividends? And why do dividends fluctuate?</strong>
-                <p class="text-lighten" data-locale="token_text_2">Dividends are derived from 888TRON.com’s net revenue, in other words the house edge. The dividend pool will fluctuate constantly depending on users winning and losing on 888TRON.com.</p>
+                <p class="text-lighten" data-locale="token_text_2">Dividends are derived from 888TRON.com’s net revenue,
+                    in other words the house edge. The dividend pool will fluctuate constantly depending on users
+                    winning and losing on 888TRON.com.</p>
                 <strong data-locale="token_title_3">Can I purchase 888?</strong>
-                <p class="text-lighten" data-locale="token_text_3">888 cannot be bought directly, and can only be mined just by playing on 888TRON.com. In the future, 888 tokens will be available on DEXs and other crypto exchanges.</p>
+                <p class="text-lighten" data-locale="token_text_3">888 cannot be bought directly, and can only be mined
+                    just by playing on 888TRON.com. In the future, 888 tokens will be available on DEXs and other crypto
+                    exchanges.</p>
                 <strong data-locale="token_title_4">I’ve withdrawn my 888 tokens, where can I see them?</strong>
-                <p class="text-lighten" data-locale="token_text_4">You can add your 888 tokens to Tron Link. Choose Tokens section and press add address “addressofourtoken”. Once your 888 tokens will be added you can manage them up to your own choice.  </p>
+                <p class="text-lighten" data-locale="token_text_4">You can add your 888 tokens to Tron Link. Choose
+                    Tokens section and press add address “addressofourtoken”. Once your 888 tokens will be added you can
+                    manage them up to your own choice. </p>
                 <strong data-locale="token_title_5">After we get paid dividends, will our 888 tokens be burned?</strong>
-                <p class="text-lighten" data-locale="token_text_5">No! 888 tokens will be with you forever unless you decide to exchange it on a DEX. As long as you have 888 tokens in your wallet, you will receive dividends from 888TRON.com. If the number of 888 tokens you own doesn’t change over time, the amount of dividends you get paid may decrease over time.</p>
-                <strong data-locale="token_title_6">How much is 888 tokens worth right now? Can I exchange my 888 tokens now?</strong>
-                <p class="text-lighten" data-locale="token_text_6">A You can check the “Dividends” tab to find real time information about 888. The value of 888 will depend on the whole 888TRON.com platform and community. 888 Tokens can be exchanged on DEX and other crypto exchanges in the future.</p>
+                <p class="text-lighten" data-locale="token_text_5">No! 888 tokens will be with you forever unless you
+                    decide to exchange it on a DEX. As long as you have 888 tokens in your wallet, you will receive
+                    dividends from 888TRON.com. If the number of 888 tokens you own doesn’t change over time, the amount
+                    of dividends you get paid may decrease over time.</p>
+                <strong data-locale="token_title_6">How much is 888 tokens worth right now? Can I exchange my 888 tokens
+                    now?</strong>
+                <p class="text-lighten" data-locale="token_text_6">A You can check the “Dividends” tab to find real time
+                    information about 888. The value of 888 will depend on the whole 888TRON.com platform and community.
+                    888 Tokens can be exchanged on DEX and other crypto exchanges in the future.</p>
                 <strong data-locale="token_title_7">How do I receive dividends on my 888 tokens?</strong>
-                <p class="text-lighten" data-locale="token_text_7">To receive dividends, you need to withdraw your 888 tokens, then freeze them till the dividends distribution period is over and unfreeze your tokens afterwards. Those tokens that were not frozen at the end of each mining level do not participate in dividends distribution. Dividends will be transferred to your account automatically by the smart contract after your 888 tokens are unfrozen.</p>
+                <p class="text-lighten" data-locale="token_text_7">To receive dividends, you need to withdraw your 888
+                    tokens, then freeze them till the dividends distribution period is over and unfreeze your tokens
+                    afterwards. Those tokens that were not frozen at the end of each mining level do not participate in
+                    dividends distribution. Dividends will be transferred to your account automatically by the smart
+                    contract after your 888 tokens are unfrozen.</p>
             </div>
         </div>
     </div>

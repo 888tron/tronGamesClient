@@ -18,7 +18,7 @@ block_number	Block Number:
 result_2	Result:
 send	Send
 referrals	Referrals
-referrals_text	Get rewarded just by referring your friends! Enjoy lifetime rewards just by referring your friends! Receive 0.2% of all their winnings. All rewards are sent out automatically through our smart contracts. Just copy the link above and share it to all your friends!
+referrals_text	Get rewarded just by referring your friends! Enjoy lifetime rewards just by referring your friends! Receive 0.2% of all their BETS. All rewards are sent out automatically through our smart contracts. Just copy the link and share it to all your friends! The cost of creating a referral link is 8.88 TRX and less than 1 TRX transaction fee. You can create a link an unlimited number of times, and the old link will be replaced by a new one.
 how_1	1. Make sure you have a TRONLink wallet. For more information on how to create one, <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">click here</a>.
 how_2	2. To play you must own TRX, the underlying cryptocurrency that powers the TRON network.
 how_3	3. Set your BET AMOUNT. This is the amount of TRX you will be betting.
@@ -73,3 +73,4 @@ token_title_6	How much is 888 tokens worth right now? Can I exchange my 888 toke
 token_text_6	A You can check the “Dividends” tab to find real time information about 888. The value of 888 will depend on the whole 888TRON.com platform and community. 888 Tokens can be exchanged on DEX and other crypto exchanges in the future.
 token_title_7	How do I receive dividends on my 888 tokens?
 token_text_7	To receive dividends, you need to withdraw your 888 tokens, then freeze them till the dividends distribution period is over and unfreeze your tokens afterwards. Those tokens that were not frozen at the end of each mining level do not participate in dividends distribution. Dividends will be transferred to your account automatically by the smart contract after your 888 tokens are unfrozen.
+alreadyExist	Already exist!
