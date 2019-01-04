@@ -3,7 +3,7 @@ const dividendsDataAddress = 'TP52deyiu4Ptu986xSVgoju8bbqjG8r96u';
 const dividendsControllerAddress = 'TWtpFqRon6CHXQ2e2jh8NHgtJesVVymn9H';
 const wheelAddress = 'TFYuKYeGRgmKLqHyCY1Q3XUTGXKU89NCeh';
 const tokenAddress = 'TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3';
-const referralsAddress = 'THT2BGGDjaph4wwaJfJ6p4sw5aoDXbkHF8';
+const referralsAddress = 'TAKkt9G5uUZyHJ3tYSYhpt7B6Bmksh1TVX';
 
 const host = 'https://888tron.com';
 //const host = 'http://localhost:3000';
