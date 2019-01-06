@@ -61,7 +61,7 @@ window.onload = function () {
 
     //app.tronWeb2.setDefaultBlock('latest');
 
-    app.lastTronLinkAddress = null;
+    app.lastTronLinkAddress = getTronlinkAddress();
 
     const watchTronlinkAddress = () => {
         if (app.lastTronLinkAddress !== getTronlinkAddress()) {
@@ -72,6 +72,7 @@ window.onload = function () {
     };
 
     watchTronlinkAddress();
+    onTronlinkAddressChange();
 
     if (getTronlinkAddress()) {
 
@@ -278,6 +279,13 @@ function getTronlinkReferralsContract() {
     });
 }
 
+function getReferralsContract() {
+    return this.referrals ? Promise.resolve(this.referrals) : app.tronWeb2.contract().at(referralsAddress).then(res => {
+        this.referrals = res;
+        return Promise.resolve(this.referrals);
+    });
+}
+
 function getWheelContract() {
     return this.wheel ? Promise.resolve(this.wheel) : app.tronWeb2.contract().at(wheelAddress).then(res => {
         this.wheel = res;
@@ -355,8 +363,8 @@ function addressToShort(address) {
     let ref = addressToRef[address];
     if (ref) return strToShort(ref);
 
-    getAddressToRefLink(address).then(ref => {
-        if (ref) addressToRef[address] = ref;
+    getAddressToRefLink(address).then(info => {
+        if (info) addressToRef[address] = info.ref;
     });
 
     return strToShort(address);
@@ -1025,7 +1033,7 @@ function getAddressToUserId(address) {
 function getRefToUserId(ref) {
     if (!ref) return Promise.resolve(0);
 
-    return getTronlinkReferralsContract().then(
+    return getReferralsContract().then(
         referrrals => {
             return referrrals.getRefToUserId(ref).call().then(userId => {
                 return userId.toNumber();
@@ -1035,7 +1043,7 @@ function getRefToUserId(ref) {
 }
 
 function getAddressToRefLink(address) {
-    return getTronlinkReferralsContract().then(
+    return getReferralsContract().then(
         referrrals => {
             return referrrals.getAddressToUserId(address).call().then(userId => {
                 const _userId = userId.toNumber();
@@ -1044,10 +1052,10 @@ function getAddressToRefLink(address) {
 
                 if (_userId) {
                     return referrrals.getUserIdToRef(userId).call().then(ref => {
-                        return ref;
+                        return {ref: ref, userId: _userId};
                     });
                 } else {
-                    return "";
+                    return null;
                 }
             });
         }
@@ -1056,9 +1064,16 @@ function getAddressToRefLink(address) {
 
 function updateReferralLink() {
     if (getTronlinkAddress()) {
-        getAddressToRefLink(getTronlinkAddress()).then(ref => {
-            if (ref) {
-                $('#referralText').val(ref);
+        getAddressToRefLink(getTronlinkAddress()).then(info => {
+            if (info) {
+                $('#referralText').val(info.ref);
+
+                post('/api/getUserIdRewards', {userId: info.userId}).then(sum => {
+
+                    log('getUserIdRewards', sum);
+                    $('#rewardSum').html(sum.toFixed(2) + ' TRX');
+                });
+
             }
         });
     } else {
