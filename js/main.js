@@ -358,14 +358,18 @@ function setBetAmount(value) {
 }
 
 const addressToRef = {};
+const addressRefIsLoading = {};
 
 function addressToShort(address) {
     let ref = addressToRef[address];
     if (ref) return strToShort(ref);
 
-    getAddressToRefLink(address).then(info => {
-        if (info) addressToRef[address] = info.ref;
-    });
+    if (!addressRefIsLoading[address]) {
+        addressRefIsLoading[address] = true;
+        getAddressToRefLink(address).then(info => {
+            if (info) addressToRef[address] = info.ref;
+        });
+    }
 
     return strToShort(address);
 }
