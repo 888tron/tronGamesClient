@@ -75,3 +75,4 @@ token_title_7	How do I receive dividends on my 888 tokens?
 token_text_7	To receive dividends, you need to withdraw your 888 tokens, then freeze them till the dividends distribution period is over and unfreeze your tokens afterwards. Those tokens that were not frozen at the end of each mining level do not participate in dividends distribution. Dividends will be transferred to your account automatically by the smart contract after your 888 tokens are unfrozen.
 alreadyExist	Already exist!
 copy_link	Copy the link
+noMoney	Not enough TRX in your wallet.
