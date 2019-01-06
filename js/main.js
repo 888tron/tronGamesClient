@@ -91,7 +91,7 @@ window.onload = function () {
 
 function start() {
 
-    post('/getGameState').then(_gameState => {
+    post('/api/getGameState').then(_gameState => {
         log('getGameState');
 
         app.gameState = _gameState;
@@ -719,7 +719,7 @@ function addNewBet() {
 
 function watchLastBets() {
 
-    return post('/getBets', {offset: app.gameStateBetCount}).then(data => {
+    return post('/api/getBets', {offset: app.gameStateBetCount}).then(data => {
 
             app.gameStateBetCount += data.length;
 
