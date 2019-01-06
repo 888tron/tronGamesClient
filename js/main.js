@@ -15,14 +15,14 @@ app.minBet = 50;
 app.maxBet = 5000;
 app.betAmount = minBet;
 
-const GameState = {
+const WheelState = {
     IDLE: 1,
     BET: 2,
     WIN: 3,
     WIN_IDLE: 4,
 };
 
-var gameState = GameState.IDLE;
+var wheelState = WheelState.IDLE;
 
 
 /*const fullNode = new HttpProvider('https://api.shasta.trongrid.io');
@@ -61,6 +61,18 @@ window.onload = function () {
 
     //app.tronWeb2.setDefaultBlock('latest');
 
+    app.lastTronLinkAddress = null;
+
+    const watchTronlinkAddress = () => {
+        if (app.lastTronLinkAddress !== getTronlinkAddress()) {
+            app.lastTronLinkAddress = getTronlinkAddress();
+            onTronlinkAddressChange();
+        }
+        setTimeout(watchTronlinkAddress, 1000);
+    };
+
+    watchTronlinkAddress();
+
     if (getTronlinkAddress()) {
 
         log('tronlink', this.tronWeb.defaultAddress.base58);
@@ -72,18 +84,40 @@ window.onload = function () {
         getTronlinkGameManagerContract();
     }
 
-    start();
-
     updateDividendsData();
     setInterval(updateDividendsData, 5000);
 
 };
+
+function start() {
+
+    post('/getGameState').then(_gameState => {
+        log('getGameState');
+
+        app.gameState = _gameState;
+
+        app.gameStateBetCount = app.gameState.betCount;
+
+        updateReferralLink();
+        updateMyBalance();
+        updateTables();
+
+        guiInit();
+
+    });
+}
 
 async function onDividendShow() {
     updateDividendsData();
     $('#dividendsModal').modal('show');
 }
 
+function onTronlinkAddressChange() {
+    log('onTronlinkAddressChange');
+
+    app.myBalance = 0;
+    start();
+}
 
 function updateDividendsData() {
 
@@ -297,9 +331,14 @@ function setBetMax() {
 
 function setBetAmount(value) {
 
+    if (value > app.myBalance) value = app.myBalance;
+
     if (value < app.minBet) value = app.minBet;
     if (value > app.maxBet) value = app.maxBet;
-    if (value > app.myBalance) value = app.myBalance;
+
+    log('app.minBet', app.minBet);
+    log('app.maxBet', app.maxBet);
+    log('app.myBalance', app.myBalance);
 
     log('validateBetAmount ' + value);
 
@@ -330,28 +369,26 @@ function timeToString(t) {
 }
 
 function updateTables() {
-    setTableData($('#mainTable > tbody:last'), app.betsAll.filter(isMyBet));
-    setTableData($('#allTable > tbody:last'), app.betsAll);
 
-    setTableData($('#highTable > tbody:last'), app.betsAll.filter(bet => {
-        return bet.winAmount > 0 && bet.amount > 100;
-    }));
+    setHistoryTableData($('.history-table > div:last'), app.gameState.listPlayerBets);
 
-    setTableData($('#rareTable > tbody:last'), app.betsAll.filter(bet => {
-        return bet.winAmount > 0 && bet.winValue >= 10;
-    }));
 
-    const newTotalWon = (app.betsAll.reduce((a, b) => {
-        return a + b.winAmount;
-    }, 0));
+    setSideTableData($('#sideTable > tbody:last'), app.gameState.listTopBetSum);
 
-    const newTotalBetAmount = (app.betsAll.reduce((a, b) => {
-        return a + b.amount;
-    }, 0));
+    setTableData($('#mainTable > tbody:last'), app.gameState.listPlayerBets);
+    setTableData($('#allTable > tbody:last'), app.gameState.listBetsAll);
+
+    setTableData($('#highTable > tbody:last'), app.gameState.listBetsBigAmount);
+
+    setTableData($('#rareTable > tbody:last'), app.gameState.listBetsRareValue);
+
+    const newTotalWon = app.gameState.winSum;
+
+    const newTotalBetAmount = app.gameState.betSum;
 
     log('TotalBetAmount', newTotalBetAmount);
 
-    const newBetCount = app.betsAll.length;
+    const newBetCount = app.gameState.betCount;
 
     if (app.betsCount) {
 
@@ -387,12 +424,9 @@ function isMyBet(bet) {
 }
 
 function setTableData(table, data) {
-
-    const n = Math.min(data.length, 50);
-
     var rows = '';
 
-    for (var i = 0; i < n; i++) {
+    for (var i = data.length - 1; i >= 0; i--) {
         var bet = data[i];
 
         //  if (bet.winValue < 21) {
@@ -412,28 +446,6 @@ function setTableData(table, data) {
 
     table.html(rows);
 
-}
-
-function updateTop() {
-    const topMap = {};
-
-    app.betsAll.forEach(bet => {
-        if (!topMap[bet.player]) {
-            topMap[bet.player] = bet.amount;
-        } else {
-            topMap[bet.player] += bet.amount;
-        }
-    });
-
-
-    let topList = Object.keys(topMap).map(key => {
-        return {
-            player: key,
-            sum: topMap[key]
-        }
-    }).sort((a, b) => b.sum - a.sum);
-
-    setSideTableData($('#sideTable > tbody:last'), topList);
 }
 
 function level(sum) {
@@ -460,7 +472,7 @@ function setSideTableData(table, data) {
 }
 
 function setHistoryTableData(table, data) {
-    const n = Math.min(data.length, 24);
+    data = data.concat().reverse();
 
     var rows = '';
     for (var i = 0; i < 30; i++) {
@@ -494,6 +506,8 @@ function setSpinEnable(value) {
 var isLoaded = false;
 
 function onLoadComplete() {
+    log('onLoadComplete');
+
     if (!isLoaded) {
         isLoaded = true;
         $('#myHeader').addClass('fixed-top');
@@ -534,10 +548,13 @@ function delay(ms) {
 function getCurrentBlockNumber() {
     return app.tronWeb2.trx.getCurrentBlock().then(block => {
         if (!block) {
+            log('getCurrentBlockNumber is null');
             return delay(100).then(() => {
                 return getCurrentBlockNumber();
             });
         }
+        log('getCurrentBlockNumber', block.block_header.raw_data.number);
+
         return block.block_header.raw_data.number;
     }).catch(err => {
         logError('getCurrentBlockNumber', err);
@@ -572,14 +589,12 @@ function findBlockByTxId(blockNumber, txId) {
             blockNumber++;
         }
 
-        if (gameState !== GameState.BET) {
+        if (wheelState !== WheelState.BET) {
             log('findBlockByTxId stop');
             return null;
         }
 
         return delay(100).then(() => {
-            log('delay end');
-
             return findBlockByTxId(blockNumber, txId);
         })
 
@@ -588,101 +603,134 @@ function findBlockByTxId(blockNumber, txId) {
     }).catch(err => {
         logError('findBlockByTxId', err);
 
-        return delay(1000).then(() => {
+        return delay(100).then(() => {
             return findBlockByTxId(blockNumber, txId);
         });
     });
 }
 
-function start() {
+function updateGameState(gameState, bets, player) {
+    const playerToBetSum = {};
 
-    app.parentRef = getUrlVars()['r'];
+    gameState.listTopBetSum.forEach(b => {
+        playerToBetSum[b.player] = b.sum;
+    });
 
-    updateReferralLink();
+    gameState.betCount += bets.length;
+    gameState.listBetsAll = gameState.listBetsAll.concat(bets);
 
-    $('#referralText').bind('keyup blur', function () {
-            var node = $(this);
-            let txt = node.val();
-            node.val(txt.replace(/[^a-zA-Z0-9\_\-]/g, ''));
+    bets.forEach(bet => {
+        gameState.winSum += bet.winAmount;
+        gameState.betSum += bet.amount;
+
+        if (bet.player === player) {
+            gameState.listPlayerBets.push(bet);
         }
-    );
 
-    $('#betAmount').focusout(() => setBetAmount($('#betAmount').val()));
+        if (bet.amount > 500 && bet.winAmount > 0) {
+            gameState.listBetsBigAmount.push(bet);
+        }
 
-    $('#spinButton').click(() => {
-        createBet();
+        if (bet.betValue > 6 && bet.winAmount > 0) {
+            gameState.listBetsRareValue.push(bet);
+        }
+
+        if (playerToBetSum[bet.player]) {
+            playerToBetSum[bet.player] += bet.amount;
+        } else {
+            playerToBetSum[bet.player] = bet.amount;
+        }
     });
 
-
-    getWheelContract().then(res => {
-
-        app.minBet = 50;
-        app.maxBet = 5000;
-
-        setBetMin();
-
-        getLastBets();
-
-        updateMyBalance();
-        updateTop();
-
-
-    }, err => {
-        logError("contractAt", err)
+    gameState.listTopBetSum = Object.keys(playerToBetSum).map(address => {
+        return {player: address, sum: playerToBetSum[address]}
+    }).sort((a, b) => {
+        return a.sum - b.sum;
     });
+
+    const listSize = 50;
+    gameState.listBetsAll = gameState.listBetsAll.slice(-listSize);
+    gameState.listTopBetSum = gameState.listTopBetSum.slice(-listSize);
+    gameState.listPlayerBets = gameState.listPlayerBets.slice(-listSize);
+    gameState.listBetsBigAmount = gameState.listBetsBigAmount.slice(-listSize);
+    gameState.listBetsRareValue = gameState.listBetsRareValue.slice(-listSize);
 
 }
 
-app.betsAll = [];
-app.betsCount = 0;
-app.totalWon = 0;
+var guiInited = false;
 
-function getLastBets() {
-    /*    app.tronWeb2.contract().at('TJwZHmmaKngYEXCPhH5G5a9mixrWE5MPZR').then(res => {
-            res.bets().call().then(bet => {
-                log('bet', bet);
-            })
-        });*/
+function guiInit() {
+    if (!guiInited) {
 
+        log('guiInit');
 
-    return get(host + '/bets?offset=' + app.betsAll.length, data => {
+        guiInited = true;
 
-            app.betsAll = data.reverse().concat(app.betsAll);
-
-            // logLine('data', data);
-
-            const myBet = data.find(isMyBet);
-            if (myBet) {
-                log('mybet!');
-
-                updateMyBalance();
-                updateHistoryTable();
-
-                winBet(myBet);
+        $('#referralText').bind('keyup blur', function () {
+                var node = $(this);
+                let txt = node.val();
+                node.val(txt.replace(/[^a-zA-Z0-9\_\-]/g, ''));
             }
+        );
 
-            //readBets(['0x0000000000000000000000000000000000000000000000000000000000000002','0x000001000001e600000e0002928c9af0651632157ef27a2cf17ca72c575a4d21']);
+        $('#betAmount').focusout(() => setBetAmount($('#betAmount').val()));
 
-            /*app.tronWeb2.trx.getTransaction('512cf5046c35447196496e2060f03ddd3b867d4e356f5cda0133faf3de22006b').then(tx => {
-                console.log(tx);
-            });*/
+        $('#spinButton').click(() => {
+            createBet();
+        });
 
-            if (data.length) {
-                updateTables();
-                //updateData();
+        watchLastBets();
 
-                updateTop();
-            }
+        app.minBet = 50;
+        app.maxBet = 5000;
+        setBetMin();
 
-            setTimeout(getLastBets, 1000);
+        app.parentRef = getUrlVars()['r'];
 
-            //if (app.lastBetIndex === app.betCount) {
-            onLoadComplete();
-            //}
+        onLoadComplete();
 
+    }
+}
+
+app.newBets = [];
+
+setInterval(addNewBet, 1000);
+
+function addNewBet() {
+    log('addNewBet', app.newBets.length);
+
+    if (app.newBets.length) {
+        const bet = app.newBets.shift();
+
+        updateGameState(app.gameState, [bet], getTronlinkAddress());
+
+        // logLine('data', data);
+
+        if (isMyBet(bet)) {
+            log('mybet!');
+
+            updateMyBalance();
+            winBet(bet);
+        }
+
+        updateTables();
+    }
+}
+
+function watchLastBets() {
+
+    return post('/getBets', {offset: app.gameStateBetCount}).then(data => {
+
+            app.gameStateBetCount += data.length;
+
+            //logJson('getBets', data);
+
+            app.newBets = app.newBets.concat(data);
+
+            setTimeout(watchLastBets, 1000);
         },
         err => {
-            setTimeout(getLastBets, 1000);
+            setTimeout(watchLastBets, 1000);
         }
     )
 }
@@ -732,7 +780,7 @@ function createBetStart() {
 
     //bet.winAmount;
 
-    if (gameState === GameState.WIN_IDLE) {
+    if (wheelState === WheelState.WIN_IDLE) {
 
 
         new TWEEN.Tween(app.arrowMesh.position)
@@ -753,7 +801,7 @@ function createBetStart() {
                             .easing(TWEEN.Easing.Bounce.Out)
                             .to({x: app.arrowMesh.position.x + 2}, 500)
                             .onComplete(() => {
-                                gameState = GameState.BET;
+                                wheelState = WheelState.BET;
                             })
                             .start();
 
@@ -762,24 +810,20 @@ function createBetStart() {
             }).start();
 
     } else {
-        gameState = GameState.BET;
+        wheelState = WheelState.BET;
 
     }
 }
 
-function updateHistoryTable() {
-    setHistoryTableData($('.history-table > div:last'), app.betsAll.filter(isMyBet));
-}
-
 function winBet(bet) {
-    if (gameState !== GameState.BET) return;
+    if (wheelState !== WheelState.BET) return;
 
     //onByBet(bet.id, bet.amount, betValue, isAutoBet());
 
     log('winValue', bet.winValue);
     log('winIndex', bet.winIndex);
 
-    gameState = GameState.WIN;
+    wheelState = WheelState.WIN;
 
     app.wheelRotation %= 360;
 
@@ -806,7 +850,7 @@ function winBet(bet) {
         .easing(myEasing)
         //.easing(TWEEN.Easing.Bounce.Out)
         .onComplete(() => {
-            gameState = GameState.WIN_IDLE;
+            wheelState = WheelState.WIN_IDLE;
 
             app.wheelFloorRotation = 0;
 
@@ -1091,7 +1135,7 @@ function createBet() {
 
                             //updateMyBalance();
                             getCurrentBlockNumber().then(blockNumber => {
-                                findBlockByTxId(blockNumber - 1, txId).then(block => {
+                                findBlockByTxId(blockNumber, txId).then(block => {
                                     if (block) {
                                         getWheelWinIndexContract().then(wheelWinIndexContract => {
 
@@ -1152,7 +1196,7 @@ function createBet() {
 function stopBetError(name, err) {
     logError(name, err);
 
-    gameState = GameState.IDLE;
+    wheelState = WheelState.IDLE;
     setSpinEnable(true);
 }
 
@@ -1287,21 +1331,29 @@ function get(url, callback, errorCallback) {
     });
 }
 
-function post(url, data, callback, onError) {
-    $.ajax({
-        url: url,
-        type: 'post',
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        success: function (data, textStatus, request) {
-            const res = JSON.parse(data);
-            //console.log(res);
-            callback(res);
-        },
 
-        error: function (request, textStatus, errorThrown) {
-            if (onError) onError("System error");
-        }
+function post(url, data) {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: host + url,
+            type: 'post',
+            headers: {
+                'session-key': this.sessionKey,
+                'user-address': getTronlinkAddress(),
+            },
+            contentType: 'application/json',
+            data: JSON.stringify(data || {}),
+            success: function (data, textStatus, request) {
+                if (data.error) {
+                    reject(new Error(data.error));
+                } else {
+                    resolve(data.data);
+                }
+            },
+            error: function (request, textStatus, errorThrown) {
+                if (reject) reject(new Error("System error"));
+            }
+        });
     });
 }
 
@@ -1958,26 +2010,26 @@ $(function () {
         app.lastTime = time;
 
 
-        switch (gameState) {
-            case GameState.IDLE:
+        switch (wheelState) {
+            case WheelState.IDLE:
                 app.wheelRotation -= 0.1 * speed;
                 app.wheelGroupRotation -= 0.1 * speed;
                 break;
-            case GameState.BET:
+            case WheelState.BET:
                 app.wheelRotation -= 2 * speed;
                 app.wheelGroupRotation -= 2 * speed;
                 break;
-            case GameState.WIN:
+            case WheelState.WIN:
                 app.wheelGroupRotation -= speed;
                 break;
-            case GameState.WIN_IDLE:
+            case WheelState.WIN_IDLE:
                 app.wheelGroupRotation -= 0.1 * speed;
                 break;
         }
 
         var r = THREE.Math.degToRad(app.wheelRotation);
 
-        if (gameState !== GameState.WIN_IDLE) {
+        if (wheelState !== WheelState.WIN_IDLE) {
 
             var selectedIndex = (Math.round(app.wheelRotation / (360 / 21)) % 21);
 
