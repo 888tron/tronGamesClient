@@ -349,8 +349,22 @@ function setBetAmount(value) {
 
 }
 
+const addressToRef = {};
+
 function addressToShort(address) {
-    return address.substr(0, 5) + "...." + address.substr(address.length - 5, 5);
+    let ref = addressToRef[address];
+    if (ref) return strToShort(ref);
+
+    getAddressToRefLink(address).then(ref => {
+        if (ref) addressToRef[address] = ref;
+    });
+
+    return strToShort(address);
+}
+
+function strToShort(str) {
+    if (str.length < 15) return str;
+    return str.substr(0, 5) + "...." + str.substr(str.length - 5, 5);
 }
 
 function td(value) {
@@ -565,6 +579,7 @@ function getCurrentBlockNumber() {
     });
 }
 
+
 function findBlockByTxId(blockNumber, txId) {
 
     return app.tronWeb2.trx.getBlock(blockNumber).then(block => {
@@ -587,11 +602,6 @@ function findBlockByTxId(blockNumber, txId) {
             if (tx) return blockInfo;
 
             blockNumber++;
-        }
-
-        if (wheelState !== WheelState.BET) {
-            log('findBlockByTxId stop');
-            return null;
         }
 
         return delay(100).then(() => {
@@ -697,7 +707,7 @@ app.newBets = [];
 setInterval(addNewBet, 1000);
 
 function addNewBet() {
-    log('addNewBet', app.newBets.length);
+    //log('addNewBet', app.newBets.length);
 
     if (app.newBets.length) {
         const bet = app.newBets.shift();
@@ -706,13 +716,6 @@ function addNewBet() {
 
         // logLine('data', data);
 
-        if (isMyBet(bet)) {
-            log('mybet!');
-
-            updateMyBalance();
-            winBet(bet);
-        }
-
         updateTables();
     }
 }
@@ -720,6 +723,17 @@ function addNewBet() {
 function watchLastBets() {
 
     return post('/api/getBets', {offset: app.gameStateBetCount}).then(data => {
+
+            const myBet = data.find(isMyBet);
+            if (myBet) {
+
+                app.time2 = (new Date()).getTime();
+
+                logLine('mybet!!!!!!!!!!!!!!  ' + (app.time2 - app.time0), myBet);
+
+                updateMyBalance();
+                //winBet(myBet);
+            }
 
             app.gameStateBetCount += data.length;
 
@@ -1026,7 +1040,7 @@ function getAddressToRefLink(address) {
             return referrrals.getAddressToUserId(address).call().then(userId => {
                 const _userId = userId.toNumber();
 
-                log('userId', _userId);
+                //log('userId', _userId);
 
                 if (_userId) {
                     return referrrals.getUserIdToRef(userId).call().then(ref => {
