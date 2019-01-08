@@ -86,7 +86,7 @@ window.onload = function () {
     }
 
     updateDividendsData();
-    setInterval(updateDividendsData, 5000);
+
 
 };
 
@@ -115,10 +115,13 @@ function start() {
     });
 }
 
-async function onDividendShow() {
+function onDividendShow() {
     updateDividendsData();
     $('#dividendsModal').modal('show');
+
+    app.dividendsModalTimer = setInterval(updateDividendsData, 3000);
 }
+
 
 function onTronlinkAddressChange() {
     log('onTronlinkAddressChange');
@@ -128,6 +131,7 @@ function onTronlinkAddressChange() {
 }
 
 function updateDividendsData() {
+    log('updateDividendsData');
 
     const money = (value, f) => {
         return ((value.toNumber ? value.toNumber() : value) / 1000000).toFixed(f === undefined ? 2 : f);
@@ -718,6 +722,9 @@ function guiInit() {
 
         onLoadComplete();
 
+        $('#dividendsModal').on('hidden.bs.modal', function (e) {
+            clearInterval(app.dividendsModalTimer);
+        })
     }
 }
 
@@ -1546,6 +1553,8 @@ $(function () {
     //var renderer = new THREE.WebGLRenderer({ alpha: true } );
     var renderer = new THREE.WebGLRenderer();
 
+    renderer.setPixelRatio(window.devicePixelRatio || 1);
+
     var canvas = $('#treeCanvas3D');
 
     window.addEventListener('resize', onResize, false);
@@ -1558,10 +1567,9 @@ $(function () {
         renderer.setSize(canvas.width(), canvas.height());
 
         var pixelRatio = renderer.getPixelRatio(),
-            newWidth = Math.floor(canvas.width() / pixelRatio) || 1,
-            newHeight = Math.floor(canvas.height() / pixelRatio) || 1;
+            newWidth = Math.floor(canvas.width() * pixelRatio) || 1,
+            newHeight = Math.floor(canvas.height() * pixelRatio) || 1;
 
-        log('pixelRatio', pixelRatio);
 
         if (composer) composer.setSize(newWidth, newHeight);
         if (occlusionComposer) occlusionComposer.setSize(newWidth * renderScale, newHeight * renderScale);
@@ -1804,6 +1812,7 @@ $(function () {
         DEFAULT_LAYER = 0,
         OCCLUSION_LAYER = 1,
         renderScale = 1,
+        fxaaPass,
         angle = 0;
 
 
@@ -1846,6 +1855,8 @@ $(function () {
         var w = canvas.width();
         var h = canvas.height();
 
+        var pixelRatio = window.devicePixelRatio || 1;
+
         occlusionRenderTarget = new THREE.WebGLRenderTarget(w * renderScale, h * renderScale);
         occlusionComposer = new THREE.EffectComposer(renderer, occlusionRenderTarget);
         occlusionComposer.addPass(new THREE.RenderPass(scene, camera));
@@ -1858,10 +1869,10 @@ $(function () {
         composer = new THREE.EffectComposer(renderer);
         composer.addPass(new THREE.RenderPass(scene, camera));
 
-        var shaderPass = new THREE.ShaderPass(THREE.FXAAShader);
-        composer.addPass(shaderPass);
-        shaderPass.renderToScreen = false;
-        shaderPass.uniforms.resolution.value.set(1 / w, 1 / h);
+        fxaaPass = new THREE.ShaderPass(THREE.FXAAShader);
+        composer.addPass(fxaaPass);
+        fxaaPass.renderToScreen = false;
+        fxaaPass.uniforms.resolution.value.set(1 / w / pixelRatio, 1 / h / pixelRatio);
 
         pass = new THREE.ShaderPass(THREE.AdditiveBlendingShader);
         pass.uniforms.tAdd.value = occlusionRenderTarget.texture;
