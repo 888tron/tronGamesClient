@@ -1,7 +1,7 @@
 const gameManagerAddress = 'TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe';
 const dividendsDataAddress = 'TP52deyiu4Ptu986xSVgoju8bbqjG8r96u';
 const dividendsControllerAddress = 'TWtpFqRon6CHXQ2e2jh8NHgtJesVVymn9H';
-const wheelAddress = 'TFYuKYeGRgmKLqHyCY1Q3XUTGXKU89NCeh';
+const wheelAddress = 'TWXjcxEU5VAWov5KhhFxfnAmZSE4VnWr49';
 const tokenAddress = 'TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3';
 const referralsAddress = 'TAKkt9G5uUZyHJ3tYSYhpt7B6Bmksh1TVX';
 const wheelWinIndexAddress = 'TKj4wydhn3ADnWBmLiW5rAv7AEVToJy43v';
@@ -90,10 +90,17 @@ window.onload = function () {
 
 };
 
+/*getAddressToUserId('TR6ysKvngUPr7RdhRwWfKMACaVbRQz8iKw').then(userId => {
+    post('/api/getUserIdRewards', {userId: userId}).then(sum => {
+
+        log('getUserIdRewards ' + userId, sum);
+    });
+});*/
+
 function start() {
 
     post('/api/getGameState').then(_gameState => {
-        log('getGameState');
+        //logJson('getGameState',_gameState);
 
         app.gameState = _gameState;
 
@@ -667,12 +674,12 @@ function updateGameState(gameState, bets, player) {
     gameState.listTopBetSum = Object.keys(playerToBetSum).map(address => {
         return {player: address, sum: playerToBetSum[address]}
     }).sort((a, b) => {
-        return a.sum - b.sum;
+        return b.sum - a.sum;
     });
 
     const listSize = 50;
     gameState.listBetsAll = gameState.listBetsAll.slice(-listSize);
-    gameState.listTopBetSum = gameState.listTopBetSum.slice(-listSize);
+//    gameState.listTopBetSum = gameState.listTopBetSum.slice(0, 20);
     gameState.listPlayerBets = gameState.listPlayerBets.slice(-listSize);
     gameState.listBetsBigAmount = gameState.listBetsBigAmount.slice(-listSize);
     gameState.listBetsRareValue = gameState.listBetsRareValue.slice(-listSize);
@@ -716,7 +723,7 @@ function guiInit() {
 
 app.newBets = [];
 
-setInterval(addNewBet, 1000);
+setInterval(addNewBet, 500);
 
 function addNewBet() {
     //log('addNewBet', app.newBets.length);
@@ -729,6 +736,8 @@ function addNewBet() {
         // logLine('data', data);
 
         updateTables();
+        updateMyBalance();
+
     }
 }
 
@@ -1168,7 +1177,7 @@ function createBet() {
 
                             //updateMyBalance();
                             getCurrentBlockNumber().then(blockNumber => {
-                                findBlockByTxId(blockNumber, txId).then(block => {
+                                findBlockByTxId(blockNumber - 2, txId).then(block => {
                                     if (block) {
                                         getWheelWinIndexContract().then(wheelWinIndexContract => {
 
@@ -1551,6 +1560,8 @@ $(function () {
         var pixelRatio = renderer.getPixelRatio(),
             newWidth = Math.floor(canvas.width() / pixelRatio) || 1,
             newHeight = Math.floor(canvas.height() / pixelRatio) || 1;
+
+        log('pixelRatio', pixelRatio);
 
         if (composer) composer.setSize(newWidth, newHeight);
         if (occlusionComposer) occlusionComposer.setSize(newWidth * renderScale, newHeight * renderScale);

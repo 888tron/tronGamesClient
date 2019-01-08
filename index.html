@@ -30,6 +30,15 @@
 </head>
 <body>
 
+<!--<div id="before-load" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div style="font-size: 20px;
+    position: absolute;
+    left: 40%;
+    top: 50%;
+    background-color: rgba(0, 0, 0, 1);
+    margin: -70px 0 0 -70px;">The 888tron.com is down for maintenance
+    </div>
+</div>-->
 <div id="before-load">
     <i class="fa fa-spinner fa-spin"></i>
 </div>
@@ -575,14 +584,19 @@
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="referralText">https://888tron.com/?r=</label>
-                        <input type="text" id="referralText" class="form-control mx-sm-3" style="width: 164px;" placeholder="my_referral_name">
+                        <input type="text" id="referralText" class="form-control mx-sm-3" style="width: 164px;"
+                               placeholder="my_referral_name">
                         <button type="button" class="btn btn-primary" onclick="onBuyLink()">8.88 TRX</button>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <label class="mr-auto"><span data-locale="reward_sum">Reward:</span> <div id="rewardSum">0 TRX</div></label>
-                <button type="button" class="btn btn-primary" onclick="onCopyRef()" data-locale="copy_link">Copy the link</button>
+                <label class="mr-auto"><span data-locale="reward_sum">Reward:</span>
+                    <div id="rewardSum">0 TRX</div>
+                </label>
+                <button type="button" class="btn btn-primary" onclick="onCopyRef()" data-locale="copy_link">Copy the
+                    link
+                </button>
             </div>
         </div>
     </div>
@@ -864,7 +878,7 @@
 
 <script src="libs/inflate.min.js"></script>
 
-<script src="js/main.js?v=100"></script>
+<script src="js/main.js?v=201"></script>
 <script src="js/locale.js?v=2.6"></script>
 
 </body>
