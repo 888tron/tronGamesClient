@@ -18,7 +18,7 @@ block_number	Blok Numarası
 result_2	Sonuç:
 send	Gönder
 referrals	Yönlendirmeler
-referrals_text	Arkadaşlarınızı davet ederek kazanmaya devam edin! Bağlantıyı arkadaşlarınızla paylaşarak ödüllerin tadını çıkarın! Tüm kazançların %0.2'sini alın. Tüm ödüller akıllı sözleşmelerimiz sayesendi otomatik olarak gönderilir. Sadece yukarıdaki bağlantıyı kopyalayın ve tüm arkadaşlarınızla paylaşın!
+referrals_text	Get rewarded just by referring your friends! Enjoy lifetime rewards just by referring your friends! Receive 0.2% of all their BETS. All rewards are sent out automatically through our smart contracts. Just copy the link and share it to all your friends! Enjoy lifetime rewards just by referring your friends! Receive 0.2% of all their bets. All rewards are sent out automatically through our smart contracts. Just copy the link and share it to all your friends! The cost to create a referral link is 8.88 TRX and less than 1 TRX transaction fee. You can create new referral links as many times as you want. Old one will replace automatically.
 how_1	1. TRONLink cüzdanınızın olduğundan emin olun. Cüzdan oluşturmak için ayrıntılı bilgiye ulaşmak için <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">tıklayın</a>.
 how_2	2. Oynamak için TRX'iniz olmalıdır, bu TRON ağının ana kripto para birimidir.
 how_3	3. Bahis tutarı giriniz. Bu bahis yapacağınız TRX tutarıdır.
@@ -40,38 +40,38 @@ history	Tarih
 money	Para
 poker_dice	Poker Taşları
 crypto_slots	Kripto yuva
-dividends	Kar Payı
+dividends	Temettüler
 soon	Yakında
-play	(Oyun
-to_mine	Benim için TRX 1 Token 888)
-stage	Aşama
-next_stage	Sıradaki aşama
+play	(Oyna
+to_mine	1 Token 888 elde etmek için TRX)
+stage	Aşama:
+next_stage	Sıradaki aşama:
 available_dividends	Kullanılabilir Temettüler
 total_of 	Toplamda
-frozen_across	ağda donmuş -
+frozen_across	ağda donmuş - Sizin alacağınız 
 available	Mevcut
-withdrawn	çekilmiş
-freeze	Donmak
+withdrawn	Çekilmiş
+freeze	Dondur
 frozen	Dondurulmuş
-unfreeze	eritmek
-wtithdraw_text	Lütfen TRONLink cüzdanınıza giriş yapın. TRONLink cüzdanınız kurulu değilse, lütfen <a href="http://u6.gg/gmc5D" target="_blank">http://u6.gg/gmc5D</a> adresini ziyaret edin ve krom uzantısını indirin. (TRONbet şimdilik yalnızca Chrome tarayıcısı kullanılarak kullanılabilir)
-freezing	Dondurucu
-freezing_text	1. Temettü alabilmek için, bir seviye sonundan önce 888 Jetonunuzu dondurmanız ve seviye sona erdikten sonra bunları dondurmanız gerekir. <br>2. Temettüler yalnızca dondurulmuş olan 888 Jetona tahakkuk ettirilecektir. <br>3. Biri, dondurulması gereken minimum 888 Jeton sayısıdır. <br>4. 888 Jetonlar seviyenin bitiminden sonra donduğunda, akıllı kontrat yoluyla bir iç işlemle temettüler otomatik olarak tahakkuk ettirilir. <br>5. Yeni bir bölümü dondururken hesabınızda zaten donmuş belirteçler varsa, önceki bölüm otomatik olarak donacaktır ve belirteçlerin sayısı donmuş olacaktır. Jetonların önceki kısmına temettü biriktirilmişse, akıllı sözleşme aracılığıyla dahili bir işlemle otomatik olarak oyuncunun cüzdanına aktarılır. <br>6. 888 Jetonun dondurulması ve çözülmesi işlemi birkaç TRX alacaktır, bu yüzden işlem yaparken onları cüzdanınızda bulundurmanız gerekir.
-withdraw	Çekil
-token_about	About 888 Token
-token_title_1	What is 888 Token and what is it used for?
-token_text_1	888 Token is a TRC20 Token on the TRON blockchain. A total of 100,000,000 888 tokens can be mined (for information about how 888 token is distributed please check our whitepaper). 888 Token holders will be paid dividends in TRX depending on how many 888 Tokens they own.
-token_title_2	What is dividends? And why do dividends fluctuate?
-token_text_2	Dividends are derived from 888TRON.com’s net revenue, in other words the house edge. The dividend pool will fluctuate constantly depending on users winning and losing on 888TRON.com.
-token_title_3	Can I purchase 888?
-token_text_3	888 cannot be bought directly, and can only be mined just by playing on 888TRON.com. In the future, 888 tokens will be available on DEXs and other crypto exchanges.
-token_title_4	I’ve withdrawn my 888 tokens, where can I see them?
-token_text_4	You can add your 888 tokens to Tron Link. Choose Tokens section and press add address "TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3". Once your 888 tokens will be added you can manage them up to your own choice.  
-token_title_5	After we get paid dividends, will our 888 tokens be burned?
-token_text_5	No! 888 tokens will be with you forever unless you decide to exchange it on a DEX. As long as you have 888 tokens in your wallet, you will receive dividends from 888TRON.com. If the number of 888 tokens you own doesn’t change over time, the amount of dividends you get paid may decrease over time.
-token_title_6	How much is 888 tokens worth right now? Can I exchange my 888 tokens now?
-token_text_6	A You can check the “Dividends” tab to find real time information about 888. The value of 888 will depend on the whole 888TRON.com platform and community. 888 Tokens can be exchanged on DEX and other crypto exchanges in the future.
-token_title_7	How do I receive dividends on my 888 tokens?
-token_text_7	To receive dividends, you need to withdraw your 888 tokens, then freeze them till the dividends distribution period is over and unfreeze your tokens afterwards. Those tokens that were not frozen at the end of each mining level do not participate in dividends distribution. Dividends will be transferred to your account automatically by the smart contract after your 888 tokens are unfrozen.
-alreadyExist	Already exist!
-copy_link	Copy the link
+unfreeze	Çöz
+wtithdraw_text	Lütfen TRONLink cüzdanınıza giriş yapın. TRONLink cüzdanınız kurulu değilse, lütfen <a href="http://u6.gg/gmc5D" target="_blank">http://u6.gg/gmc5D</a> adresini ziyaret edin ve Chrome uzantısını indirin. (TRONbet şimdilik yalnızca Chrome tarayıcısında kullanılabilir)
+freezing	Dondurmak
+freezing_text	1. Temettü alabilmek için, bir seviye sonundan önce 888 token'ınızı dondurmanız ve seviye sona erdikten sonra bunları dondurmanız gerekir. <br>2. Temettüler yalnızca dondurulmuş olan 888 Jetona tahakkuk ettirilecektir. <br>3. Biri, dondurulması gereken minimum 888 token sayısıdır. <br>4. 888 token'lar seviyenin bitiminden sonra donduğunda, akıllı sözleşme yoluyla bir iç işlemle temettüler otomatik olarak tahakkuk ettirilir. <br>5. Yeni bir bölümü dondururken hesabınızda zaten donmuş belirteçler varsa, önceki bölüm otomatik olarak donacaktır ve belirteçlerin sayısı donmuş olacaktır. Tokenların önceki kısmına temettü biriktirilmişse, akıllı sözleşme aracılığıyla dahili bir işlemle otomatik olarak oyuncunun cüzdanına aktarılır. <br>6. 888 token'ın dondurulması ve çözülmesi işlemi birkaç TRX alacaktır, bu yüzden işlem yaparken onları cüzdanınızda bulundurmanız gerekir.
+withdraw	Çekilmiş
+token_about	Token 888  Hakkında
+token_title_1	Token 888 nedir ve ne için kullanılır?
+token_text_1	Token 888, TRON blokchain sistemindeki TRC20 token’ıdır. Toplamda 100 000 000 adet Token 888 elde edilebilir (token 888 dağılımı hakkında bilgi almak için bizim WhitePaper’e bakınız). Token 888 sahipleri, elde ettikleri token 888 sayısına göre TRX olarak temettü alacaktır.
+token_title_2	Temettü nedir? Temettü miktarı niye göre değişir?
+token_text_2	Temettü 888TRON.com platformunun net gelirinden belirlenecektir. Temettü havuzu 888TRON.com platformu kullanıcılarının kazanç ve kayıplarına göre hep değişecektir.
+token_title_3	Token 888 satın alabilir miyim?
+token_text_3	Token 888 direkt satın alınamaz, yalnızca 888TRON.com platformunda oynanarak elde edilebilir. Gelecekte 888 token'ları DEX ve başka kripto para borsalarında kullanımda olacaktır.
+token_title_4	888 token'larımı çıkarttım, onları nerede görebilirim?
+token_text_4	Token 888 Tron link’e eklenebilir. Bunun için Token’lar bölümüne giderek "TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3" adresini yazmanız gerekir. Bu işlemden sonra token’larınızı kullanabilirsiniz.   
+token_title_5	Bana temettü yatırıldıktan sonra benim 888 token'larım yanacak mı?
+token_text_5	Hayır, token’lar her zaman sizin sahipliğinizde olur; Siz onları kripto para borsalarında bozdurmak isteyebilirsiniz. Sanal cüzdanınızda 888 token’ları olduğu sürece siz 888TRON.com’dan temettü alabileceksiniz. Eğer sizin 888 token’larınız zamanla artmıyorsa, aldığınız temettü payı zamanla azalabilmektedir.
+token_title_6	Token 888 şu anda ne kadardır? 888 token'larımı şimdi bozdurabilir miyim?
+token_text_6	‘‘Temettü’’ sekmesinden 888 token’ınız hakkında canlı ortamda bilgi alabilirsiniz. Token 888 bedeli tüm 888TRON.com platformu ve topluluğuna göre belirlenir. Gelecekte token 888 DEX ve benzeri kripto para borsalarında bozdurulabilir.
+token_title_7	888 token'larımdan temettü nasıl alabilirim?
+token_text_7	Temettü alabilmek için 888 token’ları çekmek ve dağıtım sürecinin bitimine kadar dondurmak gerekir, bu süreç tamamlandıktan sonra dondurma işlemini iptal etmek gerekir. Dondurulmayan token’lar için temettü alınamaz. Dondurulma işlemi bitiminde temettü akıllı sözleşmeler vasıtasıyla otomatik olarak hesabınıza aktarılır.
+alreadyExist	Zaten mevcuttur!
+copy_link	Linki Kopyala
