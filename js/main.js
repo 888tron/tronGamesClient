@@ -29,6 +29,10 @@ var wheelState = WheelState.IDLE;
 const solidityNode = new HttpProvider('https://api.shasta.trongrid.io');
 const eventServer = 'https://api.shasta.trongrid.io/';*/
 
+/*const fullNode = 'https://super.guildchat.io';
+const solidityNode = 'https://solidity.guildchat.io';
+const eventServer = 'https://api.trongrid.io';*/
+
 const fullNode = 'https://api.trongrid.io';
 const solidityNode = fullNode;
 const eventServer = fullNode;
@@ -112,6 +116,13 @@ function start() {
 
         guiInit();
 
+        getParentUserId(app.parentRef)
+            .then(parentData => {
+                logLine('parentUserId', parentData);
+                app.parentUserId = parentData.userId;
+                app.parentRef = parentData.ref;
+                app.parentAddress = parentData.parentAddress;
+            });
     });
 }
 
@@ -602,39 +613,78 @@ function getCurrentBlockNumber() {
     });
 }
 
+function findTx(txId) {
+    return app.tronWeb2.trx.getTransactionInfo(txId).then(txInfo => {
+        log('getTransactionInfo');
+        log(txInfo);
+
+        if (Object.values(txInfo).length === 0) {
+            return delay(3000).then(() => {
+                return findTx(txId);
+            });
+        }
+    }).catch(err => {
+        logError('getTransactionInfo', err);
+
+        return delay(3000).then(() => {
+            return findTx(txId);
+        });
+    });
+}
 
 function findBlockByTxId(blockNumber, txId) {
+    return app.tronWeb2.trx.getTransactionInfo(txId).then(txInfo => {
 
-    return app.tronWeb2.trx.getBlock(blockNumber).then(block => {
+        if (Object.values(txInfo).length > 0) {
+            log(txInfo);
 
-        log('blockNumber', blockNumber);
+            log('find complete by tx', txInfo.blockNumber);
 
-        if (block && block.transactions.length) {
-
-            const tx = block.transactions.find(tx => {
-                return tx.txID === txId;
-            });
-
-            const blockInfo = {
-                blockNumber: blockNumber,
-                hash: block.blockID
-            };
-
-            logJson(blockInfo);
-
-            if (tx) return blockInfo;
-
-            blockNumber++;
+            blockNumber = txInfo.blockNumber;
         }
 
-        return delay(100).then(() => {
-            return findBlockByTxId(blockNumber, txId);
-        })
+        return app.tronWeb2.trx.getBlock(blockNumber).then(block => {
 
-        //logJson('block', block);
+            log('findBlockByTxId', blockNumber);
+
+            if (block && block.transactions.length) {
+
+                const tx = block.transactions.find(tx => {
+                    return tx.txID === txId;
+                });
+
+                const blockInfo = {
+                    blockNumber: blockNumber,
+                    hash: block.blockID
+                };
+
+                //logJson(blockInfo);
+
+
+                if (tx) {
+                    log('find complete', blockInfo.blockNumber);
+                    return blockInfo;
+                }
+
+                blockNumber++;
+            }
+
+            return delay(100).then(() => {
+                return findBlockByTxId(blockNumber, txId);
+            })
+
+            //logJson('block', block);
+
+        }).catch(err => {
+            //logError('findBlockByTxId', err);
+
+            return delay(100).then(() => {
+                return findBlockByTxId(blockNumber, txId);
+            });
+        });
 
     }).catch(err => {
-        logError('findBlockByTxId', err);
+        logError('getTransactionInfo', err);
 
         return delay(100).then(() => {
             return findBlockByTxId(blockNumber, txId);
@@ -1050,16 +1100,62 @@ function getAddressToUserId(address) {
     )
 }
 
-function getRefToUserId(ref) {
-    if (!ref) return Promise.resolve(0);
+function getParentUserId(ref) {
+    const parentUser = localStorageGet('parentUser');
 
-    return getReferralsContract().then(
-        referrrals => {
-            return referrrals.getRefToUserId(ref).call().then(userId => {
-                return userId.toNumber();
+    if (parentUser) {
+        return post('/api/getParentUserId', parentUser).then(parentUser => {
+            return parentUser;
+        });
+    } else {
+        if (ref) {
+            return getReferralsContract().then(referrrals => {
+                    return referrrals.getRefToUserId(ref).call().then(userId => {
+                        return referrrals.getUserIdToAddress(userId.toNumber()).call().then(parentAddress => {
+                            return post('/api/getParentUserId', {
+                                ref: ref,
+                                userId: userId.toNumber(),
+                                parentAddress: app.tronWeb2.address.fromHex(parentAddress)
+                            }).then(parentUser => {
+                                if (parentUser.userId) localStorageSet('parentUser', parentUser);
+                                return parentUser;
+                            });
+                        });
+                    });
+                }
+            )
+        } else {
+            return post('/api/getParentUserId', parentUser).then(parentUser => {
+                if (parentUser.userId) localStorageSet('parentUser', parentUser);
+                return parentUser;
             });
         }
-    )
+    }
+}
+
+function localStorageGet(key) {
+    try {
+        return JSON.parse(localStorage.getItem(key));
+    } catch (error) {
+        // browser don't support localStorage
+        return null;
+    }
+}
+
+function localStorageSet(key, value) {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+        // browser don't support localStorage
+    }
+}
+
+function localStorageRemove(key) {
+    try {
+        localStorage.removeItem(key);
+    } catch (e) {
+        // browser don't support localStorage
+    }
 }
 
 function getAddressToRefLink(address) {
@@ -1164,75 +1260,72 @@ function createBet() {
                     log('app.betAmount', app.betAmount);
                     log('isAutoBet', isAutoBet());
 
-                    getRefToUserId(app.parentRef).then(parentRefUserId => {
-                        log('parentRefUserId', parentRefUserId);
 
-                        log(wheelAddress + ' ' + getTronlinkAddress() + ' ' + 0 + ' ' + bytes32(app.selectedSector));
+                    log(wheelAddress + ' ' + getTronlinkAddress() + ' ' + 0 + ' ' + bytes32(app.selectedSector));
 
+                    log('gameManager.createBet');
 
-                        log('gameManager.createBet');
+                    gameManager.createBet(wheelAddress, getTronlinkAddress(), app.parentUserId, bytes32(app.selectedSector)).send({
+                        shouldPollResponse: false,
+                        callValue: app.betAmount * 1000000
+                    }).then(txId => {
+                        app.time0 = (new Date()).getTime();
 
-                        gameManager.createBet(wheelAddress, getTronlinkAddress(), parentRefUserId, bytes32(app.selectedSector)).send({
-                            shouldPollResponse: false,
-                            callValue: app.betAmount * 1000000
-                        }).then(txId => {
-                            app.time0 = (new Date()).getTime();
+                        log('txId', txId);
 
-                            log('txId', txId);
+                        onByBet(txId, app.betAmount, app.selectedSector, isAutoBet());
 
-                            onByBet(txId, app.betAmount, app.selectedSector, isAutoBet());
+                        //updateMyBalance();
+                        getCurrentBlockNumber().then(blockNumber => {
 
-                            //updateMyBalance();
-                            getCurrentBlockNumber().then(blockNumber => {
-                                findBlockByTxId(blockNumber - 2, txId).then(block => {
-                                    if (block) {
-                                        getWheelWinIndexContract().then(wheelWinIndexContract => {
+                            //findTx(txId);
 
-                                            wheelWinIndexContract.getWinIndexFromHash(getTronlinkAddress(), '0x' + block.hash).call().then(winIndex => {
+                            findBlockByTxId(blockNumber - 2, txId).then(block => {
+                                if (block) {
+                                    getWheelWinIndexContract().then(wheelWinIndexContract => {
 
-                                                const _winIndex = winIndex.toNumber();
+                                        wheelWinIndexContract.getWinIndexFromHash(getTronlinkAddress(), '0x' + block.hash).call().then(winIndex => {
 
-                                                const winValue = [0, 6, 2, 5, 2, 10, 2, 5, 2, 6, 2, 5, 2, 6, 2, 10, 2, 5, 2, 20, 2][_winIndex];
+                                            const _winIndex = winIndex.toNumber();
 
-                                                const winAmount = app.selectedSector.toString() === winValue.toString() ? (app.betAmount * app.selectedSector) : 0;
+                                            const winValue = [0, 6, 2, 5, 2, 10, 2, 5, 2, 6, 2, 5, 2, 6, 2, 10, 2, 5, 2, 20, 2][_winIndex];
 
-                                                log('selectedSector', app.selectedSector);
-                                                log('winValue', winValue);
-                                                log('app.betAmount', app.betAmount);
-                                                log('app.betAmount * app.selectedSector', app.betAmount * app.selectedSector);
-                                                log('winAmount', winAmount);
+                                            const winAmount = app.selectedSector.toString() === winValue.toString() ? (app.betAmount * app.selectedSector) : 0;
 
-                                                const bet = {
-                                                    betValue: app.selectedSector,
-                                                    winIndex: _winIndex,
-                                                    winValue: winValue,
-                                                    winAmount: winAmount
-                                                };
-                                                app.time1 = (new Date()).getTime();
+                                            log('selectedSector', app.selectedSector);
+                                            log('winValue', winValue);
+                                            log('app.betAmount', app.betAmount);
+                                            log('app.betAmount * app.selectedSector', app.betAmount * app.selectedSector);
+                                            log('winAmount', winAmount);
 
-
-                                                logLine('win!!!!!!!!!!!!!!  ' + (app.time1 - app.time0), bet);
+                                            const bet = {
+                                                betValue: app.selectedSector,
+                                                winIndex: _winIndex,
+                                                winValue: winValue,
+                                                winAmount: winAmount
+                                            };
+                                            app.time1 = (new Date()).getTime();
 
 
-                                                winBet(bet);
-                                            });
+                                            logLine('win!!!!!!!!!!!!!!  ' + (app.time1 - app.time0), bet);
+
+
+                                            winBet(bet);
                                         });
-                                    }
-                                });
+                                    });
+                                }
+                            });
 
-                                //setTimeout(watchBetTx, 1000, txId, selectedSector, app.betAmount);
+                            //setTimeout(watchBetTx, 1000, txId, selectedSector, app.betAmount);
 
-                                // setTimeout(watchBetBlockNumber, 1000, lastBetCount.toNumber(), getTronlinkAddress());
+                            // setTimeout(watchBetBlockNumber, 1000, lastBetCount.toNumber(), getTronlinkAddress());
 
 
-                            })/*.catch(err => {
+                        })/*.catch(err => {
                                 stopBetError('getCurrentBlockNumber', err);
                             })*/;
-                        }).catch(err => {
-                            stopBetError('createBet', err);
-                        });
                     }).catch(err => {
-                        stopBetError('getRefToUserId', err);
+                        stopBetError('createBet', err);
                     });
                 }
             ).catch(err => {
