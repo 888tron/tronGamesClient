@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css?2.3">
+    <link rel="stylesheet" href="css/custom.css?2.4">
     <title>Gear of Fortune</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109663484-3"></script>
@@ -519,19 +519,23 @@
                                 <div class="row p-3">
                                     <div class="cards mt-2 mt-sm-4 mx-auto">
                                         <div class="d-flex align-items-center mt-3">
-                                            <div class="h4 col-auto">
-                                                <svg class="icon">
-                                                    <use xlink:href="img/cards/cards-sprite.svg#spades"></use>
-                                                </svg>
+                                            <div class="side-card h4 col-auto d-flex align-items-center">
+                                                <span class="mr-1">
+                                                    <svg class="icon white">
+                                                        <use xlink:href="img/cards/cards-sprite.svg#spades"></use>
+                                                    </svg>
+                                                </span>
                                                 <span>2</span>
                                             </div>
                                             <div class="w-100 position-relative" id="cardsSelect">
                                                 <div class="range-thumb position-absolute">
                                                     <div class="position-relative">
                                                         <div class="range-tooltip position-absolute d-flex align-items-center justify-content-center">
-                                                            <svg class="icon white">
-                                                                <use xlink:href="img/cards/cards-sprite.svg#hearts"></use>
-                                                            </svg>
+                                                            <span class="mr-1">
+                                                                <svg class="icon white">
+                                                                    <use xlink:href="img/cards/cards-sprite.svg#hearts"></use>
+                                                                </svg>
+                                                            </span>
                                                             <span>8</span>
                                                         </div>
                                                         <div class="corner-tooltip position-absolute"></div>
@@ -540,10 +544,12 @@
                                                 <input type="range" class="range" min="0" max="51" value="26">
                                                 <div class="range-track position-absolute"></div>
                                             </div>
-                                            <div class="h4 col-auto">
-                                                <svg class="icon red">
-                                                        <use xlink:href="img/cards/cards-sprite.svg#hearts"></use>
-                                                </svg>
+                                            <div class="side-card h4 col-auto d-flex align-items-center">
+                                                <span class="mr-1">
+                                                    <svg class="icon white">
+                                                            <use xlink:href="img/cards/cards-sprite.svg#hearts"></use>
+                                                    </svg>
+                                                </span>
                                                 <span>A</span>
                                             </div>
                                         </div>
@@ -1109,7 +1115,7 @@
 
 <script src="libs/inflate.min.js"></script>
 
-<script src="js/cards.js?v=1.2"></script>
+<script src="js/cards.js?v=1.4"></script>
 
 <script src="js/main.js?v=201"></script>
 <script src="js/locale.js?v=2.8"></script>

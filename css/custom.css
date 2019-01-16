@@ -6,8 +6,8 @@ body {
 }
 
 svg.icon {
-    width: 1em;
-    height: 1em;
+    width: 0.9em;
+    height: 0.9em;
 }
 
 svg.icon.red {
@@ -457,6 +457,16 @@ main {
     width: 40px;
     background: #000;
     left: calc(50% - 20px);
+}
+
+.range-tooltip .icon {
+    height: 0.8em;
+    width: 0.8em;
+}
+
+.side-card .icon{
+    height: 0.7em;
+    width: 0.7em;
 }
 
 .corner-tooltip{

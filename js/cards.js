@@ -253,6 +253,6 @@ function cardType(card) {
             value = 'A';
             break;
     }
-    return '<svg class="icon white"><use xlink:href="img/cards/cards-sprite.svg#' + sign + '"></use></svg><span>' + value + '</span>';
+    return '<span class="mr-1"><svg class="icon white"><use xlink:href="img/cards/cards-sprite.svg#' + sign + '"></use></svg></span><span>' + value + '</span>';
 }
 
