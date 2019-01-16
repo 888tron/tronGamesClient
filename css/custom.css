@@ -315,6 +315,16 @@ main {
     max-width: 600px;
 }
 
+.card-item img {
+    filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, .5));
+    transition: .5s;
+}
+
+.card-container .text-block {
+    opacity: 0;
+    transition: .5s;
+}
+
 .card-item img, .card-3d {
     width: 140px;
     height: 210px;
@@ -325,6 +335,14 @@ main {
         width: 120px;
         height: 180px;
     }
+}
+
+.card-container.showtext .card-item img {
+    opacity: 0.3;
+}
+
+.card-container.showtext .text-block {
+    opacity: 1;
 }
 
 .load-card, .card-cover, .result-card {
@@ -371,43 +389,51 @@ main {
     max-width: 500px;
 }
 
-#cardsSelect.range {
-    background: linear-gradient(to left, #01f593 50%, #ff026c 50%);
+#cardsSelect .range {
     height: 14px;
     border-radius: 7px;
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
     outline: none;
+    opacity: 0; 
 }
 
-#cardsSelect.range::-moz-range-track {
-    background: linear-gradient(to left, #01f593 50%, #ff026c 50%);
+.range-track {
+    background: linear-gradient(to right, #01f593 50%, #ff026c 50%);
     height: 14px;
     border-radius: 7px;
-    appearance: none;
     width: 100%;
+    top: 6px;
+    z-index: -1;
 }
 
-#cardsSelect.range::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background: #FFF;
-    cursor: pointer;
-    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
-    border-radius: 3px;
-}
-  
-  #cardsSelect.range::-moz-range-thumb {
-    appearance: none;
+.range-thumb {
     width: 25px;
     height: 25px;
     background: #FFF;
     cursor: pointer;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
     border-radius: 3px;
+    left: 50%;
+}
+
+.range-tooltip{
+    top: -40px;
+    height: 30px;
+    width: 40px;
+    background: #000;
+    left: calc(50% - 20px);
+}
+
+.corner-tooltip{
+    top: -20px;
+    height: 15px;
+    width: 15px;
+    background: #000;
+    transform: rotate(45deg);
+    left: calc(50% - 8px);
+    z-index: -1;
 }
 
 .cards-list > div {

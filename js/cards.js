@@ -1,13 +1,15 @@
 (function () {
-    $('#cardsSelect').val('6');
+    $('#cardsSelect .range').val('26');
 })();
 
-$('#cardsSelect').on('input', function() {
+$('#cardsSelect .range').on('input', function() {
     var select = $(this).val();
     $('#selectedCardImg').attr('src', 'img/cards/' + select + '.svg');
-    $('.cards-list').find('.active').removeClass('active');
-    $('.cards-list > div').eq(select).addClass('active');
-    $('#curentCard').html($('.cards-list > div.active').html());
+    $('#curentCard').html(select);
+    $('#cardsSelect .range-tooltip').html(select);
+    var left = 100/53*(parseInt(select)+1);
+    $('#cardsSelect .range-thumb').css('left', 'calc(' + left + '% - 13px');
+    $('#cardsSelect .range-track').css('background', 'linear-gradient(to right, #01f593 ' + left + '%, #ff026c ' + left + '%)');
 });
 
 $('.range-select > div').on('click', function () {
@@ -29,3 +31,10 @@ function showCard(card) {
 function resetCard() {
     $('.card-3d').removeClass('show');
 }
+
+function showCardText() {
+    $('.card-container').addClass('showtext');
+    $('.card-container .text-block').html('WINS<br>100000 TRX');
+    setTimeout(function(){$('.card-container').removeClass('showtext');}, 2000);
+}
+
