@@ -25,7 +25,7 @@ how_3	3. Bahis tutarı giriniz. Bu bahis yapacağınız TRX tutarıdır.
 how_4	4. Sektör seçiniz.
 how_5	5. Bahis yapmak için ÇEVİR'e tıklayın. Akıllı sözleşmeler rastgele şanslı sayı geliştirecek.
 how_6	6. Sektör numarası tahmininize eşitse, o zaman KAZANACAKSINIZ! Ödeme = BAHİS * SEKTÖR.
-how_7	Sorularınız mı var? Bizim <a href="https://t.me/gamesontron" target="_blank"> telegram grubumuza</a> katılın, Size yardımcı olmaktan mutluluk duyacaktır!
+how_7	Sorularınız mı var? Bizim <a href="https://t.me/tron888" target="_blank"> telegram grubumuza</a> katılın, Size yardımcı olmaktan mutluluk duyacaktır!
 network_err	Ağ Hatası
 tsc_err	Tron Smart Contract şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.
 need_tron	TRONLink gerekmektedir.
@@ -86,3 +86,4 @@ draw_over	Draw Over
 payout_win	Payout on Win:
 multiplayer	Multiplayer
 win_chance	Win Chance
+how_dice	Destede 52 kart vardır. En düşük kart 2'dir ve en yüksek kart A (as'tır). Oyuncu desteden herhangi bir kartı seçer. Oyuncu üç etkinlikten birine bahis yapar: sonraki kart - kalan 51 karttan biri, rastgele dağıtıldığında, oyuncu tarafından seçilen karttan BÜYÜKTÜR, KÜÇÜKTÜR VEYA EŞİT olacaktır. Oyunda kağıdın simgelerine dikkat edilmemektedir. Oyuncu Etkinliği kazandığında, oyuncu tarafından seçilen kartına ve bahis için seçilen etkinliğe karşılık gelen katsayı ile çarpılan ödeme yapılmaktadır.

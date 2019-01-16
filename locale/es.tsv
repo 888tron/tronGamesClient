@@ -25,7 +25,7 @@ how_3	3. Establezca su CANTIDAD DE LA APUESTA. Esta es la cantidad de TRX que ap
 how_4	4. Seleccione el SECTOR.
 how_5	5. Haga clic en GIRAR para colocar su apuesta. Los contratos inteligentes generarán aleatoriamente un número de sector.
 how_6	6. Si el número de sector es igual a su predicción, entonces GANAS! Pago = CANTIDAD DE LA APUESTA * SECTOR.
-how_7	¿Todavía usted tiene preguntas? ¡Únase a nuestro  <a href="https://t.me/gamesontron" target="_blank"> telegram group</a> y con gusto le ayudamos! 
+how_7	¿Todavía usted tiene preguntas? ¡Únase a nuestro  <a href="https://t.me/tron888" target="_blank"> telegram group</a> y con gusto le ayudamos! 
 network_err	Error de red
 tsc_err	Tron Smart Contract no está disponible ahora. Por favor, intente mas tarde.
 need_tron	Necesita TRONLink
@@ -86,3 +86,4 @@ draw_over	Draw Over
 payout_win	Payout on Win:
 multiplayer	Multiplayer
 win_chance	Win Chance
+how_dice	Hay 52 cartas en una baraja. La carta más baja es 2, la carta más alta es A (As). El jugador elige cualquier carta de la baraja. El jugador apuesta en uno de los tres eventos: la carta siguiente - una de las 51 cartas restantes, distribuidas al azar, será MÁS, o MENOS o IGUAL en la clasificación la primera carta elegida por el jugador. Los palos importan en el juego. En el caso de adivinar el evento, se paga al jugador según el valor de la apuesta multiplicada por el coeficiente correspondiente a la carta seleccionada del jugador y el evento seleccionado para la apuesta.

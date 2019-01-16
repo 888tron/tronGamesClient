@@ -25,7 +25,7 @@ how_3	3. 设置下注金额。 这是您要下注的TRX金额。
 how_4	4. 请选择区域。
 how_5	5. 点击旋转进行下注。 智能合约将随机生成幸运数字。
 how_6	6.如果区域号等于您的预测，那么您将获胜！ 支付= 赌注 * 区域。
-how_7	还有其他问题吗？ 加入我们的<a href="https://t.me/gamesontron" target="_blank">电报组</a>，我们将竭诚为您服务！
+how_7	还有其他问题吗？ 加入我们的<a href="https://t.me/tron888" target="_blank">电报组</a>，我们将竭诚为您服务！
 network_err	网路错误
 tsc_err	Tron Smart Contract目前无法使用。 请稍后再试。
 need_tron	需要 TRONLink
@@ -86,3 +86,4 @@ draw_over	Draw Over
 payout_win	Payout on Win:
 multiplayer	Multiplayer
 win_chance	Win Chance
+how_dice	There are 52 cards in the deck. The lowest rank is 2 and the highest rank is A (ace). The player chooses any card from the deck. The player then makes a bet on one of the following three outcomes to happen: the next card (one of the 51 cards left in the deck), which will be chosen randomly, will be a) HIGHER, b) LOWER, or c) EQUAL in rank to the first card drawn from the deck by the player. Suits are matter in this game. If the player guesses the outcome, he or she will win the bet multiplied by the odds which depend on the card and the outcome chosen by the player.

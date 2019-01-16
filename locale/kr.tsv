@@ -25,7 +25,7 @@ how_3	3. 귀하의 베팅금액을 설정하십시오. 이 베팅금액을 TRX�
 how_4	4. 섹터를 선택하여 주십시오.
 how_5	5. SPIN을 클릭하시고 베팅하십시오. 스마트 계약들은 랜덤으로 섹터 넘버를 생성할 것 입니다.
 how_6	6. 섹터 넘버가 귀하의 예측과 같게되면 귀하는 이기게 되는 것입니다! 페이아웃 = 베팅 금액 * 섹터.
-how_7	문의상항이 있으시면 고객센터로 연락주십시오! <a href="https://t.me/gamesontron" target="_blank"> 
+how_7	문의상항이 있으시면 고객센터로 연락주십시오! <a href="https://t.me/tron888" target="_blank"> 
 network_err	네트워크 에러입니다.
 tsc_err	Tron 스마트계약은 현재 사용이 불가능합니다. 나중에 다시 시도하여 주십시오.
 need_tron	TRONLink가 필요합니다.
@@ -86,3 +86,4 @@ draw_over	Draw Over
 payout_win	Payout on Win:
 multiplayer	Multiplayer
 win_chance	Win Chance
+how_dice	There are 52 cards in the deck. The lowest rank is 2 and the highest rank is A (ace). The player chooses any card from the deck. The player then makes a bet on one of the following three outcomes to happen: the next card (one of the 51 cards left in the deck), which will be chosen randomly, will be a) HIGHER, b) LOWER, or c) EQUAL in rank to the first card drawn from the deck by the player. Suits are matter in this game. If the player guesses the outcome, he or she will win the bet multiplied by the odds which depend on the card and the outcome chosen by the player.

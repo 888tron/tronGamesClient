@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css?2.1">
+    <link rel="stylesheet" href="css/custom.css?2.3">
     <title>Gear of Fortune</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109663484-3"></script>
@@ -46,17 +46,16 @@
     <nav id="myHeader" class="navbar navbar-dark bg-dark fxed panel-bg navbar-expand-xl">
         <ul class="nav nav-tabs border-0 mr-auto">
             <li class="nav-item">
-                <a class="navbar-brand mr-auto mr-md-3" data-toggle="tab" aria-selected="true" href="#gameCards" data-parent="#Games">
+                <a class="navbar-brand active show mr-auto mr-md-3" data-toggle="tab" aria-selected="true" href="#gameCards" data-parent="#Games">
                     <span class="position-relative">
-                        <img class="icon" src="img/peaks.svg">
-                        <span data-locale="cards">Cards</span>
+                        <img class="icon" src="img/peaks.svg"><span data-locale="cards">Cards</span>
                     </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="navbar-brand mr-auto mr-md-3 d-none d-md-block" data-toggle="tab" aria-selected="false" href="#gameGear" data-parent="#Games">
                     <i class="fas fa-cogs"></i>
-                    <span class="navbar-label">Gear of Fortune</span>
+                    <span>Gear of Fortune</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -108,8 +107,7 @@
                 <li class="nav-item">
                     <a class="navbar-brand" data-toggle="tab" aria-selected="true" href="#gameCards" data-parent="#Games">
                         <span class="position-relative">
-                            <img class="icon" src="img/peaks.svg">
-                            <span data-locale="cards">Cards</span>
+                            <img class="icon" src="img/peaks.svg"><span data-locale="cards">Cards</span>
                         </span>
                     </a>
                 </li>
@@ -496,11 +494,11 @@
                                         <div class="text-block"></div>  
                                     </div>
                                     <div class="col-6 card-item text-center">
-                                        <div class="h5 mb-3" data-locale="prediction">Prediction</div>
+                                        <div class="mb-3" data-locale="prediction">Prediction</div>
                                         <img id="selectedCardImg" src="img/cards/6.svg">
                                     </div>
                                     <div class="col-6 card-item text-center">
-                                        <div class="h5 mb-3" data-locale="result">Result</div>
+                                        <div class="mb-3" data-locale="result">Result</div>
                                         <div class="card-3d position-relative mx-auto">
                                             <div class="card-cover position-absolute">
                                                 <img src="img/cards/cover.png">
@@ -513,18 +511,40 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-12 text-center mt-3">
+                                        <img class="w-50" src="img/cards/rangsWhite.svg" style="opacity: 0.8;">
+                                    </div>
+                                </div>
                                 <div class="row p-3">
                                     <div class="cards mt-2 mt-sm-4 mx-auto">
                                         <div class="d-flex align-items-center mt-3">
+                                            <div class="h4 col-auto">
+                                                <svg class="icon">
+                                                    <use xlink:href="img/cards/cards-sprite.svg#spades"></use>
+                                                </svg>
+                                                <span>2</span>
+                                            </div>
                                             <div class="w-100 position-relative" id="cardsSelect">
                                                 <div class="range-thumb position-absolute">
                                                     <div class="position-relative">
-                                                        <div class="range-tooltip position-absolute d-flex align-items-center justify-content-center">26</div>
-                                                            <div class="corner-tooltip position-absolute"></div>
+                                                        <div class="range-tooltip position-absolute d-flex align-items-center justify-content-center">
+                                                            <svg class="icon white">
+                                                                <use xlink:href="img/cards/cards-sprite.svg#hearts"></use>
+                                                            </svg>
+                                                            <span>8</span>
+                                                        </div>
+                                                        <div class="corner-tooltip position-absolute"></div>
                                                     </div>  
                                                 </div>
                                                 <input type="range" class="range" min="0" max="51" value="26">
                                                 <div class="range-track position-absolute"></div>
+                                            </div>
+                                            <div class="h4 col-auto">
+                                                <svg class="icon red">
+                                                        <use xlink:href="img/cards/cards-sprite.svg#hearts"></use>
+                                                </svg>
+                                                <span>A</span>
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center text-center mt-3 range-select">
@@ -602,7 +622,13 @@
                                         <div class="input-group">
                                             <button type="button" id="drawButton" class="btn btn-primary w-100">
                                                 <span id="curentDraw" data-locale="draw_over">Draw Over</span> 
-                                                <span id="curentCard">26</span></button>
+                                                <span id="curentCard">
+                                                    <svg class="icon white">
+                                                        <use xlink:href="img/cards/cards-sprite.svg#hearts"></use>
+                                                    </svg>
+                                                    <span>8</span>
+                                                </span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -806,19 +832,29 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p data-locale="how_1"> 1. Make sure you have a TRONLink wallet. For more information on how to create
-                    one,<a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec"
-                           target="_blank">click here.</a></p>
-                <p data-locale="how_2">2. To play you must own TRX, the underlying cryptocurrency that powers the TRON
-                    network.</p>
-                <p data-locale="how_3">3. Set your BET AMOUNT. This is the amount of TRX you will be betting.</p>
-                <p data-locale="how_4">4. Select the SECTOR.</p>
-                <p data-locale="how_5">5. Click SPIN to place your bet. The smart contracts will then randomly generate
-                    a sector number.</p>
-                <p data-locale="how_6">6. If the sector number is equal your prediction then you WIN! Payout = BET
-                    AMOUNT * SECTOR.</p>
-                <p data-locale="how_7">Still have questions? Join our telegram group and we'll be more than happy to
-                    help!</p>
+                <ul class="nav nav-tabs pb-2">
+                    <li class="nav-item pr-3">
+                        <a class="active show" data-toggle="tab" aria-selected="true" href="#playGear" data-parent="#howTo">Gear of Fortune</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="tab" aria-selected="true" href="#playCards" data-parent="#howTo" data-locale="cards">Cards</a>
+                    </li>
+                </ul>
+                <div id="howTo" class="tab-content mt-3">
+                    <div id="playGear" class="tab-pane fade  show active">
+                            <p data-locale="how_4">4. Select the SECTOR.</p>
+                            <p data-locale="how_5">5. Click SPIN to place your bet. The smart contracts will then randomly generate
+                                a sector number.</p>
+                            <p data-locale="how_6">6. If the sector number is equal your prediction then you WIN! Payout = BET
+                                AMOUNT * SECTOR.</p>
+                            <p data-locale="how_7">Still have questions? Join our telegram group and we'll be more than happy to
+                                help!</p>
+                    </div>
+                    <div id="playCards" class="tab-pane fade">
+                        <p data-locale="how_dice">There are 52 cards in the deck. The lowest rank is 2 and the highest rank is A (ace). The player chooses any card from the deck. The player then makes a bet on one of the following three outcomes to happen: the next card (one of the 51 cards left in the deck), which will be chosen randomly, will be a) HIGHER, b) LOWER, or c) EQUAL in rank to the first card drawn from the deck by the player. Suits are matter in this game. If the player guesses the outcome, he or she will win the bet multiplied by the odds which depend on the card and the outcome chosen by the player.</p>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -837,6 +873,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="noMoneyModal" tabindex="-1" role="dialog"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -850,7 +887,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="modal fade" id="isNotWorkingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -872,7 +908,6 @@
 
 <div class="modal fade" id="dividendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
-
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content modal-content-dark" style="padding-bottom: 20px;">
             <div class="modal-header border-bottom-0">
@@ -1053,6 +1088,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/svg4everybody/2.1.9/svg4everybody.min.js" integrity="sha256-kTezPOsOi5ZsWUKr7/D/EWcONq/hdrc0gPwk5/IUYy0=" crossorigin="anonymous"></script>
+
 <script src="libs/bootstrap/bootstrap.min.js"></script>
 
 <script src="libs/TronWeb.js"></script>
@@ -1074,7 +1112,7 @@
 <script src="js/cards.js?v=1.2"></script>
 
 <script src="js/main.js?v=201"></script>
-<script src="js/locale.js?v=2.7"></script>
+<script src="js/locale.js?v=2.8"></script>
 
 </body>
 </html>

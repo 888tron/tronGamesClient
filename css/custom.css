@@ -5,6 +5,19 @@ body {
     background-image: url(../img/4.jpg);
 }
 
+svg.icon {
+    width: 1em;
+    height: 1em;
+}
+
+svg.icon.red {
+    fill: #ff5555;
+}
+
+svg.icon.white {
+    fill: #fff;
+}
+
 .text-lighten {
     color: #D3D3D3;
 }
@@ -20,6 +33,10 @@ body {
 .navbar-nav .nav-link {
     color: #fff !important;
     font-size: 16px;
+}
+
+.navbar-brand.active span{
+    color: #D2D279;
 }
 
 .navbar-brand .icon{
@@ -88,6 +105,18 @@ body {
     border-radius: 0.3rem;
     outline: 0;
     color: white;
+}
+
+.modal-content .nav-tabs a{
+    color: #fff;
+}
+
+.modal-content .nav-tabs a.active{
+    color: #D2D279;
+}
+
+.modal-content .nav-tabs a:hover{
+    text-decoration: none;
 }
 
 .modal-header {
@@ -313,6 +342,10 @@ main {
 
 .cards-info {
     max-width: 600px;
+}
+
+.card-item {
+    font-size: 1.2rem;
 }
 
 .card-item img {
