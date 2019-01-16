@@ -77,3 +77,12 @@ alreadyExist	Уже существует!
 copy_link	Копировать ссылку
 noMoney	Недастаточно TRX на вашем кошельке.
 reward_sum	Вознаграждение:
+cards	Cards
+prediction	Prediction
+result	Result
+draw_under	Draw Under
+draw_equal	Draw Equal
+draw_over	Draw Over
+payout_win	Payout on Win:
+multiplayer	Multiplayer
+win_chance	Win Chance

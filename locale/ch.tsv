@@ -75,3 +75,14 @@ token_title_7	我需要取888代币吗？
 token_text_7	要获得股息，必须取888代币，然后冻结，直到股息分配期结束，并在结束后解冻。 非冻结代币不会获得股息。 解冻后，股息将通过智能合约自动转入您的账户。
 alreadyExist	Already exist!
 copy_link	Copy the link
+noMoney	Not enough TRX in your wallet.
+reward_sum	Reward:
+cards	Cards
+prediction	Prediction
+result	Result
+draw_under	Draw Under
+draw_equal	Draw Equal
+draw_over	Draw Over
+payout_win	Payout on Win:
+multiplayer	Multiplayer
+win_chance	Win Chance

@@ -77,3 +77,12 @@ alreadyExist	Already exist!
 copy_link	Copy the link
 noMoney	Not enough TRX in your wallet.
 reward_sum	Reward:
+cards	Cards
+prediction	Prediction
+result	Result
+draw_under	Draw Under
+draw_equal	Draw Equal
+draw_over	Draw Over
+payout_win	Payout on Win:
+multiplayer	Multiplayer
+win_chance	Win Chance

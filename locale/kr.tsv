@@ -75,3 +75,14 @@ token_title_7	토큰888의 배당금은 어떻게 받습니까?
 token_text_7	배당금을 받으려면 토큰888을 철회한후 배당분배가 끝난뒤 동결을 취소해야 합니다.동결을 취소하지 않은 토큰은 배당금을 받지 못합니다.배당금은 동결취소뒤 귀하의 계정으로 자동이체됩니다.
 alreadyExist	Already exist!
 copy_link	Copy the link
+noMoney	Not enough TRX in your wallet.
+reward_sum	Reward:
+cards	Cards
+prediction	Prediction
+result	Result
+draw_under	Draw Under
+draw_equal	Draw Equal
+draw_over	Draw Over
+payout_win	Payout on Win:
+multiplayer	Multiplayer
+win_chance	Win Chance

@@ -75,3 +75,14 @@ token_title_7	888 token'larımdan temettü nasıl alabilirim?
 token_text_7	Temettü alabilmek için 888 token’ları çekmek ve dağıtım sürecinin bitimine kadar dondurmak gerekir, bu süreç tamamlandıktan sonra dondurma işlemini iptal etmek gerekir. Dondurulmayan token’lar için temettü alınamaz. Dondurulma işlemi bitiminde temettü akıllı sözleşmeler vasıtasıyla otomatik olarak hesabınıza aktarılır.
 alreadyExist	Zaten mevcuttur!
 copy_link	Linki Kopyala
+noMoney	Not enough TRX in your wallet.
+reward_sum	Reward:
+cards	Cards
+prediction	Prediction
+result	Result
+draw_under	Draw Under
+draw_equal	Draw Equal
+draw_over	Draw Over
+payout_win	Payout on Win:
+multiplayer	Multiplayer
+win_chance	Win Chance
