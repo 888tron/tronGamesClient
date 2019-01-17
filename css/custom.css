@@ -35,8 +35,14 @@ svg.icon.white {
     font-size: 16px;
 }
 
-.navbar-brand.active span{
+.navbar-brand.active span, 
+.navbar-brand.active i{
     color: #D2D279;
+    
+}
+
+.navbar-brand.active svg {
+    fill: #D2D279;
 }
 
 .navbar-brand .icon{
@@ -457,9 +463,15 @@ main {
     width: 40px;
     background: #000;
     left: calc(50% - 20px);
+    line-height: 0.8rem;
 }
 
 .range-tooltip .icon {
+    height: 0.8em;
+    width: 0.8em;
+}
+
+.button-card .icon {
     height: 0.8em;
     width: 0.8em;
 }
@@ -496,7 +508,7 @@ main {
 
 @media (max-width: 500px) {
     .range-select > div {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 }
 
@@ -519,17 +531,26 @@ main {
 
 .balance {
     /*font-weight: bold;*/
-    font-size: 17px;
+    font-size: 1.1rem;
     color: #ffffffcc;
 }
+
 
 @media (max-width: 575px) {
     .balance {
         width: 100%;
+        font-size: 1rem;
     }
 
     .balance > div {
         width: 50%;
+    }
+}
+
+@media (max-width: 500px) {
+    .balance {
+        width: 100%;
+        font-size: 0.9rem;
     }
 }
 

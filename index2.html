@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css?2.4">
+    <link rel="stylesheet" href="css/custom.css?2.5">
     <title>Gear of Fortune</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109663484-3"></script>
@@ -46,14 +46,17 @@
     <nav id="myHeader" class="navbar navbar-dark bg-dark fxed panel-bg navbar-expand-xl">
         <ul class="nav nav-tabs border-0 mr-auto">
             <li class="nav-item">
-                <a class="navbar-brand active show mr-auto mr-md-3" data-toggle="tab" aria-selected="true" href="#gameCards" data-parent="#Games">
-                    <span class="position-relative">
-                        <img class="icon" src="img/peaks.svg"><span data-locale="cards">Dice52/span>
+                <a class="navbar-brand active show mr-3" data-toggle="tab" aria-selected="true" href="#gameCards" data-parent="#Games">
+                    <span class="position-relative d-flex align-items-center">
+                        <svg class="icon white mr-1">
+                            <use xlink:href="img/cards/cards-sprite.svg#spades"></use>
+                        </svg>
+                        <span data-locale="cards">Dice52/span>
                     </span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="navbar-brand mr-auto mr-md-3 d-none d-md-block" data-toggle="tab" aria-selected="false" href="#gameGear" data-parent="#Games">
+                <a class="navbar-brand mr-auto mr-md-3" data-toggle="tab" aria-selected="false" href="#gameGear" data-parent="#Games">
                     <i class="fas fa-cogs"></i>
                     <span>Gear of Fortune</span>
                 </a>
@@ -69,7 +72,7 @@
             </li>
         </ul>
         <div class="dropdown order-0 order-xl-2">
-            <button class="btn dropdown-toggle" type="button" id="dropdownLang" data-toggle="dropdown"
+            <button class="btn dropdown-toggle pr-0" type="button" id="dropdownLang" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 <img src="img/flags/en.svg" title="English" class="flag-item curent-lang">
             </button>
@@ -104,10 +107,15 @@
                 <span class="navbar-label">Referrals</span>
             </a>-->
             <ul class="nav nav-tabs border-0 d-block d-md-none">
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="navbar-brand" data-toggle="tab" aria-selected="true" href="#gameCards" data-parent="#Games">
                         <span class="position-relative">
-                            <img class="icon" src="img/peaks.svg"><span data-locale="cards">Dice52</span>
+                            <span class="mr-1">
+                                <svg class="icon white">
+                                    <use xlink:href="img/cards/cards-sprite.svg#spades"></use>
+                                </svg>
+                            </span>
+                            <span data-locale="cards">Dice52</span>
                         </span>
                     </a>
                 </li>
@@ -116,7 +124,7 @@
                         <i class="fas fa-cogs"></i>
                         <span class="navbar-label">Gear of Fortune</span>
                     </a>
-                </li>
+                </li>-->
                 <li class="nav-item">
                     <a class="navbar-brand" href="#">
                         <span class="soon-item  position-relative">
@@ -436,7 +444,7 @@
             </div>
             <div id="gameCards" class="tab-pane fade show active">
                 <div class="container-fluid cards-wrapper mx-auto">
-                    <div class="row pt-4 justify-content-between">
+                    <div class="row pt-3 pt-sm-4 justify-content-between">
                         <div class="d-none d-sm-block balance col-auto text-center">
                             <div class="history-table d-inline-block">
                                 <span data-locale="history">History</span>
@@ -487,7 +495,7 @@
                                     data-target="#tokenModal"></i><br><span class="Token888Count">0</span>
                             </div>
                         </div>
-                        <div class="col-12 col-sm order-sm-1 mt-3 mt-sm-0">
+                        <div class="col-12 col-sm order-sm-1 mt-2 mt-sm-0">
                             <div class="card-container mx-auto">
                                 <div class="row position-relative">
                                     <div class="h1 text-white d-flex align-items-center text-center justify-content-center position-absolute w-100 h-100">
@@ -516,7 +524,7 @@
                                         <img class="w-50" src="img/cards/rangsWhite.svg" style="opacity: 0.8;">
                                     </div>
                                 </div>
-                                <div class="row p-3">
+                                <div class="row py-3">
                                     <div class="cards mt-2 mt-sm-4 mx-auto">
                                         <div class="d-flex align-items-center mt-3">
                                             <div class="side-card h4 col-auto d-flex align-items-center">
@@ -531,11 +539,9 @@
                                                 <div class="range-thumb position-absolute">
                                                     <div class="position-relative">
                                                         <div class="range-tooltip position-absolute d-flex align-items-center justify-content-center">
-                                                            <span class="mr-1">
-                                                                <svg class="icon white">
-                                                                    <use xlink:href="img/cards/cards-sprite.svg#hearts"></use>
-                                                                </svg>
-                                                            </span>
+                                                            <svg class="icon white mr-1">
+                                                                <use xlink:href="img/cards/cards-sprite.svg#hearts"></use>
+                                                            </svg>
                                                             <span>8</span>
                                                         </div>
                                                         <div class="corner-tooltip position-absolute"></div>
@@ -553,7 +559,7 @@
                                                 <span>A</span>
                                             </div>
                                         </div>
-                                        <div class="d-flex align-items-center text-center mt-3 range-select">
+                                        <div class="d-flex align-items-center text-center mt-1 mt-sm-3 range-select">
                                             <div class="w-100" data-locale="draw_under">Draw Under</div>
                                             <div class="w-100" data-locale="draw_equal">Draw Equal</div>
                                             <div class="w-100 active" data-locale="draw_over">Draw Over</div>
@@ -565,7 +571,7 @@
                     </div>
                 </div>
                 <div class="container cards-info">
-                    <div class="row h6 d-flex align-items-center justify-content-between text-center mt-2 mt-sm-5 mb-3">
+                    <div class="row h6 d-flex align-items-center justify-content-between text-center mt-0 mt-sm-5 mb-2 mb-sm-3">
                         <div class="col-sm-auto">
                             <span daya-locale="payout_win">Payout on Win:</span> <span>101 TRX</span>
                         </div>
@@ -628,8 +634,8 @@
                                         <div class="input-group">
                                             <button type="button" id="drawButton" class="btn btn-primary w-100">
                                                 <span id="curentDraw" data-locale="draw_over">Draw Over</span> 
-                                                <span id="curentCard">
-                                                    <svg class="icon white">
+                                                <span id="curentCard" class="button-card d-inline-flex align-items-center">
+                                                    <svg class="icon white mr-1">
                                                         <use xlink:href="img/cards/cards-sprite.svg#hearts"></use>
                                                     </svg>
                                                     <span>8</span>
@@ -1118,7 +1124,7 @@
 
 <script src="libs/inflate.min.js"></script>
 
-<script src="js/cards.js?v=1.4"></script>
+<script src="js/cards.js?v=1.5"></script>
 
 <script src="js/main.js?v=201"></script>
 <script src="js/locale.js?v=2.9"></script>
