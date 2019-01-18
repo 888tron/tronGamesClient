@@ -593,6 +593,7 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
+
 function getCurrentBlockNumber() {
     return app.tronWeb2.trx.getCurrentBlock().then(block => {
         if (!block) {
@@ -613,6 +614,27 @@ function getCurrentBlockNumber() {
     });
 }
 
+/*
+function getCurrentBlockNumber2() {
+    return post('/api/getCurrentBlock').then(block => {
+        if (!block) {
+            log('getCurrentBlockNumber2 is null');
+            return delay(100).then(() => {
+                return getCurrentBlockNumber2();
+            });
+        }
+        logLine('getCurrentBlockNumber2', block.blockNumber);
+
+        return block.blockNumber;
+    }).catch(err => {
+        logError('getCurrentBlockNumber2', err);
+
+        return delay(100).then(() => {
+            return getCurrentBlockNumber2();
+        });
+    });
+}*/
+
 function findTx(txId) {
     return app.tronWeb2.trx.getTransactionInfo(txId).then(txInfo => {
         log('getTransactionInfo');
@@ -632,6 +654,7 @@ function findTx(txId) {
     });
 }
 
+
 function findBlockByTxId(blockNumber, txId) {
     return app.tronWeb2.trx.getTransactionInfo(txId).then(txInfo => {
 
@@ -647,11 +670,11 @@ function findBlockByTxId(blockNumber, txId) {
 
             log('findBlockByTxId', blockNumber);
 
-            if (block && block.transactions.length) {
+            if (block) {
 
-                const tx = block.transactions.find(tx => {
+                const tx = block.transactions ? block.transactions.find(tx => {
                     return tx.txID === txId;
-                });
+                }) : null;
 
                 const blockInfo = {
                     blockNumber: blockNumber,
@@ -676,7 +699,7 @@ function findBlockByTxId(blockNumber, txId) {
             //logJson('block', block);
 
         }).catch(err => {
-            //logError('findBlockByTxId', err);
+            logError('findBlockByTxId', err);
 
             return delay(100).then(() => {
                 return findBlockByTxId(blockNumber, txId);
@@ -691,6 +714,57 @@ function findBlockByTxId(blockNumber, txId) {
         });
     });
 }
+
+/*
+
+function findBlockByTxId2(blockNumber, txId) {
+    return app.tronWeb2.trx.getTransactionInfo(txId).then(txInfo => {
+
+        if (Object.values(txInfo).length > 0) {
+            log(txInfo);
+
+            log('find complete by tx', txInfo.blockNumber);
+
+            blockNumber = txInfo.blockNumber;
+        }
+
+        return post('/api/getBlock', {blockNumber: blockNumber}).then(block => {
+
+            log('findBlockByTxId', blockNumber);
+            //logJson(block);
+
+            if (block) {
+
+                if (block.transactions.indexOf(txId) > -1) {
+                    log('find complete', block.blockNumber);
+                    return block;
+                }
+
+                blockNumber++;
+            }
+
+            return delay(100).then(() => {
+                return findBlockByTxId2(blockNumber, txId);
+            })
+
+            //logJson('block', block);
+
+        }).catch(err => {
+            logError('findBlockByTxId2', err);
+
+            return delay(100).then(() => {
+                return findBlockByTxId2(blockNumber, txId);
+            });
+        });
+
+    }).catch(err => {
+        logError('getTransactionInfo', err);
+
+        return delay(100).then(() => {
+            return findBlockByTxId2(blockNumber, txId);
+        });
+    });
+}*/
 
 function updateGameState(gameState, bets, player) {
     const playerToBetSum = {};
@@ -774,6 +848,10 @@ function guiInit() {
 
         $('#dividendsModal').on('hidden.bs.modal', function (e) {
             clearInterval(app.dividendsModalTimer);
+        });
+
+        $('#referralModal').on('show.bs.modal', function (e) {
+            updateReferralLink();
         })
     }
 }
@@ -1310,7 +1388,7 @@ function createBet() {
 
 
                                         logLine('win!!!!!!!!!!!!!!  ' + (app.time1 - app.time0), bet);
-
+                                        //logLine('winBlock', block);
 
                                         winBet(bet);
                                     });
