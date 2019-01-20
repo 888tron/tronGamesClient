@@ -1,23 +1,96 @@
 (function () {
-    $('#cardsSelect .range').val('26');
+    app.drawRange = 0;
+    app.cardIndex = 24;
+
+    app.minCardIndex = 1;
+    app.maxCardIndex = 50;
+    updateCardMinMax();
+    $('#cardsSelect .range').val(app.cardIndex);
+    onSelectCard();
 })();
 
-$('#cardsSelect .range').on('input', function() {
-    var select = $(this).val();
-    var card = cardType(select);
-    $('#selectedCardImg').attr('src', 'img/cards/' + select + '.svg');
+function onSelectCard() {
+    app.cardIndex = parseInt($('#cardsSelect .range').val());
+    if (app.cardIndex < app.minCardIndex) {
+        app.cardIndex = app.minCardIndex;
+        $('#cardsSelect .range').val(app.cardIndex);
+    }
+    if (app.cardIndex > app.maxCardIndex) {
+        app.cardIndex = app.maxCardIndex;
+        $('#cardsSelect .range').val(app.cardIndex);
+        log(app.cardIndex)
+    }
+
+    var card = cardType(app.cardIndex);
+    $('#selectedCardImg').attr('src', 'img/cards/' + app.cardIndex + '.svg');
     $('#curentCard').html(card);
     $('#cardsSelect .range-tooltip').html(card);
-    var left = 100/53*(parseInt(select)+1);
+    var left = 100 / 53 * (app.cardIndex + 1);
     $('#cardsSelect .range-thumb').css('left', 'calc(' + left + '% - 13px');
     $('#cardsSelect .range-track').css('background', 'linear-gradient(to right, #01f593 ' + left + '%, #ff026c ' + left + '%)');
-});
+
+
+    updateChances();
+
+    //log('app.cardIndex', app.cardIndex);
+}
+
+function updateChances() {
+    const cardsCount = 52;
+    const houseEdge = 0.035;
+
+    const betAmount = app.betAmount;
+
+    const betValue = app.cardIndex;
+
+    let winMult = 0;
+    let winChance = 0;
+
+    if (app.drawRange === 0) {
+        winChance = (cardsCount - 1 - betValue) / cardsCount;
+        winMult = (1 - houseEdge) / winChance;
+
+    } else if (app.drawRange === 1) {
+        winChance = 1 / cardsCount;
+        winMult = (1 - houseEdge) / winChance;
+
+    } else {
+        winChance = betValue / cardsCount;
+        winMult = (1 - houseEdge) / winChance;
+    }
+    const winAmount = betAmount * winMult;
+
+    $('.payoutText').html(winAmount.toFixed(4) + ' TRX');
+    $('.chanceText').html((winChance * 100).toFixed(2) + '%');
+    $('.multiplayerText').html(winMult.toFixed(4) + 'X');
+}
+
+$('#cardsSelect .range').on('input', onSelectCard);
 
 $('.range-select > div').on('click', function () {
     $('.range-select').find('.active').removeClass('active');
     $(this).addClass('active');
     $('#curentDraw').html($('.range-select > div.active').html());
+
+    app.drawRange = 2 - $('.range-select > div.active').index();
+
+    if (app.drawRange === 1) {
+        app.minCardIndex = 0;
+        app.maxCardIndex = 51;
+    } else {
+        app.minCardIndex = 1;
+        app.maxCardIndex = 50;
+    }
+
+    updateCardMinMax();
+
+    onSelectCard();
 });
+
+function updateCardMinMax() {
+    $('#cardsSelect .range').attr('min', app.minCardIndex);
+    $('#cardsSelect .range').attr('max', app.maxCardIndex);
+}
 
 function loadCard() {
     $('.load-card').removeClass('d-none').addClass('d-flex');
@@ -31,228 +104,29 @@ function showCard(card) {
 
 function resetCard() {
     $('.card-3d').removeClass('show');
+    $('.card-container .text-block').removeClass('winTextAnimation');
+    $('.card-container').removeClass('showtext');
 }
 
-function showCardText() {
+function showCardText(winAmount) {
     $('.card-container').addClass('showtext');
-    $('.card-container .text-block').html('WINS<br>100000 TRX');
-    setTimeout(function(){$('.card-container').removeClass('showtext');}, 2000);
+    $('.card-container .text-block').html('WINS ' + (winAmount === 0 ? 0 : winAmount.toFixed(2)) + ' TRX');
+    $('.card-container .text-block').addClass('winTextAnimation');
+
 }
 
 function cardType(card) {
-    var sign;
-    var value;
-    var style;
-    switch(parseInt(card)){
-        case 0:
-            sign = 'spades';
-            value = '2';
-            break;
-        case 1:
-            sign = 'clover';
-            value = '2';
-            break;
-        case 2:
-            sign = 'diamond';
-            value = '2';
-            break;
-        case 3:
-            sign = 'hearts';
-            value = '2';
-            break;
-        case 4:
-            sign = 'spades';
-            value = '3';
-            break;
-        case 5:
-            sign = 'clover';
-            value = '3';
-            break;
-        case 6:
-            sign = 'diamond';
-            value = '3';
-            break;
-        case 7:
-            sign = 'hearts';
-            value = '3';
-            break;
-        case 8:
-            sign = 'spades';
-            value = '4';
-            break;
-        case 9:
-            sign = 'clover';
-            value = '4';
-            break;
-        case 10:
-            sign = 'diamond';
-            value = '4';
-            break;
-        case 11:
-            sign = 'hearts';
-            value = '4';
-            break;
-        case 12:
-            sign = 'spades';
-            value = '5';
-            break;
-        case 13:
-            sign = 'clover';
-            value = '5';
-            break;
-        case 14:
-            sign = 'diamond';
-            value = '5';
-            break;
-        case 15:
-            sign = 'hearts';
-            value = '5';
-            break;
-        case 16:
-            sign = 'spades';
-            value = '6';
-            break;
-        case 17:
-            sign = 'clover';
-            value = '6';
-            break;
-        case 18:
-            sign = 'diamond';
-            value = '6';
-            break;
-        case 19:
-            sign = 'hearts';
-            value = '6';
-            break;
-        case 20:
-            sign = 'spades';
-            value = '7';
-            break;
-        case 21:
-            sign = 'clover';
-            value = '7';
-            break;
-        case 22:
-            sign = 'diamond';
-            value = '7';
-            break;
-        case 23:
-            sign = 'hearts';
-            value = '7';
-            break;
-        case 24:
-            sign = 'spades';
-            value = '8';
-            break;
-        case 25:
-            sign = 'clover';
-            value = '8';
-            break;
-        case 26:
-            sign = 'diamond';
-            value = '8';
-            break;
-        case 27:
-            sign = 'hearts';
-            value = '8';
-            break;
-        case 28:
-            sign = 'spades';
-            value = '9';
-            break;
-        case 29:
-            sign = 'clover';
-            value = '9';
-            break;
-        case 30:
-            sign = 'diamond';
-            value = '9';
-            break;
-        case 31:
-            sign = 'hearts';
-            value = '9';
-            break;
-        case 32:
-            sign = 'spades';
-            value = '10';
-            break;
-        case 33:
-            sign = 'clover';
-            value = '10';
-            break;
-        case 34:
-            sign = 'diamond';
-            value = '10';
-            break;
-        case 35:
-            sign = 'hearts';
-            value = '10';
-            break;
-        case 36:
-            sign = 'spades';
-            value = 'J';
-            break;
-        case 37:
-            sign = 'clover';
-            value = 'J';
-            break;
-        case 38:
-            sign = 'diamond';
-            value = 'J';
-            break;
-        case 39:
-            sign = 'hearts';
-            value = 'J';
-            break;
-        case 40:
-            sign = 'spades';
-            value = 'Q';
-            break;
-        case 41:
-            sign = 'clover';
-            value = 'Q';
-            break;
-        case 42:
-            sign = 'diamond';
-            value = 'Q';
-            break;
-        case 43:
-            sign = 'hearts';
-            value = 'Q';
-            break;
-        case 44:
-            sign = 'spades';
-            value = 'K';
-            break;
-        case 45:
-            sign = 'clover';
-            value = 'K';
-            break;
-        case 46:
-            sign = 'diamond';
-            value = 'K';
-            break;
-        case 47:
-            sign = 'hearts';
-            value = 'K';
-            break;
-        case 48:
-            sign = 'spades';
-            value = 'A';
-            break;
-        case 49:
-            sign = 'clover';
-            value = 'A';
-            break;
-        case 50:
-            sign = 'diamond';
-            value = 'A';
-            break;
-        case 51:
-            sign = 'hearts';
-            value = 'A';
-            break;
-    }
-    return '<svg class="icon white mr-1"><use xlink:href="img/cards/cards-sprite.svg#' + sign + '"></use></svg><span>' + value + '</span>';
+    return '<svg class="icon white mr-1"><use xlink:href="img/cards/cards-sprite.svg#' +
+        ['spades', 'clover', 'diamond', 'hearts'][card % 4]
+        + '"></use></svg><span>' +
+        ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'][Math.floor(card / 4)]
+        + '</span>';
 }
 
+function cardTypeHistory(card, color) {
+    return '<svg class="icon  ' + color + ' mr-1"><use xlink:href="img/cards/cards-sprite.svg#' +
+        ['spades', 'clover', 'diamond', 'hearts'][card % 4]
+        + '"></use></svg><span class="' + color + '">' +
+        ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'][Math.floor(card / 4)]
+        + '</span>';
+}

@@ -131,7 +131,7 @@ function setBetAmount(value) {
 
     log('validateBetAmount ' + value);
 
-    $('#betAmount').val(value);
+    $('.betAmount').val(value);
 
     log('app.betAmount', app.betAmount);
     app.betAmount = value;
@@ -230,7 +230,7 @@ function setTableData(table, data) {
             // td(bet.id) +
             td(bet.blockNumber) +
             td(addressToShort(bet.player)) +
-            td('x' + bet.betValue) +
+            td('x' + bet.betValue32) +
             td((bet.winValue < 21 ? ('x' + bet.winValue) : '-')) +
             td(bet.amount + ' TRX') +
             td(bet.winAmount + ' TRX') +
@@ -379,7 +379,7 @@ function login() {
 
 function start() {
 
-    $('#betAmount').focusout(() => setBetAmount($('#betAmount').val()));
+    $('.betAmount').focusout(() => setBetAmount($('#betAmount').val()));
 
     $('#spinButton').click(() => {
         createBet();
@@ -542,7 +542,7 @@ function createBetStart() {
 
 
 function updateHistoryTable() {
-    setHistoryTableData($('.history-table > div:last'), app.betsAll.filter(isMyBet));
+    setHistoryTableData($('.history-table-0 > div:last'), app.betsAll.filter(isMyBet));
 }
 
 function onWinBet(bet) {
@@ -647,7 +647,9 @@ function getTronlinkAddress() {
 }
 
 function isAutoBet() {
-    return $('#switch-id').is(':checked');
+    return currentGameIndex === 0 ?
+        $('#switch-id').is(':checked') :
+        $('#switch-id1').is(':checked');
 }
 
 function onByBet(txId, betAmount, selectedSector, autoBet) {
@@ -664,7 +666,7 @@ function onByBet(txId, betAmount, selectedSector, autoBet) {
         checkout_option: 'tronlink',
         "items": [
             {
-                "id": "Bet x" + selectedSector,
+                "id": "Bet x" + betValue,
                 "name": "Gear of Fortune",
                 "quantity": 1,
                 "variant": autoBet ? "auto" : "not auto",
@@ -691,9 +693,9 @@ function createBet() {
                 return createBetStart();
             })
             .then(() => {
-                app.selectedSector = $('#sectorGroup input:radio:checked').val();
+                app.betValue = $('#sectorGroup input:radio:checked').val();
 
-                return post('/bet', {amount: app.betAmount, betValue: selectedSector});
+                return post('/bet', {amount: app.betAmount, betValue: betValue});
             })
             .then(winBet => {
                 setTimeout(onWinBet, 1000, winBet);

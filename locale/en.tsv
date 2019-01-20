@@ -83,7 +83,7 @@ result	Result
 draw_under	Draw Under
 draw_equal	Draw Equal
 draw_over	Draw Over
-payout_win	Payout on Win:
+payout_win	Payout:
 multiplayer	Multiplayer
 win_chance	Win Chance
 how_dice	4. There are 52 cards in the deck. The lowest rank is 2 and the highest rank is A (ace). The player chooses any card from the deck. The player then makes a bet on one of the following three outcomes to happen: the next card (one of the 51 cards left in the deck), which will be chosen randomly, will be a) HIGHER, b) LOWER, or c) EQUAL in rank to the first card drawn from the deck by the player. Suits are matter in this game. If the player guesses the outcome, he or she will win the bet multiplied by the odds which depend on the card and the outcome chosen by the player.
