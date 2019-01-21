@@ -11,8 +11,8 @@ const tokenAddress = 'TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3';
 const referralsAddress = 'TAKkt9G5uUZyHJ3tYSYhpt7B6Bmksh1TVX';
 const wheelWinIndexAddress = 'TKj4wydhn3ADnWBmLiW5rAv7AEVToJy43v';
 
-//const host = 'https://888tron.com';
-const host = 'http://localhost:3000';
+const host = 'https://888tron.com';
+//const host = 'http://localhost:3000';
 
 const app = this;
 
@@ -274,13 +274,10 @@ function getContract(address, isTronlink = false) {
 }
 
 function updateMyBalance() {
-    log('myBalance')
 
     if (getTronlinkAddress()) {
         this.tronWeb.trx.getUnconfirmedBalance().then(balance => {
             const newBalance = balance / 1000000;
-
-            log('myBalance', newBalance)
 
             if (app.myBalance && app.myBalance < newBalance) {
 
@@ -399,7 +396,7 @@ function updateTables() {
 
     setTableData($('#rareTable > tbody:last'), app.gameState.listBetsRareValue);
 
-    const newTotalWon = app.gameState.winSum;
+    const newTotalWon = Math.round(app.gameState.winSum);
 
     const newTotalBetAmount = app.gameState.betSum;
 
@@ -546,8 +543,13 @@ function onFairness() {
 
     if (betId && blocknumber) {
         getContract(cardsAddress).then(contract => {
+            contract.getWinIndex(betId, blocknumber).call().then(res => {
+                $('#randomResult0').html(res.toString() === '250' ? 'Please use last 250 blocks' : cardType(res));
+            })
+        });
+        getContract(wheelAddress).then(contract => {
             contract.getWinValue(betId, blocknumber).call().then(res => {
-                $('#randomResult').html(res.toString() === '250' ? 'Please use last 250 blocks for check' : res.toString());
+                $('#randomResult1').html(res.toString() === '250' ? 'Please use last 250 blocks' : ('x' + res.toString()));
             })
         })
     }
@@ -605,7 +607,7 @@ function getCurrentBlockNumber() {
     return app.tronWeb2.trx.getCurrentBlock().then(block => {
         if (!block) {
             log('getCurrentBlockNumber is null');
-            return delay(100).then(() => {
+            return delay(1000).then(() => {
                 return getCurrentBlockNumber();
             });
         }
@@ -615,13 +617,13 @@ function getCurrentBlockNumber() {
     }).catch(err => {
         logError('getCurrentBlockNumber', err);
 
-        return delay(100).then(() => {
+        return delay(1000).then(() => {
             return getCurrentBlockNumber();
         });
     });
 }
 
-/*
+
 function getCurrentBlockNumber2() {
     return post('/api/getCurrentBlock').then(block => {
         if (!block) {
@@ -640,7 +642,7 @@ function getCurrentBlockNumber2() {
             return getCurrentBlockNumber2();
         });
     });
-}*/
+}
 
 function findTx(txId) {
     return app.tronWeb2.trx.getTransactionInfo(txId).then(txInfo => {
@@ -699,7 +701,7 @@ function findBlockByTxId(blockNumber, txId) {
                 blockNumber++;
             }
 
-            return delay(100).then(() => {
+            return delay(1000).then(() => {
                 return findBlockByTxId(blockNumber, txId);
             })
 
@@ -708,7 +710,7 @@ function findBlockByTxId(blockNumber, txId) {
         }).catch(err => {
             logError('findBlockByTxId', err);
 
-            return delay(100).then(() => {
+            return delay(1000).then(() => {
                 return findBlockByTxId(blockNumber, txId);
             });
         });
@@ -716,13 +718,13 @@ function findBlockByTxId(blockNumber, txId) {
     }).catch(err => {
         logError('getTransactionInfo', err);
 
-        return delay(100).then(() => {
+        return delay(1000).then(() => {
             return findBlockByTxId(blockNumber, txId);
         });
     });
 }
 
-/*
+
 
 function findBlockByTxId2(blockNumber, txId) {
     return app.tronWeb2.trx.getTransactionInfo(txId).then(txInfo => {
@@ -730,14 +732,14 @@ function findBlockByTxId2(blockNumber, txId) {
         if (Object.values(txInfo).length > 0) {
             log(txInfo);
 
-            log('find complete by tx', txInfo.blockNumber);
+            log('find complete by tx 2', txInfo.blockNumber);
 
             blockNumber = txInfo.blockNumber;
         }
 
         return post('/api/getBlock', {blockNumber: blockNumber}).then(block => {
 
-            log('findBlockByTxId', blockNumber);
+            log('findBlockByTxId2', blockNumber);
             //logJson(block);
 
             if (block) {
@@ -750,7 +752,7 @@ function findBlockByTxId2(blockNumber, txId) {
                 blockNumber++;
             }
 
-            return delay(100).then(() => {
+            return delay(1000).then(() => {
                 return findBlockByTxId2(blockNumber, txId);
             })
 
@@ -759,19 +761,19 @@ function findBlockByTxId2(blockNumber, txId) {
         }).catch(err => {
             logError('findBlockByTxId2', err);
 
-            return delay(100).then(() => {
+            return delay(1000).then(() => {
                 return findBlockByTxId2(blockNumber, txId);
             });
         });
 
     }).catch(err => {
-        logError('getTransactionInfo', err);
+        logError('getTransactionInfo2', err);
 
-        return delay(100).then(() => {
+        return delay(1000).then(() => {
             return findBlockByTxId2(blockNumber, txId);
         });
     });
-}*/
+}
 
 function getGameIndex(address) {
     if (address === cardsAddress) return 0;
@@ -1379,7 +1381,7 @@ function createBet(gameIndex) {
 
                 log('gameManager.createBet ' + gameIndex);
 
-                getCurrentBlockNumber().then(blockNumber => {
+                getCurrentBlockNumber2().then(blockNumber => {
 
                     gameManager.createBet(gameAddress, getTronlinkAddress(), app.parentUserId, app.betValue32).send({
                         shouldPollResponse: false,
@@ -1396,7 +1398,7 @@ function createBet(gameIndex) {
 
                         //findTx(txId);
 
-                        findBlockByTxId(blockNumber, txId).then(block => {
+                        findBlockByTxId2(blockNumber, txId).then(block => {
 
                             calcWin(block, gameIndex);
 
@@ -1409,6 +1411,9 @@ function createBet(gameIndex) {
 
                     }).catch(err => {
                         stopBetError('createBet', err);
+
+                        if (isAutoBet(gameIndex)) createBet(gameIndex);
+
                     });
                 })/*.catch(err => {
                                 stopBetError('getCurrentBlockNumber', err);

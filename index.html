@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css?1.9">
+    <link rel="stylesheet" href="css/custom.css?2.6">
     <title>Gear of Fortune</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109663484-3"></script>
@@ -44,26 +44,37 @@
 </div>
 <header>
     <nav id="myHeader" class="navbar navbar-dark bg-dark fxed panel-bg navbar-expand-xl">
-        <a class="navbar-brand mr-auto mr-md-3" href="#">
-            <i class="fas fa-cogs"></i>
-            <span class="navbar-label">Gear of Fortune</span>
-        </a>
-        <a class="navbar-brand d-none d-md-block" href="#">
-            <span class="soon-item position-relative">
-                <i class="fas fa-dice-five"></i>
-                <span data-locale="poker_dice">Poker Dice</span>
-                <span class="soon" data-locale="soon">soon</span>
-            </span>
-        </a>
-        <a class="navbar-brand mr-auto d-none d-md-block" href="#">
-            <span class="soon-item  position-relative">
-                <i class="fas fa-map-pin"></i>
-                <span data-locale="crypto_slots">Crypto Slots</span>
-                <span class="soon" data-locale="soon">soon</span>
-            </span>
-        </a>
+        <ul class="nav nav-tabs border-0 mr-auto">
+            <li class="nav-item">
+                <a class="navbar-brand active show mr-3" data-toggle="tab" aria-selected="true" href="#gameCards"
+                   data-parent="#Games">
+                    <span class="position-relative d-flex align-items-center">
+                        <svg class="icon white mr-1">
+                            <use xlink:href="img/cards/cards-sprite.svg#spades"></use>
+                        </svg>
+                        <span data-locale="cards">Dice52</span>
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand mr-auto mr-md-3" data-toggle="tab" aria-selected="false" href="#gameGear"
+                   data-parent="#Games">
+                    <i class="fas fa-cogs"></i>
+                    <span>Gear of Fortune</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand d-none d-md-block" href="#">
+                    <span class="soon-item  position-relative">
+                        <i class="fas fa-map-pin"></i>
+                        <span data-locale="crypto_slots">Crypto Slots</span>
+                        <span class="soon" data-locale="soon">soon</span>
+                    </span>
+                </a>
+            </li>
+        </ul>
         <div class="dropdown order-0 order-xl-2">
-            <button class="btn dropdown-toggle" type="button" id="dropdownLang" data-toggle="dropdown"
+            <button class="btn dropdown-toggle pr-0" type="button" id="dropdownLang" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 <img src="img/flags/en.svg" title="English" class="flag-item curent-lang">
             </button>
@@ -97,18 +108,27 @@
                 <i class="fas fa-dollar-sign"></i>
                 <span class="navbar-label">Referrals</span>
             </a>-->
-            <ul class="navbar-nav">
-                <li class="nav-item d-block d-md-none">
-                    <a class="nav-link" href="#">
-                        <span class="soon-item position-relative">
-                            <i class="fas fa-dice-five"></i>
-                            <span data-locale="poker_dice">Poker Dice</span>
-                            <span class="soon" data-locale="soon">soon</span>
+            <ul class="nav nav-tabs border-0 d-block d-md-none">
+                <!--<li class="nav-item">
+                    <a class="navbar-brand" data-toggle="tab" aria-selected="true" href="#gameCards" data-parent="#Games">
+                        <span class="position-relative">
+                            <span class="mr-1">
+                                <svg class="icon white">
+                                    <use xlink:href="img/cards/cards-sprite.svg#spades"></use>
+                                </svg>
+                            </span>
+                            <span data-locale="cards">Dice52</span>
                         </span>
                     </a>
                 </li>
-                <li class="nav-item d-block d-md-none">
-                    <a class="nav-link" href="#">
+                <li class="nav-item">
+                    <a class="navbar-brand mr-auto mr-md-3" data-toggle="tab" aria-selected="false" href="#gameGear" data-parent="#Games">
+                        <i class="fas fa-cogs"></i>
+                        <span class="navbar-label">Gear of Fortune</span>
+                    </a>
+                </li>-->
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#">
                         <span class="soon-item  position-relative">
                             <i class="fas fa-map-pin"></i>
                             <span data-locale="crypto_slots">Crypto Slots</span>
@@ -116,6 +136,8 @@
                         </span>
                     </a>
                 </li>
+            </ul>
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-toggle="modal" onclick="onDividendShow()">
                         <i class="fas fa-dollar-sign"></i>
@@ -171,7 +193,7 @@
                                 <i class="fas fa-dollar-sign"></i>
                                 <span data-locale="dividends">Dividends</span>
                                 <span class="soon" data-locale="soon">soon</span>
-                            </span>                            
+                            </span>
                         </a>
                         <a class="dropdown-item" href="#">
                             <span class="soon-item  position-relative">
@@ -280,146 +302,376 @@
         </table>
     </section>
     <section class="flex-grow-1 content position-relative">
-        <div id="treeCanvas3D" class="gear-container">
-        </div>
-        <div class="container balance-container">
-            <div class="d-flex balance-row pt-4 justify-content-between">
-                <div class="d-none d-sm-block balance col-auto text-center">
-                    <div class="history-table-0 d-inline-block">
-                        <span data-locale="history">History</span>
-                        <div class="row m-0 p-0 mt-2">
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
-                            <div class="item col-4 p-1"></div>
+        <div id="Games" class="tab-content">
+            <div id="gameGear" class="tab-pane fade">
+                <div id="treeCanvas3D" class="gear-container">
+                </div>
+                <div class="container balance-container">
+                    <div class="d-flex balance-row pt-4 justify-content-between">
+                        <div class="d-none d-sm-block balance col-auto text-center">
+                            <div class="history-table-1 d-inline-block">
+                                <span data-locale="history">History</span>
+                                <div class="row m-0 p-0 mt-2">
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="balance d-flex d-sm-block col-auto px-0">
+                            <div class="text-left text-center">
+                                <span data-locale="total_won">Total Won</span><br><span class="totalWon">0</span>
+                            </div>
+                            <div class="text-right text-center mt-sm-3">
+                                <span data-locale="best_mode">Bets Made</span><br><span class="betsCount">0</span>
+                            </div>
+                            <div class="text-right text-center mt-sm-3">
+                                <span class="ml-sm-3">888 Token</span>
+                                <i class="fas fa-question-circle ml-2" style="cursor: pointer;" data-toggle="modal"
+                                   data-target="#tokenModal"></i><br><span class="Token888Count">0</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="balance d-flex d-sm-block col-auto px-0">
-                    <div class="text-left text-center">
-                        <span data-locale="total_won">Total Won</span><br><span class="totalWon">0</span>
-                    </div>
-                    <div class="text-right text-center mt-sm-3">
-                        <span data-locale="best_mode">Bets Made</span><br><span class="betsCount">0</span>
-                    </div>
-                    <div class="text-right text-center mt-sm-3">
-                        <span class="ml-sm-3">888 Token</span>
-                        <i class="fas fa-question-circle ml-2" style="cursor: pointer;" data-toggle="modal"
-                           data-target="#tokenModal"></i><br><span class="Token888Count">0</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex flex-column">
-            <div class="control-panel pt-3">
-                <form class="container">
-                    <div class="row justify-content-center">
-                        <div class="form-group col-xl-5 mb-1 mb-sm-3">
-                            <div class="form-group row justify-content-center  mb-2 mb-sm-3">
-                                <label for="betAmountGroup" class="col-form-label col-auto" data-locale="bet_amount">Bet
-                                    Amount</label>
-                                <div class="input-group col" id="betAmountGroup">
-                                    <input type="number" class="form-control" id="betAmount"
-                                           step="10" value="10" min="10" max="1000">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">TRX</div>
+                <div class="control-panel pt-3">
+                    <form class="container">
+                        <div class="row justify-content-center">
+                            <div class="form-group col-xl-5 mb-1 mb-sm-3">
+                                <div class="form-group row justify-content-center  mb-2 mb-sm-3">
+                                    <label for="betAmountGroup" class="col-form-label col-auto"
+                                           data-locale="bet_amount">Bet
+                                        Amount</label>
+                                    <div class="input-group col" id="betAmountGroup">
+                                        <input type="number" class="form-control betAmount"
+                                               step="10" value="10" min="10" max="1000">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">TRX</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="input-group">
-                                <div class=" btn-group w-100">
-                                    <button onclick="setBetX2()" type="button" class="btn btn-secondary btn-sm btn-s">
-                                        x2
-                                    </button>
-                                    <button onclick="setBetX1_2()" type="button" class="btn btn-secondary btn-sm btn-s">
-                                        1/2
-                                    </button>
-                                    <button onclick="setBetMin()" type="button" class="btn btn-secondary btn-sm btn-s">
-                                        Min
-                                    </button>
-                                    <button onclick="setBetMax()" type="button" class="btn btn-secondary btn-sm btn-s">
-                                        Max
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6 col-xl-4 mb-1 mb-sm-3">
-                            <label for="sectors" class="col-form-label response-label" data-locale="pls_select_sector">Please
-                                select Sector</label>
-                            <div class="input-group" id="sectors">
-                                <div id="sectorGroup" class="btn-group btn-group-toggle w-100 d-flex"
-                                     data-toggle="buttons">
-                                    <label class="btn btn-secondary active col">
-                                        <input type="radio" name="options" value="2" autocomplete="off" checked>x2
-                                    </label>
-                                    <label class="btn btn-secondary col">
-                                        <input type="radio" name="options" value="5" autocomplete="off"> x5
-                                    </label>
-                                    <label class="btn btn-secondary col">
-                                        <input type="radio" name="options" value="6" autocomplete="off"> x6
-                                    </label>
-                                    <label class="btn btn-secondary col">
-                                        <input type="radio" name="options" value="10" autocomplete="off"> x10
-                                    </label>
-                                    <label class="btn btn-secondary col">
-                                        <input type="radio" name="options" value="20" autocomplete="off"> x20
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6 col-xl-3 mb-1 mb-sm-3">
-                            <label for="spinButton" class="col-form-label myBalance response-label">
-                                <div style="color:red">
-                                    <span class="mr-1" data-locale="pls_login_to">Please login to the</span><a
-                                        href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec"
-                                        target="_blank">TRONLink</a>
-                                </div>
-                            </label>
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="switch">
-                                        <input type="checkbox" class="switch" id="switch-id">
-                                        <label for="switch-id"></label>
-                                    </span>
-                                </div>
-                                <div class="col">
-                                    <div class="input-group">
-                                        <button type="button" id="spinButton" class="btn btn-primary w-100"
-                                                data-locale="spin">SPIN
+                                <div class="input-group">
+                                    <div class=" btn-group w-100">
+                                        <button onclick="setBetX2()" type="button"
+                                                class="btn btn-secondary btn-sm btn-s">
+                                            x2
+                                        </button>
+                                        <button onclick="setBetX1_2()" type="button"
+                                                class="btn btn-secondary btn-sm btn-s">
+                                            1/2
+                                        </button>
+                                        <button onclick="setBetMin()" type="button"
+                                                class="btn btn-secondary btn-sm btn-s">
+                                            Min
+                                        </button>
+                                        <button onclick="setBetMax()" type="button"
+                                                class="btn btn-secondary btn-sm btn-s">
+                                            Max
                                         </button>
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group col-md-6 col-xl-4 mb-1 mb-sm-3">
+                                <label for="sectors" class="col-form-label response-label"
+                                       data-locale="pls_select_sector">Please
+                                    select Sector</label>
+                                <div class="input-group" id="sectors">
+                                    <div id="sectorGroup" class="btn-group btn-group-toggle w-100 d-flex"
+                                         data-toggle="buttons">
+                                        <label class="btn btn-secondary active col">
+                                            <input type="radio" name="options" value="2" autocomplete="off" checked>x2
+                                        </label>
+                                        <label class="btn btn-secondary col">
+                                            <input type="radio" name="options" value="5" autocomplete="off"> x5
+                                        </label>
+                                        <label class="btn btn-secondary col">
+                                            <input type="radio" name="options" value="6" autocomplete="off"> x6
+                                        </label>
+                                        <label class="btn btn-secondary col">
+                                            <input type="radio" name="options" value="10" autocomplete="off"> x10
+                                        </label>
+                                        <label class="btn btn-secondary col">
+                                            <input type="radio" name="options" value="20" autocomplete="off"> x20
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-xl-3 mb-1 mb-sm-3">
+                                <label for="spinButton" class="col-form-label myBalance response-label">
+                                    <div style="color:red">
+                                        <span class="mr-1" data-locale="pls_login_to">Please login to the</span><a
+                                            href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec"
+                                            target="_blank">TRONLink</a>
+                                    </div>
+                                </label>
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="switch">
+                                            <input type="checkbox" class="switch" id="switch-id1">
+                                            <label for="switch-id1"></label>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <button type="button" id="spinButton" class="btn btn-primary w-100"
+                                                    data-locale="spin">SPIN
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="gameCards" class="tab-pane fade show active">
+                <div class="container-fluid cards-wrapper mx-auto">
+                    <div class="row pt-3 pt-sm-3 justify-content-between">
+                        <div class="d-none d-sm-block balance col-auto text-center">
+                            <div class="history-table-0 d-inline-block">
+                                <span data-locale="history">History</span>
+                                <div class="row m-0 p-0 mt-2">
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                    <div class="item col-4 p-1"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="balance d-flex d-sm-block col-12 col-sm-auto order-sm-2">
+                            <div class="text-left text-center">
+                                <span data-locale="total_won">Total Won</span><br><span class="totalWon">0</span>
+                            </div>
+                            <div class="text-right text-center mt-sm-3">
+                                <span data-locale="best_mode">Bets Made</span><br><span class="betsCount">0</span>
+                            </div>
+                            <div class="text-right text-center mt-sm-3">
+                                <span class="ml-sm-3">888 Token</span>
+                                <i class="fas fa-question-circle ml-2" style="cursor: pointer;" data-toggle="modal"
+                                   data-target="#tokenModal"></i><br><span class="Token888Count">0</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm order-sm-1 mt-1 mt-sm-0 pb-3">
+                            <div class="card-container mx-auto">
+                                <div class="row position-relative">
+                                    <div class="col-6 card-item text-center">
+                                        <div class="mb-3" data-locale="prediction">Prediction</div>
+                                        <img id="selectedCardImg" src="img/cards/6.svg">
+                                    </div>
+                                    <div class="col-6 card-item text-center">
+                                        <div class="mb-3" data-locale="result">Result</div>
+                                        <div class="card-3d position-relative mx-auto">
+                                            <div class="card-cover position-absolute">
+                                                <img src="img/cards/cover.png">
+                                            </div>
+                                            <div class="result-card position-absolute">
+                                                <img id="resultCard" src="img/cards/24.svg">
+                                            </div>
+                                            <div class="load-card position-absolute d-none align-items-center justify-content-center">
+                                                <i class="fa fa-spinner fa-spin"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="h1 text-white d-flex align-items-center text-center justify-content-center position-absolute w-100 h-100">
+                                        <div class="text-block"></div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-6 text-center mt-2 mt-sm-3">
+                                        <img src="img/cards/rangsWhite.svg" style="opacity: 0.8;">
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center text-center mt-1 mt-sm-3 range-select">
+                                    <div class="w-100" data-locale="draw_under">Draw Under</div>
+                                    <div class="w-100" data-locale="draw_equal">Draw Equal</div>
+                                    <div class="w-100 active" data-locale="draw_over">Draw Over</div>
+                                </div>
+                                <div class="row pt-sm-3 pb-1 pb-sm-3">
+                                    <div class="cards mt-2 mt-sm-4 mx-auto">
+                                        <div class="d-flex align-items-center">
+                                            <div class="side-card h4 col-auto d-flex align-items-center">
+                                                <span class="mr-1">
+                                                    <svg class="icon white">
+                                                        <use xlink:href="img/cards/cards-sprite.svg#spades"></use>
+                                                    </svg>
+                                                </span>
+                                                <span>2</span>
+                                            </div>
+                                            <div class="w-100 position-relative" id="cardsSelect">
+                                                <div class="range-thumb position-absolute">
+                                                    <div class="position-relative">
+                                                        <div class="range-tooltip position-absolute d-flex align-items-center justify-content-center">
+                                                            <svg class="icon white mr-1">
+                                                                <use xlink:href="img/cards/cards-sprite.svg#hearts"></use>
+                                                            </svg>
+                                                            <span>8</span>
+                                                        </div>
+                                                        <div class="corner-tooltip position-absolute"></div>
+                                                    </div>
+                                                </div>
+                                                <input type="range" class="range" min="1" max="50" value="26">
+                                                <div class="range-track position-absolute"></div>
+                                            </div>
+                                            <div class="side-card h4 col-auto d-flex align-items-center">
+                                                <span class="mr-1">
+                                                    <svg class="icon white">
+                                                            <use xlink:href="img/cards/cards-sprite.svg#hearts"></use>
+                                                    </svg>
+                                                </span>
+                                                <span>A</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center text-center justify-content-between cards-info">
+                                    <div class="w-100">
+                                        <span class="d-block d-sm-inline" data-locale="payout_win">Payout on Win:</span>
+                                        <br><span
+                                            class="payoutText">101 TRX</span>
+                                    </div>
+                                    <div class="w-100">
+                                        <span class="d-block d-sm-inline"
+                                              data-locale="multiplayer">Multiplayer</span><br> <span
+                                            class="multiplayerText">2.0102X</span>
+                                    </div>
+                                    <div class="w-100">
+                                        <span class="d-block d-sm-inline" data-locale="win_chance">Win Chance</span>
+                                        <br> <span
+                                            class="chanceText">49%</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </form>
+                </div>
+
+                <div class="control-panel pt-3">
+                    <form class="container">
+                        <div class="row justify-content-center">
+                            <div class="form-group col-md-6 col-xl-5 mb-1 mb-sm-3">
+                                <div class="form-group row justify-content-center  mb-2 mb-sm-3">
+                                    <label for="betAmountGroup2" class="col-form-label col-auto"
+                                           data-locale="bet_amount">Bet
+                                        Amount</label>
+                                    <div class="input-group col" id="betAmountGroup2">
+                                        <input type="number" class="form-control betAmount"
+                                               step="10" value="10" min="10" max="1000">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">TRX</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <div class=" btn-group w-100">
+                                        <button onclick="setBetX2()" type="button"
+                                                class="btn btn-secondary btn-sm btn-s">
+                                            x2
+                                        </button>
+                                        <button onclick="setBetX1_2()" type="button"
+                                                class="btn btn-secondary btn-sm btn-s">
+                                            1/2
+                                        </button>
+                                        <button onclick="setBetMin()" type="button"
+                                                class="btn btn-secondary btn-sm btn-s">
+                                            Min
+                                        </button>
+                                        <button onclick="setBetMax()" type="button"
+                                                class="btn btn-secondary btn-sm btn-s">
+                                            Max
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-xl-4 mb-1 mb-sm-3">
+                                <label for="spinButton" class="col-form-label myBalance response-label">
+                                    <div style="color:red">
+                                        <span class="mr-1" data-locale="pls_login_to">Please login to the</span><a
+                                            href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec"
+                                            target="_blank">TRONLink</a>
+                                    </div>
+                                </label>
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="switch">
+                                            <input type="checkbox" class="switch" id="switch-id">
+                                            <label for="switch-id"></label>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <button type="button" id="drawButton" class="btn btn-primary w-100">
+                                                <span id="curentDraw" data-locale="draw_over">Draw Over</span>
+                                                <span id="curentCard"
+                                                      class="button-card d-inline-flex align-items-center">
+                                                    <svg class="icon white mr-1">
+                                                        <use xlink:href="img/cards/cards-sprite.svg#hearts"></use>
+                                                    </svg>
+                                                    <span>8</span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
+        </div>
+        <div class="d-flex flex-column">
             <ul class="nav py-1 justify-content-center table-tabs" id="pills-tab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="pill" href="#mybets" role="tab" aria-selected="false"
@@ -552,9 +804,16 @@
                             <input type="number" class="form-control" id="blocknumber">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="randomResult" class="col-form-label" data-locale="result_2">Result:</label>
-                        <label class="form-control" id="randomResult"></label>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="randomResult0" class="col-form-label">Dice52:</label>
+                            <label class="form-control" id="randomResult0"></label>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="randomResult1" class="col-form-label">Gear of Fortune:</label>
+                            <label class="form-control" id="randomResult1"></label>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" onclick="onFairness()" data-locale="send">Send
@@ -613,19 +872,55 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p data-locale="how_1"> 1. Make sure you have a TRONLink wallet. For more information on how to create
-                    one,<a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec"
-                           target="_blank">click here.</a></p>
-                <p data-locale="how_2">2. To play you must own TRX, the underlying cryptocurrency that powers the TRON
-                    network.</p>
-                <p data-locale="how_3">3. Set your BET AMOUNT. This is the amount of TRX you will be betting.</p>
-                <p data-locale="how_4">4. Select the SECTOR.</p>
-                <p data-locale="how_5">5. Click SPIN to place your bet. The smart contracts will then randomly generate
-                    a sector number.</p>
-                <p data-locale="how_6">6. If the sector number is equal your prediction then you WIN! Payout = BET
-                    AMOUNT * SECTOR.</p>
-                <p data-locale="how_7">Still have questions? Join our telegram group and we'll be more than happy to
-                    help!</p>
+                <ul class="nav nav-tabs pb-2">
+                    <li class="nav-item pr-3">
+                        <a class="active show" data-toggle="tab" aria-selected="true" href="#playGear"
+                           data-parent="#howTo">Gear of Fortune</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="tab" aria-selected="true" href="#playCards" data-parent="#howTo"
+                           data-locale="cards">Dice52</a>
+                    </li>
+                </ul>
+                <div id="howTo" class="tab-content mt-3">
+                    <div id="playGear" class="tab-pane fade  show active">
+                        <p data-locale="how_1"> 1. Make sure you have a TRONLink wallet. For more information on how to
+                            create one,<a
+                                    href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec"
+                                    target="_blank">click here.</a></p>
+                        <p data-locale="how_2">2. To play you must own TRX, the underlying cryptocurrency that powers
+                            the TRON network.</p>
+                        <p data-locale="how_3">3. Set your BET AMOUNT. This is the amount of TRX you will be
+                            betting.</p>
+                        <p data-locale="how_4">4. Select the SECTOR.</p>
+                        <p data-locale="how_5">5. Click SPIN to place your bet. The smart contracts will then randomly
+                            generate a sector number.</p>
+                        <p data-locale="how_6">6. If the sector number is equal your prediction then you WIN! Payout =
+                            BET AMOUNT * SECTOR.</p>
+                        <p data-locale="how_7">Still have questions? Join our telegram group and we'll be more than
+                            happy to help!</p>
+                    </div>
+                    <div id="playCards" class="tab-pane fade">
+                        <p data-locale="how_1"> 1. Make sure you have a TRONLink wallet. For more information on how to
+                            create one,<a
+                                    href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec"
+                                    target="_blank">click here.</a></p>
+                        <p data-locale="how_2">2. To play you must own TRX, the underlying cryptocurrency that powers
+                            the TRON network.</p>
+                        <p data-locale="how_3">3. Set your BET AMOUNT. This is the amount of TRX you will be
+                            betting.</p>
+                        <p data-locale="how_dice">4. There are 52 cards in the deck. The lowest rank is 2 and the
+                            highest rank is A (ace). The player chooses any card from the deck. The player then makes a
+                            bet on one of the following three outcomes to happen: the next card (one of the 51 cards
+                            left in the deck), which will be chosen randomly, will be a) HIGHER, b) LOWER, or c) EQUAL
+                            in rank to the first card drawn from the deck by the player. Suits are matter in this game.
+                            If the player guesses the outcome, he or she will win the bet multiplied by the odds which
+                            depend on the card and the outcome chosen by the player.</p>
+                        <p data-locale="how_7">Still have questions? Join our telegram group and we'll be more than
+                            happy to help!</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -644,6 +939,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="noMoneyModal" tabindex="-1" role="dialog"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -657,7 +953,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="modal fade" id="isNotWorkingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -679,7 +974,6 @@
 
 <div class="modal fade" id="dividendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
-
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content modal-content-dark" style="padding-bottom: 20px;">
             <div class="modal-header border-bottom-0">
@@ -703,7 +997,7 @@
                     <div class="progress-bar bg-success dividendsProgress" role="progressbar" style="width: 25%;"
                          aria-valuenow="25"
                          aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="position-absolute d-flex aligh-items-center justify-content-center h-100 w-100">
+                    <div class="position-absolute d-flex align-items-center justify-content-center h-100 w-100">
                         <span class="text-dark dividendsProgressText">250,000/1000000</span>
                     </div>
                 </div>
@@ -860,6 +1154,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/svg4everybody/2.1.9/svg4everybody.min.js"
+        integrity="sha256-kTezPOsOi5ZsWUKr7/D/EWcONq/hdrc0gPwk5/IUYy0=" crossorigin="anonymous"></script>
+
 <script src="libs/bootstrap/bootstrap.min.js"></script>
 
 <script src="libs/TronWeb.js"></script>
@@ -878,8 +1176,10 @@
 
 <script src="libs/inflate.min.js"></script>
 
-<script src="js/main.js?v=201"></script>
-<script src="js/locale.js?v=2.9"></script>
+<script src="js/main.js?v=205"></script>
+<script src="js/cards.js?v=1.92"></script>
+
+<script src="js/locale.js?v=3.1"></script>
 
 </body>
 </html>
