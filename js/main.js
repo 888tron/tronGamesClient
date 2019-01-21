@@ -38,9 +38,10 @@ const eventServer = 'https://api.shasta.trongrid.io/';*/
 const solidityNode = 'https://solidity.guildchat.io';
 const eventServer = 'https://api.trongrid.io';*/
 
+//const fullNode = 'https://super.guildchat.io';
 const fullNode = 'https://api.trongrid.io';
-const solidityNode = fullNode;
-const eventServer = fullNode;
+const solidityNode = 'https://api.trongrid.io';
+const eventServer = 'https://api.trongrid.io';
 
 window.onload = function () {
     /*if (!window.tronWeb) {
@@ -400,7 +401,7 @@ function updateTables() {
 
     const newTotalBetAmount = app.gameState.betSum;
 
-    log('TotalBetAmount', newTotalBetAmount);
+    //log('TotalBetAmount', newTotalBetAmount);
 
     const newBetCount = app.gameState.betCount;
 
@@ -604,10 +605,11 @@ function delay(ms) {
 
 
 function getCurrentBlockNumber() {
+    const duration = 1000;
     return app.tronWeb2.trx.getCurrentBlock().then(block => {
         if (!block) {
             log('getCurrentBlockNumber is null');
-            return delay(1000).then(() => {
+            return delay(getCurrentBlockNumber).then(() => {
                 return getCurrentBlockNumber();
             });
         }
@@ -617,7 +619,7 @@ function getCurrentBlockNumber() {
     }).catch(err => {
         logError('getCurrentBlockNumber', err);
 
-        return delay(1000).then(() => {
+        return delay(getCurrentBlockNumber).then(() => {
             return getCurrentBlockNumber();
         });
     });
@@ -664,70 +666,80 @@ function findTx(txId) {
 }
 
 
-function findBlockByTxId(blockNumber, txId) {
-    return app.tronWeb2.trx.getTransactionInfo(txId).then(txInfo => {
+function findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex) {
+    const duration = 1000;
 
-        if (Object.values(txInfo).length > 0) {
-            log(txInfo);
+    if (app.gameState && app.gameState.listPlayerBets && app.gameState.listPlayerBets[gameIndex]) {
 
-            log('find complete by tx', txInfo.blockNumber);
+        const bet = app.gameState.listPlayerBets[gameIndex].find(bet => {
+            return bet.blockNumber >= startBlockNumber;
+        });
 
-            blockNumber = txInfo.blockNumber;
+        if (bet) {
+            winBet(bet, gameIndex);
+
+            return Promise.resolve(null);
         }
+    }
 
-        return app.tronWeb2.trx.getBlock(blockNumber).then(block => {
+    return app.tronWeb2.trx.getBlock(blockNumber).then(block => {
 
-            log('findBlockByTxId', blockNumber);
+        log('findBlockByTxId from ' + startBlockNumber + ' current ' + blockNumber + ' ' + txId);
 
-            if (block) {
+        if (block) {
 
-                const tx = block.transactions ? block.transactions.find(tx => {
-                    return tx.txID === txId;
-                }) : null;
+            const tx = block.transactions ? block.transactions.find(tx => {
+                return tx.txID === txId;
+            }) : null;
 
-                const blockInfo = {
-                    blockNumber: blockNumber,
-                    hash: block.blockID
-                };
+            const blockInfo = {
+                blockNumber: blockNumber,
+                hash: block.blockID
+            };
 
-                //logJson(blockInfo);
+            //logJson(blockInfo);
 
 
-                if (tx) {
-                    log('find complete', blockInfo.blockNumber);
-                    return blockInfo;
-                }
-
-                blockNumber++;
+            if (tx) {
+                log('find complete', blockInfo.blockNumber);
+                return blockInfo;
             }
 
-            return delay(1000).then(() => {
-                return findBlockByTxId(blockNumber, txId);
-            })
+            blockNumber++;
+        }
 
-            //logJson('block', block);
+        return delay(duration).then(() => {
+            return findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex);
+        })
 
-        }).catch(err => {
-            logError('findBlockByTxId', err);
-
-            return delay(1000).then(() => {
-                return findBlockByTxId(blockNumber, txId);
-            });
-        });
+        //logJson('block', block);
 
     }).catch(err => {
-        logError('getTransactionInfo', err);
+        logError('findBlockByTxId', err);
 
-        return delay(1000).then(() => {
-            return findBlockByTxId(blockNumber, txId);
+        return delay(duration).then(() => {
+            return findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex);
         });
     });
+
 }
 
 
-
-function findBlockByTxId2(blockNumber, txId) {
+function findBlockByTxId2(startBlockNumber, blockNumber, txId, gameIndex) {
     return app.tronWeb2.trx.getTransactionInfo(txId).then(txInfo => {
+
+        if (app.gameState && app.gameState.listPlayerBets && app.gameState.listPlayerBets[gameIndex]) {
+
+            const bet = app.gameState.listPlayerBets[gameIndex].find(bet => {
+                return bet.blockNumber >= startBlockNumber;
+            });
+
+            if (bet) {
+                winBet(bet, gameIndex);
+
+                return null;
+            }
+        }
 
         if (Object.values(txInfo).length > 0) {
             log(txInfo);
@@ -739,7 +751,7 @@ function findBlockByTxId2(blockNumber, txId) {
 
         return post('/api/getBlock', {blockNumber: blockNumber}).then(block => {
 
-            log('findBlockByTxId2', blockNumber);
+            log('findBlockByTxId2 from ' + startBlockNumber + ' current ' + blockNumber + ' ' + txId);
             //logJson(block);
 
             if (block) {
@@ -753,7 +765,7 @@ function findBlockByTxId2(blockNumber, txId) {
             }
 
             return delay(1000).then(() => {
-                return findBlockByTxId2(blockNumber, txId);
+                return findBlockByTxId2(startBlockNumber, blockNumber, txId, gameIndex);
             })
 
             //logJson('block', block);
@@ -762,7 +774,7 @@ function findBlockByTxId2(blockNumber, txId) {
             logError('findBlockByTxId2', err);
 
             return delay(1000).then(() => {
-                return findBlockByTxId2(blockNumber, txId);
+                return findBlockByTxId2(startBlockNumber, blockNumber, txId, gameIndex);
             });
         });
 
@@ -770,7 +782,7 @@ function findBlockByTxId2(blockNumber, txId) {
         logError('getTransactionInfo2', err);
 
         return delay(1000).then(() => {
-            return findBlockByTxId2(blockNumber, txId);
+            return findBlockByTxId2(startBlockNumber, blockNumber, txId, gameIndex);
         });
     });
 }
@@ -1381,7 +1393,7 @@ function createBet(gameIndex) {
 
                 log('gameManager.createBet ' + gameIndex);
 
-                getCurrentBlockNumber2().then(blockNumber => {
+                getCurrentBlockNumber().then(blockNumber => {
 
                     gameManager.createBet(gameAddress, getTronlinkAddress(), app.parentUserId, app.betValue32).send({
                         shouldPollResponse: false,
@@ -1398,7 +1410,7 @@ function createBet(gameIndex) {
 
                         //findTx(txId);
 
-                        findBlockByTxId2(blockNumber, txId).then(block => {
+                        findBlockByTxId(blockNumber, blockNumber, txId, gameIndex).then(block => {
 
                             calcWin(block, gameIndex);
 
