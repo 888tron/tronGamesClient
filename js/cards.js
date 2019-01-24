@@ -106,6 +106,10 @@ function resetCard() {
     $('.card-3d').removeClass('show');
     $('.card-container .text-block').removeClass('winTextAnimation');
     $('.card-container').removeClass('showtext');
+
+    setTimeout(() => {
+        $('#resultCard').attr('src', 'img/cards/cover.png');
+    }, 1000);
 }
 
 function showCardText(winAmount) {

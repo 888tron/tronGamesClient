@@ -19,6 +19,7 @@ const app = this;
 app.minBet = 50;
 app.maxBet = 5000;
 app.betAmount = minBet;
+app.wheelValues = [0, 6, 2, 5, 2, 10, 2, 5, 2, 6, 2, 5, 2, 6, 2, 10, 2, 5, 2, 20, 2];
 
 const GameViewState = {
     IDLE: 1,
@@ -524,7 +525,7 @@ function setHistoryTableData0(table, data) {
 function setHistoryTableData1(table, data) {
     data = data.concat().reverse();
 
-    log('setHistoryTableData1', data)
+    //log('setHistoryTableData1', data)
 
     var rows = '';
     for (var i = 0; i < 30; i++) {
@@ -539,20 +540,22 @@ function setHistoryTableData1(table, data) {
 }
 
 function onFairness() {
-    var betId = $('#betId').val();
+    var playerAddress = $('#betId').val();
     var blocknumber = $('#blocknumber').val();
 
-    if (betId && blocknumber) {
-        getContract(cardsAddress).then(contract => {
-            contract.getWinIndex(betId, blocknumber).call().then(res => {
-                $('#randomResult0').html(res.toString() === '250' ? 'Please use last 250 blocks' : cardType(res));
+    if (playerAddress && blocknumber) {
+        getBlock(blocknumber).then(block => {
+            getContract(cardsAddress).then(contract => {
+                contract.getWinIndexFromHash(playerAddress, '0x'+block.hash).call().then(res => {
+                    $('#randomResult0').html(cardType(res));
+                })
+            });
+            getContract(wheelAddress).then(contract => {
+                contract.getWinIndexFromHash(playerAddress, '0x'+block.hash).call().then(res => {
+                    $('#randomResult1').html(('x' + app.wheelValues[res].toString()));
+                })
             })
         });
-        getContract(wheelAddress).then(contract => {
-            contract.getWinValue(betId, blocknumber).call().then(res => {
-                $('#randomResult1').html(res.toString() === '250' ? 'Please use last 250 blocks' : ('x' + res.toString()));
-            })
-        })
     }
 }
 
@@ -609,7 +612,7 @@ function getCurrentBlockNumber() {
     return app.tronWeb2.trx.getCurrentBlock().then(block => {
         if (!block) {
             log('getCurrentBlockNumber is null');
-            return delay(getCurrentBlockNumber).then(() => {
+            return delay(duration).then(() => {
                 return getCurrentBlockNumber();
             });
         }
@@ -619,7 +622,7 @@ function getCurrentBlockNumber() {
     }).catch(err => {
         logError('getCurrentBlockNumber', err);
 
-        return delay(getCurrentBlockNumber).then(() => {
+        return delay(duration).then(() => {
             return getCurrentBlockNumber();
         });
     });
@@ -665,6 +668,33 @@ function findTx(txId) {
     });
 }
 
+
+function getBlock(blockNumber) {
+    const duration = 1000;
+    return app.tronWeb2.trx.getBlock(blockNumber).then(block => {
+        if (!block) {
+            log('getBlock is null');
+            return delay(duration).then(() => {
+                return getBlock(blockNumber);
+            });
+        }
+
+        const blockInfo = {
+            blockNumber: blockNumber,
+            hash: block.blockID
+        };
+
+        logLine('getBlock', blockInfo);
+
+        return blockInfo;
+    }).catch(err => {
+        logError('getBlock', err);
+
+        return delay(duration).then(() => {
+            return getBlock(blockNumber);
+        });
+    });
+}
 
 function findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex) {
     const duration = 1000;
@@ -1475,7 +1505,7 @@ function calcWin(block, gameIndex) {
                 }
             } else {
 
-                winValue = [0, 6, 2, 5, 2, 10, 2, 5, 2, 6, 2, 5, 2, 6, 2, 10, 2, 5, 2, 20, 2][winIndex];
+                winValue = app.wheelValues[winIndex];
 
                 winAmount = app.betValue.toString() === winValue.toString() ? (app.betAmount * app.betValue) : 0;
 
