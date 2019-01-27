@@ -61,16 +61,6 @@ window.onload = function () {
         );
 
     }*/
-    const HttpProvider = TronWeb.providers.HttpProvider;
-
-    app.tronWeb2 = new TronWeb(
-        new HttpProvider(fullNode),
-        new HttpProvider(solidityNode),
-        eventServer,
-        'da146374a75310b9666e834ee4ad0866d6f4035967bfc76217c5a495fff9f0d0');
-    //  'da146374a75310b9666e834ee4ad0866d6f4035967bfc76217c5a495fff9f0d0');
-
-    //app.tronWeb2.setDefaultBlock('latest');
 
     app.lastTronLinkAddress = getTronlinkAddress();
 
@@ -90,14 +80,54 @@ window.onload = function () {
         log('tronlink', this.tronWeb.defaultAddress.base58);
 
         gtag('config', 'GA_TRACKING_ID', {
-            'user_id': this.tronWeb.defaultAddress.base58
+            'user_id': getTronlinkAddress()
         });
     }
 
     updateDividendsData();
-
-
 };
+
+function getTronWeb(isTronlink) {
+    if (isTronlink) return Promise.resolve(this.tronWeb);
+    if (app.tronWeb2) {
+        //log('get tronWeb2 from cache');
+        return Promise.resolve(app.tronWeb2);
+    }
+
+    let nodes = ['https://api.trongrid.io', 'https://super.guildchat.io'];
+    const host = nodes[0];
+
+    const HttpProvider = TronWeb.providers.HttpProvider;
+
+    app.tronWeb2 = new TronWeb(new HttpProvider(host),
+        new HttpProvider(host),
+        host,
+        'da146374a75310b9666e834ee4ad0866d6f4035967bfc76217c5a495fff9f0d0');
+
+    return Promise.resolve(app.tronWeb2);
+
+
+    const tryGetTronWeb = (_nodes) => {
+        const nodes = _nodes.concat();
+        const host = nodes.shift();
+        const tronWeb = new TronWeb(new HttpProvider(host),
+            new HttpProvider(host),
+            host,
+            'da146374a75310b9666e834ee4ad0866d6f4035967bfc76217c5a495fff9f0d0');
+        return tronWeb.contract().at(dividendsDataAddress).then(contract => {
+            logLine('tryGetTronWeb ' + host + ' is valid');
+            return tronWeb;
+        }).catch(err => {
+            logError('tryGetTronWeb ' + host, err);
+            return tryGetTronWeb(nodes);
+        });
+    };
+
+    return tryGetTronWeb(nodes).then(tronWeb => {
+        app.tronWeb2 = tronWeb;
+        return tronWeb;
+    })
+}
 
 function animate(time) {
     requestAnimationFrame(animate);
@@ -128,13 +158,6 @@ function start() {
 
         guiInit();
 
-        getParentUserId(app.parentRef)
-            .then(parentData => {
-                logLine('parentUserId', parentData);
-                app.parentUserId = parentData.userId;
-                app.parentRef = parentData.ref;
-                app.parentAddress = parentData.parentAddress;
-            });
     });
 }
 
@@ -148,6 +171,16 @@ function onDividendShow() {
 
 function onTronlinkAddressChange() {
     log('onTronlinkAddressChange');
+
+    if (getTronlinkAddress()) {
+        getParentUserId(app.parentRef)
+            .then(parentData => {
+                logLine('parentUserId', parentData);
+                app.parentUserId = parentData.userId;
+                app.parentRef = parentData.ref;
+                app.parentAddress = parentData.parentAddress;
+            });
+    }
 
     app.myBalance = 0;
     start();
@@ -264,15 +297,17 @@ function getContract(address, isTronlink = false) {
     const contract = contracts[isTronlink][address];
     if (contract) return Promise.resolve(contract);
 
-    return (isTronlink ? this.tronWeb : app.tronWeb2).contract().at(address).then(contract => {
-        contracts[isTronlink][address] = contract;
-        return contract;
-    }).catch(err => {
-        logError('getContract ' + address, err);
-        return delay(100).then(() => {
-            return getContract(address);
-        });
-    })
+    return getTronWeb(isTronlink).then(tronweb => {
+        return tronweb.contract().at(address).then(contract => {
+            contracts[isTronlink][address] = contract;
+            return contract;
+        }).catch(err => {
+            logError('getContract ' + address, err);
+            return delay(100).then(() => {
+                return getContract(address);
+            });
+        })
+    });
 }
 
 function updateMyBalance() {
@@ -546,12 +581,12 @@ function onFairness() {
     if (playerAddress && blocknumber) {
         getBlock(blocknumber).then(block => {
             getContract(cardsAddress).then(contract => {
-                contract.getWinIndexFromHash(playerAddress, '0x'+block.hash).call().then(res => {
+                contract.getWinIndexFromHash(playerAddress, '0x' + block.hash).call().then(res => {
                     $('#randomResult0').html(cardType(res));
                 })
             });
             getContract(wheelAddress).then(contract => {
-                contract.getWinIndexFromHash(playerAddress, '0x'+block.hash).call().then(res => {
+                contract.getWinIndexFromHash(playerAddress, '0x' + block.hash).call().then(res => {
                     $('#randomResult1').html(('x' + app.wheelValues[res].toString()));
                 })
             })
@@ -577,15 +612,23 @@ function onLoadComplete() {
 }
 
 function getTransactionInfo(transactionID) {
-    return app.tronWeb2.solidityNode.request('walletsolidity/gettransactioninfobyid', {
-        value: transactionID
-    }, 'post')
+    return getTronWeb(false).then(tronweb => {
+
+        return tronweb.solidityNode.request('walletsolidity/gettransactioninfobyid', {
+            value: transactionID
+        }, 'post')
+    });
+
 }
 
 function getTransaction(transactionID) {
-    return app.tronWeb2.fullNode.request('wallet/gettransactionbyid', {
-        value: transactionID
-    }, 'post')
+    return getTronWeb(false).then(tronweb => {
+
+        return tronweb.fullNode.request('wallet/gettransactionbyid', {
+            value: transactionID
+        }, 'post')
+    });
+
 }
 
 function getUrlVars() {
@@ -609,21 +652,25 @@ function delay(ms) {
 
 function getCurrentBlockNumber() {
     const duration = 1000;
-    return app.tronWeb2.trx.getCurrentBlock().then(block => {
-        if (!block) {
-            log('getCurrentBlockNumber is null');
+
+    return getTronWeb(false).then(tronweb => {
+
+        return tronweb.trx.getCurrentBlock().then(block => {
+            if (!block) {
+                log('getCurrentBlockNumber is null');
+                return delay(duration).then(() => {
+                    return getCurrentBlockNumber();
+                });
+            }
+            log('getCurrentBlockNumber', block.block_header.raw_data.number);
+
+            return block.block_header.raw_data.number;
+        }).catch(err => {
+            logError('getCurrentBlockNumber', err);
+
             return delay(duration).then(() => {
                 return getCurrentBlockNumber();
             });
-        }
-        log('getCurrentBlockNumber', block.block_header.raw_data.number);
-
-        return block.block_header.raw_data.number;
-    }).catch(err => {
-        logError('getCurrentBlockNumber', err);
-
-        return delay(duration).then(() => {
-            return getCurrentBlockNumber();
         });
     });
 }
@@ -650,20 +697,23 @@ function getCurrentBlockNumber2() {
 }
 
 function findTx(txId) {
-    return app.tronWeb2.trx.getTransactionInfo(txId).then(txInfo => {
-        log('getTransactionInfo');
-        log(txInfo);
+    return getTronWeb(false).then(tronweb => {
 
-        if (Object.values(txInfo).length === 0) {
+        return tronweb.trx.getTransactionInfo(txId).then(txInfo => {
+            log('getTransactionInfo');
+            log(txInfo);
+
+            if (Object.values(txInfo).length === 0) {
+                return delay(3000).then(() => {
+                    return findTx(txId);
+                });
+            }
+        }).catch(err => {
+            logError('getTransactionInfo', err);
+
             return delay(3000).then(() => {
                 return findTx(txId);
             });
-        }
-    }).catch(err => {
-        logError('getTransactionInfo', err);
-
-        return delay(3000).then(() => {
-            return findTx(txId);
         });
     });
 }
@@ -671,27 +721,31 @@ function findTx(txId) {
 
 function getBlock(blockNumber) {
     const duration = 1000;
-    return app.tronWeb2.trx.getBlock(blockNumber).then(block => {
-        if (!block) {
-            log('getBlock is null');
+
+    return getTronWeb(false).then(tronweb => {
+
+        return tronweb.trx.getBlock(blockNumber).then(block => {
+            if (!block) {
+                log('getBlock is null');
+                return delay(duration).then(() => {
+                    return getBlock(blockNumber);
+                });
+            }
+
+            const blockInfo = {
+                blockNumber: blockNumber,
+                hash: block.blockID
+            };
+
+            logLine('getBlock', blockInfo);
+
+            return blockInfo;
+        }).catch(err => {
+            logError('getBlock', err);
+
             return delay(duration).then(() => {
                 return getBlock(blockNumber);
             });
-        }
-
-        const blockInfo = {
-            blockNumber: blockNumber,
-            hash: block.blockID
-        };
-
-        logLine('getBlock', blockInfo);
-
-        return blockInfo;
-    }).catch(err => {
-        logError('getBlock', err);
-
-        return delay(duration).then(() => {
-            return getBlock(blockNumber);
         });
     });
 }
@@ -711,44 +765,46 @@ function findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex) {
             return Promise.resolve(null);
         }
     }
+    return getTronWeb(false).then(tronweb => {
 
-    return app.tronWeb2.trx.getBlock(blockNumber).then(block => {
+        return tronweb.trx.getBlock(blockNumber).then(block => {
 
-        log('findBlockByTxId from ' + startBlockNumber + ' current ' + blockNumber + ' ' + txId);
+            log('findBlockByTxId from ' + startBlockNumber + ' current ' + blockNumber + ' ' + txId);
 
-        if (block) {
+            if (block) {
 
-            const tx = block.transactions ? block.transactions.find(tx => {
-                return tx.txID === txId;
-            }) : null;
+                const tx = block.transactions ? block.transactions.find(tx => {
+                    return tx.txID === txId;
+                }) : null;
 
-            const blockInfo = {
-                blockNumber: blockNumber,
-                hash: block.blockID
-            };
+                const blockInfo = {
+                    blockNumber: blockNumber,
+                    hash: block.blockID
+                };
 
-            //logJson(blockInfo);
+                //logJson(blockInfo);
 
 
-            if (tx) {
-                log('find complete', blockInfo.blockNumber);
-                return blockInfo;
+                if (tx) {
+                    log('find complete', blockInfo.blockNumber);
+                    return blockInfo;
+                }
+
+                blockNumber++;
             }
 
-            blockNumber++;
-        }
+            return delay(duration).then(() => {
+                return findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex);
+            })
 
-        return delay(duration).then(() => {
-            return findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex);
-        })
+            //logJson('block', block);
 
-        //logJson('block', block);
+        }).catch(err => {
+            logError('findBlockByTxId', err);
 
-    }).catch(err => {
-        logError('findBlockByTxId', err);
-
-        return delay(duration).then(() => {
-            return findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex);
+            return delay(duration).then(() => {
+                return findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex);
+            });
         });
     });
 
@@ -756,63 +812,66 @@ function findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex) {
 
 
 function findBlockByTxId2(startBlockNumber, blockNumber, txId, gameIndex) {
-    return app.tronWeb2.trx.getTransactionInfo(txId).then(txInfo => {
+    return getTronWeb(false).then(tronweb => {
 
-        if (app.gameState && app.gameState.listPlayerBets && app.gameState.listPlayerBets[gameIndex]) {
+        return tronweb.trx.getTransactionInfo(txId).then(txInfo => {
 
-            const bet = app.gameState.listPlayerBets[gameIndex].find(bet => {
-                return bet.blockNumber >= startBlockNumber;
-            });
+            if (app.gameState && app.gameState.listPlayerBets && app.gameState.listPlayerBets[gameIndex]) {
 
-            if (bet) {
-                winBet(bet, gameIndex);
+                const bet = app.gameState.listPlayerBets[gameIndex].find(bet => {
+                    return bet.blockNumber >= startBlockNumber;
+                });
 
-                return null;
+                if (bet) {
+                    winBet(bet, gameIndex);
+
+                    return null;
+                }
             }
-        }
 
-        if (Object.values(txInfo).length > 0) {
-            log(txInfo);
+            if (Object.values(txInfo).length > 0) {
+                log(txInfo);
 
-            log('find complete by tx 2', txInfo.blockNumber);
+                log('find complete by tx 2', txInfo.blockNumber);
 
-            blockNumber = txInfo.blockNumber;
-        }
+                blockNumber = txInfo.blockNumber;
+            }
 
-        return post('/api/getBlock', {blockNumber: blockNumber}).then(block => {
+            return post('/api/getBlock', {blockNumber: blockNumber}).then(block => {
 
-            log('findBlockByTxId2 from ' + startBlockNumber + ' current ' + blockNumber + ' ' + txId);
-            //logJson(block);
+                log('findBlockByTxId2 from ' + startBlockNumber + ' current ' + blockNumber + ' ' + txId);
+                //logJson(block);
 
-            if (block) {
+                if (block) {
 
-                if (block.transactions.indexOf(txId) > -1) {
-                    log('find complete', block.blockNumber);
-                    return block;
+                    if (block.transactions.indexOf(txId) > -1) {
+                        log('find complete', block.blockNumber);
+                        return block;
+                    }
+
+                    blockNumber++;
                 }
 
-                blockNumber++;
-            }
+                return delay(1000).then(() => {
+                    return findBlockByTxId2(startBlockNumber, blockNumber, txId, gameIndex);
+                })
 
-            return delay(1000).then(() => {
-                return findBlockByTxId2(startBlockNumber, blockNumber, txId, gameIndex);
-            })
+                //logJson('block', block);
 
-            //logJson('block', block);
+            }).catch(err => {
+                logError('findBlockByTxId2', err);
+
+                return delay(1000).then(() => {
+                    return findBlockByTxId2(startBlockNumber, blockNumber, txId, gameIndex);
+                });
+            });
 
         }).catch(err => {
-            logError('findBlockByTxId2', err);
+            logError('getTransactionInfo2', err);
 
             return delay(1000).then(() => {
                 return findBlockByTxId2(startBlockNumber, blockNumber, txId, gameIndex);
             });
-        });
-
-    }).catch(err => {
-        logError('getTransactionInfo2', err);
-
-        return delay(1000).then(() => {
-            return findBlockByTxId2(startBlockNumber, blockNumber, txId, gameIndex);
         });
     });
 }
@@ -1175,22 +1234,19 @@ function isAutoBet(gameIndex) {
     return res;
 }
 
-function onByBet(txId, betAmount, selectedSector, autoBet) {
+function onByBet(txId, betAmount, selectedSector, autoBet, gameIndex) {
 
     log('betAmount', betAmount);
 
     gtag('event', 'purchase', {
         "transaction_id": txId,
-        //"affiliation": "Google online store",
         "value": betAmount,
         "currency": "USD",
-        //"tax": 1.24,
-        //"shipping": 0,
         checkout_option: 'tronlink',
         "items": [
             {
-                "id": "Bet x" + betValue,
-                "name": "Gear of Fortune",
+                "id": gameIndex === 0 ? ("Bet " + betValue) : ("Bet x" + betValue),
+                "name": gameIndex === 0 ? "Dice52" : "Gear of Fortune",
                 "quantity": 1,
                 "variant": autoBet ? "auto" : "not auto",
                 "price": betAmount
@@ -1252,36 +1308,37 @@ function onFreeze() {
 }
 
 function getParentUserId(ref) {
-    const parentUser = localStorageGet('parentUser');
+    /*const parentUser = localStorageGet('parentUser');
 
     if (parentUser) {
         return post('/api/getParentUserId', parentUser).then(parentUser => {
             return parentUser;
         });
-    } else {
-        if (ref) {
-            return getContract(referralsAddress).then(referrrals => {
-                    return referrrals.getRefToUserId(ref).call().then(userId => {
-                        return referrrals.getUserIdToAddress(userId.toNumber()).call().then(parentAddress => {
-                            return post('/api/getParentUserId', {
-                                ref: ref,
-                                userId: userId.toNumber(),
-                                parentAddress: app.tronWeb2.address.fromHex(parentAddress)
-                            }).then(parentUser => {
-                                if (parentUser.userId) localStorageSet('parentUser', parentUser);
-                                return parentUser;
-                            });
+    } else {*/
+
+    if (ref) {
+        return getContract(referralsAddress).then(referrrals => {
+                return referrrals.getRefToUserId(ref).call().then(userId => {
+                    return referrrals.getUserIdToAddress(userId.toNumber()).call().then(parentAddress => {
+                        return post('/api/getParentUserId', {
+                            ref: ref,
+                            userId: userId.toNumber(),
+                            parentAddress: this.tronWeb.address.fromHex(parentAddress)
+                        }).then(parentUser => {
+                            if (parentUser.userId) localStorageSet('parentUser', parentUser);
+                            return parentUser;
                         });
                     });
-                }
-            )
-        } else {
-            return post('/api/getParentUserId', parentUser).then(parentUser => {
-                if (parentUser.userId) localStorageSet('parentUser', parentUser);
-                return parentUser;
-            });
-        }
+                });
+            }
+        )
+    } else {
+        return post('/api/getParentUserId', {}).then(parentUser => {
+            //if (parentUser.userId) localStorageSet('parentUser', parentUser);
+            return parentUser;
+        });
     }
+    //}
 }
 
 function localStorageGet(key) {
@@ -1433,7 +1490,7 @@ function createBet(gameIndex) {
 
                         log('txId', txId);
 
-                        onByBet(txId, app.betAmount, app.betValue, isAutoBet(gameIndex));
+                        onByBet(txId, app.betAmount, app.betValue, isAutoBet(gameIndex), gameIndex);
 
                         //updateMyBalance();
 
