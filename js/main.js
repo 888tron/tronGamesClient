@@ -165,7 +165,7 @@ function onDividendShow() {
     updateDividendsData();
     $('#dividendsModal').modal('show');
 
-    app.dividendsModalTimer = setInterval(updateDividendsData, 3000);
+    app.dividendsModalTimer = setInterval(updateDividendsData, 1000);
 }
 
 
@@ -187,7 +187,19 @@ function onTronlinkAddressChange() {
 }
 
 function updateDividendsData() {
-    log('updateDividendsData');
+    //log('updateDividendsData');
+
+    const currentTime = (new Date()).getTime();
+    const lastTime = 1543665600000;
+    const targetTime = 1549540800000;
+
+    $('.dividendsProgressText').html(elapsedTimeToString(targetTime - currentTime));
+
+    $('.dividendsProgress')
+        .css("width", Math.ceil(((currentTime - lastTime) / (targetTime - lastTime)) * 100) + "%")
+        .attr("aria-valuenow", (currentTime - lastTime))
+        .attr("aria-valuemax", (targetTime - lastTime));
+
 
     const money = (value, f) => {
         return ((value.toNumber ? value.toNumber() : value) / 1000000).toFixed(f === undefined ? 2 : f);
@@ -202,7 +214,7 @@ function updateDividendsData() {
                 $('.dividendsNextStage').html(_level + 2);
 
                 $('.dividendsCurrentStagePrice').html(700 + _level * 20);
-                $('.dividendsNextStagePrice').html(700 + (_level + 1) * 20);
+                $('.dividendsNextStagePrice').html(700 + (_level + 1) * 10);
 
 
                 if (getTronlinkAddress()) {
@@ -254,22 +266,6 @@ function updateDividendsData() {
                 }
 
 
-            });
-
-
-        dividendsData.getPlayersTokenSum().call()
-            .then(playersTokenSum => {
-                const sum = playersTokenSum.toNumber();
-                const size = 1000000000000;
-                const value = sum % size;
-                const max = (Math.floor(sum / size) + 1) * size;
-
-                $('.dividendsProgressText').html(money(value, 2) + '/' + money(max, 0));
-
-                $('.dividendsProgress')
-                    .css("width", Math.ceil((value / max) * 100) + "%")
-                    .attr("aria-valuenow", value)
-                    .attr("aria-valuemax", max);
             });
 
 
@@ -411,7 +407,23 @@ function timeToString(t) {
         return s.toString().length === 2 ? s : ('0' + s);
     };
 
-    return d(date.getHours()) + ":" + d(date.getMinutes()) + ":" + d(date.getSeconds());
+
+    d(date.getHours()) + ":" + d(date.getMinutes()) + ":" + d(date.getSeconds());
+}
+
+function elapsedTimeToString(t) {
+    t = Math.floor(t / 1000);
+
+    const seconds = t % 60;
+    const minutes = Math.floor(t / 60) % 60;
+    const hours = Math.floor(t / (60 * 60)) % 60;
+    const days = Math.floor(t / (3600 * 24));
+
+    var d = s => {
+        return s.toString().length === 2 ? s : ('0' + s);
+    };
+
+    return d(days) + ":" + d(hours) + ":" + d(minutes) + ":" + d(seconds);
 }
 
 function updateTables() {
