@@ -127,6 +127,10 @@ function cardType(card) {
         + '</span>';
 }
 
+function cardTypeText(card) {
+    return ['♠', '♣', '♦', '♥'][card % 4] + ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'][Math.floor(card / 4)];
+}
+
 function cardTypeHistory(card, color) {
     return '<svg class="icon  ' + color + ' mr-1"><use xlink:href="img/cards/cards-sprite.svg#' +
         ['spades', 'clover', 'diamond', 'hearts'][card % 4]

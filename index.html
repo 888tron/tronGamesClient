@@ -27,6 +27,7 @@
 
         gtag('config', 'UA-109663484-3');
     </script>
+
 </head>
 <body>
 
@@ -690,76 +691,8 @@
                        data-locale="rare_wins">Rare Wins</a>
                 </li>
             </ul>
-            <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade" id="mybets" role="tabpanel">
-                    <table id="mainTable" class="table table-striped table-dark">
-                        <thead>
-                        <tr>
-                            <th scope="col" data-locale="time">Time</th>
-                            <th scope="col" data-locale="block">Block</th>
-                            <th scope="col" data-locale="player">Player</th>
-                            <th scope="col" data-locale="prediction">Prediction</th>
-                            <th scope="col" data-locale="result">Result</th>
-                            <th scope="col" class="text-right" data-locale="bet">Bet</th>
-                            <th scope="col" class="text-right" data-locale="payout">Payout</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-pane fade show active" id="allbets" role="tabpanel">
-                    <table id="allTable" class="table table-striped table-dark">
-                        <thead>
-                        <tr>
-                            <th scope="col" data-locale="time">Time</th>
-                            <th scope="col" data-locale="block">Block</th>
-                            <th scope="col" data-locale="player">Player</th>
-                            <th scope="col" data-locale="prediction">Prediction</th>
-                            <th scope="col" data-locale="result">Result</th>
-                            <th scope="col" class="text-right" data-locale="bet">Bet</th>
-                            <th scope="col" class="text-right" data-locale="payout">Payout</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-pane fade" id="high_rollers" role="tabpanel">
-                    <table id="highTable" class="table table-striped table-dark">
-                        <thead>
-                        <tr>
-                            <th scope="col" data-locale="time">Time</th>
-                            <th scope="col" data-locale="block">Block</th>
-                            <th scope="col" data-locale="player">Player</th>
-                            <th scope="col" data-locale="prediction">Prediction</th>
-                            <th scope="col" data-locale="result">Result</th>
-                            <th scope="col" class="text-right" data-locale="bet">Bet</th>
-                            <th scope="col" class="text-right" data-locale="payout">Payout</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-pane fade" id="rare_wins" role="tabpanel">
-                    <table id="rareTable" class="table table-striped table-dark">
-                        <thead>
-                        <tr>
-                            <th scope="col" data-locale="time">Time</th>
-                            <th scope="col" data-locale="block">Block</th>
-                            <th scope="col" data-locale="player">Player</th>
-                            <th scope="col" data-locale="prediction">Prediction</th>
-                            <th scope="col" data-locale="result">Result</th>
-                            <th scope="col" class="text-right" data-locale="bet">Bet</th>
-                            <th scope="col" class="text-right" data-locale="payout">Payout</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+
+            <div id="grid" style="width: 100%; height: 1240px;"></div>
             <footer class="p-3 mt-3">
                 <p>If you reside in a location where lottery, gambling, or betting over the internet is illegal, please
                     do not click on anything related to these activities on this site. You must be 21 years of age to
@@ -1148,6 +1081,8 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
@@ -1159,6 +1094,7 @@
         integrity="sha256-kTezPOsOi5ZsWUKr7/D/EWcONq/hdrc0gPwk5/IUYy0=" crossorigin="anonymous"></script>
 
 <script src="libs/bootstrap/bootstrap.min.js"></script>
+
 
 <script src="libs/TronWeb.js"></script>
 
@@ -1176,10 +1112,10 @@
 
 <script src="libs/inflate.min.js"></script>
 
-<script src="js/main.js?v=205"></script>
-<script src="js/cards.js?v=1.92"></script>
+<script src="js/main.js?v=301"></script>
+<script src="js/cards.js?v=1.94"></script>
 
-<script src="js/locale.js?v=3.1"></script>
+<script src="js/locale.js?v=3.2"></script>
 
 </body>
 </html>

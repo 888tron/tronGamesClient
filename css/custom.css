@@ -672,6 +672,7 @@ main {
 .table-tabs {
     background-color: #0000005e;
     border-top: 1px solid #dee2e61a;
+    border-bottom: 1px solid #dee2e61a;
 }
 
 .table-tabs .nav-link {
