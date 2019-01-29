@@ -1,4 +1,6 @@
 (function () {
+    loadImages();
+
     app.drawRange = 0;
     app.cardIndex = 24;
 
@@ -8,6 +10,21 @@
     $('#cardsSelect .range').val(app.cardIndex);
     onSelectCard();
 })();
+
+function loadImages() {
+    app.cardImages = [];
+
+    for (let i = 0; i < 52; i++) {
+        const img = new Image();
+        img.src = 'img/cards/' + i + '.svg';
+
+        app.cardImages[i] = img;
+    }
+
+    const img = new Image();
+    img.src = 'img/cards/cover.png';
+    app.cardImageCover = img;
+}
 
 function onSelectCard() {
     app.cardIndex = parseInt($('#cardsSelect .range').val());
@@ -98,8 +115,13 @@ function loadCard() {
 
 function showCard(card) {
     $('.load-card').removeClass('d-flex').addClass('d-none');
-    $('#resultCard').attr('src', 'img/cards/' + card + '.svg');
+
+
     $('.card-3d').addClass('show');
+
+    const resultCard = $('.result-card');
+
+    resultCard.html(app.cardImages[card]);
 }
 
 function resetCard() {
@@ -108,7 +130,8 @@ function resetCard() {
     $('.card-container').removeClass('showtext');
 
     setTimeout(() => {
-        $('#resultCard').attr('src', 'img/cards/cover.png');
+        const resultCard = $('.result-card');
+        resultCard.html('');
     }, 1000);
 }
 

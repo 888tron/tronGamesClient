@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="css/custom.css?2.6">
-    <title>Gear of Fortune</title>
+    <title>888</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109663484-3"></script>
     <script>
@@ -518,7 +518,7 @@
                                                 <img src="img/cards/cover.png">
                                             </div>
                                             <div class="result-card position-absolute">
-                                                <img id="resultCard" src="img/cards/cover.png">
+                                                <img src="img/cards/cover.png">
                                             </div>
                                             <div class="load-card position-absolute d-none align-items-center justify-content-center">
                                                 <i class="fa fa-spinner fa-spin"></i>
@@ -691,8 +691,24 @@
                        data-locale="rare_wins">Rare Wins</a>
                 </li>
             </ul>
-
-            <div id="grid" style="width: 100%; height: 1240px;"></div>
+            <div class="tab-content">
+                <table id="mainTable" class="table table-striped table-dark">
+                    <thead>
+                    <tr>
+                        <th scope="col" data-locale="time">Time</th>
+                        <th scope="col" data-locale="block">Block</th>
+                        <th scope="col" data-locale="player">Player</th>
+                        <th scope="col" data-locale="prediction">Prediction</th>
+                        <th scope="col" data-locale="result">Result</th>
+                        <th scope="col" class="text-right" data-locale="bet">Bet</th>
+                        <th scope="col" class="text-right" data-locale="payout">Payout</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <!--<div id="grid" style="width: 100%; height: 1240px;"></div>-->
             <footer class="p-3 mt-3">
                 <p>If you reside in a location where lottery, gambling, or betting over the internet is illegal, please
                     do not click on anything related to these activities on this site. You must be 21 years of age to
@@ -931,7 +947,7 @@
                          aria-valuenow="25"
                          aria-valuemin="0" aria-valuemax="100"></div>
                     <div class="position-absolute d-flex align-items-center justify-content-center h-100 w-100">
-                        <span class="text-dark dividendsProgressText">250,000/1000000</span>
+                        <span class="text-dark dividendsProgressText"></span>
                     </div>
                 </div>
                 <p class="mt-2 text-secondary text-center"><span data-locale="next_stage">Next Stage</span> <span
@@ -941,6 +957,12 @@
                 <div class="border border-secondary rounded text-center p-3">
                     <h4 class="text-secondary" data-locale="available_dividends">Available Dividends</h4>
                     <h2 class="dividendsSum">2,701,899.86 TRX</h2>
+
+                    <p class="text-secondary">
+                        <span data-locale="total_mined">Total mined</span>
+                        <span class="text-success dividendsTokenMined">0 Tokens 888</span>
+                    </p>
+
                     <p class="text-secondary"><span data-locale="total_of ">A total of</span> <span
                             class="text-success dividendsTokenFrozen">0 Tokens 888</span> <span
                             data-locale="frozen_across" data-locale="frozen_across">is frozen across the network - You will receive</span>
@@ -1112,10 +1134,10 @@
 
 <script src="libs/inflate.min.js"></script>
 
-<script src="js/main.js?v=301"></script>
-<script src="js/cards.js?v=1.94"></script>
+<script src="js/main.js?v=310"></script>
+<script src="js/cards.js?v=1.95"></script>
 
-<script src="js/locale.js?v=3.2"></script>
+<script src="js/locale.js?v=3.3"></script>
 
 </body>
 </html>

@@ -21,6 +21,7 @@ app.maxBet = 5000;
 app.betAmount = minBet;
 app.wheelValues = [0, 6, 2, 5, 2, 10, 2, 5, 2, 6, 2, 5, 2, 6, 2, 10, 2, 5, 2, 20, 2];
 app.currentTableIndex = 1;
+app.newMyBets = [];
 
 const GameViewState = {
     IDLE: 1,
@@ -235,12 +236,19 @@ function updateDividendsData() {
 
                                     dividendsData.getLevelToFrozenSum(_level).call()
                                         .then(levelFrozen => {
-                                            $('.dividendsTokenFrozen').html(money(levelFrozen) + ' Tokens 888');
 
-                                            $('.dividendsAvailableWithdraw').html(money(
-                                                dividends.toNumber() * playerFrozen.toNumber() / levelFrozen.toNumber()
-                                            ) + ' TRX');
+                                            dividendsData.getPlayersTokenSum().call()
+                                                .then(playersTokenSum => {
 
+                                                    $('.dividendsTokenFrozen').html(money(levelFrozen, 0) + ' Tokens 888');
+
+                                                    $('.dividendsTokenMined').html(money(playersTokenSum * 100 / 65, 0) + ' Tokens 888');
+
+                                                    $('.dividendsAvailableWithdraw').html(money(
+                                                        dividends.toNumber() * playerFrozen.toNumber() / levelFrozen.toNumber()
+                                                    ) + ' TRX');
+
+                                                });
                                         });
 
                                 });
@@ -447,13 +455,12 @@ function updateMyHistory() {
 let gridContext = null;
 var gridCanvas;
 
-function updateTables() {
-
+function updateCanvasTable() {
     if (!gridContext) {
 
-        var PIXEL_RATIO = window.devicePixelRatio;
+        const pixelRatio = window.devicePixelRatio || 1;
 
-        var grid = $('#grid');
+        const grid = $('#grid');
 
         gridCanvas = $('<canvas/>', {
             id: 'tableCanvas'
@@ -464,12 +471,15 @@ function updateTables() {
 
         gridContext = gridCanvas.getContext('2d');
 
-        gridContext.scale(PIXEL_RATIO, PIXEL_RATIO);
+        gridContext.scale(pixelRatio, pixelRatio);
 
         const onResize = () => {
 
-            gridCanvas.width = grid.width() * PIXEL_RATIO;
-            gridCanvas.height = grid.height() * PIXEL_RATIO;
+            log('grid size ' + grid.width() + ' ' + grid.height());
+            log('pixelRatio', pixelRatio);
+
+            gridCanvas.width = grid.width() * pixelRatio;
+            gridCanvas.height = grid.height() * pixelRatio;
 
             gridCanvas.style.width = gridCanvas.width + "px";
             gridCanvas.style.height = gridCanvas.height + "px";
@@ -483,18 +493,37 @@ function updateTables() {
 
     switch (app.currentTableIndex) {
         case 0:
-            setTableData(app.gameState.listPlayerBets[app.currentGameIndex]);
+            setTableDataGrid(app.gameState.listPlayerBets[app.currentGameIndex]);
             break;
         case 1:
-            setTableData(app.gameState.listBetsAll);
+            setTableDataGrid(app.gameState.listBetsAll);
             break;
         case 2:
-            setTableData(app.gameState.listBetsBigAmount);
+            setTableDataGrid(app.gameState.listBetsBigAmount);
             break;
         case 3:
-            setTableData(app.gameState.listBetsRareValue);
+            setTableDataGrid(app.gameState.listBetsRareValue);
             break;
     }
+}
+
+function getCurrantDataProvider() {
+    switch (app.currentTableIndex) {
+        case 0:
+            return app.gameState.listPlayerBets[app.currentGameIndex];
+        case 1:
+            return app.gameState.listBetsAll;
+        case 2:
+            return app.gameState.listBetsBigAmount;
+        case 3:
+            return app.gameState.listBetsRareValue;
+    }
+    return null;
+}
+
+function updateTables() {
+
+    setTableData($('#mainTable > tbody:last'), getCurrantDataProvider());
 
     const newTotalWon = Math.round(app.gameState.winSum);
 
@@ -537,7 +566,52 @@ function isMyBet(bet) {
     return getTronlinkAddress() && bet.player === this.tronWeb.defaultAddress.base58;
 }
 
-function setTableData(data) {
+function setTableData(table, data) {
+    var rows = '';
+
+    const cardsCount = 52;
+
+    for (var i = data.length - 1; i >= 0; i--) {
+        var bet = data[i];
+
+        const gameIndex = getGameIndex(bet.game);
+
+        let betValue = 'x' + bet.betValue;
+        let winValue = (bet.winValue < 21 ? ('x' + bet.winValue) : '-');
+
+        if (gameIndex === 0) {
+            if (bet.betValue < cardsCount) {
+                betValue = cardType(bet.betValue) + '<';
+            } else if (bet.betValue < cardsCount * 2) {
+                betValue = cardType(bet.betValue - cardsCount) + '=';
+            } else {
+                betValue = cardType(bet.betValue - cardsCount * 2) + '>';
+            }
+
+            winValue = cardType(bet.winIndex);
+        }
+
+        //  if (bet.winValue < 21) {
+        rows +=
+            '<tr>' +
+            td(timeToString(bet.time)) +
+            // td(bet.id) +
+            td(bet.blockNumber) +
+            td(addressToShort(bet.player)) +
+
+            td(betValue) +
+            td(winValue) +
+            td(bet.amount + ' TRX') +
+            td(parseFloat(bet.winAmount).toFixed(2) + ' TRX') +
+            '</tr>';
+        //  }
+    }
+
+    table.html(rows);
+
+}
+
+function setTableDataGrid(data) {
 
     const cardsCount = 52;
 
@@ -545,8 +619,15 @@ function setTableData(data) {
     let x = paddingLeft;
     let y = 30;
     const dy = 40;
-    const dx = gridCanvas.width / 7;
-    gridContext.font = '17px sans-serif';
+    const dx = (gridCanvas.width - paddingLeft * 2) / 6;
+
+    const grid = $('#grid');
+
+    //log('grid.width() ==== ', grid.width());
+
+    gridContext.font = (grid.width() > 500 ? 17 : 2) + 'px Arial';
+
+    //log('gridCanvas.width', gridCanvas.width);
 
     gridContext.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
 
@@ -858,18 +939,17 @@ function getBlock(blockNumber) {
 function findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex) {
     const duration = 1000;
 
-    if (app.gameState && app.gameState.listPlayerBets && app.gameState.listPlayerBets[gameIndex]) {
+    const win = app.newMyBets.find(bet => {
+        return bet.blockNumber >= startBlockNumber && bet.game === games[gameIndex];
+    });
 
-        const bet = app.gameState.listPlayerBets[gameIndex].find(bet => {
-            return bet.blockNumber >= startBlockNumber;
-        });
+    if (win) {
 
-        if (bet) {
-            winBet(bet, gameIndex);
+        winBet(win, gameIndex);
 
-            return Promise.resolve(null);
-        }
+        return Promise.resolve(null);
     }
+
     return getTronWeb(false).then(tronweb => {
 
         return tronweb.trx.getBlock(blockNumber).then(block => {
@@ -1113,12 +1193,14 @@ function watchLastBets() {
 
     return post('/api/getBets', {offset: app.gameStateBetCount}).then(data => {
 
-            const myBet = data.find(isMyBet);
-            if (myBet) {
+            const myBets = data.filter(isMyBet);
+            if (myBets.length) {
+
+                app.newMyBets = app.newMyBets.concat(myBets);
 
                 app.time2 = (new Date()).getTime();
 
-                logLine('mybet!!!!!!!!!!!!!!  ' + (app.time2 - app.time0), myBet);
+                logLine('mybet!!!!!!!!!!!!!!  ' + (app.time2 - app.time0), myBets);
 
                 updateMyBalance();
 
@@ -1204,6 +1286,14 @@ function createBetStartCards() {
 }
 
 function winBet(bet, gameIndex) {
+    log('app.newMyBets.length', app.newMyBets.length);
+
+    app.newMyBets = app.newMyBets.filter(b => {
+        return b.blockNumber > bet.blockNumber;
+    });
+
+    log('app.newMyBets.length', app.newMyBets.length);
+
     if (gameIndex === 0) {
         winBetCards(bet);
     } else {
