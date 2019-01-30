@@ -88,3 +88,4 @@ payout_win	Payout on Win:
 multiplayer	Multijugador
 win_chance	Win Chance
 how_dice	4. Hay 52 cartas en una baraja. La carta más baja es 2, la carta más alta es A (As). El jugador elige cualquier carta de la baraja. El jugador apuesta en uno de los tres eventos: la carta siguiente - una de las 51 cartas restantes, distribuidas al azar, será MÁS, o MENOS o IGUAL en la clasificación la primera carta elegida por el jugador. Los palos importan en el juego. En el caso de adivinar el evento, se paga al jugador según el valor de la apuesta multiplicada por el coeficiente correspondiente a la carta seleccionada del jugador y el evento seleccionado para la apuesta.
+total_mined	Total mined
