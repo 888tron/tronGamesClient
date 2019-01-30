@@ -49,7 +49,7 @@ function onSelectCard() {
 
     updateChances();
 
-    //log('app.cardIndex', app.cardIndex);
+    log('app.cardIndex', app.cardIndex + ' (' + cardTypeText(app.cardIndex) + ')');
 }
 
 function updateChances() {
@@ -113,9 +113,12 @@ function loadCard() {
     $('.load-card').removeClass('d-none').addClass('d-flex');
 }
 
-function showCard(card) {
+function loadCardStop() {
     $('.load-card').removeClass('d-flex').addClass('d-none');
+}
 
+function showCard(card) {
+    loadCardStop();
 
     $('.card-3d').addClass('show');
 

@@ -366,7 +366,7 @@ function setBetMax() {
 
 function setBetAmount(value) {
 
-    if (value > app.myBalance) value = app.myBalance;
+    if (value > app.myBalance - 1) value = app.myBalance - 1;
 
     if (value < app.minBet) value = app.minBet;
     if (value > app.maxBet) value = app.maxBet;
@@ -848,7 +848,7 @@ function getCurrentBlockNumber() {
                     return getCurrentBlockNumber();
                 });
             }
-            log('getCurrentBlockNumber', block.block_header.raw_data.number);
+            log('getCurrentBlockNumber', block.block_header.raw_data.number + ' ' + block.blockID);
 
             return block.block_header.raw_data.number;
         }).catch(err => {
@@ -940,7 +940,7 @@ function findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex) {
     const duration = 1000;
 
     const win = app.newMyBets.find(bet => {
-        return bet.blockNumber >= startBlockNumber && bet.game === games[gameIndex];
+        return bet.blockNumber > startBlockNumber && bet.game === games[gameIndex];
     });
 
     if (win) {
@@ -971,8 +971,15 @@ function findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex) {
 
 
                 if (tx) {
-                    log('find complete', blockInfo.blockNumber);
-                    return blockInfo;
+                    logLine('founded tx', tx);
+                    const txRes = (tx.ret && tx.ret.length) ? tx.ret[0].contractRet : tx;
+                    if (txRes === "SUCCESS") {
+                        log('find complete', blockInfo.blockNumber);
+                        return blockInfo;
+                    } else {
+                        stopBetError('findBlockByTxId', txRes);
+                        return null;
+                    }
                 }
 
                 blockNumber++;
@@ -1286,6 +1293,7 @@ function createBetStartCards() {
 }
 
 function winBet(bet, gameIndex) {
+    logLine('winBet ' + gameIndex, bet);
     log('app.newMyBets.length', app.newMyBets.length);
 
     app.newMyBets = app.newMyBets.filter(b => {
@@ -1741,7 +1749,7 @@ function calcWin(block, gameIndex) {
             let winAmount = 0;
 
             if (gameIndex === 0) {
-                winValue = winIndex;
+                winValue = cardTypeText(winIndex);
 
                 const betValue = app.betValue;
                 const betAmount = app.betAmount;
@@ -1760,11 +1768,11 @@ function calcWin(block, gameIndex) {
 
                     winAmount = betAmount * cardsCount * (10000 - houseEdge) / 10000 / (betValue - cardsCount * 2);
 
-                    log('betAmount', betAmount)
-                    log('cardsCount', cardsCount)
-                    log('betValue', betValue)
-                    log('winIndex', winIndex)
-                    log('winAmount ==========', winAmount)
+                    log('betAmount', betAmount);
+                    log('cardsCount', cardsCount);
+                    log('betValue', betValue);
+                    log('winIndex', winIndex);
+                    log('winAmount ==========', winAmount);
                 }
             } else {
 
@@ -1802,6 +1810,8 @@ function stopBetError(name, err) {
 
     gameViewState = GameViewState.IDLE;
     setSpinEnable(true);
+    resetCard();
+    loadCardStop();
 }
 
 
