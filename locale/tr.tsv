@@ -82,7 +82,7 @@ cards	Dice52
 prediction	Prediction
 result	Result
 draw_under	Draw Under
-draw_equal	Draw Equal
+draw_equal	Draw Exact
 draw_over	Draw Over
 payout_win	Payout on Win:
 multiplayer	Multiplayer
