@@ -368,6 +368,8 @@ function setBetAmount(value) {
 
     if (value > app.myBalance - 1) value = app.myBalance - 1;
 
+    value = Math.floor(value);
+
     if (value < app.minBet) value = app.minBet;
     if (value > app.maxBet) value = app.maxBet;
 
@@ -1153,7 +1155,7 @@ function guiInit() {
         watchLastBets();
 
         app.minBet = 50;
-        app.maxBet = 5000;
+        app.maxBet = 20000;
         setBetMin();
 
         app.parentRef = getUrlVars()['r'];
