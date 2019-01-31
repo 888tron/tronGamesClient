@@ -82,9 +82,10 @@ cards	Dice52
 prediction	Prediction
 result	Result
 draw_under	Draw Under
-draw_equal	Draw Equal
+draw_equal	Draw Exact
 draw_over	Draw Over
 payout_win	Payout on Win:
 multiplayer	Multiplayer
 win_chance	Win Chance
 how_dice	4. Destede 52 kart vardır. En düşük kart 2'dir ve en yüksek kart A (as'tır). Oyuncu desteden herhangi bir kartı seçer. Oyuncu üç etkinlikten birine bahis yapar: sonraki kart - kalan 51 karttan biri, rastgele dağıtıldığında, oyuncu tarafından seçilen karttan BÜYÜKTÜR, KÜÇÜKTÜR VEYA EŞİT olacaktır. Oyunda kağıdın simgelerine dikkat edilmemektedir. Oyuncu Etkinliği kazandığında, oyuncu tarafından seçilen kartına ve bahis için seçilen etkinliğe karşılık gelen katsayı ile çarpılan ödeme yapılmaktadır.
+total_mined	Total mined
