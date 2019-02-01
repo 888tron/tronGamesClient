@@ -85,23 +85,25 @@ function updateChances() {
 $('#cardsSelect .range').on('input', onSelectCard);
 
 $('.range-select > div').on('click', function () {
-    $('.range-select').find('.active').removeClass('active');
-    $(this).addClass('active');
-    $('#curentDraw').html($('.range-select > div.active').html());
+    if(!$(this).hasClass('disabled')){
+        $('.range-select').find('.active').removeClass('active');
+        $(this).addClass('active');
+        $('#curentDraw').html($('.range-select > div.active').html());
 
-    app.drawRange = 2 - $('.range-select > div.active').index();
+        app.drawRange = 2 - $('.range-select > div.active').index();
 
-    if (app.drawRange === 1) {
-        app.minCardIndex = 0;
-        app.maxCardIndex = 51;
-    } else {
-        app.minCardIndex = 1;
-        app.maxCardIndex = 50;
+        if (app.drawRange === 1) {
+            app.minCardIndex = 0;
+            app.maxCardIndex = 51;
+        } else {
+            app.minCardIndex = 1;
+            app.maxCardIndex = 50;
+        }
+
+        updateCardMinMax();
+
+        onSelectCard();
     }
-
-    updateCardMinMax();
-
-    onSelectCard();
 });
 
 function updateCardMinMax() {
@@ -163,4 +165,18 @@ function cardTypeHistory(card, color) {
         + '"></use></svg><span class="' + color + '">' +
         ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'][Math.floor(card / 4)]
         + '</span>';
+}
+
+function disableControls() {
+    $('.control-panel').find('.btn').addClass('disabled').attr("disabled", "disabled");
+    $('.control-panel').find('input').attr("disabled", "disabled");
+    $('.range-select').find('div').addClass('disabled')
+    $('#cardsSelect').find('input').attr("disabled", "disabled");
+}
+
+function enableControls() {
+    $('.control-panel').find('.btn').removeClass('disabled').removeAttr("disabled");
+    $('.control-panel').find('input').removeAttr("disabled");
+    $('.range-select').find('div').removeClass('disabled')
+    $('#cardsSelect').find('input').removeAttr("disabled");
 }

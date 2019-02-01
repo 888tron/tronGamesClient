@@ -144,6 +144,10 @@ svg.icon.good {
     text-align: center;
 }
 
+:disabled {
+    cursor: not-allowed; 
+}
+
 .btn-primary {
     color: #fff;
     background-color: #375a7f;
@@ -565,6 +569,11 @@ main {
     color: #fff;
     text-decoration: underline;
     transition: 0.15s;
+}
+
+.range-select > div.disabled {
+    color: #6c757d;
+    cursor: not-allowed;
 }
 
 .balance-container {
