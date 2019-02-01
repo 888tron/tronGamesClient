@@ -49,6 +49,16 @@ svg.icon.good {
     fill: #D2D279;
 }
 
+.navbar-brand.disabled span,
+.navbar-brand.disabled i,
+.navbar-brand.disabled:hover {
+    color: #D3D3D3;
+}
+
+.navbar-brand.disabled svg {
+    fill: #D3D3D3;
+}
+
 .navbar-brand .icon {
     height: 1em;
 }

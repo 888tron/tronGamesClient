@@ -169,14 +169,17 @@ function cardTypeHistory(card, color) {
 
 function disableControls() {
     $('.control-panel').find('.btn').addClass('disabled').attr("disabled", "disabled");
-    $('.control-panel').find('input').attr("disabled", "disabled");
+    $('.control-panel').find('.form-control').attr("disabled", "disabled");
     $('.range-select').find('div').addClass('disabled')
     $('#cardsSelect').find('input').attr("disabled", "disabled");
+    $('#myHeader .nav-tabs').find('.navbar-brand').addClass('disabled');
+    
 }
 
 function enableControls() {
     $('.control-panel').find('.btn').removeClass('disabled').removeAttr("disabled");
-    $('.control-panel').find('input').removeAttr("disabled");
+    $('.control-panel').find('.form-control').removeAttr("disabled");
     $('.range-select').find('div').removeClass('disabled')
     $('#cardsSelect').find('input').removeAttr("disabled");
+    $('#myHeader .nav-tabs').find('.navbar-brand').removeClass('disabled');
 }
