@@ -50,6 +50,8 @@ function onSelectCard() {
     updateChances();
 
     log('app.cardIndex', app.cardIndex + ' (' + cardTypeText(app.cardIndex) + ')');
+
+    resetCard();
 }
 
 function updateChances() {
@@ -85,7 +87,7 @@ function updateChances() {
 $('#cardsSelect .range').on('input', onSelectCard);
 
 $('.range-select > div').on('click', function () {
-    if(!$(this).hasClass('disabled')){
+    if (!$(this).hasClass('disabled')) {
         $('.range-select').find('.active').removeClass('active');
         $(this).addClass('active');
         $('#curentDraw').html($('.range-select > div.active').html());
@@ -129,10 +131,14 @@ function showCard(card) {
     resultCard.html(app.cardImages[card]);
 }
 
-function resetCard() {
-    $('.card-3d').removeClass('show');
+function hideWinText() {
     $('.card-container .text-block').removeClass('winTextAnimation');
     $('.card-container').removeClass('showtext');
+}
+
+function resetCard() {
+    hideWinText();
+    $('.card-3d').removeClass('show');
 
     setTimeout(() => {
         const resultCard = $('.result-card');
@@ -173,7 +179,7 @@ function disableControls() {
     $('.range-select').find('div').addClass('disabled')
     $('#cardsSelect').find('input').attr("disabled", "disabled");
     $('#myHeader .nav-tabs').find('.navbar-brand').addClass('disabled');
-    
+
 }
 
 function enableControls() {

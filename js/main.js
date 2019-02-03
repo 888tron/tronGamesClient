@@ -234,6 +234,14 @@ function updateDividendsData() {
                                 .then(dividends => {
                                     $('.dividendsSum').html(money(dividends) + ' TRX');
 
+                                    getBalance(gameManagerAddress).then(gameBalance => {
+                                        log('dividends', dividends);
+                                        log('gameBalance', gameBalance);
+
+                                        log('gameBalance/dividends', gameBalance / dividends);
+
+                                    });
+
                                     dividendsData.getLevelToFrozenSum(_level).call()
                                         .then(levelFrozen => {
 
@@ -271,8 +279,15 @@ function updateDividendsData() {
 
                             dividendsData.getLevelToFrozenSum(_level).call()
                                 .then(levelFrozen => {
-                                    $('.dividendsTokenFrozen').html(money(levelFrozen) + ' Tokens 888');
 
+                                    dividendsData.getPlayersTokenSum().call()
+                                        .then(playersTokenSum => {
+
+                                            $('.dividendsTokenFrozen').html(money(levelFrozen, 0) + ' Tokens 888');
+
+                                            $('.dividendsTokenMined').html(money(playersTokenSum * 100 / 65, 0) + ' Tokens 888');
+
+                                        });
                                 });
                         });
                 }
@@ -785,6 +800,11 @@ function onFairness() {
 function setSpinEnable(value) {
     $('#spinButton').prop("disabled", !value);
     $('#drawButton').prop("disabled", !value);
+    if (value) {
+        enableControls();
+    } else {
+        disableControls();
+    }
 }
 
 var isLoaded = false;
@@ -906,6 +926,22 @@ function findTx(txId) {
     });
 }
 
+function getBalance(address) {
+    const duration = 1000;
+
+    return getTronWeb(false).then(tronweb => {
+        return tronweb.trx.getUnconfirmedBalance(address).then(balance => {
+            log('getBalance ' + address, balance);
+            return balance;
+        }).catch(err => {
+            logError('getBalance ' + address, err);
+            return delay(duration).then(() => {
+                return getBalance(address);
+            });
+        });
+    });
+}
+
 
 function getBlock(blockNumber) {
     const duration = 1000;
@@ -979,7 +1015,7 @@ function findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex) {
                         log('find complete', blockInfo.blockNumber);
                         return blockInfo;
                     } else {
-                        stopBetError('findBlockByTxId', txRes);
+                        stopBetError('findBlockByTxId', txRes, gameIndex);
                         return null;
                     }
                 }
@@ -1174,7 +1210,7 @@ function guiInit() {
 
 app.newBets = [];
 
-setInterval(addNewBet, 500);
+setInterval(addNewBet, 200);
 
 function addNewBet() {
     //log('addNewBet', app.newBets.length);
@@ -1377,12 +1413,15 @@ function winBetWheel(bet) {
                                 .easing(TWEEN.Easing.Bounce.Out)
                                 .to({x: app.arrowMesh.position.x + 2}, 500)
                                 .onComplete(() => {
-                                    setSpinEnable(true);
 
                                     //updateMyBalance();
                                     //updateHistoryTable();
 
-                                    if (isAutoBet(1)) createBet(1);
+                                    if (isAutoBet(1)) {
+                                        createBet(1);
+                                    } else {
+                                        setSpinEnable(true);
+                                    }
                                 })
                                 .start();
 
@@ -1414,13 +1453,13 @@ function winBetCards(bet) {
 
     gameViewState = GameViewState.WIN_IDLE;
 
-    setSpinEnable(true);
-
-
-    setTimeout(() => {
-        if (isAutoBet(0)) createBet(0);
-    }, 2000);
-
+    if (isAutoBet(0)) {
+        setTimeout(() => {
+            createBet(0);
+        }, 2000);
+    } else {
+        setSpinEnable(true);
+    }
 
 }
 
@@ -1725,9 +1764,8 @@ function createBet(gameIndex) {
 
 
                     }).catch(err => {
-                        stopBetError('createBet', err);
+                        stopBetError('createBet', err, gameIndex);
 
-                        if (isAutoBet(gameIndex)) createBet(gameIndex);
 
                     });
                 })/*.catch(err => {
@@ -1807,13 +1845,20 @@ function calcWin(block, gameIndex) {
     });
 }
 
-function stopBetError(name, err) {
+function stopBetError(name, err, gameIndex) {
     logError(name, err);
 
     gameViewState = GameViewState.IDLE;
-    setSpinEnable(true);
-    resetCard();
-    loadCardStop();
+
+    if (isAutoBet(gameIndex)) {
+        createBet(gameIndex);
+    } else {
+
+        setSpinEnable(true);
+
+        resetCard();
+        loadCardStop();
+    }
 }
 
 
