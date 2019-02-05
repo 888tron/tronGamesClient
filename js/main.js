@@ -1152,7 +1152,8 @@ function updateGameState(gameState, bets, player) {
 
     const listSize = 30;
     gameState.listBetsAll = gameState.listBetsAll.slice(-listSize);
-    gameState.listPlayerBets = gameState.listPlayerBets.slice(-listSize);
+    gameState.listPlayerBets[0] = gameState.listPlayerBets[0].slice(-listSize);
+    gameState.listPlayerBets[1] = gameState.listPlayerBets[1].slice(-listSize);
     gameState.listBetsBigAmount = gameState.listBetsBigAmount.slice(-listSize);
     gameState.listBetsRareValue = gameState.listBetsRareValue.slice(-listSize);
 
