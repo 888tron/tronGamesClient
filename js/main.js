@@ -89,6 +89,36 @@ window.onload = function () {
     updateDividendsData();
 };
 
+function updateStopSite() {
+    getContract(cardsAddress).then(contract => {
+        contract.getMinMaxBet().call()
+            .then(minMax => {
+                const max = minMax.max.toNumber();
+                log('max', max);
+                if (max === 0) {
+                    stopSite();
+                } else {
+                    setTimeout(updateStopSite, 60000);
+                }
+            });
+    });
+}
+
+function stopSite() {
+    $("body").prepend(
+        `<div id="before-load" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div style="font-size: 20px;
+            position: absolute;
+            left: 40%;
+            top: 50%;
+            background-color: rgba(0, 0, 0, 1);
+            margin: -70px 0 0 -70px;">The 888tron.com is down for maintenance
+            </div>
+        </div>`
+    );
+    $('#myHeader').hide();
+}
+
 function getTronWeb(isTronlink) {
     if (isTronlink) return Promise.resolve(this.tronWeb);
     if (app.tronWeb2) {
@@ -1205,7 +1235,9 @@ function guiInit() {
 
         $('#referralModal').on('show.bs.modal', function (e) {
             updateReferralLink();
-        })
+        });
+
+        updateStopSite();
     }
 }
 
