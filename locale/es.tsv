@@ -19,7 +19,7 @@ block_number	Número de bloque:
 result_2	Resultado:
 send	Enviar
 referrals	Referencias
-referrals_text	Get rewarded just by referring your friends! Enjoy lifetime rewards just by referring your friends! Receive 0.2% of all their BETS. All rewards are sent out automatically through our smart contracts. Just copy the link and share it to all your friends! Enjoy lifetime rewards just by referring your friends! Receive 0.2% of all their bets. All rewards are sent out automatically through our smart contracts. Just copy the link and share it to all your friends! The cost to create a referral link is 8.88 TRX and less than 1 TRX transaction fee. You can create new referral links as many times as you want. Old one will replace automatically.
+referrals_text	¡Sea recompensado sólo por las recomendaciones a tus amigos! ¡Disfruta las recompensas de toda la vida por las recomendaciones a tus amigos! Recibe el 0,2% de todas sus APUESTAS. Todas las recompensas se envían automáticamente a través de nuestros contratos inteligentes. ¡Solo copia el enlace y compártelo con todos tus amigos! ¡Disfruta las recompensas de toda la vida por las recomendaciones a tus amigos! Recibe el 0,2% de todas sus apuestas. Todas las recompensas se envían automáticamente a través de nuestros contratos inteligentes. ¡Solo copia el enlace y compártelo con todos tus amigos! El costo para crear un enlace de referencia es 8.88 TRX y menos de 1 tarifa de transacción de TRX. Puedes crear nuevos enlaces de referencia tantas veces como desee. El viejo reemplazará automáticamente.
 how_1	1. Asegúrese de tener una billetera TRONLink. Obtener más información cómo crear uno, <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">click here</a>.
 how_2	2. Para jugar debe poseer TRX, la criptomoneda subyacente que alimenta la red TRON.
 how_3	3. Establezca su CANTIDAD DE LA APUESTA. Esta es la cantidad de TRX que apostarás.
@@ -59,21 +59,21 @@ wtithdraw_text	Por favor ingrese a su billetera TRONLink. Si no tiene instalada 
 freezing	Congelación
 freezing_text	1. Para recibir dividendos, los tokens 888 deben ser congelado hasta el final del nivel y descongelarse después de terminar el nivel. <br> 2. Los dividendos se emiten solo en Tokens congelados 888. <br> 3. El número mínimo de fichas es de 888 para la congelación 1. <br> 4. Cuando los 888 Tokens se descongelan después del final del nivel, los dividendos se cargan automáticamente mediante la transacción interna del contrato inteligente. <br> 5. Si ya tiene algunos tokens congelados en su cuenta para congelar una nueva porción, la porción anterior se descongelará automáticamente, entonces la cantidad total se congela por completo. Si se han acumulado dividendos a la parte anterior de tokens, se transfieren automáticamente a la cartera del jugador con una transacción interna de contrato inteligente. <br> 6. Los procesos de congelación y descongelación de 888 Tokens requerirán varios TRX, por lo que es necesario tenerlos en su billetera cuando realice transacciones.
 withdraw	Retirar
-token_about	About 888 Token
-token_title_1	What is 888 Token and what is it used for?
-token_text_1	888 Token is a TRC20 Token on the TRON blockchain. A total of 100,000,000 888 tokens can be mined (for information about how 888 token is distributed please check our whitepaper). 888 Token holders will be paid dividends in TRX depending on how many 888 Tokens they own.
-token_title_2	What is dividends? And why do dividends fluctuate?
-token_text_2	Dividends are derived from 888TRON.com’s net revenue, in other words the house edge. The dividend pool will fluctuate constantly depending on users winning and losing on 888TRON.com.
-token_title_3	Can I purchase 888?
-token_text_3	888 cannot be bought directly, and can only be mined just by playing on 888TRON.com. In the future, 888 tokens will be available on DEXs and other crypto exchanges.
-token_title_4	I’ve withdrawn my 888 tokens, where can I see them?
-token_text_4	You can add your 888 tokens to Tron Link. Choose Tokens section and press add address "TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3". Once your 888 tokens will be added you can manage them up to your own choice.  
-token_title_5	After we get paid dividends, will our 888 tokens be burned?
-token_text_5	No! 888 tokens will be with you forever unless you decide to exchange it on a DEX. As long as you have 888 tokens in your wallet, you will receive dividends from 888TRON.com. If the number of 888 tokens you own doesn’t change over time, the amount of dividends you get paid may decrease over time.
-token_title_6	How much is 888 tokens worth right now? Can I exchange my 888 tokens now?
-token_text_6	A You can check the “Dividends” tab to find real time information about 888. The value of 888 will depend on the whole 888TRON.com platform and community. 888 Tokens can be exchanged on DEX and other crypto exchanges in the future.
+token_about	Sobre los 888 Token
+token_title_1	¿Qué es 888 Token y para qué se utiliza?
+token_text_1	888 Token es un token de TRC20 en la cadena de bloques de TRON. Se puede minar un total de 100,000,000 tokens 888 (para obtener información sobre cómo se distribuye el token 888, consulte nuestro documento técnico). Los titulares de 888 Token recibirán dividendos en TRX según la cantidad de 888 Tokens que posean.
+token_title_2	¿Qué es dividendos? ¿Y por qué fluctúan los dividendos?
+token_text_2	Los dividendos se distribuyen de los ingresos netos de 888TRON.com. El grupo de dividendos cambiará constantemente dependiendo de las ganancias y pérdidas de los usuarios en 888TRON.com.
+token_title_3	¿Puedo comprar 888?
+token_text_3	El 888 no se puede comprar directamente y solo se puede explotar jugando solo en 888TRON.com. En el futuro, 888 tokens estarán disponibles en DEXs y otros intercambios criptográficos.
+token_title_4	He retirado mis fichas 888, ¿dónde puedo verlas?
+token_text_4	Puedes agregar tus 888 fichas a Tron Link. Seleccione la sección Tokens y presione añadir dirección "TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3". Una vez que se agregarán sus 888 tokens, puede administrarlos según su elección.
+token_title_5	Después de recibir dividendos pagados, ¿se quemarán nuestras 888 tokens?
+token_text_5	¡No! 888 tokens estarán contigo para siempre a menos que decidas intercambiarlos en un DEX. Siempre que tenga 888 tokens en su billetera, recibirá dividendos de 888TRON.com. Si la cantidad de 888 fichas que posee no cambia con el tiempo, la cantidad de dividendos que reciba se puede reducir con el tiempo.
+token_title_6	¿Cuánto vale 888 fichas en este momento? ¿Puedo cambiar mis fichas 888 ahora?
+token_text_6	Puede consultar la página "Dividendos" para encontrar información en tiempo real sobre 888. El valor de 888 dependerá de toda la plataforma y comunidad de 888TRON.com. 888 Tokens se pueden intercambiar en DEX y otros intercambios de criptografía en el futuro.
 token_title_7	How do I receive dividends on my 888 tokens?
-token_text_7	To receive dividends, you need to withdraw your 888 tokens, then freeze them till the dividends distribution period is over and unfreeze your tokens afterwards. Those tokens that were not frozen at the end of each mining level do not participate in dividends distribution. Dividends will be transferred to your account automatically by the smart contract after your 888 tokens are unfrozen.
+token_text_7	Para recibir dividendos, debe retirar sus tokens 888, luego congelarlos hasta que finalice el período de distribución de dividendos y descongelar sus tokens posteriormente. Los tokens que no se congelaron al final de cada nivel de minería no participan en la distribución de dividendos. Los dividendos serán transferidos a su cuenta automáticamente por el contrato inteligente una vez que sus 888 fichas se hayan descongelado.
 alreadyExist	Ya existen!
 copy_link	Copiar el enlace
 noMoney	No hay suficiente TRX en tu cartera.
@@ -81,11 +81,11 @@ reward_sum	Premiar:
 cards	Dice52
 prediction	Previsión
 result	Resultado
-draw_under	Draw Under
-draw_equal	Draw Exact
-draw_over	Draw Over
-payout_win	Payout on Win:
+draw_under	La carta baja
+draw_equal	La carta igual
+draw_over	La carta alta
+payout_win	Pago:
 multiplayer	Multijugador
-win_chance	Win Chance
+win_chance	Oportunidad de ganar
 how_dice	4. Hay 52 cartas en una baraja. La carta más baja es 2, la carta más alta es A (As). El jugador elige cualquier carta de la baraja. El jugador apuesta en uno de los tres eventos: la carta siguiente - una de las 51 cartas restantes, distribuidas al azar, será MÁS, o MENOS o IGUAL en la clasificación la primera carta elegida por el jugador. Los palos importan en el juego. En el caso de adivinar el evento, se paga al jugador según el valor de la apuesta multiplicada por el coeficiente correspondiente a la carta seleccionada del jugador y el evento seleccionado para la apuesta.
-total_mined	Total mined
+total_mined	Minado en total
