@@ -1,6 +1,6 @@
 const gameManagerAddress = 'TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe';
-const dividendsDataAddress = 'TP52deyiu4Ptu986xSVgoju8bbqjG8r96u';
-const dividendsControllerAddress = 'TWtpFqRon6CHXQ2e2jh8NHgtJesVVymn9H';
+const dividendsDataAddress = 'TE7mB2sUZPJfhuSuXqAat6VCtfiLbhmrpA';
+const dividendsControllerAddress = 'TT7A8gpor7faBEUGzNVUguNkcZW9s2fBMv';
 
 const wheelAddress = 'TPYxogE1aB61DhviZdqKsVJVkNhx85hxUC';
 const cardsAddress = 'TUzUzggx2zvSpaqs5BisoN1TWqQ9atuEfn';
@@ -9,7 +9,6 @@ const games = [cardsAddress, wheelAddress];
 
 const tokenAddress = 'TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3';
 const referralsAddress = 'TAKkt9G5uUZyHJ3tYSYhpt7B6Bmksh1TVX';
-const wheelWinIndexAddress = 'TKj4wydhn3ADnWBmLiW5rAv7AEVToJy43v';
 
 const host = 'https://888tron.com';
 //const host = 'http://localhost:3000';
@@ -225,8 +224,8 @@ function updateDividendsData() {
     //log('updateDividendsData');
 
     const currentTime = (new Date()).getTime();
-    const lastTime = 1543665600000;
-    const targetTime = 1549540800000;
+    const lastTime = 1549454400000;
+    const targetTime = 1549454400000 + 1000 * 60 * 60 * 24 * 2;
 
     $('.dividendsProgressText').html(elapsedTimeToString(targetTime - currentTime));
 
@@ -240,106 +239,110 @@ function updateDividendsData() {
         return ((value.toNumber ? value.toNumber() : value) / 1000000).toFixed(f === undefined ? 2 : f);
     };
 
-    getContract(dividendsDataAddress).then(dividendsData => {
-        dividendsData.getCurrentLevel().call()
-            .then(level => {
-                let _level = level.toNumber();
+    getContract(dividendsControllerAddress).then(dividendsController => {
 
-                $('.dividendsCurrentStage').html(_level + 1);
-                $('.dividendsNextStage').html(_level + 2);
+        getContract(dividendsDataAddress).then(dividendsData => {
 
-                $('.dividendsCurrentStagePrice').html(700 + _level * 20);
-                $('.dividendsNextStagePrice').html(700 + (_level + 1) * 10);
+            dividendsController.getCurrentLevel().call()
+                .then(level => {
+                    let _level = level.toNumber();
+
+                    $('.dividendsCurrentStage').html(_level + 1);
+                    $('.dividendsNextStage').html(_level + 2);
+
+                    $('.dividendsCurrentStagePrice').html(700 + _level * 20);
+                    $('.dividendsNextStagePrice').html(700 + (_level + 1) * 10);
 
 
-                if (getTronlinkAddress()) {
+                    if (getTronlinkAddress()) {
 
-                    dividendsData.getPlayerToFrozenAmount(getTronlinkAddress()).call()
-                        .then(playerFrozen => {
-                            //log('playerFrozen ' + getTronlinkAddress(), playerFrozen);
+                        dividendsData.getPlayerToFrozenAmount(getTronlinkAddress()).call()
+                            .then(playerFrozen => {
+                                //log('playerFrozen ' + getTronlinkAddress(), playerFrozen);
 
-                            $('.dividendsUnfreezableTokens').html(money(playerFrozen));
+                                $('.dividendsUnfreezableTokens').html(money(playerFrozen));
 
-                            dividendsData.getLevelToDividends(_level).call()
-                                .then(dividends => {
-                                    $('.dividendsSum').html(money(dividends) + ' TRX');
+                                dividendsData.getLevelToDividends(_level).call()
+                                    .then(dividends => {
+                                        $('.dividendsSum').html(money(dividends) + ' TRX');
 
-                                    getBalance(gameManagerAddress).then(gameBalance => {
-                                        log('dividends', dividends);
-                                        log('gameBalance', gameBalance);
+                                        getBalance(gameManagerAddress).then(gameBalance => {
+                                            log('dividends', dividends);
+                                            log('gameBalance', gameBalance);
 
-                                        log('gameBalance/dividends', gameBalance / dividends);
+                                            log('gameBalance/dividends', gameBalance / dividends);
+
+                                        });
+
+                                        dividendsData.getLevelToFrozenSum(_level).call()
+                                            .then(levelFrozen => {
+
+                                                dividendsData.getPlayersTokenSum().call()
+                                                    .then(playersTokenSum => {
+
+                                                        $('.dividendsTokenFrozen').html(money(levelFrozen, 0) + ' Tokens 888');
+
+                                                        $('.dividendsTokenMined').html(money(playersTokenSum * 100 / 65, 0) + ' Tokens 888');
+
+                                                        $('.dividendsAvailableWithdraw').html(money(
+                                                            dividends.toNumber() * playerFrozen.toNumber() / levelFrozen.toNumber()
+                                                        ) + ' TRX');
+
+                                                    });
+                                            });
 
                                     });
 
-                                    dividendsData.getLevelToFrozenSum(_level).call()
-                                        .then(levelFrozen => {
 
-                                            dividendsData.getPlayersTokenSum().call()
-                                                .then(playersTokenSum => {
-
-                                                    $('.dividendsTokenFrozen').html(money(levelFrozen, 0) + ' Tokens 888');
-
-                                                    $('.dividendsTokenMined').html(money(playersTokenSum * 100 / 65, 0) + ' Tokens 888');
-
-                                                    $('.dividendsAvailableWithdraw').html(money(
-                                                        dividends.toNumber() * playerFrozen.toNumber() / levelFrozen.toNumber()
-                                                    ) + ' TRX');
-
-                                                });
-                                        });
-
-                                });
+                                getContract(tokenAddress).then(token => {
+                                    token.balanceOf(getTronlinkAddress()).call().then(balance => {
+                                        $('.dividendsFreezableTokens').html(money(balance));
 
 
-                            getContract(tokenAddress).then(token => {
-                                token.balanceOf(getTronlinkAddress()).call().then(balance => {
-                                    $('.dividendsFreezableTokens').html(money(balance));
+                                        $('.Token888Count').html(money(balance.toNumber() + playerFrozen.toNumber()));
 
-
-                                    $('.Token888Count').html(money(balance.toNumber() + playerFrozen.toNumber()));
-
+                                    });
                                 });
                             });
+                    } else {
+                        dividendsData.getLevelToDividends(_level).call()
+                            .then(dividends => {
+                                $('.dividendsSum').html(money(dividends) + ' TRX');
+
+                                dividendsData.getLevelToFrozenSum(_level).call()
+                                    .then(levelFrozen => {
+
+                                        dividendsData.getPlayersTokenSum().call()
+                                            .then(playersTokenSum => {
+
+                                                $('.dividendsTokenFrozen').html(money(levelFrozen, 0) + ' Tokens 888');
+
+                                                $('.dividendsTokenMined').html(money(playersTokenSum * 100 / 65, 0) + ' Tokens 888');
+
+                                            });
+                                    });
+                            });
+                    }
+
+
+                });
+
+
+            if (getTronlinkAddress()) {
+                getContract(dividendsControllerAddress, true).then(dividendsController => {
+
+                    dividendsController.getMintTokenAvailable(getTronlinkAddress()).call()
+                        .then(myMintTokenAvailable => {
+
+                            //log('myMintTokenAvailable', myMintTokenAvailable);
+
+                            $('.dividendsMintableTokens').html(money(myMintTokenAvailable));
                         });
-                } else {
-                    dividendsData.getLevelToDividends(_level).call()
-                        .then(dividends => {
-                            $('.dividendsSum').html(money(dividends) + ' TRX');
-
-                            dividendsData.getLevelToFrozenSum(_level).call()
-                                .then(levelFrozen => {
-
-                                    dividendsData.getPlayersTokenSum().call()
-                                        .then(playersTokenSum => {
-
-                                            $('.dividendsTokenFrozen').html(money(levelFrozen, 0) + ' Tokens 888');
-
-                                            $('.dividendsTokenMined').html(money(playersTokenSum * 100 / 65, 0) + ' Tokens 888');
-
-                                        });
-                                });
-                        });
-                }
 
 
-            });
-
-
-        if (getTronlinkAddress()) {
-            getContract(dividendsControllerAddress, true).then(dividendsController => {
-
-                dividendsController.mintTokenAvailable(getTronlinkAddress()).call()
-                    .then(myMintTokenAvailable => {
-
-                        //log('myMintTokenAvailable', myMintTokenAvailable);
-
-                        $('.dividendsMintableTokens').html(money(myMintTokenAvailable));
-                    });
-
-
-            });
-        }
+                });
+            }
+        });
     });
 }
 
