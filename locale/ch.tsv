@@ -19,7 +19,7 @@ block_number	模块编号：
 result_2	结果
 send	发送
 referrals	转交
-referrals_text	Get rewarded just by referring your friends! Enjoy lifetime rewards just by referring your friends! Receive 0.2% of all their BETS. All rewards are sent out automatically through our smart contracts. Just copy the link and share it to all your friends! Enjoy lifetime rewards just by referring your friends! Receive 0.2% of all their bets. All rewards are sent out automatically through our smart contracts. Just copy the link and share it to all your friends! The cost to create a referral link is 8.88 TRX and less than 1 TRX transaction fee. You can create new referral links as many times as you want. Old one will replace automatically.
+referrals_text	通过邀请你的朋友获得奖励！ 获得所有其投注的0.2％。 所有奖励都通过我们的智能合约自动发送。 只需复制链接并与所有朋友分享！ 创建推荐链接的价值为8.88 TRX且低于1 TRX交易费。 您可以无限次地创建链接，而旧链接将替换为新链接。
 how_1	1. 请确认，您有一个TRONLink钱包。 为得到如何创建的更多信息, <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">click here</a>.
 how_2	2. 为玩游戏，你必须有TRX，这是TRON网络的主要加密货币。
 how_3	3. 设置下注金额。 这是您要下注的TRX金额。
@@ -74,18 +74,18 @@ token_title_6	888代币现在多少钱？ 我现在可以兑换888代币吗？
 token_text_6	您可以查看“红利”项，查找有关888代币的实时信息。 888代币的价格将取决于整个888TRON.com平台和社区。 888代币可以在将来通过加密交易进行兑换。
 token_title_7	我需要取888代币吗？
 token_text_7	要获得股息，必须取888代币，然后冻结，直到股息分配期结束，并在结束后解冻。 非冻结代币不会获得股息。 解冻后，股息将通过智能合约自动转入您的账户。
-alreadyExist	Already exist!
-copy_link	Copy the link
-noMoney	Not enough TRX in your wallet.
-reward_sum	Reward:
-cards	Dice52
-prediction	Prediction
-result	Result
-draw_under	Draw Under
-draw_equal	Draw Exact
-draw_over	Draw Over
-payout_win	Payout on Win:
-multiplayer	Multiplier
-win_chance	Win Chance
-how_dice	4. There are 52 cards in the deck. The lowest rank is 2 and the highest rank is A (ace). The player chooses any card from the deck. The player then makes a bet on one of the following three outcomes to happen: the next card (one of the 51 cards left in the deck), which will be chosen randomly, will be a) HIGHER, b) LOWER, or c) EQUAL in rank to the first card drawn from the deck by the player. Suits are matter in this game. If the player guesses the outcome, he or she will win the bet multiplied by the odds which depend on the card and the outcome chosen by the player.
-total_mined	Total mined
+alreadyExist	已经存在！
+copy_link	复制链接
+noMoney	钱包里的TRX不够。
+reward_sum	奖励：
+cards	骰子52
+prediction	预测
+result	结果
+draw_under	小牌
+draw_equal	等牌
+draw_over	大牌
+payout_win	付款
+multiplayer	多人
+win_chance	机会
+how_dice	4. 一副有52张牌。 小牌2，大牌A（尖）。 玩家从一副中选择任何牌。 玩家在三押一注：下一张牌是由玩家选择的第一张牌随机分配的52张牌之一，将是更大或更小或等级。 花色在游戏中是有意义的。在猜测的情况下，玩家以投标金额乘以对应于所选择的玩家牌的系数和所选择的投注比率支付。
+total_mined	总挖掘
