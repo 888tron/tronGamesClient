@@ -74,18 +74,18 @@ token_title_6	현재 토큰888의 가치는? 현재 토큰888을 교화가능여
 token_text_6	"배당금"탭에서 토큰888에 관한 실시간 정보를 체크할수 있습니다. 토큰888의 가치는 전체 플랫폼 888TRON.com과 커뮤니티와 상관됩니다. 토큰888은 DEX 및 기타 보안거래소에서 교환할수 있습니다.
 token_title_7	토큰888의 배당금은 어떻게 받습니까?
 token_text_7	배당금을 받으려면 토큰888을 철회한후 배당분배가 끝난뒤 동결을 취소해야 합니다.동결을 취소하지 않은 토큰은 배당금을 받지 못합니다.배당금은 동결취소뒤 귀하의 계정으로 자동이체됩니다.
-alreadyExist	Already exist!
-copy_link	Copy the link
-noMoney	Not enough TRX in your wallet.
-reward_sum	Reward:
+alreadyExist	이미 존재합니다
+copy_link	링크를 복사하십시오
+noMoney	지갑에 있는 TRX가 부족합니다
+reward_sum	배당금
 cards	Dice52
-prediction	Prediction
-result	Result
-draw_under	Draw Under
-draw_equal	Draw Exact
-draw_over	Draw Over
-payout_win	Payout on Win:
-multiplayer	Multiplier
-win_chance	Win Chance
-how_dice	4. There are 52 cards in the deck. The lowest rank is 2 and the highest rank is A (ace). The player chooses any card from the deck. The player then makes a bet on one of the following three outcomes to happen: the next card (one of the 51 cards left in the deck), which will be chosen randomly, will be a) HIGHER, b) LOWER, or c) EQUAL in rank to the first card drawn from the deck by the player. Suits are matter in this game. If the player guesses the outcome, he or she will win the bet multiplied by the odds which depend on the card and the outcome chosen by the player.
-total_mined	Total mined
+prediction	예측
+result	결과
+draw_under	작은 카드
+draw_equal	같은 카드
+draw_over	높은 카드
+payout_win	지불
+multiplayer	멀티플레이어
+win_chance	찬스
+how_dice	4. 판에 52장의 카드가 있습니다. 낮은 카드 2장 높은 카드A(에이스). 플레이어는 판에서 카드를 선택하고 세가지 이벤트중 하나를 선택하여 베팅합니다. 두번째 카드는 52장 카드중 하나이며 무작위로 선택될것이며 이는 첫번째 카드보다 등급으로 높거나 낮거나 같을수도 잇습니다.게임관련 소송에는 의미가 있는것입니다. 이벤트를 추측하는 경우 플레이어는 선택된 카드에 상응하는 수와 베팅을 위해 선택된 이벤트에 의해 배당금이 지불될것입니다.
+total_mined	전체 수입
