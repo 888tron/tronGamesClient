@@ -22,6 +22,9 @@ app.wheelValues = [0, 6, 2, 5, 2, 10, 2, 5, 2, 6, 2, 5, 2, 6, 2, 10, 2, 5, 2, 20
 app.currentTableIndex = 1;
 app.newMyBets = [];
 
+app.dividendInterval = 60 * 60 * 24 * 2;
+app.timeToNextLevel = getTimeToNextLevel();
+
 const GameViewState = {
     IDLE: 1,
     BET: 2,
@@ -86,7 +89,24 @@ window.onload = function () {
     }
 
     updateDividendsData();
+
+    getContract(dividendsControllerAddress);
+
 };
+
+function getTimeToNextLevel() {
+    const startLevel = 0;
+    const interval = app.dividendInterval;
+    const startTime = 1549454400;
+    const now = Math.floor((new Date()).getTime() / 1000);
+    const currentLevel = Math.floor(startLevel + (now - startTime) / interval);
+
+    const getLevelToTime = (level) => {
+        return Math.floor((level - startLevel) * interval + startTime);
+    };
+
+    return getLevelToTime(currentLevel + 1) - now;
+}
 
 function updateStopSite() {
     getContract(cardsAddress).then(contract => {
@@ -175,9 +195,10 @@ requestAnimationFrame(animate);
 });*/
 
 function start() {
+    logJson('getGameState start');
 
     post('/api/getGameState').then(_gameState => {
-        //logJson('getGameState',_gameState);
+        logJson('getGameState complete');
 
         app.gameState = _gameState;
 
@@ -196,10 +217,23 @@ function start() {
 }
 
 function onDividendShow() {
+
     updateDividendsData();
     $('#dividendsModal').modal('show');
 
     app.dividendsModalTimer = setInterval(updateDividendsData, 1000);
+
+
+    getContract(dividendsControllerAddress).then(dividendsController => {
+
+        dividendsController.getTimeToNextLevel().call()
+            .then(timeToNextLevel => {
+                log('corrected timeToNextLevel', timeToNextLevel);
+                log('delta timeToNextLevel', app.timeToNextLevel - timeToNextLevel);
+                app.timeToNextLevel = timeToNextLevel;
+
+            });
+    });
 }
 
 
@@ -223,16 +257,15 @@ function onTronlinkAddressChange() {
 function updateDividendsData() {
     //log('updateDividendsData');
 
-    const currentTime = (new Date()).getTime();
-    const lastTime = 1549454400000;
-    const targetTime = 1549454400000 + 1000 * 60 * 60 * 24 * 2;
+    app.timeToNextLevel--;
+    if (app.timeToNextLevel < 0) app.timeToNextLevel = 0;
 
-    $('.dividendsProgressText').html(elapsedTimeToString(targetTime - currentTime));
+    $('.dividendsProgressText').html(elapsedTimeToString(app.timeToNextLevel));
 
     $('.dividendsProgress')
-        .css("width", Math.ceil(((currentTime - lastTime) / (targetTime - lastTime)) * 100) + "%")
-        .attr("aria-valuenow", (currentTime - lastTime))
-        .attr("aria-valuemax", (targetTime - lastTime));
+        .css("width", Math.ceil((1 - app.timeToNextLevel / app.dividendInterval) * 100) + "%")
+        .attr("aria-valuenow", (1 - app.timeToNextLevel / app.dividendInterval))
+        .attr("aria-valuemax", (1));
 
 
     const money = (value, f) => {
@@ -250,7 +283,7 @@ function updateDividendsData() {
                     $('.dividendsCurrentStage').html(_level + 1);
                     $('.dividendsNextStage').html(_level + 2);
 
-                    $('.dividendsCurrentStagePrice').html(700 + _level * 20);
+                    $('.dividendsCurrentStagePrice').html(700 + _level * 10);
                     $('.dividendsNextStagePrice').html(700 + (_level + 1) * 10);
 
 
@@ -261,6 +294,21 @@ function updateDividendsData() {
                                 //log('playerFrozen ' + getTronlinkAddress(), playerFrozen);
 
                                 $('.dividendsUnfreezableTokens').html(money(playerFrozen));
+
+                                dividendsData.getLevelToDividends(_level - 1).call()
+                                    .then(dividends => {
+                                        log('last level dividends', dividends);
+                                    });
+
+                                dividendsController.playerBalanceToWithdraw(getTronlinkAddress()).call()
+                                    .then(withdraw => {
+                                        if (withdraw.toNumber() > 0) {
+                                            $('.dividendsUnfreezeToWithdraw').show();
+                                            $('.dividendsUnfreezeToWithdrawCount').html(money(withdraw) + ' TRX');
+                                        } else {
+                                            $('.dividendsUnfreezeToWithdraw').hide();
+                                        }
+                                    });
 
                                 dividendsData.getLevelToDividends(_level).call()
                                     .then(dividends => {
@@ -476,8 +524,6 @@ function timeToString(t) {
 }
 
 function elapsedTimeToString(t) {
-    t = Math.floor(t / 1000);
-
     const seconds = t % 60;
     const minutes = Math.floor(t / 60) % 60;
     const hours = Math.floor(t / (60 * 60)) % 24;
@@ -1240,6 +1286,8 @@ function guiInit() {
             updateReferralLink();
         });
 
+        $('.dividendsUnfreezeToWithdraw').hide();
+
         updateStopSite();
     }
 }
@@ -1591,6 +1639,7 @@ function onFreeze() {
             token => {
                 token.balanceOf(getTronlinkAddress()).call().then(balance => {
                     token.approveAndCall(dividendsControllerAddress, balance.toNumber(), '0x0').send().then(res => {
+                        log('freeze', res);
                     });
                 });
             }
@@ -1728,6 +1777,7 @@ function onUnfreeze() {
         getContract(dividendsControllerAddress, true).then(
             dividendsControllerTronlink => {
                 dividendsControllerTronlink.unfreezeTokens().send().then(res => {
+                    log('unfreezeTokens', res);
                 });
             }
         )
