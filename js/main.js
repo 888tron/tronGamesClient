@@ -312,7 +312,10 @@ function updateDividendsData() {
 
                                 dividendsData.getLevelToDividends(_level).call()
                                     .then(dividends => {
-                                        $('.dividendsSum').html(money(dividends) + ' TRX');
+                                        $('.dividendsSum').html('<a href="https://tronscan.org/#/contract/TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe"  target="_blank" style="color: white">' +
+                                            money(dividends) + ' TRX'
+                                            + '</a>'
+                                        );
 
                                         getBalance(gameManagerAddress).then(gameBalance => {
                                             log('dividends', dividends);
@@ -355,7 +358,10 @@ function updateDividendsData() {
                     } else {
                         dividendsData.getLevelToDividends(_level).call()
                             .then(dividends => {
-                                $('.dividendsSum').html(money(dividends) + ' TRX');
+                                $('.dividendsSum').html('<a href="https://tronscan.org/#/contract/TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe"  target="_blank" style="color: white">' +
+                                    money(dividends) + ' TRX'
+                                    + '</a>'
+                                );
 
                                 dividendsData.getLevelToFrozenSum(_level).call()
                                     .then(levelFrozen => {
