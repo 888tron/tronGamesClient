@@ -896,3 +896,7 @@ footer {
     }
 
 }
+
+.form-subscribe {
+    max-width: 676px;
+}

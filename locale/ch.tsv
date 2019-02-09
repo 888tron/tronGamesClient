@@ -90,3 +90,5 @@ win_chance	机会
 how_dice	4. 一副有52张牌。 小牌2，大牌A（尖）。 玩家从一副中选择任何牌。 玩家在三押一注：下一张牌是由玩家选择的第一张牌随机分配的52张牌之一，将是更大或更小或等级。 花色在游戏中是有意义的。在猜测的情况下，玩家以投标金额乘以对应于所选择的玩家牌的系数和所选择的投注比率支付。
 total_mined	总挖掘
 unfreezeToWithdraw	Unfreeze Tokens 888 to withdraw
+subscribe	订阅
+your_email	您的邮箱地址
