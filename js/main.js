@@ -90,8 +90,6 @@ window.onload = function () {
 
     updateDividendsData();
 
-    getContract(dividendsControllerAddress);
-
 };
 
 function getTimeToNextLevel() {
@@ -255,7 +253,7 @@ function onTronlinkAddressChange() {
 }
 
 function updateDividendsData() {
-    //log('updateDividendsData');
+    //log('updateDividendsData ======================================');
 
     app.timeToNextLevel--;
     if (app.timeToNextLevel < 0) app.timeToNextLevel = 0;
@@ -280,6 +278,9 @@ function updateDividendsData() {
                 .then(level => {
                     let _level = level.toNumber();
 
+                    log('getCurrentLevel', _level);
+
+
                     $('.dividendsCurrentStage').html(_level + 1);
                     $('.dividendsNextStage').html(_level + 2);
 
@@ -298,6 +299,11 @@ function updateDividendsData() {
                                 dividendsData.getLevelToDividends(_level - 1).call()
                                     .then(dividends => {
                                         log('last level dividends', dividends);
+                                    });
+
+                                dividendsController.getCurrentTime().call()
+                                    .then(time => {
+                                        log('getCurrentTime', (new Date(time*1000).toString()));
                                     });
 
                                 dividendsController.playerBalanceToWithdraw(getTronlinkAddress()).call()
@@ -1616,7 +1622,7 @@ function onMint() {
     } else {
         getContract(dividendsControllerAddress, true).then(
             dividendsControllerTronlink => {
-                dividendsControllerTronlink.mintTokens().send().then(res => {
+                dividendsControllerTronlink.mintTokens().send({feeLimit: 50 * 1000000}).then(res => {
                 });
             }
         )
@@ -1644,7 +1650,7 @@ function onFreeze() {
         getContract(tokenAddress, true).then(
             token => {
                 token.balanceOf(getTronlinkAddress()).call().then(balance => {
-                    token.approveAndCall(dividendsControllerAddress, balance.toNumber(), '0x0').send().then(res => {
+                    token.approveAndCall(dividendsControllerAddress, balance.toNumber(), '0x0').send({feeLimit: 10 * 1000000}).then(res => {
                         log('freeze', res);
                     });
                 });
@@ -1764,6 +1770,7 @@ function onBuyLink() {
                         $('#alreadyExistModal').modal();
                     } else {
                         referrrals.buyRef(ref).send({
+                            feeLimit: 10 * 1000000,
                             shouldPollResponse: true,
                             callValue: 8880000
                         }).then(() => {
@@ -1782,7 +1789,7 @@ function onUnfreeze() {
     } else {
         getContract(dividendsControllerAddress, true).then(
             dividendsControllerTronlink => {
-                dividendsControllerTronlink.unfreezeTokens().send().then(res => {
+                dividendsControllerTronlink.unfreezeTokens().send({feeLimit: 10 * 1000000}).then(res => {
                     log('unfreezeTokens', res);
                 });
             }
@@ -1830,6 +1837,7 @@ function createBet(gameIndex) {
                 getCurrentBlockNumber().then(blockNumber => {
 
                     gameManager.createBet(gameAddress, getTronlinkAddress(), app.parentUserId, app.betValue32).send({
+                        feeLimit: 1000000,
                         shouldPollResponse: false,
                         callValue: app.betAmount * 1000000
                     }).then(txId => {
