@@ -81,7 +81,10 @@ svg.icon.good {
 
 }
 
-.dropdown .flag-item {
+.dropdown .flag-item, .dropdown .wallet-item {
+    height: 24px;
+}
+ {
     height: 24px;
 }
 
