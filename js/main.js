@@ -222,6 +222,11 @@ function onDividendShow() {
     app.dividendsModalTimer = setInterval(updateDividendsData, 1000);
 
 
+    updateTimeToNextLevel();
+}
+
+
+function updateTimeToNextLevel() {
     getContract(dividendsControllerAddress).then(dividendsController => {
 
         dividendsController.getTimeToNextLevel().call()
@@ -233,7 +238,6 @@ function onDividendShow() {
             });
     });
 }
-
 
 function onTronlinkAddressChange() {
     log('onTronlinkAddressChange');
@@ -256,13 +260,18 @@ function updateDividendsData() {
     //log('updateDividendsData ======================================');
 
     app.timeToNextLevel--;
-    if (app.timeToNextLevel < 0) app.timeToNextLevel = 0;
 
-    $('.dividendsProgressText').html(elapsedTimeToString(app.timeToNextLevel));
+    if (app.timeToNextLevel < -5) updateTimeToNextLevel();
+
+    let timeToNextLevel = app.timeToNextLevel;
+
+    if (timeToNextLevel < 0) timeToNextLevel = 0;
+
+    $('.dividendsProgressText').html(elapsedTimeToString(timeToNextLevel));
 
     $('.dividendsProgress')
-        .css("width", Math.ceil((1 - app.timeToNextLevel / app.dividendInterval) * 100) + "%")
-        .attr("aria-valuenow", (1 - app.timeToNextLevel / app.dividendInterval))
+        .css("width", Math.ceil((1 - timeToNextLevel / app.dividendInterval) * 100) + "%")
+        .attr("aria-valuenow", (1 - timeToNextLevel / app.dividendInterval))
         .attr("aria-valuemax", (1));
 
 
@@ -303,7 +312,7 @@ function updateDividendsData() {
 
                                 dividendsController.getCurrentTime().call()
                                     .then(time => {
-                                        log('getCurrentTime', (new Date(time*1000).toString()));
+                                        log('getCurrentTime', (new Date(time * 1000).toString()));
                                     });
 
                                 dividendsController.playerBalanceToWithdraw(getTronlinkAddress()).call()
