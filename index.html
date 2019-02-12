@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css?3.1">
+    <link rel="stylesheet" href="css/custom.css?3.2">
     <title>888</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109663484-3"></script>
@@ -77,18 +77,22 @@
         <div class="dropdown order-0 order-xl-2 d-none d-sm-block">
             <button class="btn dropdown-toggle pr-0" type="button" id="dropdownWallet" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                <img src="img/tronLink.png" title="tronLink" class="wallet-item">
+                <img src="img/tronLink.png?v=1" title="tronLink" class="wallet-item">
                 <span>tronLink</span>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownWallet">
-                <a class="dropdown-item" href="#">
-                    <img src="img/scatter.png" title="Scatter" class="wallet-item">
+                <a class="dropdown-item" href="#" onclick="setWalletType(WalletTypes.TRONLINK)">
+                    <img src="img/tronLink.png?v=1" title="tronLink" class="wallet-item">
+                    <span>tronLink</span>
+                </a>
+                <a class="dropdown-item" href="#" onclick="setWalletType(WalletTypes.SCATTER)">
+                    <img src="img/scatter.png?v=1" title="Scatter" class="wallet-item">
                     <span>scatter</span>
                 </a>
-                <a class="dropdown-item" href="#">
+                <!--<a class="dropdown-item" href="#">
                     <img src="img/guildchat.png" alt="Guildchat" class="wallet-item">
                     <span>guildWallet</span>
-                </a>
+                </a>-->
             </div>
         </div>
         <div class="dropdown order-0 order-xl-2">
@@ -730,10 +734,10 @@
             <footer class="p-3 mt-3">
                 <div class="form-row form-subscribe my-3">
                     <div class="col my-1">
-                        <input type="email" class="form-control" data-locale-placeholder="your_email" placeholder="Your e-mail">
+                        <input type="email" class="form-control sendGridEmail" data-locale-placeholder="your_email" placeholder="Your e-mail">
                     </div>
                     <div class="col-auto my-1">
-                        <button class="btn btn-primary" data-locale="subscribe">Subscribe</button>
+                        <button class="btn btn-primary" data-locale="subscribe" onclick="sendToSendgrid()">Subscribe</button>
                     </div>
                 </div>
                 <a class="d-inline-block mx-1 mb-3" href="https://cashpokerpro.io/" target="_blank" title="cashpokerpro.io">
@@ -927,6 +931,20 @@
         <div class="modal-content modal-content-dark">
             <div class="modal-header">
                 <span data-locale="noMoney" style="color: red">Not enough TRX in your wallet.</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-content-dark">
+            <div class="modal-header">
+                <span class="alertModalText">Done</span>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -1155,6 +1173,9 @@
 
 <script src="libs/TronWeb.js?v=1"></script>
 
+<script src="https://cdn.scattercdn.com/file/scatter-cdn/js/latest/scatterjs-core.min.js"></script>
+<script src="https://cdn.scattercdn.com/file/scatter-cdn/js/latest/scatterjs-plugin-tron.min.js"></script>
+
 <script src="libs/treejs/three.min.js" type="text/javascript"></script>
 <script src="libs/treejs/controls/OrbitControls.js" type="text/javascript"></script>
 <!--<script src='libs/treejs/dat.gui.min.js'></script>-->
@@ -1169,10 +1190,12 @@
 
 <script src="libs/inflate.min.js"></script>
 
-<script src="js/main.js?v=556"></script>
+<script src="js/main.js?v=558"></script>
 <script src="js/cards.js?v=2"></script>
-
 <script src="js/locale.js?v=4.6"></script>
+
+<script src="js/sendgrid.js?v=1"></script>
+
 
 </body>
 </html>

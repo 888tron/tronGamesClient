@@ -13,6 +13,12 @@ const referralsAddress = 'TAKkt9G5uUZyHJ3tYSYhpt7B6Bmksh1TVX';
 const host = 'https://888tron.com';
 //const host = 'http://localhost:3000';
 
+
+const WalletTypes = {
+    TRONLINK: 'tronLink',
+    SCATTER: 'scatter'
+};
+
 const app = this;
 
 app.minBet = 50;
@@ -21,6 +27,8 @@ app.betAmount = minBet;
 app.wheelValues = [0, 6, 2, 5, 2, 10, 2, 5, 2, 6, 2, 5, 2, 6, 2, 10, 2, 5, 2, 20, 2];
 app.currentTableIndex = 1;
 app.newMyBets = [];
+//app.currentWallet = WalletTypes.TRONLINK;
+app.currentWallet = WalletTypes.SCATTER;
 
 app.dividendInterval = 60 * 60 * 24 * 2;
 app.timeToNextLevel = getTimeToNextLevel();
@@ -49,22 +57,6 @@ const solidityNode = 'https://api.trongrid.io';
 const eventServer = 'https://api.trongrid.io';
 
 window.onload = function () {
-    /*if (!window.tronWeb) {
-
-        console.log("create TronWeb!");
-
-        const HttpProvider = TronWeb.providers.HttpProvider;
-        const fullNode = new HttpProvider('https://api.shasta.trongrid.io');
-        const solidityNode = new HttpProvider('https://api.shasta.trongrid.io');
-        const eventServer = 'https://api.shasta.trongrid.io/';
-
-        this.tronWeb = new TronWeb(
-            fullNode,
-            solidityNode,
-            eventServer,
-        );
-
-    }*/
 
     app.lastTronLinkAddress = getTronlinkAddress();
 
@@ -79,18 +71,94 @@ window.onload = function () {
     watchTronlinkAddress();
     onTronlinkAddressChange();
 
-    if (getTronlinkAddress()) {
-
-        log('tronlink', this.tronWeb.defaultAddress.base58);
-
-        gtag('config', 'GA_TRACKING_ID', {
-            'user_id': getTronlinkAddress()
-        });
-    }
-
     updateDividendsData();
 
+    setWalletType(localStorageGet('currentWallet') || WalletTypes.TRONLINK);
 };
+
+function setWalletType(value) {
+    app.currentWallet = value;
+    localStorageSet('currentWallet', value);
+    switch (value) {
+        case WalletTypes.TRONLINK:
+            break;
+        case WalletTypes.SCATTER:
+            if (!app.tronScatter) {
+                initScatter();
+            }
+            break;
+    }
+
+    $('#dropdownWallet').html(`
+        <img src="img/${value}.png?v=1" title="${value}" class="wallet-item">
+        <span>${value}</span>    
+    `);
+
+}
+
+function initScatter() {
+    log("initScatter");
+
+    ScatterJS.plugins(new ScatterTron());
+
+    const network = ScatterJS.Network.fromJson({
+        blockchain: 'trx',
+        chainId: '1',
+        host: 'api.trongrid.io',
+        port: 443,
+        protocol: 'https'
+    });
+
+    const httpProvider = new TronWeb.providers.HttpProvider(network.fullhost());
+    let tron = new TronWeb(httpProvider, httpProvider, network.fullhost());
+    tron.setDefaultBlock('latest');
+
+    log("initScatter connect");
+
+    return ScatterJS.connect('888Tron', {network}).then(connected => {
+        log("initScatter connected", connected);
+
+        if (!connected) return console.error('initScatter no scatter');
+
+        app.scatter = ScatterJS.scatter;
+
+        tron = ScatterJS.trx(network, tron);
+
+        return scatter.suggestNetwork(network).then(suggestNetwork => {
+            console.log('suggestNetwork', suggestNetwork);
+
+            return scatter.getIdentity({accounts: [network]}).then(identity => {
+                console.log('initScatter identity', identity);
+                console.log('initScatter account', scatter.identity.accounts);
+
+                app.tronScatter = tron;
+                app.tronScatterAccaunt = scatter.identity.accounts.address;
+
+            }).catch(err => {
+                logError('initScatter getIdentity', err);
+
+                return delay(5000).then(() => {
+                    return initScatter();
+                });
+            });
+
+        }).catch(err => {
+            logError('initScatter suggestNetwork', err);
+
+            return delay(5000).then(() => {
+                return initScatter();
+            });
+        });
+
+
+    }).catch(err => {
+        logError('initScatter', err);
+
+        return delay(5000).then(() => {
+            return initScatter();
+        });
+    });
+}
 
 function getTimeToNextLevel() {
     const startLevel = 0;
@@ -136,8 +204,12 @@ function stopSite() {
     $('#myHeader').hide();
 }
 
+function getTronlink() {
+    return app.currentWallet === WalletTypes.TRONLINK ? this.tronWeb : app.tronScatter;
+}
+
 function getTronWeb(isTronlink) {
-    if (isTronlink) return Promise.resolve(this.tronWeb);
+    if (isTronlink) return Promise.resolve(getTronlink());
     if (app.tronWeb2) {
         //log('get tronWeb2 from cache');
         return Promise.resolve(app.tronWeb2);
@@ -240,9 +312,14 @@ function updateTimeToNextLevel() {
 }
 
 function onTronlinkAddressChange() {
-    log('onTronlinkAddressChange');
+    log('onTronlinkAddressChange', app.currentWallet);
 
     if (getTronlinkAddress()) {
+
+        gtag('config', 'GA_TRACKING_ID', {
+            'user_id': getTronlinkAddress()
+        });
+
         getParentUserId(app.parentRef)
             .then(parentData => {
                 logLine('parentUserId', parentData);
@@ -253,6 +330,7 @@ function onTronlinkAddressChange() {
     }
 
     app.myBalance = 0;
+    $('.myBalance').html(dictionary['balance'] + ': ...');
     start();
 }
 
@@ -415,16 +493,20 @@ function updateDividendsData() {
     });
 }
 
-const contracts = {true: {}, false: {}};
+const contracts = {};
 
 function getContract(address, isTronlink = false) {
 
-    const contract = contracts[isTronlink][address];
+    let wallet = isTronlink ? app.currentWallet : 'none';
+
+    if (!contracts[wallet]) contracts[wallet] = {};
+
+    const contract = contracts[wallet][address];
     if (contract) return Promise.resolve(contract);
 
     return getTronWeb(isTronlink).then(tronweb => {
         return tronweb.contract().at(address).then(contract => {
-            contracts[isTronlink][address] = contract;
+            contracts[wallet][address] = contract;
             return contract;
         }).catch(err => {
             logError('getContract ' + address, err);
@@ -438,25 +520,27 @@ function getContract(address, isTronlink = false) {
 function updateMyBalance() {
 
     if (getTronlinkAddress()) {
-        this.tronWeb.trx.getUnconfirmedBalance().then(balance => {
-            const newBalance = balance / 1000000;
+        return getTronWeb(true).then(tronweb => {
+            tronweb.trx.getUnconfirmedBalance().then(balance => {
+                const newBalance = balance / 1000000;
 
-            if (app.myBalance && app.myBalance < newBalance) {
+                if (app.myBalance && app.myBalance < newBalance) {
 
-                if (app.tweenMyBalance) app.tweenMyBalance.stop();
+                    if (app.tweenMyBalance) app.tweenMyBalance.stop();
 
-                app.tweenMyBalance = new TWEEN.Tween(app)
-                    .to({myBalance: newBalance}, 5000)
-                    .onUpdate(() => {
-                        $('.myBalance').html(dictionary['balance'] + ': ' + app.myBalance.toFixed(4) + ' TRX');
-                    })
-                    .start();
+                    app.tweenMyBalance = new TWEEN.Tween(app)
+                        .to({myBalance: newBalance}, 5000)
+                        .onUpdate(() => {
+                            $('.myBalance').html(dictionary['balance'] + ': ' + app.myBalance.toFixed(4) + ' TRX');
+                        })
+                        .start();
 
-            } else {
-                app.myBalance = newBalance;
-                $('.myBalance').html(dictionary['balance'] + ': ' + newBalance.toFixed(4) + ' TRX');
-            }
+                } else {
+                    app.myBalance = newBalance;
+                    $('.myBalance').html(dictionary['balance'] + ': ' + newBalance.toFixed(4) + ' TRX');
+                }
 
+            });
         });
     }
 }
@@ -680,7 +764,7 @@ function updateTables() {
 }
 
 function isMyBet(bet) {
-    return getTronlinkAddress() && bet.player === this.tronWeb.defaultAddress.base58;
+    return getTronlinkAddress() && bet.player === getTronlink().defaultAddress.base58;
 }
 
 function setTableData(table, data) {
@@ -1578,9 +1662,12 @@ function myEasing(k) {
 }
 
 function getTronlinkAddress() {
-    if (this.tronWeb && this.tronWeb.defaultAddress && this.tronWeb.defaultAddress.base58) {
-        return this.tronWeb.defaultAddress.base58;
+    const tronlink = getTronlink();
+
+    if (tronlink && tronlink.defaultAddress && tronlink.defaultAddress.base58) {
+        return tronlink.defaultAddress.base58;
     }
+
     return null;
 }
 
@@ -1684,7 +1771,7 @@ function getParentUserId(ref) {
                         return post('/api/getParentUserId', {
                             ref: ref,
                             userId: userId.toNumber(),
-                            parentAddress: this.tronWeb.address.fromHex(parentAddress)
+                            parentAddress: app.tronWeb2.address.fromHex(parentAddress)
                         }).then(parentUser => {
                             if (parentUser.userId) localStorageSet('parentUser', parentUser);
                             return parentUser;
@@ -1987,7 +2074,7 @@ function checkResult(callback, txId, index) {
     }
 
 
-    this.tronWeb.trx.getTransactionInfo(txId).then(output => {
+    app.tronWeb2.trx.getTransactionInfo(txId).then(output => {
 
         //log('checkResult', output);
 
@@ -1998,9 +2085,9 @@ function checkResult(callback, txId, index) {
         } else {
 
             if (output.result && output.result === 'FAILED') {
-                callback(this.tronWeb.toUtf8(output.resMessage));
+                callback(app.tronWeb2.toUtf8(output.resMessage));
             } else {
-                if (!this.tronWeb.utils.hasProperty(output, 'contractResult')) {
+                if (!app.tronWeb2.utils.hasProperty(output, 'contractResult')) {
                     callback('Failed to execute: ' + JSON.stringify(output, null, 2));
                 } else {
 
@@ -2073,8 +2160,8 @@ function log(name, value, isJson) {
     console.log(value !== undefined ? (name + " = " + logFormatValue(value, isJson)) : logFormatValue(name, isJson));
 }
 
-function logError(name, value) {
-    var message = value !== undefined ? (name + " = " + logFormatValue(value, true)) : logFormatValue(name, true);
+function logError(name, value, isJson = true) {
+    var message = value !== undefined ? (name + " = " + logFormatValue(value, isJson)) : logFormatValue(name, isJson);
     console.error(message);
 
     gtag('event', 'exception', {
