@@ -115,7 +115,7 @@ function initScatter() {
 
     log("initScatter connect");
 
-    return ScatterJS.connect('888Tron', {network}).then(connected => {
+    return ScatterJS.connect('888tron.com', {network}).then(connected => {
         log("initScatter connected", connected);
 
         if (!connected) return console.error('initScatter no scatter');
