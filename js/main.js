@@ -1704,7 +1704,7 @@ function onByBet(txId, betAmount, selectedSector, autoBet, gameIndex) {
 
 function bytes32(...values) {
     const res = values.map(v => {
-        const str = tronWeb.toHex(v).substr(2);
+        const str = app.tronWeb2.toHex(v).substr(2);
         const h = '0x0000000000000000000000000000000000000000000000000000000000000000';
         return h.substr(0, h.length - str.length) + str;
     });
@@ -2104,7 +2104,7 @@ const decodeOutput = (abi, output) => {
     const names = abi.map(({name}) => name).filter(name => !!name);
     const types = abi.map(({type}) => type);
 
-    return tronWeb.utils.abi.decodeParams(names, types, output);
+    return app.tronWeb2.utils.abi.decodeParams(names, types, output);
 };
 
 
