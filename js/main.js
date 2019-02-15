@@ -22,7 +22,7 @@ const WalletTypes = {
 const app = this;
 
 app.minBet = 50;
-app.maxBet = 5000;
+app.maxBet = 1000;
 app.betAmount = minBet;
 app.wheelValues = [0, 6, 2, 5, 2, 10, 2, 5, 2, 6, 2, 5, 2, 6, 2, 10, 2, 5, 2, 20, 2];
 app.currentTableIndex = 1;
@@ -1376,7 +1376,7 @@ function guiInit() {
         watchLastBets();
 
         app.minBet = 50;
-        app.maxBet = 20000;
+        app.maxBet = 1000;
         setBetMin();
 
         app.parentRef = getUrlVars()['r'];
