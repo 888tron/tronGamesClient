@@ -429,7 +429,7 @@ function updateDividendsData() {
                                                         $('.dividendsTokenMined').html(money(playersTokenSum * 100 / 65, 0) + ' Tokens 888');
 
                                                         $('.dividendsAvailableWithdraw').html(money(
-                                                            dividends.toNumber() * playerFrozen.toNumber() / levelFrozen.toNumber()
+                                                            levelFrozen.toNumber() ? (dividends.toNumber() * playerFrozen.toNumber() / levelFrozen.toNumber()) : 0
                                                         ) + ' TRX');
 
                                                     });
@@ -1376,7 +1376,7 @@ function guiInit() {
         watchLastBets();
 
         app.minBet = 50;
-        app.maxBet = 1000;
+        app.maxBet = 20000;
         setBetMin();
 
         app.parentRef = getUrlVars()['r'];
