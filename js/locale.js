@@ -38,6 +38,8 @@ function updateLanguage(lang) {
 }
 
 function localize(lang, dictionary) {
+	$('#tgLink').attr('href', lang === 'ru' ? 'https://t.me/tron888_rus' : 'https://t.me/tron888');
+	
     switch (lang) {
         case 'ru':
             $('#whitepaperLink').attr('href', 'wp/888Tron_ru.pdf');
