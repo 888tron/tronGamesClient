@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css?3.2">
+    <link rel="stylesheet" href="css/custom.css?3.3">
     <title>888</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109663484-3"></script>
@@ -45,32 +45,123 @@
 </div>
 <header>
     <nav id="myHeader" class="navbar navbar-dark bg-dark fxed panel-bg navbar-expand-xl">
-        <ul class="nav nav-tabs border-0 mr-auto">
+        <div class="nav mr-auto  d-block d-lg-none">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle p-0" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <svg class="icon white">
+                        <use xlink:href="img/cards/cards-sprite.svg#spades"></use>
+                    </svg>
+                    <span data-locale="games">Games</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <ul class="nav nav-tabs border-0 px-3 mb-3">
+                        <li class="nav-item">
+                            <a class="navbar-brand active show mr-0" data-toggle="tab" aria-selected="true" href="#gameCards" data-parent="#Games">
+                                <span class="position-relative">
+                                    <svg class="icon white">
+                                        <use xlink:href="img/cards/cards-sprite.svg#spades"></use>
+                                    </svg>
+                                    <span data-locale="cards">Dice52</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand mr-0" data-toggle="tab" aria-selected="false" href="#gameGear" data-parent="#Games">
+                                <i class="fas fa-cogs"></i>
+                                <span>Gear of Fortune</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand mr-0 disabled" href="#">
+                                <span class="soon-item  position-relative">
+                                    <i class="fas fa-map-pin"></i>
+                                    <span data-locale="crypto_slots">Crypto Slots</span>
+                                    <span class="soon" data-locale="soon">soon</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand mr-0 disabled" href="#">
+                                <span class="soon-item position-relative">
+                                    <svg class="icon">
+                                        <use xlink:href="img/games.svg#poker"></use>
+                                    </svg>
+                                    <span>Roulette</span>
+                                    <span class="soon" data-locale="soon">soon</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand mr-0 disabled" href="#">
+                                <span class="soon-item  position-relative">
+                                    <svg class="icon">
+                                        <use xlink:href="img/games.svg#cards"></use>
+                                    </svg>
+                                    <span>Baccarat</span>
+                                    <span class="soon" data-locale="soon">soon</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand mr-0 disabled" href="#">
+                                <span class="soon-item position-relative">
+                                    <svg class="icon">
+                                        <use xlink:href="img/games.svg#cards-1"></use>
+                                    </svg>
+                                    <span>Black Jack</span>
+                                    <span class="soon" data-locale="soon">soon</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand mr-0 disabled" href="#">
+                                <span class="soon-item position-relative">
+                                    <svg class="icon">
+                                        <use xlink:href="img/games.svg#card"></use>
+                                    </svg>
+                                    <span>Poker</span>
+                                    <span class="soon" data-locale="soon">soon</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand mr-0 disabled" href="#">
+                                <span class="soon-item position-relative">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>To the Moon</span>
+                                    <span class="soon" data-locale="soon">soon</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand mr-0 disabled" href="#">
+                                <span class="soon-item position-relative">
+                                    <svg class="icon">
+                                        <use xlink:href="img/games.svg#dollar-coin-money"></use>
+                                    </svg>
+                                    <span>FlipFlop</span>
+                                    <span class="soon" data-locale="soon">soon</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </div>
+        <ul class="nav order-xl-2 d-none d-md-flex ml-auto">
             <li class="nav-item">
-                <a class="navbar-brand active show mr-3" data-toggle="tab" aria-selected="true" href="#gameCards"
-                   data-parent="#Games">
-                    <span class="position-relative d-flex align-items-center">
-                        <svg class="icon white mr-1">
-                            <use xlink:href="img/cards/cards-sprite.svg#spades"></use>
-                        </svg>
-                        <span data-locale="cards">Dice52</span>
-                    </span>
+                <a class="nav-link px-2 tgLink" href="https://t.me/tron888" target="_blank">
+                    <i class="fab fa-telegram-plane"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="navbar-brand mr-auto mr-md-3" data-toggle="tab" aria-selected="false" href="#gameGear"
-                   data-parent="#Games">
-                    <i class="fas fa-cogs"></i>
-                    <span>Gear of Fortune</span>
+                <a class="nav-link px-2" href="https://twitter.com/888Tron" target="_blank">
+                    <i class="fab fa-twitter"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="navbar-brand d-none d-md-block" href="#">
-                    <span class="soon-item  position-relative">
-                        <i class="fas fa-map-pin"></i>
-                        <span data-locale="crypto_slots">Crypto Slots</span>
-                        <span class="soon" data-locale="soon">soon</span>
-                    </span>
+                <a class="nav-link px-2" href="#" data-toggle="modal" data-target="#wechatModal">
+                    <i class="fab fa-weixin"></i>
                 </a>
             </li>
         </ul>
@@ -130,8 +221,8 @@
                 <i class="fas fa-dollar-sign"></i>
                 <span class="navbar-label">Referrals</span>
             </a>-->
-            <ul class="nav nav-tabs border-0 d-block d-md-none">
-                <!--<li class="nav-item">
+            <!--<ul class="nav nav-tabs border-0 d-block d-md-none">
+                <li class="nav-item">
                     <a class="navbar-brand" data-toggle="tab" aria-selected="true" href="#gameCards" data-parent="#Games">
                         <span class="position-relative">
                             <span class="mr-1">
@@ -148,7 +239,7 @@
                         <i class="fas fa-cogs"></i>
                         <span class="navbar-label">Gear of Fortune</span>
                     </a>
-                </li>-->
+                </li>
                 <li class="nav-item">
                     <a class="navbar-brand" href="#">
                         <span class="soon-item  position-relative">
@@ -158,7 +249,7 @@
                         </span>
                     </a>
                 </li>
-            </ul>
+            </ul>-->
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-toggle="modal" onclick="onDividendShow()">
@@ -190,65 +281,22 @@
                         <span data-locale="how_to_play">How To Play</span>
                     </a>
                 </li>
-                <!--<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span data-locale="money">Money</span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">
-                            <span class="soon-item  position-relative">
-                                <i class="fas fa-dice-five"></i>
-                                <span data-locale="poker_dice">Poker Dice</span>
-                                <span class="soon" data-locale="soon">soon</span>
-                            </span>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <span class="soon-item  position-relative">
-                                <i class="fas fa-map-pin"></i>
-                                <span data-locale="crypto_slots">Crypto Slots</span>
-                                <span class="soon" data-locale="soon">soon</span>
-                            </span>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <span class="soon-item  position-relative">
-                                <i class="fas fa-dollar-sign"></i>
-                                <span data-locale="dividends">Dividends</span>
-                                <span class="soon" data-locale="soon">soon</span>
-                            </span>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <span class="soon-item  position-relative">
-                                <i class="fas fa-user-friends"></i>
-                                <span data-locale="referrals">Referrals</span>
-                                <span class="soon" data-locale="soon">soon</span>
-                            </span>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <span class="soon-item  position-relative">
-                                <i class="fas fa-map"></i>
-                                <span>White Paper</span>
-                                <span class="soon" data-locale="soon">soon</span>
-                            </span>
-                        </a>
-                    </div>
-                </li>-->
-                <li class="nav-item">
-                    <a class="nav-link" id="tgLink" href="https://t.me/tron888" target="_blank">
+                <li class="nav-item d-block d-md-none">
+                    <a class="nav-link tgLink" href="https://t.me/tron888" target="_blank">
                         <i class="fab fa-telegram-plane"></i>
-                        <span class="d-inline d-md-none">Telegram</span>
+                        <span>Telegram</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item d-block d-md-none">
                     <a class="nav-link" href="https://twitter.com/888Tron" target="_blank">
                         <i class="fab fa-twitter"></i>
-                        <span class="d-inline d-md-none">Twitter</span>
+                        <span>Twitter</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item d-block d-md-none">
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#wechatModal">
                         <i class="fab fa-weixin"></i>
-                        <span class="d-inline d-md-none">WeChat</span>
+                        <span>WeChat</span>
                     </a>
                 </li>
             </ul>
@@ -257,6 +305,103 @@
 </header>
 <main class="d-flex">
     <section class="d-none d-lg-block sidebar flex-shrink-0">
+        <ul class="nav nav-tabs border-0 row m-0 mb-4 mt-3 lg-icons">
+            <li class="col-4 nav-item text-center p-1 mb-3">
+                <a class="navbar-brand active show mr-0" data-toggle="tab" aria-selected="true" href="#gameCards" data-parent="#Games">
+                    <span class="position-relative">
+                        <svg class="icon white">
+                            <use xlink:href="img/cards/cards-sprite.svg#spades"></use>
+                        </svg>
+                        <br>
+                        <span data-locale="cards">Dice52</span>
+                    </span>
+                </a>
+            </li>
+            <li class="col-4 nav-item text-center p-1 mb-3">
+                <a class="navbar-brand mr-0" data-toggle="tab" aria-selected="false" href="#gameGear" data-parent="#Games">
+                    <i class="fas fa-cogs"></i><br>
+                    <span>Gear of Fortune</span>
+                </a>
+            </li>
+            <li class="col-4 nav-item text-center p-1 mb-3">
+                <a class="navbar-brand mr-0 disabled" href="#">
+                    <span class="soon-item  position-relative">
+                        <i class="fas fa-map-pin"></i><br>
+                        <span data-locale="crypto_slots">Crypto Slots</span>
+                        <span class="soon" data-locale="soon">soon</span>
+                    </span>
+                </a>
+            </li>
+            <li class="col-4 nav-item text-center p-1 mb-3">
+                <a class="navbar-brand mr-0 disabled" href="#">
+                    <span class="soon-item  position-relative">
+                        <svg class="icon">
+                            <use xlink:href="img/games.svg#poker"></use>
+                        </svg>
+                        <br>
+                        <span>Roulette</span>
+                        <span class="soon" data-locale="soon">soon</span>
+                    </span>
+                </a>
+            </li>
+            <li class="col-4 nav-item text-center p-1 mb-3">
+                <a class="navbar-brand mr-0 disabled" href="#">
+                    <span class="soon-item  position-relative">
+                        <svg class="icon">
+                            <use xlink:href="img/games.svg#cards"></use>
+                        </svg>
+                        <br>
+                        <span>Baccarat</span>
+                        <span class="soon" data-locale="soon">soon</span>
+                    </span>
+                </a>
+            </li>
+            <li class="col-4 nav-item text-center p-1 mb-3">
+                <a class="navbar-brand mr-0 disabled" href="#">
+                    <span class="soon-item position-relative">
+                        <svg class="icon">
+                            <use xlink:href="img/games.svg#cards-1"></use>
+                        </svg>
+                        <br>
+                        <span>Black Jack</span>
+                        <span class="soon" data-locale="soon">soon</span>
+                    </span>
+                </a>
+            </li>
+            <li class="col-4 nav-item text-center p-1">
+                <a class="navbar-brand mr-0 disabled" href="#">
+                    <span class="soon-item position-relative">
+                        <svg class="icon">
+                            <use xlink:href="img/games.svg#card"></use>
+                        </svg>
+                        <br>
+                        <span>Poker</span>
+                        <span class="soon" data-locale="soon">soon</span>
+                    </span>
+                </a>
+            </li>
+            <li class="col-4 nav-item text-center p-1">
+                <a class="navbar-brand mr-0 disabled" href="#">
+                    <span class="soon-item position-relative">
+                        <i class="fas fa-rocket"></i><br>
+                        <span>To the Moon</span>
+                        <span class="soon" data-locale="soon">soon</span>
+                    </span>
+                </a>
+            </li>
+            <li class="col-4 nav-item text-center p-1">
+                <a class="navbar-brand mr-0 disabled" href="#">
+                    <span class="soon-item position-relative">
+                        <svg class="icon">
+                            <use xlink:href="img/games.svg#dollar-coin-money"></use>
+                        </svg>
+                        <br>
+                        <span>FlipFlop</span>
+                        <span class="soon" data-locale="soon">soon</span>
+                    </span>
+                </a>
+            </li>
+        </ul>
         <table id="sideTable" class="table">
             <thead>
             <tr>
@@ -1216,7 +1361,7 @@
 
 <script src="js/main.js?v=575"></script>
 <script src="js/cards.js?v=2"></script>
-<script src="js/locale.js?v=4.8"></script>
+<script src="js/locale.js?v=4.9"></script>
 
 <script src="js/sendgrid.js?v=1"></script>
 
