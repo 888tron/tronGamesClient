@@ -6,7 +6,6 @@ class SoundManager {
 
     createSoundPlay(file, loop = false) {
         const sound = this.createSound(file, loop);
-        sound.muted = !this.isEnable;
         sound.play();
 
         return sound;
@@ -27,6 +26,7 @@ class SoundManager {
         }
 
         this.sounds.push(sound);
+        sound.muted = !this.isEnable;
         return sound;
     }
 
