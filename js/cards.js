@@ -1,4 +1,7 @@
-(function () {
+cardInit();
+
+function cardInit() {
+
     loadImages();
 
     app.drawRange = 0;
@@ -9,7 +12,7 @@
     updateCardMinMax();
     $('#cardsSelect .range').val(app.cardIndex);
     onSelectCard();
-})();
+};
 
 function loadImages() {
     app.cardImages = [];
@@ -188,8 +191,4 @@ function enableControls() {
     $('.range-select').find('div').removeClass('disabled')
     $('#cardsSelect').find('input').removeAttr("disabled");
     $('#myHeader .nav-tabs').find('.navbar-brand').removeClass('disabled');
-}
-
-function Sound(s) {
-	$('#Sound i').toggleClass('d-none');
 }
