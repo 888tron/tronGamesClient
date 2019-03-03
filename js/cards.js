@@ -189,3 +189,7 @@ function enableControls() {
     $('#cardsSelect').find('input').removeAttr("disabled");
     $('#myHeader .nav-tabs').find('.navbar-brand').removeClass('disabled');
 }
+
+function Sound(s) {
+	$('#Sound i').toggleClass('d-none');
+}
