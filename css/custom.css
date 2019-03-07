@@ -748,6 +748,11 @@ th {
     .table-tabs .nav-link {
         padding: .5rem;
     }
+
+    .table-tabs .nav-link.active{
+        padding: .5rem;
+        text-decoration: underline;
+    }
 }
 
 @media (max-width: 420px) {
