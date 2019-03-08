@@ -38,23 +38,27 @@ function updateLanguage(lang) {
 }
 
 function localize(lang, dictionary) {
-	$('.tgLink').attr('href', lang === 'ru' ? 'https://t.me/tron888_rus' : 'https://t.me/tron888');
 	
     switch (lang) {
         case 'ru':
             $('#whitepaperLink').attr('href', 'wp/888Tron_ru.pdf');
+			$('.tgLink').attr('href', 'https://t.me/tron888_rus');
             break;
         case 'es':
             $('#whitepaperLink').attr('href', 'wp/888Tron_es.pdf');
+			$('.tgLink').attr('href', 'https://t.me/tron888');
             break;
 		case 'ch':
             $('#whitepaperLink').attr('href', 'wp/888Tron_ch.pdf');
+			$('.tgLink').attr('href', 'https://t.me/tron888_ch');
             break;
 		case 'kr':
             $('#whitepaperLink').attr('href', 'wp/888Tron_kr.pdf');
+			$('.tgLink').attr('href', 'https://t.me/tron888');
             break;
 		case 'tr':
             $('#whitepaperLink').attr('href', 'wp/888Tron_tr.pdf');
+			$('.tgLink').attr('href', 'https://t.me/tron888');
             break;
         }
     
