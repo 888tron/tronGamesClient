@@ -284,7 +284,8 @@ function start() {
     logJson('getGameState start');
 
     post('/api/getGameState').then(_gameState => {
-        logJson('getGameState complete');
+        //console.log('getGameState complete', _gameState);
+        //console.log(_gameState);
 
         app.gameState = _gameState;
 
@@ -1412,15 +1413,13 @@ function guiInit() {
             updateBetAmount();
         });
 
-        $(".betAmount").bind('keyup mouseup', function () {
-            updateBetAmount();
-        });
+        $(".betAmount").bind('keyup mouseup', (event) => setBetAmount($(event.target).val()));
     }
 }
 
 app.newBets = [];
 
-setInterval(addNewBet, 200);
+setInterval(addNewBet, 100);
 
 function addNewBet() {
     //log('addNewBet', app.newBets.length);
@@ -1448,6 +1447,10 @@ function watchLastBets() {
 
     return post('/api/getBets', {offset: app.gameStateBetCount}).then(data => {
 
+            //logLine('/api/getBets', {offset: app.gameStateBetCount});
+
+            //logLine(data);
+
             const myBets = data.filter(isMyBet);
             if (myBets.length) {
 
@@ -1468,10 +1471,10 @@ function watchLastBets() {
 
             app.newBets = app.newBets.concat(data);
 
-            setTimeout(watchLastBets, 1000);
+            setTimeout(watchLastBets, 5000);
         },
         err => {
-            setTimeout(watchLastBets, 1000);
+            setTimeout(watchLastBets, 5000);
         }
     )
 }
@@ -2211,6 +2214,7 @@ function get(url, callback, errorCallback) {
 
 
 function post(url, data) {
+    //logLine(url, data);
     return new Promise(function (resolve, reject) {
         $.ajax({
             url: host + url,
