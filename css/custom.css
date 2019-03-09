@@ -736,6 +736,10 @@ main {
     font-size: 1.2rem;
 }
 
+.table-tabs .nav-link.active {
+	text-decoration: underline;
+}
+
 .result-col {
     color: #00da6c;
 }
@@ -747,11 +751,6 @@ th {
 @media (max-width: 500px) {
     .table-tabs .nav-link {
         padding: .5rem;
-    }
-
-    .table-tabs .nav-link.active{
-        padding: .5rem;
-        text-decoration: underline;
     }
 }
 
