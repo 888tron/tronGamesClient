@@ -1419,10 +1419,10 @@ function guiInit() {
 
 app.newBets = [];
 
-setInterval(addNewBet, 100);
+addNewBet();
 
 function addNewBet() {
-    //log('addNewBet', app.newBets.length);
+    log('addNewBet', app.newBets.length);
 
     if (app.newBets.length) {
         const bet = app.newBets.shift();
@@ -1441,6 +1441,8 @@ function addNewBet() {
             updateMyHistory();
         }
     }
+
+    setTimeout(addNewBet, 1000 / app.newBets.length);
 }
 
 function watchLastBets() {
