@@ -1413,7 +1413,7 @@ function guiInit() {
             updateBetAmount();
         });
 
-        $(".betAmount").bind('keyup mouseup', (event) => setBetAmount($(event.target).val()));
+        $(".betAmount").bind('mouseup', (event) => setBetAmount($(event.target).val()));
     }
 }
 
