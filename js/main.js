@@ -41,26 +41,13 @@ const GameViewState = {
 
 var gameViewState = GameViewState.IDLE;
 
-
-/*const fullNode = new HttpProvider('https://api.shasta.trongrid.io');
-const solidityNode = new HttpProvider('https://api.shasta.trongrid.io');
-const eventServer = 'https://api.shasta.trongrid.io/';*/
-
-/*const fullNode = 'https://super.guildchat.io';
-const solidityNode = 'https://solidity.guildchat.io';
-const eventServer = 'https://api.trongrid.io';*/
-
-//const fullNode = 'https://super.guildchat.io';
-const fullNode = 'https://api.trongrid.io';
-const solidityNode = 'https://api.trongrid.io';
-const eventServer = 'https://api.trongrid.io';
-
 window.onload = function () {
+
+    app.parentRef = getUrlVars()['r'];
 
     app.soundManager = new SoundManager(!localStorageGet('soundDisable'));
 
     if (!app.soundManager.isEnable) $('#soundIcon i').toggleClass('d-none');
-
 
     app.lastTronLinkAddress = getTronlinkAddress();
 
@@ -427,11 +414,11 @@ function updateDividendsData() {
                                             + '</a>'
                                         );
 
-                                        getBalance(gameManagerAddress).then(gameBalance => {
+                                        getBalanceConfirmed(gameManagerAddress).then(gameBalance => {
                                             log('dividends', dividends);
                                             log('gameBalance', gameBalance);
 
-                                            log('gameBalance/dividends', gameBalance / dividends);
+                                            log('balanceConfirmed/dividends', gameBalance / dividends);
 
                                         });
 
@@ -574,6 +561,11 @@ function setBetX1_2() {
     setBetAmount(app.betAmount / 2);
 }
 
+function setBetStart() {
+    setBetMin();
+    setBetX2();
+}
+
 function setBetMin() {
     if (app.currentGameIndex === 2) {
         setBetAmount(app.minBet / app.slotView.model.betLineCount);
@@ -596,7 +588,9 @@ function updateBetAmount() {
 
 function setBetAmount(value) {
 
-    const vlidateBetAmount = (value) => {
+    const validateBetAmount = (value) => {
+        if (app.myBalance === 0) return value;
+
         if (value > app.myBalance - 1) value = app.myBalance - 1;
 
         value = Math.floor(value);
@@ -608,7 +602,7 @@ function setBetAmount(value) {
     };
 
     if (app.currentGameIndex === 2) {
-        app.slotView.model.betAmountSum = vlidateBetAmount(value * app.slotView.model.betLineCount);
+        app.slotView.model.betAmountSum = validateBetAmount(value * app.slotView.model.betLineCount);
 
         console.log(app.slotView.model.betAmountSum);
 
@@ -622,8 +616,9 @@ function setBetAmount(value) {
 
         $('.slotTotalBet').html(app.slotView.model.betAmountSum + " TRX");
 
+        showMinBetTooltip(app.slotView.model.betAmountSum <= 50);
     } else {
-        value = vlidateBetAmount(value);
+        value = validateBetAmount(value);
 
         $('.betAmount').val(value);
 
@@ -637,6 +632,8 @@ function setBetAmount(value) {
         app.betAmount = value;
 
         updateChances();
+
+        showMinBetTooltip(app.betAmount <= 50);
     }
 }
 
@@ -1192,6 +1189,22 @@ function getBalance(address) {
     });
 }
 
+function getBalanceConfirmed(address) {
+    const duration = 1000;
+
+    return getTronWeb(false).then(tronweb => {
+        return tronweb.trx.getBalance(address).then(balance => {
+            log('getBalance ' + address, balance);
+            return balance;
+        }).catch(err => {
+            logError('getBalance ' + address, err);
+            return delay(duration).then(() => {
+                return getBalanceConfirmed(address);
+            });
+        });
+    });
+}
+
 
 function getBlock(blockNumber) {
     const duration = 1000;
@@ -1387,9 +1400,7 @@ function guiInit() {
 
         app.minBet = 50;
         app.maxBet = 20000;
-        setBetMin();
-
-        app.parentRef = getUrlVars()['r'];
+        setBetStart();
 
         onLoadComplete();
 
@@ -1432,7 +1443,9 @@ function addNewBet() {
         // logLine('data', data);
 
         updateTables();
-        if (app.isNeedUpdateTopTable) {
+        if (app.isNeedUpdateTopTable || app.gameState.listTopBetSum.find(p => p.player === bet.player) !== undefined) {
+            //console.log('updateTopTable ', app.gameState.listTopBetSum.find(p => p.player === bet.player));
+
             app.isNeedUpdateTopTable = false;
             updateTopTable();
         }
@@ -1820,7 +1833,7 @@ function getParentUserId(ref) {
                             userId: userId.toNumber(),
                             parentAddress: app.tronWeb2.address.fromHex(parentAddress)
                         }).then(parentUser => {
-                            if (parentUser.userId) localStorageSet('parentUser', parentUser);
+                            //if (parentUser.userId) localStorageSet('parentUser', parentUser);
                             return parentUser;
                         });
                     });
@@ -2280,7 +2293,7 @@ $('.nav-tabs a[href="#gameCards"]').on('shown.bs.tab', function (e) {
     updateTables();
     updateMyHistory();
     updateMyBalance();
-    setBetMin();
+    setBetStart();
 });
 
 $('.nav-tabs a[href="#gameGear"]').on('shown.bs.tab', function (e) {
@@ -2289,7 +2302,7 @@ $('.nav-tabs a[href="#gameGear"]').on('shown.bs.tab', function (e) {
     updateTables();
     updateMyHistory();
     updateMyBalance();
-    setBetMin();
+    setBetStart();
 });
 
 $('.nav-tabs a[href="#gameSlot"]').on('shown.bs.tab', function (e) {
@@ -2304,7 +2317,7 @@ $('.nav-tabs a[href="#gameSlot"]').on('shown.bs.tab', function (e) {
     updateTables();
     updateMyHistory();
     updateMyBalance();
-    setBetMin();
+    setBetStart();
 });
 
 

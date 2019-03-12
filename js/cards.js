@@ -193,16 +193,16 @@ function enableControls() {
     $('#myHeader .nav-tabs').find('.navbar-brand').removeClass('disabled');
 }
 
-$('input.betAmount').on('input', function(){
-    $(this).tooltip();
-    if($(this).val() < 101){
-        $(this).tooltip('enable');
-        $(this).tooltip('show');
-        $(this).tooltip('disable');
+function showMinBetTooltip(value){
+    $('.betAmount').tooltip();
+    if(value){
+        $('.betAmount').tooltip('enable');
+        $('.betAmount').tooltip('show');
+        $('.betAmount').tooltip('disable');
     } else {
-        $(this).tooltip('enable');
-        $(this).tooltip('hide');
-        $(this).tooltip('disable');
+        $('.betAmount').tooltip('enable');
+        $('.betAmount').tooltip('hide');
+        $('.betAmount').tooltip('disable');
     }
-});
+}
 
