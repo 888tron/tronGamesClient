@@ -192,3 +192,16 @@ function enableControls() {
     $('#cardsSelect').find('input').removeAttr("disabled");
     $('#myHeader .nav-tabs').find('.navbar-brand').removeClass('disabled');
 }
+
+$('input.betAmount').on('input', function(){
+    if($(this).val() < 101){
+        $(this).tooltip('enable');
+        $(this).tooltip('show');
+        $(this).tooltip('disable');
+    } else {
+        $(this).tooltip('enable');
+        $(this).tooltip('hide');
+        $(this).tooltip('disable');
+    }
+});
+
