@@ -194,20 +194,15 @@ function enableControls() {
 }
 
 function showMinBetTooltip(value){
-	var target = $('#Games .tab-pane.active').find('.betAmount');
-    target.tooltip();
+    $('.betAmount').tooltip();
     if(value){
-        target.tooltip('enable');
-        target.tooltip('show');
-		setTimeout(function(){
-			target.tooltip('hide');
-		}, 5000);
-        target.tooltip('disable');
+        $('.betAmount').tooltip('enable');
+        $('.betAmount').tooltip('show');
+        $('.betAmount').tooltip('disable');
     } else {
-        target.tooltip('enable');
-        target.tooltip('hide');
-        target.tooltip('disable');
+        $('.betAmount').tooltip('enable');
+        $('.betAmount').tooltip('hide');
+        $('.betAmount').tooltip('disable');
     }
 }
-
 
