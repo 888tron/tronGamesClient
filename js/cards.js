@@ -194,6 +194,7 @@ function enableControls() {
 }
 
 $('input.betAmount').on('input', function(){
+    $(this).tooltip();
     if($(this).val() < 101){
         $(this).tooltip('enable');
         $(this).tooltip('show');
