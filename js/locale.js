@@ -1,4 +1,4 @@
-var localeVer = '3.3';
+var localeVer = '3.4';
 
 var dictionary = {};
 
