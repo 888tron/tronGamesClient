@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css?3.7">
+    <link rel="stylesheet" href="css/custom.css?3.8">
     <title>888</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109663484-3"></script>
@@ -302,13 +302,35 @@
                         <span>White Paper</span>
                     </a>
                 </li>
+                <li class="nav-item dropdown d-none d-xl-block">
+                    <button class="btn dropdown-toggle pr-0" type="button" id="dropdownFAQ" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-question"></i>
+                        <span>FAQ</span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownFAQ">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#fairnessModal">
+                            <i class="fas fa-shield-alt"></i>
+                            <span data-locale="fairness">Fairness</span>
+                        </a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#howToPlayModal">
+                            <i class="fas fa-question-circle"></i>
+                            <span data-locale="how_to_play">How To Play</span>
+                        </a>
+                    </div>
+                </li>
                 <li class="nav-item">
+                    <a class="nav-link disabled" href="#" data-toggle="modal" data-target="#exchangeModal">
+                        <i class="fas fa-sync"></i>
+                        <span data-locale="exchange">Exchange</span>
+                    </a>
+                </li>
+                <li class="nav-item d-xl-none">
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#fairnessModal">
                         <i class="fas fa-shield-alt"></i>
                         <span data-locale="fairness">Fairness</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item d-xl-none">
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#howToPlayModal">
                         <i class="fas fa-question-circle"></i>
                         <span data-locale="how_to_play">How To Play</span>
@@ -1381,7 +1403,24 @@
     </div>
 </div>
 
-<div class="modal fade" id="tokenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="exchangeModal" tabindex="-1" role="dialog" aria-labelledby="exchangeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-content-dark">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title"><span data-locale="exchange">Exchange</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <p>03/25 On TronTrade</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="tokenModal" tabindex="-1" role="dialog" aria-labelledby="tokenModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content modal-content-dark">
@@ -1486,7 +1525,7 @@
 <script src="js/SoundManager.js?v=2"></script>
 <script src="js/SlotView.js?v=3"></script>
 
-<script src="js/locale.js?v=5.2"></script>
+<script src="js/locale.js?v=5.3"></script>
 <script src="js/main.js?v=599"></script>
 <script src="js/cards.js?v=2.7"></script>
 
