@@ -1,16 +1,33 @@
 const gameManagerAddress = 'TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe';
 const dividendsDataAddress = 'TE7mB2sUZPJfhuSuXqAat6VCtfiLbhmrpA';
 const dividendsControllerAddress = 'TT7A8gpor7faBEUGzNVUguNkcZW9s2fBMv';
-const wheelAddress = 'TPYxogE1aB61DhviZdqKsVJVkNhx85hxUC';
-const cardsAddress = 'TUzUzggx2zvSpaqs5BisoN1TWqQ9atuEfn';
-const slotAddress = 'TABgQAuGy6NA4ciJefmnfRzjWh5uRtQZ7L';
 const tokenAddress = 'TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3';
 const referralsAddress = 'TAKkt9G5uUZyHJ3tYSYhpt7B6Bmksh1TVX';
 
+const cardsAddress0 = 'TUzUzggx2zvSpaqs5BisoN1TWqQ9atuEfn';
+const wheelAddress0 = 'TPYxogE1aB61DhviZdqKsVJVkNhx85hxUC';
+const slotAddress0 = 'TABgQAuGy6NA4ciJefmnfRzjWh5uRtQZ7L';
+
+const cardsAddress = 'TNsaLZg5dSif2WJDM6TJ7WseQrvdqv55iH';
+const wheelAddress = 'TPRY7Q4Do5x2MA8p3CHGgnk5bKswAnqvPF';
+const slotAddress = 'TRGm5dkS85AcRuQmRFF4D1BdgubJKE1RiP';
+
+
+const games0 = [cardsAddress0, wheelAddress0, slotAddress0];
 const games = [cardsAddress, wheelAddress, slotAddress];
 
+function getGameIndex(address) {
+    let index = games0.indexOf(address);
+    if (index > -1) return index;
+
+    index = games.indexOf(address);
+    if (index > -1) return index;
+
+    return 1;
+}
+
 const host = 'https://888tron.com';
-//const host = 'http://localhost:3000';
+//const host = 'http://localhost:3011';
 
 
 const WalletTypes = {
@@ -414,9 +431,9 @@ function updateDividendsData() {
                                             + '</a>'
                                         );
 
-                                        getBalanceConfirmed(gameManagerAddress).then(gameBalance => {
-                                            log('dividends', dividends);
-                                            log('gameBalance', gameBalance);
+                                        getBalance(gameManagerAddress).then(gameBalance => {
+                                            log('dividends', (dividends / 1000000 / 1000000).toFixed(6) + 'M TRX');
+                                            log('gameBalance', (gameBalance / 1000000 / 1000000).toFixed(6) + 'M TRX');
 
                                             log('balanceConfirmed/dividends', gameBalance / dividends);
 
@@ -659,7 +676,7 @@ function addressToShort(address) {
 
 function strToShort(str) {
     if (str.length < 15) return str;
-    return str.substr(0, 5) + "...." + str.substr(str.length - 5, 5);
+    return str.substr(0, 4) + "...." + str.substr(str.length - 5, 5);
 }
 
 function td(value) {
@@ -701,61 +718,6 @@ function updateMyHistory() {
 
         log(app.currentGameIndex)
         setHistoryTableData1($('.history-table-1 > div:last'), app.gameState.listPlayerBets[app.currentGameIndex]);
-    }
-}
-
-let gridContext = null;
-var gridCanvas;
-
-function updateCanvasTable() {
-    if (!gridContext) {
-
-        const pixelRatio = window.devicePixelRatio || 1;
-
-        const grid = $('#grid');
-
-        gridCanvas = $('<canvas/>', {
-            id: 'tableCanvas'
-        });
-
-        grid.append(gridCanvas);
-        gridCanvas = document.getElementById("tableCanvas");
-
-        gridContext = gridCanvas.getContext('2d');
-
-        gridContext.scale(pixelRatio, pixelRatio);
-
-        const onResize = () => {
-
-            log('grid size ' + grid.width() + ' ' + grid.height());
-            log('pixelRatio', pixelRatio);
-
-            gridCanvas.width = grid.width() * pixelRatio;
-            gridCanvas.height = grid.height() * pixelRatio;
-
-            gridCanvas.style.width = gridCanvas.width + "px";
-            gridCanvas.style.height = gridCanvas.height + "px";
-
-            updateTables();
-        };
-
-        window.addEventListener('resize', onResize, false);
-        onResize();
-    }
-
-    switch (app.currentTableIndex) {
-        case 0:
-            setTableDataGrid(app.gameState.listPlayerBets[app.currentGameIndex]);
-            break;
-        case 1:
-            setTableDataGrid(app.gameState.listBetsAll);
-            break;
-        case 2:
-            setTableDataGrid(app.gameState.listBetsBigAmount);
-            break;
-        case 3:
-            setTableDataGrid(app.gameState.listBetsRareValue);
-            break;
     }
 }
 
@@ -868,100 +830,6 @@ function setTableData(table, data) {
 
 }
 
-function setTableDataGrid(data) {
-
-    const cardsCount = 52;
-
-    let paddingLeft = 80;
-    let x = paddingLeft;
-    let y = 30;
-    const dy = 40;
-    const dx = (gridCanvas.width - paddingLeft * 2) / 6;
-
-    const grid = $('#grid');
-
-    //log('grid.width() ==== ', grid.width());
-
-    gridContext.font = (grid.width() > 500 ? 17 : 2) + 'px Arial';
-
-    //log('gridCanvas.width', gridCanvas.width);
-
-    gridContext.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
-
-    const fillText = (text) => {
-        let size = gridContext.measureText(text);
-
-        gridContext.fillText(text, x - size.width / 2, y);
-        x += dx;
-    };
-
-    gridContext.fillStyle = 'white';
-
-    [
-        dictionary['time'],
-        dictionary['block'],
-        dictionary['player'],
-        dictionary['prediction'],
-        dictionary['result'],
-        dictionary['bet'],
-        dictionary['payout']
-    ].forEach(text => {
-        fillText(text);
-    });
-    /*
-        gridContext.strokeStyle = 'rgba(225,0,225,1)';
-        gridContext.beginPath();
-        gridContext.moveTo(x, y);
-        gridContext.lineTo(gridCanvas.width, y);
-        //gridContext.stroke();*/
-
-    x = paddingLeft;
-    y += dy;
-
-    for (var i = data.length - 1; i >= 0; i--) {
-        var bet = data[i];
-
-        const gameIndex = getGameIndex(bet.game);
-
-        let betValue = 'x' + bet.betValue;
-        let winValue = (bet.winValue < 21 ? ('x' + bet.winValue) : '-');
-
-        if (gameIndex === 0) {
-            if (bet.betValue < cardsCount) {
-                betValue = cardTypeText(bet.betValue) + '<';
-            } else if (bet.betValue < cardsCount * 2) {
-                betValue = cardTypeText(bet.betValue - cardsCount) + '=';
-            } else {
-                betValue = cardTypeText(bet.betValue - cardsCount * 2) + '>';
-            }
-
-            winValue = cardTypeText(bet.winIndex);
-        }
-
-        if (i % 2) {
-            gridContext.fillStyle = 'rgba(225,225,225,0.08)';
-            gridContext.strokeStyle = 'white';
-            gridContext.lineWidth = 0.2;
-            gridContext.fillRect(0, y - 25, gridCanvas.width, dy);
-            gridContext.strokeRect(-4, y - 25, gridCanvas.width + 8, dy);
-        }
-
-        gridContext.fillStyle = 'white';
-
-        fillText(timeToString(bet.time));
-        fillText(bet.blockNumber);
-        fillText(addressToShort(bet.player),);
-        fillText(betValue);
-        fillText(winValue);
-        fillText(bet.amount + ' TRX');
-        fillText(parseFloat(bet.winAmount).toFixed(2) + ' TRX');
-
-        x = paddingLeft;
-        y += dy;
-    }
-
-}
-
 function level(sum) {
     return Math.max(Math.floor(Math.log2(sum / 100 + 1)), 1);
 }
@@ -978,7 +846,7 @@ function setSideTableData(table, data) {
             '<tr>' +
             td(i + 1) +
             td('lv. ' + level(player.sum) + ' ' + addressToShort(player.player)) +
-            td(player.sum + ' TRX') +
+            td((player.sum / 1000).toFixed() + 'K TRX') +
             '</tr>';
     }
 
@@ -1305,12 +1173,6 @@ function findBlockByTxId(startBlockNumber, blockNumber, txId, gameIndex) {
         });
     });
 
-}
-
-function getGameIndex(address) {
-    let index = games.indexOf(address);
-    if (index === -1) index = 1;
-    return index;
 }
 
 function updateGameState(gameState, bets, player) {
