@@ -311,48 +311,61 @@ main {
     overflow-y: hidden;
 }
 
-.sidebar .table thead th {
+.leadertable thead th {
     border-bottom: 1px solid #9c9c9c2e;
     text-align: center;
 }
 
-.sidebar .table tbody td {
-    border-top: none;
-    padding: .25rem;
-}
-
-.sidebar .table tbody td:first-child {
-    text-align: center;
-    min-width: 2.5rem;
-    padding-left: .75rem;
-}
-
-.sidebar .table tbody td:nth-child(2) {
+.leadertable thead th:nth-child(2){
     text-align: left;
 }
 
-.sidebar .table tbody td:last-child {
-    color: #00e672;
+.leadertable thead th:last-child {
     text-align: right;
-    padding-right: 1.5rem;
 }
 
-.sidebar .table tbody td:first-child {
+.sidebar .leadertable thead th:nth-child(2),
+.sidebar .leadertable thead th:last-child {
     text-align: center;
 }
 
-.sidebar .table tbody tr:nth-child(1) td:first-child,
-.sidebar .table tbody tr:nth-child(2) td:first-child,
-.sidebar .table tbody tr:nth-child(3) td:first-child {
+.leadertable tbody td {
+    border-top: none;
+    padding: .25rem;
+    text-align: center;
+}
+
+.leadertable tbody td:first-child {
+    min-width: 2.5rem;
+    padding-left: .75rem;
+    
+}
+
+.leadertable tbody td:nth-child(2){
+    text-align: left
+}
+
+.leadertable tbody td:last-child {
+    color: #00e672;
+    text-align: right;
+}
+
+.sidebar .leadertable tbody td:last-child {
+    padding-right: 1.5rem;
+}
+
+.leadertable tbody tr:nth-child(1) td:first-child,
+.leadertable tbody tr:nth-child(2) td:first-child,
+.leadertable tbody tr:nth-child(3) td:first-child {
     color: #fff;
     position: relative;
     z-index: 2;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, .9);
 }
 
-.sidebar .table tbody tr:nth-child(1) td:first-child:after,
-.sidebar .table tbody tr:nth-child(2) td:first-child:after,
-.sidebar .table tbody tr:nth-child(3) td:first-child:after {
+.leadertable tbody tr:nth-child(1) td:first-child:after,
+.leadertable tbody tr:nth-child(2) td:first-child:after,
+.leadertable tbody tr:nth-child(3) td:first-child:after {
     position: absolute;
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
@@ -367,15 +380,15 @@ main {
     font-size: 1.5rem
 }
 
-.sidebar .table tbody tr:nth-child(1) td:first-child:after {
+.leadertable tbody tr:nth-child(1) td:first-child:after {
     color: #f0cd07;
 }
 
-.sidebar .table tbody tr:nth-child(2) td:first-child:after {
+.leadertable tbody tr:nth-child(2) td:first-child:after {
     color: #adafab;
 }
 
-.sidebar .table tbody tr:nth-child(3) td:first-child:after {
+.leadertable tbody tr:nth-child(3) td:first-child:after {
     color: #7a3f15;
 }
 
