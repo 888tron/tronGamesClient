@@ -98,20 +98,20 @@ bet_tooltip	Las apuestas pequeñas (50-100 TRX) consumen la misma energía que l
 support	De apoyo
 exchange	Intercambio
 leaderboard	Leaderboard
-roadmap	Roadmap
-roadmap_date_1	March
-roadmap_text_1	Adding German and Japanese web site localizations.
-roadmap_date_2	March
-roadmap_text_2	General platform improvements and optimization (speed and transaction costs).
-roadmap_date_3	April
-roadmap_text_3	European Roulette game launch.
-roadmap_date_4	April
-roadmap_text_4	Presentation of 888 ecosystem concept and first steps of development success.
-roadmap_date_5	May
-roadmap_text_5	Black Jack game launch.
-roadmap_date_6	May
-roadmap_text_6	Best dev.team competion launch with prize fund over USD 100K.
-roadmap_date_7	Starting June
-roadmap_text_7	Afirst games and DAPPs integration created by outsource dev.teams.
-roadmap_date_8	July
-roadmap_text_8	Legal research (Subject: 888tron.com licensing)
+roadmap	Mapa vial
+roadmap_date_1	Marzo
+roadmap_text_1	añadiendo localizaciones a alemán y japonés.
+roadmap_date_2	Marzo
+roadmap_text_2	depuración de la plataforma (reduciendo el costo de las transacciones, aumentando la velocidad del procesamiento de datos de smart contratos).
+roadmap_date_3	Abril
+roadmap_text_3	el lanzamiento del nuevo juego - European Roulette.
+roadmap_date_4	Abril
+roadmap_text_4	anuncio de la creación de un ecosistema 888.
+roadmap_date_5	Mayo
+roadmap_text_5	lanzamiento del nuevo juego Black Jack.
+roadmap_date_6	Mayo
+roadmap_text_6	lanzamiento del concurso para desarrolladores con un fondo de premios de más de $100 mil.
+roadmap_date_7	Junio ​​y después
+roadmap_text_7	el lanzamiento de nuevos juegos y la integración de DAPP de otros desarrolladores en la plataforma 888.
+roadmap_date_8	Julio
+roadmap_text_8	análisis legal (la posibilidad de obtener una licencia de juego para la plataforma dapp).

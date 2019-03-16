@@ -98,20 +98,20 @@ bet_tooltip	官方提示:由于手续费偏高，投100返回100.36，在这种�
 support	支持
 exchange	交易所
 leaderboard	Leaderboard
-roadmap	Roadmap
-roadmap_date_1	March
-roadmap_text_1	Adding German and Japanese web site localizations.
-roadmap_date_2	March
-roadmap_text_2	General platform improvements and optimization (speed and transaction costs).
-roadmap_date_3	April
-roadmap_text_3	European Roulette game launch.
-roadmap_date_4	April
-roadmap_text_4	Presentation of 888 ecosystem concept and first steps of development success.
-roadmap_date_5	May
-roadmap_text_5	Black Jack game launch.
-roadmap_date_6	May
-roadmap_text_6	Best dev.team competion launch with prize fund over USD 100K.
-roadmap_date_7	Starting June
-roadmap_text_7	Afirst games and DAPPs integration created by outsource dev.teams.
-roadmap_date_8	July
-roadmap_text_8	Legal research (Subject: 888tron.com licensing)
+roadmap	路线图
+roadmap_date_1	3月
+roadmap_text_1	支持德语和日语
+roadmap_date_2	3月
+roadmap_text_2	主要为游戏平台的改进和优化（主要是速度和挖矿成本）
+roadmap_date_3	4月
+roadmap_text_3	推出新游戏“欧洲轮盘赌”
+roadmap_date_4	4月
+roadmap_text_4	介绍888生态概念和如何迈出第一步。
+roadmap_date_5	5月
+roadmap_text_5	推出新游戏“黑杰克”
+roadmap_date_6	5月
+roadmap_text_6	启动最佳开发团队大赛，奖金超10w美元。
+roadmap_date_7	从6月
+roadmap_text_7	开始推出第一个孵化dapp。
+roadmap_date_8	7月
+roadmap_text_8	研究合法化以及申请牌照。
