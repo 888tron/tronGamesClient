@@ -709,6 +709,12 @@ function elapsedTimeToString(t) {
 
 function updateTopTable() {
     setSideTableData($('#sideTable > tbody:last'), app.gameState.listTopBetSum);
+
+    if (app.currentTableIndex === 4) {
+        setSideTableData($('#leaderTable > tbody:last'), app.gameState.listTopBetSum);
+    } else {
+        setSideTableData($('#sideTable > tbody:last'), app.gameState.listTopBetSum);
+    }
 }
 
 function updateMyHistory() {
@@ -737,7 +743,7 @@ function getCurrantDataProvider() {
 
 function updateTables() {
 
-    setTableData($('#mainTable > tbody:last'), getCurrantDataProvider());
+    if (app.currentTableIndex !== 4) setTableData($('#mainTable > tbody:last'), getCurrantDataProvider());
 
     const newTotalWon = Math.round(app.gameState.winSum);
 
@@ -1236,6 +1242,7 @@ function guiInit() {
         $('.table-tabs a').on('shown.bs.tab', function (event) {
             app.currentTableIndex = $(event.target).parent().index();
             updateTables();
+            updateTopTable();
         });
 
         $('#referralText').bind('keyup blur', function () {
