@@ -1305,7 +1305,7 @@ function addNewBet() {
         // logLine('data', data);
 
         updateTables();
-        if (app.isNeedUpdateTopTable || app.gameState.listTopBetSum.find(p => p.player === bet.player) !== undefined) {
+        if (app.isNeedUpdateTopTable) {
             //console.log('updateTopTable ', app.gameState.listTopBetSum.find(p => p.player === bet.player));
 
             app.isNeedUpdateTopTable = false;
@@ -1340,6 +1340,10 @@ function watchLastBets() {
                 updateMyBalance();
 
                 //winBet(myBet);
+            }
+
+            if (data.find(bet => app.gameState.listTopBetSum.find(p => p.player === bet.player))) {
+                app.isNeedUpdateTopTable = true;
             }
 
             app.gameStateBetCount += data.length;
