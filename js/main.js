@@ -27,7 +27,7 @@ function getGameIndex(address) {
 }
 
 const host = 'https://888tron.com';
-//const host = 'http://localhost:3011';
+//const host = 'http://localhost:3010';
 
 
 const WalletTypes = {
