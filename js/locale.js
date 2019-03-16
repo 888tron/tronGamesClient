@@ -47,18 +47,22 @@ function localize(lang, dictionary) {
         case 'es':
             $('#whitepaperLink').attr('href', 'wp/888Tron_es.pdf');
 			$('.tgLink').attr('href', 'https://t.me/tron888');
+			$('.roadmap-link').addClass('d-none');
             break;
 		case 'ch':
             $('#whitepaperLink').attr('href', 'wp/888Tron_ch.pdf');
 			$('.tgLink').attr('href', 'https://t.me/tron888_ch');
+			$('.roadmap-link').addClass('d-none');
             break;
 		case 'kr':
             $('#whitepaperLink').attr('href', 'wp/888Tron_kr.pdf');
 			$('.tgLink').attr('href', 'https://t.me/tron888');
+			$('.roadmap-link').addClass('d-none');
             break;
 		case 'tr':
             $('#whitepaperLink').attr('href', 'wp/888Tron_tr.pdf');
 			$('.tgLink').attr('href', 'https://t.me/tron888');
+			$('.roadmap-link').addClass('d-none');
             break;
         }
     
