@@ -956,3 +956,74 @@ footer {
 .form-subscribe {
     max-width: 676px;
 }
+
+.roadmap-container .roadmap-item {
+    min-height: 200px;
+}
+
+@media (max-width: 480px) {
+    .roadmap-container .roadmap-item {
+        font-size: 13px;
+    }
+}
+
+.roadmap-container .col:last-child {
+    margin-top: 100px;
+}
+
+.roadmap-container .col:first-child:after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 8px;
+    background-color: #000; 
+    position: absolute;
+    right: -4px;
+    top: 0;
+    bottom: 0;
+}
+
+.roadmap-container .col .roadmap-item:before {
+    content: '';
+    display: block;
+    height: 16px;
+    width: 16px;
+    background: #fff;
+    position: absolute;
+    top: calc(50% - 8px);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.roadmap-container .col:first-child .roadmap-item:before {
+    right: -8px;
+}
+
+.roadmap-container .col:last-child .roadmap-item:before {
+    left: -8px;
+}
+
+
+.roadmap-container .col:first-child .roadmap-item:first-child:after {
+    content: '';
+    display: block;
+    height: 50%;
+    width: 8px;
+    background: linear-gradient(to top, #000, #232323);
+    position: absolute;
+    right: -4px;
+    top: 0;
+    z-index: 1;
+}
+
+.roadmap-container .col:last-child .roadmap-item:last-child:after {
+    content: '';
+    display: block;
+    height: 50%;
+    width: 8px;
+    background: linear-gradient(to bottom, #000, #232323);
+    position: absolute;
+    left: -4px;
+    bottom: 0;
+    z-index: 1;
+}
