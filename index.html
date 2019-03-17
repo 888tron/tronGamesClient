@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css?4.1">
+    <link rel="stylesheet" href="css/custom.css?4.2">
     <title>888</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109663484-3"></script>
@@ -340,6 +340,10 @@
                             <i class="fas fa-road"></i>
                             <span data-locale="roadmap">Roadmap</span>
                         </a>
+                        <a class="troubleshooting-link dropdown-item" href="#" data-toggle="modal" data-target="#troubleshootingModal">
+                            <i class="fas fa-life-ring"></i>
+                            <span data-locale="troubleshooting">Troubleshooting</span>
+                        </a>
                     </div>
                 </li>
                 <li class="nav-item d-xl-none">
@@ -358,6 +362,12 @@
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#roadmapModal">
                         <i class="fas fa-road"></i>
                         <span data-locale="roadmap">Roadmap</span>
+                    </a>
+                </li>
+                <li class="troubleshooting-link nav-item d-xl-none">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#troubleshootingModal">
+                        <i class="fas fa-life-ring"></i>
+                        <span data-locale="troubleshooting">Troubleshooting</span>
                     </a>
                 </li>
                 <li class="nav-item d-xl-none">
@@ -1462,6 +1472,145 @@
     </div>
 </div>
 
+<div class="modal fade" id="troubleshootingModal" tabindex="-1" role="dialog" aria-labelledby="exchangeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content modal-content-dark">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title"><span data-locale="troubleshooting">Troubleshooting</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="accordionTrouble" class="accordion">
+                    <div id="heading1" data-toggle="collapse" data-target="#collapse1" class="accordion-title d-flex align-items-center p-2">
+                        <div class="w-100" data-locale="question_1">I didn’t get my bet (winnings) back.</div>
+                        <div class="flex-shrink-1 ml-3">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div id="collapse1" data-parent="#accordionTrouble" class="collapse show">
+                        <div data-locale="answer_1" class="accordion-text p-2">
+                            Using your TRX wallet number check on tronscan.org - Internal Transactions section. All winning payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
+                        </div>
+                    </div>
+                    <div id="heading2" data-toggle="collapse" data-target="#collapse2" class="accordion-title d-flex align-items-center p-2">
+                        <div class="w-100" data-locale="question_2">I have not received my dividend.</div>
+                        <div class="flex-shrink-1 ml-3">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div id="collapse2" data-parent="#accordionTrouble" class="collapse">
+                        <div data-locale="answer_2" class="accordion-text p-2">
+                            Make sure your tokens were frozen at the moment ofr divs distribution. Using your TRX wallet number check on tronscan.org - Internal Transactions section. All divs payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
+                        </div>
+                    </div>
+                    <div id="heading3" data-toggle="collapse" data-target="#collapse3" class="accordion-title d-flex align-items-center p-2">
+                        <div class="w-100" data-locale="question_3">I have a bunch of TRX missing from playing.</div>
+                        <div class="flex-shrink-1 ml-3">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div id="collapse3" data-parent="#accordionTrouble" class="collapse">
+                        <div data-locale="answer_3" class="accordion-text p-2">
+                            888Tron.com is a fully decentralized platform. If your bet was accepted by smart contract it means that it was processed by blockchain and can be easily check on tronscan.org - Internal Transactions section. All winning payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe. Unaccepted bets do not influence your wallet balance and will be returned. Due to an extremely high number of bets made per second (~15-20) some bets might be rejected by smart contract.
+                        </div>
+                    </div>
+                    <div id="heading4" data-toggle="collapse" data-target="#collapse4" class="accordion-title d-flex align-items-center p-2">
+                        <div class="w-100" data-locale="question_4">How I can check my game log.</div>
+                        <div class="flex-shrink-1 ml-3">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div id="collapse4" data-parent="#accordionTrouble" class="collapse">
+                        <div data-locale="answer_4" class="accordion-text p-2">
+                            You may use this instrument to check you game log. https://888tron.com/api/getHistory?address= - After (=) you shall put your wallet number.
+                        </div>
+                    </div>
+                    <div id="heading5" data-toggle="collapse" data-target="#collapse5" class="accordion-title d-flex align-items-center p-2">
+                        <div class="w-100" data-locale="question_5">My Tronlink wallet is not showing up today on the 888tron.com web site.</div>
+                        <div class="flex-shrink-1 ml-3">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div id="collapse5" data-parent="#accordionTrouble" class="collapse">
+                        <div data-locale="answer_5" class="accordion-text p-2">
+                            Refresh the website. Refresh your wallet or login into it again if necessary. Make sure your wallet works under the Mainnet. In the wallet Settings menu try choosing another Custom node form the list available.
+                        </div>
+                    </div>
+                    <div id="heading6" data-toggle="collapse" data-target="#collapse6" class="accordion-title d-flex align-items-center p-2">
+                        <div class="w-100" data-locale="question_6">My 888 tokens don’t freeze (unfreeze).</div>
+                        <div class="flex-shrink-1 ml-3">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div id="collapse6" data-parent="#accordionTrouble" class="collapse">
+                        <div data-locale="answer_6" class="accordion-text p-2">
+                            Make sure you have at least TRX 5 on your wallet account. Every time you freeze or unfreeze your tokens you need energy and bandwidth. Wait 5-10 seconds. If nothing happened refresh the website. Refresh your wallet or login into it again if necessary. Make sure your wallet works under the Mainnet. In the wallet Settings menu try choosing another Custom node form the list available.
+                        </div>
+                    </div>
+                    <div id="heading7" data-toggle="collapse" data-target="#collapse7" class="accordion-title d-flex align-items-center p-2">
+                        <div class="w-100" data-locale="question_7">My referral link is not working.</div>
+                        <div class="flex-shrink-1 ml-3">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div id="collapse7" data-parent="#accordionTrouble" class="collapse">
+                        <div data-locale="answer_7" class="accordion-text p-2">
+                            You were invited to 888tron.com by another referral. Now your wallet is tied up to that referral and you cant use your own ref.link for yourself.
+                        </div>
+                    </div>
+                    <div id="heading8" data-toggle="collapse" data-target="#collapse8" class="accordion-title d-flex align-items-center p-2">
+                        <div class="w-100" data-locale="question_8">How can I get my dividends from 888 token?</div>
+                        <div class="flex-shrink-1 ml-3">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div id="collapse8" data-parent="#accordionTrouble" class="collapse">
+                        <div data-locale="answer_8" class="accordion-text p-2">
+                            Press “unfreeze" button on 888tron.com (Dividends section ) to get them. Divs will be transferred to your wallet immediately. Make sure you have TRX 3 on your account. Once its done do not forget to freeze your tokens again so you don’t miss next divs. distribution.
+                        </div>
+                    </div>
+                    <div id="heading9" data-toggle="collapse" data-target="#collapse9" class="accordion-title d-flex align-items-center p-2">
+                        <div class="w-100" data-locale="question_9">What should I do to start playing on 888tron?</div>
+                        <div class="flex-shrink-1 ml-3">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div id="collapse9" data-parent="#accordionTrouble" class="collapse">
+                        <div data-locale="answer_9" class="accordion-text p-2">
+                            You need Chrome browser. Register TRONLink wallet to play on Desktop. <br>To play on mobile please use<br> Math Wallet (www. mathwallet.org), <br>TronWallet (www.TronWallet.me),<br> Banko wallet (www.bankowallet.com).
+                        </div>
+                    </div>
+                    <div id="heading10" data-toggle="collapse" data-target="#collapse10" class="accordion-title d-flex align-items-center p-2">
+                        <div class="w-100" data-locale="question_10">Where I can trade my tokens?</div>
+                        <div class="flex-shrink-1 ml-3">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div id="collapse10" data-parent="#accordionTrouble" class="collapse">
+                        <div data-locale="answer_10" class="accordion-text p-2">
+                            You can trade 888 tokens here: https://trontrade.io
+                        </div>
+                    </div>
+                    <div id="heading11" data-toggle="collapse" data-target="#collapse11" class="accordion-title d-flex align-items-center p-2">
+                        <div class="w-100" data-locale="question_11">Where I can check info about your token address and your platform?</div>
+                        <div class="flex-shrink-1 ml-3">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div id="collapse11" data-parent="#accordionTrouble" class="collapse">
+                        <div data-locale="answer_11" class="accordion-text p-2">
+                            www.tronscan.org <br>Token address: TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3<br> 888tron game smart contract address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe <br>Github:https://github.com/888tron/contracts/blob/master/Token888.sol <br>https://github.com/888tron/contracts
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="roadmapModal" tabindex="-1" role="dialog" aria-labelledby="roadmapModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1637,7 +1786,7 @@
 <script src="js/SoundManager.js?v=2"></script>
 <script src="js/SlotView.js?v=3"></script>
 
-<script src="js/locale.js?v=7.2"></script>
+<script src="js/locale.js?v=7.3"></script>
 <script src="js/main.js?v=708"></script>
 <script src="js/cards.js?v=7"></script>
 

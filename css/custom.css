@@ -1027,3 +1027,20 @@ footer {
     bottom: 0;
     z-index: 1;
 }
+
+.accordion .accordion-title {
+    cursor: pointer;
+    background: #171717;
+    margin-top: 3px;
+}
+
+.accordion .accordion-title i {
+    transform: rotate(90deg);
+}
+
+.accordion .accordion-title.collapsed i {
+    transform: rotate(0deg);
+}
+.accordion .accordion-text {
+    color: #D3D3D3;
+}

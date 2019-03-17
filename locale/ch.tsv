@@ -115,3 +115,26 @@ roadmap_date_7	从6月
 roadmap_text_7	开始推出第一个孵化dapp。
 roadmap_date_8	7月
 roadmap_text_8	研究合法化以及申请牌照。
+question_1	I didn’t get my bet (winnings) back.
+answer_1	Using your TRX wallet number check on tronscan.org - Internal Transactions section. All winning payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
+question_2	I have not received my dividend.
+answer_2	Make sure your tokens were frozen at the moment ofr divs distribution. Using your TRX wallet number check on tronscan.org - Internal Transactions section. All divs payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
+question_3	I have a bunch of TRX missing from playing.
+answer_3	888Tron.com is a fully decentralized platform. If your bet was accepted by smart contract it means that it was processed by blockchain and can be easily check on tronscan.org - Internal Transactions section. All winning payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe. Unaccepted bets do not influence your wallet balance and will be returned. Due to an extremely high number of bets made per second (~15-20) some bets might be rejected by smart contract.
+question_4	How I can check my game log.
+answer_4	You may use this instrument to check you game log. https://888tron.com/api/getHistory?address= - After (=) you shall put your wallet number.
+question_5	My Tronlink wallet is not showing up today on the 888tron.com web site.
+answer_5	Refresh the website. Refresh your wallet or login into it again if necessary. Make sure your wallet works under the Mainnet. In the wallet Settings menu try choosing another Custom node form the list available.
+question_6	My 888 tokens don’t freeze (unfreeze).
+answer_6	Make sure you have at least TRX 5 on your wallet account. Every time you freeze or unfreeze your tokens you need energy and bandwidth. Wait 5-10 seconds. If nothing happened refresh the website. Refresh your wallet or login into it again if necessary. Make sure your wallet works under the Mainnet. In the wallet Settings menu try choosing another Custom node form the list available.
+question_7	My referral link is not working.
+answer_7	You were invited to 888tron.com by another referral. Now your wallet is tied up to that referral and you cant use your own ref.link for yourself.
+question_8	How can I get my dividends from 888 token?
+answer_8	Press “unfreeze" button on 888tron.com (Dividends section ) to get them. Divs will be transferred to your wallet immediately. Make sure you have TRX 3 on your account. Once its done do not forget to freeze your tokens again so you don’t miss next divs. distribution.
+question_9	What should I do to start playing on 888tron?
+answer_9	You need Chrome browser. Register TRONLink wallet to play on Desktop. <br>To play on mobile please use<br> Math Wallet (www. mathwallet.org), <br>TronWallet (www.TronWallet.me),<br> Banko wallet (www.bankowallet.com).
+question_10	Where I can trade my tokens?
+answer_10	You can trade 888 tokens here: https://trontrade.io
+question_11	Where I can check info about your token address and your platform?
+answer_11	www.tronscan.org <br>Token address: TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3<br> 888tron game smart contract address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe <br>Github:https://github.com/888tron/contracts/blob/master/Token888.sol <br>https://github.com/888tron/contracts
+troubleshooting	Troubleshooting
