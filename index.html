@@ -1213,38 +1213,19 @@
             <div class="modal-body">
                 <ul class="nav nav-tabs pb-2">
                     <li class="nav-item pr-3">
-                        <a class="active show" data-toggle="tab" aria-selected="true" href="#playGear"
-                           data-parent="#howTo">Gear of Fortune</a>
+                        <a class="active show" data-toggle="tab" aria-selected="true" href="#playCards" data-parent="#howTo"
+                           data-locale="cards">Dice52</a>
                     </li>
                     <li class="nav-item pr-3">
-                        <a data-toggle="tab" aria-selected="true" href="#playCards" data-parent="#howTo"
-                           data-locale="cards">Dice52</a>
+                        <a data-toggle="tab" aria-selected="true" href="#playGear"
+                           data-parent="#howTo">Gear of Fortune</a>
                     </li>
                     <li class="nav-item">
                         <a data-toggle="tab" aria-selected="true" href="#playSlot" data-parent="#howTo"> Crypto Slot</a>
                     </li>
                 </ul>
                 <div id="howTo" class="tab-content mt-3">
-                    <div id="playGear" class="tab-pane fade  show active">
-                        <p data-locale="how_1"> 1. Make sure you have a TRONLink wallet. For more information on how to
-                            create one,<a
-                                    href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec"
-                                    target="_blank">click here</a>. To play on mobile devices please use <a
-                                    href="https://mathwallet.org/" target="_blank">Math Wallet</a> or <a
-                                    href="https://tronwallet.me/" target="_blank">TronWallet</a>.</p>
-                        <p data-locale="how_2">2. To play you must own TRX, the underlying cryptocurrency that powers
-                            the TRON network.</p>
-                        <p data-locale="how_3">3. Set your BET AMOUNT. This is the amount of TRX you will be
-                            betting.</p>
-                        <p data-locale="how_4">4. Select the SECTOR.</p>
-                        <p data-locale="how_5">5. Click SPIN to place your bet. The smart contracts will then randomly
-                            generate a sector number.</p>
-                        <p data-locale="how_6">6. If the sector number is equal your prediction then you WIN! Payout =
-                            BET AMOUNT * SECTOR.</p>
-                        <p data-locale="how_7">Still have questions? Join our telegram group and we'll be more than
-                            happy to help!</p>
-                    </div>
-                    <div id="playCards" class="tab-pane fade">
+                    <div id="playCards" class="tab-pane fade show active">
                         <p data-locale="how_1"> 1. Make sure you have a TRONLink wallet. For more information on how to
                             create one,<a
                                     href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec"
@@ -1260,6 +1241,25 @@
                             in rank to the first card drawn from the deck by the player. Suits are matter in this game.
                             If the player guesses the outcome, he or she will win the bet multiplied by the odds which
                             depend on the card and the outcome chosen by the player.</p>
+                        <p data-locale="how_7">Still have questions? Join our telegram group and we'll be more than
+                            happy to help!</p>
+                    </div>
+                    <div id="playGear" class="tab-pane fade">
+                        <p data-locale="how_1"> 1. Make sure you have a TRONLink wallet. For more information on how to
+                            create one,<a
+                                    href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec"
+                                    target="_blank">click here</a>. To play on mobile devices please use <a
+                                    href="https://mathwallet.org/" target="_blank">Math Wallet</a> or <a
+                                    href="https://tronwallet.me/" target="_blank">TronWallet</a>.</p>
+                        <p data-locale="how_2">2. To play you must own TRX, the underlying cryptocurrency that powers
+                            the TRON network.</p>
+                        <p data-locale="how_3">3. Set your BET AMOUNT. This is the amount of TRX you will be
+                            betting.</p>
+                        <p data-locale="how_4">4. Select the SECTOR.</p>
+                        <p data-locale="how_5">5. Click SPIN to place your bet. The smart contracts will then randomly
+                            generate a sector number.</p>
+                        <p data-locale="how_6">6. If the sector number is equal your prediction then you WIN! Payout =
+                            BET AMOUNT * SECTOR.</p>
                         <p data-locale="how_7">Still have questions? Join our telegram group and we'll be more than
                             happy to help!</p>
                     </div>
@@ -1813,7 +1813,7 @@
 
 <script src="js/locale.js?v=7.5"></script>
 <script src="js/main.js?v=708"></script>
-<script src="js/cards.js?v=7"></script>
+<script src="js/cards.js?v=7.1"></script>
 
 <script src="js/sendgrid.js?v=1"></script>
 

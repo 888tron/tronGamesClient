@@ -210,4 +210,16 @@ function showMinBetTooltip(value){
     }
 }
 
+$('.navbar-brand[href="#gameCards"]').on('shown.bs.tab', function () {
+    $('a[href="#playCards"]').tab('show');
+})
+
+$('.navbar-brand[href="#gameGear"]').on('shown.bs.tab', function () {
+    $('a[href="#playGear"]').tab('show');
+})
+
+$('.navbar-brand[href="#gameSlot"]').on('shown.bs.tab', function () {
+    $('a[href="#playSlot"]').tab('show');
+})
+
 
