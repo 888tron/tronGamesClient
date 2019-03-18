@@ -55,7 +55,7 @@ function localize(lang, dictionary) {
             break;
 		case 'kr':
             $('#whitepaperLink').attr('href', 'wp/888Tron_kr.pdf');
-			$('.tgLink').attr('href', 'https://t.me/tron888');
+			$('.tgLink').attr('href', 'https://t.me/tron888_kor');
 			$('.roadmap-link').addClass('d-none');
 			$('.troubleshooting-link').addClass('d-none');
             break;
