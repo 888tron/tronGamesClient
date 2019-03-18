@@ -138,3 +138,5 @@ answer_10	You can trade 888 tokens here: https://trontrade.io
 question_11	Where I can check info about your token address and your platform?
 answer_11	www.tronscan.org <br>Token address: TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3<br> 888tron game smart contract address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe <br>Github:https://github.com/888tron/contracts/blob/master/Token888.sol <br>https://github.com/888tron/contracts
 troubleshooting	Troubleshooting
+question_12	I cannot find my 888 tokens after they were unfreezed.
+answer_12	You can check all your token transfers on tronscan.org (TRC-20 Transfers section) by typing in your wallet number where tokens are stored. All tokens transactions are kept in blockchain and cannot be faked or lost.

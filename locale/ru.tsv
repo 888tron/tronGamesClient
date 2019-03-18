@@ -138,3 +138,5 @@ answer_10	You can trade 888 tokens here: https://trontrade.io
 question_11	Как мне проверить децентрализованность платформы?
 answer_11	www.tronscan.org<br> Адрес токена 888: TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3<br> Адрес игр 888tron: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe<br> Github:https://github.com/888tron/contracts/blob/master/Token888.sol <br>https://github.com/888tron/contracts
 troubleshooting	Устранение неполадок
+question_12	Я не могу найти свои токены 888 после разморозки.
+answer_12	Вы можете проверить все транзакции токенов 888 по номеру своего кошелька на сайте www.tronscan.org (раздел TRC-20 Transfers section). Записи в блокчейне отражают все перемещения токенов и не могут быть изменены. 
