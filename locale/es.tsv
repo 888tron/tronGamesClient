@@ -115,29 +115,29 @@ roadmap_date_7	Junio ​​y después
 roadmap_text_7	el lanzamiento de nuevos juegos y la integración de DAPP de otros desarrolladores en la plataforma 888.
 roadmap_date_8	Julio
 roadmap_text_8	análisis legal (la posibilidad de obtener una licencia de juego para la plataforma dapp).
-question_1	I didn’t get my bet (winnings) back.
-answer_1	Using your TRX wallet number check on tronscan.org - Internal Transactions section. All winning payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
-question_2	I have not received my dividend.
-answer_2	Make sure your tokens were frozen at the moment ofr divs distribution. Using your TRX wallet number check on tronscan.org - Internal Transactions section. All divs payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
-question_3	I have a bunch of TRX missing from playing.
-answer_3	888Tron.com is a fully decentralized platform. If your bet was accepted by smart contract it means that it was processed by blockchain and can be easily check on tronscan.org - Internal Transactions section. All winning payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe. Unaccepted bets do not influence your wallet balance and will be returned. Due to an extremely high number of bets made per second (~15-20) some bets might be rejected by smart contract.
-question_4	How I can check my game log.
-answer_4	You may use this instrument to check you game log. https://888tron.com/api/getHistory?address= - After (=) you shall put your wallet number.
-question_5	My Tronlink wallet is not showing up today on the 888tron.com web site.
-answer_5	Refresh the website. Refresh your wallet or login into it again if necessary. Make sure your wallet works under the Mainnet. In the wallet Settings menu try choosing another Custom node form the list available.
-question_6	My 888 tokens don’t freeze (unfreeze).
-answer_6	Make sure you have at least TRX 5 on your wallet account. Every time you freeze or unfreeze your tokens you need energy and bandwidth. Wait 5-10 seconds. If nothing happened refresh the website. Refresh your wallet or login into it again if necessary. Make sure your wallet works under the Mainnet. In the wallet Settings menu try choosing another Custom node form the list available.
-question_7	My referral link is not working.
-answer_7	You were invited to 888tron.com by another referral. Now your wallet is tied up to that referral and you cant use your own ref.link for yourself.
-question_8	How can I get my dividends from 888 token?
-answer_8	Press “unfreeze" button on 888tron.com (Dividends section ) to get them. Divs will be transferred to your wallet immediately. Make sure you have TRX 3 on your account. Once its done do not forget to freeze your tokens again so you don’t miss next divs. distribution.
-question_9	What should I do to start playing on 888tron?
-answer_9	You need Chrome browser. Register TRONLink wallet to play on Desktop. <br>To play on mobile please use<br> Math Wallet (www. mathwallet.org), <br>TronWallet (www.TronWallet.me),<br> Banko wallet (www.bankowallet.com).
-question_10	Where I can trade my tokens?
-answer_10	You can trade 888 tokens here: https://trontrade.io
-question_11	Where I can check info about your token address and your platform?
-answer_11	www.tronscan.org <br>Token address: TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3<br> 888tron game smart contract address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe <br>Github:https://github.com/888tron/contracts/blob/master/Token888.sol <br>https://github.com/888tron/contracts
-troubleshooting	Troubleshooting
-question_12	I cannot find my 888 tokens after they were unfreezed.
-answer_12	You can check all your token transfers on tronscan.org (TRC-20 Transfers section) by typing in your wallet number where tokens are stored. All tokens transactions are kept in blockchain and cannot be faked or lost.
-referrals_alert	Commission is collected to avoid bots creating referral links. Commission goes to Div's smart contract for farther distribution between token holders. 
+question_1	No recebí mis apuntes (ganancias)
+answer_1	Usando el número de su monedero TRX, verifique en tronscan.org - Sección de Transacciones Internas. Todos los pagos ganados recibe de esta dirección: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
+question_2	No he recebido mis dividendos
+answer_2	Asegúrese de que sus tokens estaban bloqueados en el momento de la distribución de dividendos. Usando el número de su monedero TRX, verifique en tronscan.org - Sección de Transacciones Internas. Todos los pagos ganados recibe de esta dirección: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
+question_3	Perdí TRX de mi balanza durante el juego
+answer_3	La plataforma 888Tron.com está completamente descentralizada y trabaja en smart contratos. Si su oferta es aceptada, se mostrará en el historia de transacciones de la cadena de bloques de Tron y puede consultarla en www.tronscan.org mediante el número de su monedera TRX en la secsión Transacciones Internas. Todos los pagos se realizan desde la dirección TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe. Las apuestas no aceptadas se devuelven al jugador automáticamente y no afectan el saldo de la monedera. En algunos casos, debido a una carga muy grande (~ 15-20 transacciones por segundo), un smart contrato puede no aceptar su oferta.
+question_4	¿Dónde puedo enocntrar la historia de mi juego?
+answer_4	Puede usar este instrumento: https://888tron.com/api/getHistory?address= - después del signo ''='' necesita ingresar el número de su monedero.
+question_5	Mi balanza no se muestra en el sitio 888TRON.com
+answer_5	Reinicie el sitio web. Después renicie su monedero o vuelva a iniciar el sesión si es necesario. Asegúrese de que su monedero trabaja en la red Mainnet. En el menú Configuración de monedero, intente cambiar el nodo de la lista existente.
+question_6	Mis tokens no estan (des)bloqueadas 
+answer_6	Asegúrese de que su monedero tenga un balance positivo (5 TRX). Cada vez que (des)bloqueas tokens, gastas energía. Después de hacer clic en el botón seleccionado, debe esperar 5-10 segundos hasta que la red Tron procese la transacción. Reinicie el sitio. Reinicie su monedero y, si es necesario, vuelva a iniciar la sesión. Asegúrese de que la cartera funciona en la red Mainnet. En el menú Configuración de monedero, intente cambiar el nodo de la lista existente.
+question_7	Mi enlace de referencia no funciona.
+answer_7	Esto significa que usted llegó al sitio 888tron.com en el enlace de referencia de otra persona y ahora su monedero está añadido a su enlace de referencia. Es imposible cambiar el enlace. Jugar en su propio enlace desde esta billetera tampoco funcionará. Por eso necesita crear otra monedora
+question_8	¿Cómo obtengo dividendos de mis 888 tokens?
+answer_8	En la sección Dividendos del sitio web 888tron.com, haga clic en el botón ''desbloquear'. Los dividendos serán acreditados a su monedora automáticamente. Asegúrese de que el balance de su billetera sea positivo (3-5 TRX). Después de desbloquear tokens, no olvide bloquearas nuevamente para participar en las siguientes rondas de distribución de dividendos.
+question_9	¿Qué debo hacer para comenzar a jugar en 888tron.com?
+answer_9	Para jugar en tu computadora, usa el explorador Chrome. Registre su TRX Wallet TronLink. Para jugar con telefonos móviles, use las siguientes carteras: <br> Math Wallet (www.mathwallet.org), <br> TronWallet (www.TronWallet.me), <br> Banko wallet (www. Bankowallet.com).
+question_10	¿Dónde puedo intercambiar mis tokens?
+answer_10	Puede intercambiar 888 tokens aquí: https://trontrade.io
+question_11	¿Cómo puedo verificar la descentralización de la plataforma?
+answer_11	www.tronscan.org <br> Dirección del token 888: TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3 - Dirección de los juegos de 888tron: TGtGhthzyLBYPUKDysXX11gRKPYVTQuMe Github: https://github.com/888tron/contracts/blob/master/Token888.sol <br>https://github.com/888tron/contracts
+troubleshooting	TroublSolución de problemaseshooting
+question_12	No puedo encontrar mis 888 tokens después de desbloquear.
+answer_12	Puede verificar todas las transacciones de tokens 888 por el número de su monedora en el sitio www.tronscan.org (sección TRC-20 Transfers section). Las entradas en la cadena de bloques reflejan todos los movimientos de los tokens y no se pueden cambiar.
+referrals_alert	La comisión se cobra para excluir la creación múltiple de enlaces de referencia por parte de bots. Los fondos de la comisión van al smart contratos para pagar los dividendos.

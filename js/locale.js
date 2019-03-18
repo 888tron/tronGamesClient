@@ -1,4 +1,4 @@
-var localeVer = '4.1';
+var localeVer = '4.2';
 
 var dictionary = {};
 
@@ -47,7 +47,6 @@ function localize(lang, dictionary) {
         case 'es':
             $('#whitepaperLink').attr('href', 'wp/888Tron_es.pdf');
 			$('.tgLink').attr('href', 'https://t.me/tron888');
-			$('.troubleshooting-link').addClass('d-none');
             break;
 		case 'ch':
             $('#whitepaperLink').attr('href', 'wp/888Tron_ch.pdf');
