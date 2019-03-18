@@ -1165,9 +1165,10 @@
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="referralText">https://888tron.com/?r=</label>
-                        <input type="text" id="referralText" class="form-control mx-sm-3" style="width: 164px;"
+                        <input type="text" id="referralText" class="form-control mx-sm-3 mb-2 mb-sm-0" style="width: 164px;"
                                placeholder="my_referral_name">
                         <button type="button" class="btn btn-primary" onclick="onBuyLink()">8.88 TRX</button>
+                        <i class="fas fa-question-circle mx-2" style="cursor: pointer;" data-toggle="modal" data-target="#referralAlertModal"></i>
                     </div>
                 </form>
             </div>
@@ -1178,6 +1179,22 @@
                 <button type="button" class="btn btn-primary" onclick="onCopyRef()" data-locale="copy_link">Copy the
                     link
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="referralAlertModal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content modal-content-dark">
+            <div class="modal-header border-0">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p data-locale="referrals_alert">Commission is collected to avoid bots creating referral links. Commission goes to Div's smart contract for farther distribution between token holders. </p>
             </div>
         </div>
     </div>
@@ -1794,7 +1811,7 @@
 <script src="js/SoundManager.js?v=2"></script>
 <script src="js/SlotView.js?v=3"></script>
 
-<script src="js/locale.js?v=7.4"></script>
+<script src="js/locale.js?v=7.5"></script>
 <script src="js/main.js?v=708"></script>
 <script src="js/cards.js?v=7"></script>
 
