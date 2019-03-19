@@ -19,7 +19,7 @@ block_number	블록 넘버 :
 result_2	결과 :
 send	보내기
 referrals	추천
-referrals_text	친구추천 이벤트! 전체 베팅금에서 2%에 상당한 장려금을 얻을수 있습니다. 모든 장려는 스마트 계약을 통해 자동으로 전송됩니다.링크를 복사하여 모든 친구들한테 공유하세요! 추천링크를 생성하는 비용은 8.88TRX이고 거래수수료는 1TRX이하입니다. 이전 링크가 새로운 링크로 바뀌기전까지 링크는 무제한으로 만들수 있습니다.
+referrals_text	친구추천 이벤트! 전체 베팅금에서 2%에 상당한 장려금을 얻을수 있습니다. 모든 장려금은 스마트 계약을 통해 자동으로 전송됩니다.링크를 복사하여 모든 친구들한테 공유하십시오! 추천링크를 생성하는 비용은 8.88TRX이고 거래수수료는 1TRX이하입니다. 이전 링크가 새로운 링크로 바뀌기전까지 링크는 무제한으로 만들수 있습니다.
 how_1	1. TRON Link 지갑을 확인하십시오. 만드는 방법에 대한 자세한 내용은  <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">여기를 클릭하여  </a> 를 참조하십시오.
 how_2	2. 플레이하기 위해서는 TRX를 갖고 있어야 합니다. TRX는 TRON에서 기본적인 암호 화폐입니다.
 how_3	3. 귀하의 베팅금액을 설정하십시오. 이 베팅금액을 TRX금액입니다.
@@ -28,7 +28,7 @@ how_5	5. SPIN을 클릭하시고 베팅하십시오. 스마트 계약들은 랜�
 how_6	6. 섹터 넘버가 귀하의 예측과 같게되면 귀하는 이기게 되는 것입니다! 페이아웃 = 베팅 금액 * 섹터.
 how_7	문의상항이 있으시면 고객센터로 연락주십시오! <a href="https://t.me/tron888" target="_blank"> 
 network_err	네트워크 에러입니다.
-tsc_err	Tron 스마트계약은 현재 사용이 불가능합니다. 나중에 다시 시도하여 주십시오.
+tsc_err	TRON 스마트계약은 현재 사용이 불가능합니다. 나중에 다시 시도하여 주십시오.
 need_tron	TRONLink가 필요합니다.
 tron_text	TRON 지갑에 로그인하십시오. TRONLink 금고가 없으신 경우에는 Chrome 확장 프로그램을 https://goo.gl/Yb4NRU 방문하여 다운로드하십시오. (Chrome 브라우저만 사용할 수 있습니다)
 wagered	배당받은
@@ -42,7 +42,7 @@ money	돈
 poker_dice	포커다이스
 crypto_slots	암호화된 슬롯
 dividends	배당금
-soon	빨리
+soon	곧
 play	플레이
 to_mine	마이닝에서 1개의 토큰888에 해당되는 TRX 
 stage	스테이지
@@ -57,23 +57,23 @@ frozen	동결된
 unfreeze	동결취소
 wtithdraw_text	TRONLink지갑에 로그인하십시오.TRONLink지갑을 만들지 않았을 경우 아래 링크를 열어보세요<a href=" http://u6.gg/gmc5D" target="_blank"></a> http://u6.gg/gmc5D 에서 크롬확장을 다운하세요 . (TRONbet는 유일한 사용가능한 크롬 브라우즈입니다.)
 freezing	동결되고 있습니다
-freezing_text	1.수익은 레벨이 오를때 토큰888을 동결시켜야 하고 나중에 동결을 철회하십시오.<br>2.수익은 동결시킨 상태에서만 발생합니다.<br>3.동결할수 있는 최소 토큰888의 개수는 1입니다.<br>4.레벨이 올라간후 토큰888의 동결철회를 하려면 내부 스마트계약 거래에 의해 배당금이 자동으로 완성됩니다.<br>5.이미 동결된 토큰이 있을 경우 자동으로 철회되고 전체 금액이 다시 동결됩니다.토큰으로 인한 배당금이 발생될시 내부 스마트계약거래로 플레이어의 지갑에 자동이체됩니다.<br>6.토큰888의 동결 및 철회는 어느정도 TRX를 소비하고 이체시 지갑에 보유하고 있어야 합니다.
+freezing_text	1.배당을 받으려면 레벨이 끝나기 전에 888토큰을 동결하고 레벨이 끝난 후에는 동결을 해제해야 합니다.<br>2.배당은 동결된 888토큰에 수량에서만 발생합니다.<br>3.동결할수 있는 최소 888토큰의 개수는 한개입니다.<br>4.레벨이 종료된 후 888토큰이 동결 해제되면 스마트 계약을 통해 내부거래에 의해 배당금이 자동으로 발생하게 됩니다.<br>5.이미 동결된 토큰이 있을때 추가 동결할경우 기존 동결은 자동으로 해제되고 전체 수량이 다시 동결됩니다.토큰으로 인한 배당금이 발생될시 내부 스마트계약거래로 플레이어의 지갑에 자동이체됩니다.<br>6. 888토큰을 동결 및 동결해제를 할때에는 소량의 TRX를 필요로하기때문에 TRON을 지갑안에 가지고 있어야합니다.
 withdraw	철회
-token_about	토큰888에 관하여
-token_title_1	토큰888 및 용도?
-token_text_1	토큰 888은 블록체인TRON의 토큰TRC20입니다. 총 10억개의 토큰888을 얻을수 있습니다. (토큰888의 배분에 관한 정보는 백서를 통해 확인하십시오). 토큰888의 소유자들은 갖고 있는 토큰888의 개수에 따라 배당금TRX을 지급받을수 있습니다.
-token_title_2	배당금이란? 왜 배당금은 변동될까요?
+token_about	888토큰에 관하여
+token_title_1	888토큰 및 용도?
+token_text_1	888토큰은 TRON블록체인의 TRC20기반 토큰 입니다. 총 1억개의 888토큰을 얻을수 있습니다. (888토큰의 배분에 관한 정보는 백서를 통해 확인하십시오). 토큰888의 소유자들은 갖고 있는 토큰888의 개수에 따라 배당금TRX을 지급받을수 있습니다.
+token_title_2	배당금이란? 배당금은 왜 변동될까요?
 token_text_2	배당금은 888TRON.com의 순수익에서 배분됩니다. 배당금은 888TRON.com에서 사용자의 승패에 따라 지속적으로 변동됩니다.
-token_title_3	토큰888을 구입할수 있을까요?
-token_text_3	토큰888은 직접 구매할수 없고 오직888TRON.com에서 게임을 해야 얻을수 있습니다. 토큰888은 DEX 및 기타 보안거래소에서 사용할수 있습니다.
-token_title_4	이미 철회한 상태에서 토큰888을 어디에서 볼수 있을까요?
-token_text_4	토큰888은 Tronlink에서 추가할수 있습니다. 토큰 섹션을 선택하고 "TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3" 에서 정보를 입력하신뒤 처분할수 있습니다.
-token_title_5	배당금을 받은후 나의 토큰888은 없어질까요?
-token_text_5	아닙니다. DEX에서 교환을 결정하지 않는 한 토큰888은 영구적으로 유지됩니다.지갑에 토큰888이 있으면 888TRON.com에서 배당금을 받게 됩니다. 소유하고 있는 토큰888 개수는 시간에 따라 변하지 않고 받는 배당금은 시간에 따라 줄어들게 됩니다. 
+token_title_3	888토큰을 구입할수 있을까요?
+token_text_3	888토큰은 직접 구매할수 없고 오직888TRON.com에서 게임을 해야 얻을수 있습니다. 888토큰은 DEX 및 기타 보안거래소에서 사용할수 있습니다.
+token_title_4	이미 철회한 상태에서 888토큰을 어디에서 볼수 있을까요?
+token_text_4	888토큰은 Tronlink에서 추가할수 있습니다. 토큰 섹션을 선택하고 "TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3" 에서 정보를 입력하신뒤 처분할수 있습니다.
+token_title_5	배당금을 받은후 나의 888토큰은 없어질까요?
+token_text_5	아닙니다. DEX에서 교환을 결정하지 않는 한 888토큰은 영구적으로 유지됩니다.지갑에 888토큰이 있으면 888TRON.com에서 배당금을 받게 됩니다. 소유하고 있는 888토큰 개수는 시간에 따라 변하지 않고 받는 배당금은 시간에 따라 줄어들게 됩니다. 
 token_title_6	현재 토큰888의 가치는? 현재 토큰888을 교화가능여부는?
-token_text_6	"배당금"탭에서 토큰888에 관한 실시간 정보를 체크할수 있습니다. 토큰888의 가치는 전체 플랫폼 888TRON.com과 커뮤니티와 상관됩니다. 토큰888은 DEX 및 기타 보안거래소에서 교환할수 있습니다.
+token_text_6	"배당금"탭에서 888토큰에 관한 실시간 정보를 체크할수 있습니다. 888토큰의 가치는 전체 플랫폼 888TRON.com과 커뮤니티와 상관됩니다. 888토큰은 DEX 및 기타 보안거래소에서 교환할수 있습니다.
 token_title_7	토큰888의 배당금은 어떻게 받습니까?
-token_text_7	배당금을 받으려면 토큰888을 철회한후 배당분배가 끝난뒤 동결을 취소해야 합니다.동결을 취소하지 않은 토큰은 배당금을 받지 못합니다.배당금은 동결취소뒤 귀하의 계정으로 자동이체됩니다.
+token_text_7	배당금을 받으려면 888토큰을 동결한후 배당분배가 끝난뒤 동결을 해제해야 합니다.동결을 해제하지 않은 토큰은 배당금을 받지 못합니다.배당금은 동결해제뒤 귀하의 계정으로 자동이체됩니다. 
 alreadyExist	이미 존재합니다
 copy_link	링크를 복사하십시오
 noMoney	지갑에 있는 TRX가 부족합니다
@@ -87,7 +87,7 @@ draw_over	높은 카드
 payout_win	지불
 multiplayer	멀티플레이어
 win_chance	찬스
-how_dice	4. 판에 52장의 카드가 있습니다. 낮은 카드 2장 높은 카드A(에이스). 플레이어는 판에서 카드를 선택하고 세가지 이벤트중 하나를 선택하여 베팅합니다. 두번째 카드는 52장 카드중 하나이며 무작위로 선택될것이며 이는 첫번째 카드보다 등급으로 높거나 낮거나 같을수도 잇습니다.게임관련 소송에는 의미가 있는것입니다. 이벤트를 추측하는 경우 플레이어는 선택된 카드에 상응하는 수와 베팅을 위해 선택된 이벤트에 의해 배당금이 지불될것입니다.
+how_dice	4. 데크에 52장의 카드가 있습니다. 가장 낮은 랭크는 2이고 높은 랭크는A(에이스)입니다. 플레이어는 데크에서 카드를 선택하고 세가지중 하나를 선택하여 베팅합니다. 다음카드는 52장 카드중 무작위로 하나가 선택될것이며 이는 첫번째 카드보다 등급이 높거나 낮거나 같을수도 잇습니다. 게임에서 짝을이룬패가 중요합니다. 플레이어가 결과를 추측하면 카드와 플레이어가 선택한 결과에따라 확률을 곱한비율에 의해 베팅금액이 지불될것입니다.
 total_mined	전체 수입
 unfreezeToWithdraw	Unfreeze Tokens 888 to withdraw
 subscribe	구독하기
@@ -97,47 +97,47 @@ send_email	이메일 보내주세요
 bet_tooltip	작은 투자금 (50-100 TPH)은 큰 투자금 (~ 0.5 TRX)과 동일한 에너지를 소비하지만 적은 토큰과 적은 수입을 받습니다.
 support	지원
 exchange	거래소
-leaderboard	Leaderboard
-roadmap	Roadmap
-roadmap_date_1	March
-roadmap_text_1	Adding German and Japanese web site localizations.
-roadmap_date_2	March
-roadmap_text_2	General platform improvements and optimization (speed and transaction costs).
-roadmap_date_3	April
-roadmap_text_3	European Roulette game launch.
-roadmap_date_4	April
-roadmap_text_4	Presentation of 888 ecosystem concept and first steps of development success.
-roadmap_date_5	May
-roadmap_text_5	Black Jack game launch.
-roadmap_date_6	May
-roadmap_text_6	Best dev.team competion launch with prize fund over USD 100K.
-roadmap_date_7	Starting June
+leaderboard	리더보드
+roadmap	로드맵
+roadmap_date_1	3월
+roadmap_text_1	독일어 및 일본어 웹 사이트 번역 추가
+roadmap_date_2	3월
+roadmap_text_2	일반적인 플랫폼 개선 및 최적화(속도 및 거래 비용).
+roadmap_date_3	4월
+roadmap_text_3	유럽 룰렛 게임 출시.
+roadmap_date_4	4월
+roadmap_text_4	888 생태계 개념과 개발 성공의 첫 단계 제시.
+roadmap_date_5	5월
+roadmap_text_5	블랙 잭 게임 출시.
+roadmap_date_6	5월
+roadmap_text_6	최우수 개발자 팀이 100000달러 이상의 상금을 수여
+roadmap_date_7	6월의 시작
 roadmap_text_7	Afirst games and DAPPs integration created by outsource dev.teams.
-roadmap_date_8	July
-roadmap_text_8	Legal research (Subject: 888tron.com licensing)
-question_1	I didn’t get my bet (winnings) back.
-answer_1	Using your TRX wallet number check on tronscan.org - Internal Transactions section. All winning payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
-question_2	I have not received my dividend.
-answer_2	Make sure your tokens were frozen at the moment ofr divs distribution. Using your TRX wallet number check on tronscan.org - Internal Transactions section. All divs payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
-question_3	I have a bunch of TRX missing from playing.
-answer_3	888Tron.com is a fully decentralized platform. If your bet was accepted by smart contract it means that it was processed by blockchain and can be easily check on tronscan.org - Internal Transactions section. All winning payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe. Unaccepted bets do not influence your wallet balance and will be returned. Due to an extremely high number of bets made per second (~15-20) some bets might be rejected by smart contract.
-question_4	How I can check my game log.
-answer_4	You may use this instrument to check you game log. https://888tron.com/api/getHistory?address= - After (=) you shall put your wallet number.
-question_5	My Tronlink wallet is not showing up today on the 888tron.com web site.
-answer_5	Refresh the website. Refresh your wallet or login into it again if necessary. Make sure your wallet works under the Mainnet. In the wallet Settings menu try choosing another Custom node form the list available.
-question_6	My 888 tokens don’t freeze (unfreeze).
-answer_6	Make sure you have at least TRX 5 on your wallet account. Every time you freeze or unfreeze your tokens you need energy and bandwidth. Wait 5-10 seconds. If nothing happened refresh the website. Refresh your wallet or login into it again if necessary. Make sure your wallet works under the Mainnet. In the wallet Settings menu try choosing another Custom node form the list available.
-question_7	My referral link is not working.
-answer_7	You were invited to 888tron.com by another referral. Now your wallet is tied up to that referral and you cant use your own ref.link for yourself.
-question_8	How can I get my dividends from 888 token?
-answer_8	Press “unfreeze" button on 888tron.com (Dividends section ) to get them. Divs will be transferred to your wallet immediately. Make sure you have TRX 3 on your account. Once its done do not forget to freeze your tokens again so you don’t miss next divs. distribution.
-question_9	What should I do to start playing on 888tron?
-answer_9	You need Chrome browser. Register TRONLink wallet to play on Desktop. <br>To play on mobile please use<br> Math Wallet (www. mathwallet.org), <br>TronWallet (www.TronWallet.me),<br> Banko wallet (www.bankowallet.com).
-question_10	Where I can trade my tokens?
-answer_10	You can trade 888 tokens here: https://trontrade.io
-question_11	Where I can check info about your token address and your platform?
+roadmap_date_8	7월
+roadmap_text_8	법률연구(목표: 888tron.com 라이센스)
+question_1	내기에서 돈을 받지 못 했다.
+answer_1	 tronscan.org의 TRX 지갑 번호 확인 - 내부 거래 섹션 모든 당첨금은 이 주소에서 온다: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe.
+question_2	배당금을 받지 못했습니다
+answer_2	배포하는 순간에 당신의 토큰이 동결되었는지 확인한다.  tronscan.org의 TRX 지갑 번호 확인 - 내부 거래 섹션 모든 분할 지불은 이 주소에서 온다: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe.
+question_3	나는 경기 중에 TRX를 잃어버렸다.
+answer_3	888Tron.com은 완전히 분산된 플랫폼입니다. 만약 당신의 내기가 스마트 계약에의해 수락된경우 TRON블록의 거래 기록에 표시되며 tronscan.org - 내부 거래 섹션에서 쉽게 확인할 수 있다는 것을 의미합니다. 모든 당첨금이 이 주소에서 나옵니다: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe. 경우에 따라 매우 큰 부하(초당 15-20회)로 인해 스마트 계약이 귀하의 내기를 거부할수도 있습니다 이때 베팅은 자동으로 반환되며 지갑 잔액에 영향을 미치지 않습니다.
+question_4	게임 기록을 확인하는 방법
+answer_4	당신은 당신의 게임 일지를 확인하기 위해 이 도구를 사용할 수 있다.  https://888tron.com/api/getHistory?address= - 다음에 지갑 번호를 기입한다.
+question_5	지갑이 웹 사이트에 표시되지 않습니다.
+answer_5	웹 사이트를 새로고침하십시오. 지갑을 다시 로드해보고 필요한 경우 다시 로그인하십시오. 지갑이 메인넷 네트워크에서 작동하는지 확인하세요. 지갑 설정 메뉴에서 사용 가능한 목록에서 노드를 변경하십시오.
+question_6	888 토큰이 동결되지 않습니다 (동결해제).
+answer_6	지갑 계좌에 적어도 5TRX이 있는지 확인하십시오. 토큰을 동결하거나 동결을 해제할 때마다 에너지와 대역폭이 필요합니다. 5초에서 10초정도 기다리세요. 만약 아무 일도 없다면 웹사이트를 새로고침을해보고 필요한 경우 지갑을 새로 로드하거나 다시 로그인하십시오. 메인넷 아래에서 지갑이 제대로 작동하는지 확인해보고 지갑 설정 메뉴에 사용 가능한 목록에서 다른 사용자 지정 노드를 선택하십시오.
+question_7	내 추천 링크가 작동하지 않습니다.
+answer_7	다른 추천링크로 888tron.com에 초대받은경우 당신의 지갑은 그 추천링크에 묶여있게되어 자신의 추천 링크를 사용할 수 없습니다.
+question_8	888 토큰에서 배당금을 어떻게 받을 수 있습니까?
+answer_8	배당은 이틀간격으로 들어오며 배당시간이 완료되면(한국시각 오후9시이후) 888tron.com내의 배당탭에서 동결해제 버튼을 누르면 배당금이 즉시 들어올것입니다. 이때 지갑안에 소량의(최소3 TRX)트론이 있는지 확인하십시오. 배당을 받은후 다음 배당을 위해 다시 동결하는걸 잊지 말아야합니다.
+question_9	888TRON.COM에서 배팅을 하려면 어떻게 해야합니까?
+answer_9	컴퓨터에서 배팅을 하려면 크롬브라우져가 있어야 합니다. 크롬브라우져에서 플러그인 TRONLink를 추가하고 지갑을 등록하십시오.<br> 모바일에서 하려면 <br> Math Wallet (www. mathwallet.org)<br>TronWallet (www.TronWallet.me),<br> Banko wallet (www.bankowallet.com). 
+question_10	어디서 내 토큰을 교환할 수 있습니까?
+answer_10	https://trontrade.io 에서 888토큰을 거래할수있습니다
+question_11	어디에서 당신의 토큰 주소와 플랫폼에 대한 정보를 확인할 수 있는가?
 answer_11	www.tronscan.org <br>Token address: TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3<br> 888tron game smart contract address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe <br>Github:https://github.com/888tron/contracts/blob/master/Token888.sol <br>https://github.com/888tron/contracts
-troubleshooting	Troubleshooting
-question_12	I cannot find my 888 tokens after they were unfreezed.
-answer_12	You can check all your token transfers on tronscan.org (TRC-20 Transfers section) by typing in your wallet number where tokens are stored. All tokens transactions are kept in blockchain and cannot be faked or lost.
-referrals_alert	Commission is collected to avoid bots creating referral links. Commission goes to Div's smart contract for farther distribution between token holders. 
+troubleshooting	문제 해결
+question_12	동결해제 후에 지갑에서 888토큰을 찾을수 없습니다.
+answer_12	tronscan.org(TRC-20 Transfers 섹션)에서 토큰이 저장된 지갑번호를 입력하면 토큰 전송을 모두 확인할 수 있습니다. 모든 토큰 거래는 블록체인에 보관되며 위조하거나 분실할 수 없습니다.
+referrals_alert	봇을 통해 추천링크를 만드는것을 방지하기위해 수수료가 발생합니다. 그 수수료는 토큰홀더들에게 스마트컨트렉트를 통해서 배분될 것입니다.
