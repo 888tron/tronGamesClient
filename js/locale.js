@@ -44,6 +44,9 @@ function localize(lang, dictionary) {
             $('#whitepaperLink').attr('href', 'wp/888Tron_ru.pdf');
 			$('.tgLink').attr('href', 'https://t.me/tron888_rus');
             break;
+		case 'de':
+			$('.tgLink').attr('href', 'https://t.me/tron888');
+            break;
         case 'es':
             $('#whitepaperLink').attr('href', 'wp/888Tron_es.pdf');
 			$('.tgLink').attr('href', 'https://t.me/tron888');
@@ -139,7 +142,7 @@ function loadLocale(lang) {
 
 function SetUserLocale() {
     lang = 'en';
-    var langList = ['ru', 'en', 'kr', 'es', 'ch', 'tr'];
+    var langList = ['ru', 'en', 'de', 'kr', 'es', 'ch', 'tr'];
     if (localStorage.getItem('lang')) {
         lang = localStorage.getItem('lang');
     } else {

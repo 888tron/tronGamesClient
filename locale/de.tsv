@@ -1,0 +1,143 @@
+fairness	Fairness
+how_to_play	Wie man spielt
+best_mode	Wetten gemacht
+total_won	Insgesamt gewonnen
+bet_amount	Wetteinsatz
+pls_select_sector	Bitte Sektor auswählen
+pls_login_to	Bitte melden Sie sich an
+spin	WETTEN
+time	Zeit
+block	Block
+player	Spieler
+prediction	Vorhersage
+result	Ergebnis
+bet	Wette
+payout	Auszahlung
+fairness_text	Die Gewinnzahlen sind zufällig und im Voraus nicht bekannt. Der Zufallszahlengenerator basiert auf den TRON hash block und wird durch einen smart contract im TRON Netzwerk betrieben. Du kannst deine Spieleradresse und die Blocknummer nutzen, um die Gewinnzahlen zu überprüfen.
+bet_id	Spieleradresse:
+block_number	Block Nummer:
+result_2	Ergebnis:
+send	Senden
+referrals	Anwerben
+referrals_text	Werde einfach durch das Weiterempfehlen von Freunden. Genießen Sie lebenslange Belohnungen, indem Sie dies Ihren Freunden empfehlen. Erhalten Sie 0,2% aller Wetteinsätze. Alle Belohnungen werden automatisch durch unseren smart contract verschickt. Kopieren Sie einfach den Link und teilen Sie ihn allen Ihren Freunden! Die Kosten um einen Werbungslink zu erstellen beträgt 8.88 TRX und weniger als 1 TRX als Transaktionsgebühr. Sie können beliebig oft neue Werbungslinks erstellen. Alte Links werden dabei automatisch ersetzt.
+how_1	1. Stellen Sie sicher, dass Sie einen TRONLink-Wallet besitzen. Weitere Informationen zur Erstellung finden Sie <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">hier</a>. Zum Spielen auf einem mobilen Gerät nutzen Sie <a href="https://mathwallet.org/" target="_blank">Math Wallet</a> oder <a href="https://tronwallet.me/" target="_blank">TronWallet</a>.
+how_2	2. Zum Spielen müssen Sie TRX besitzen, die zugrunde liegende Kryptowährung, die das Tron-Netzwerk antreibt.
+how_3	3. Stellen Sie Ihren Wetteinsatz ein. Dies ist die Menge an TRX mit der Sie wetten.
+how_4	4. Wählen Sie den SEKTOR aus.
+how_5	5. Klicken Sie auf WETTEN, um Ihren Einsatz zu platzieren. Die smart contracts werden dann eine zufällige Sektornummer generieren.
+how_6	6. Wenn die Sektornummer Ihrer Vorhersage entspricht, GEWINNEN Sie! Auszahlung = Wetteinsatz * Sektor.
+how_7	Noch Fragen? Treten Sie unserer <a href="https://t.me/tron888" target="_blank"> Telegrammgruppe </a> bei, wir helfen Ihnen gerne weiter!
+network_err	Network error
+tsc_err	Tron Smart Contract is not awalable now. Please try later.
+need_tron	Need TRONLink
+tron_text	Please login to your TRONLink wallet. If you do not have TRONLink wallet installed please <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">download the chrome extension.</a> Only using Chrome browser availble.
+wagered	Gewettet
+balance	Guthaben
+my_bets	Meine Wetten
+all_bets	Alle Wetten
+high_rollers	High Rollers
+rare_wins	Seltene Siege
+history	History
+money	Geld
+poker_dice	Poker Dice
+crypto_slots	Crypto Slots
+dividends	Dividenden
+soon	bald
+play	(Spiele
+to_mine	TRX um 1 Token 888 zu minen)
+stage	Phase:
+next_stage	Nächste Phase:
+available_dividends	Verfügbare Dividenden
+total_of 	Insgesamt
+frozen_across	sind im Netzwerk eingefroren. Du erhälst 
+available	Verfügbare Dividenden
+withdrawn	Abgehoben
+freeze	Einfrieren
+frozen	Eingefrozen
+unfreeze	Auftauen
+wtithdraw_text	Bitte melden Sie sich bei Ihrem TRONLink-Wallet an. Wenn Sie keine TRONLink-Geldbörse installiert haben, besuchen Sie <a href="http://u6.gg/gmc5D" target="_blank"> http://u6.gg/gmc5D </a> und laden Sie die Chrome-Erweiterung herunter. (TRONbet ist vorerst nur über den Chrome-Browser verfügbar.)
+freezing	Einfrieren
+freezing_text	1. Um Dividenden zu erhalten, sollten Sie Ihre 888 Token vor dem Ende eines Levels einfrieren und nach Ende des Levels wieder auftauen. 2. Dividenden werden nur für die eingefrorenen 888 Tokens gutgeschrieben. <br> 3. Eins ist die Mindestanzahl von 888 Token, die eingefroren werden sollten. 4. Wenn 888 Token nach dem Ende des Levels aufgetaut werden, werden Dividenden automatisch durch eine interne Transaktion über den smart contract ausgezahlt. 5. Wenn Sie beim Einfrieren einer neuen Anzahl von Tokens bereits einige eingefrorene Token auf Ihrem Konto haben, wird die vorherige Portion automatisch aufgetaut und dann die gesamte Anzahl der Token wieder eingefroren. Wenn Dividenden auf den vorherigen Teil der eingefroren Tokens sind, so werden sie durch eine interne Transaktion durch den smart contract automatisch in die Wallet des Spielers transferiert. 6. Das Einfrieren und Auftauen von 888 Tokens erfordert mehrere TRX. Aus diesem Grund müssen diese bei Transaktionen in der Wallet sein.
+withdraw	Abheben
+token_about	Über 888 Token
+token_title_1	Was ist 888 Token und wofür ist er da?
+token_text_1	888 Token ist ein TRC20 Token auf der TRON blockchain. Insgesamt können 100,000,000 888 tokens abgebaut werden (Für Information über die Verteilung der 888 Tokens, schauen Sie sich unser Whitepaper an). 888 Token-Besitzer erhalten Dividenden in TRX, je nachdem, wie viele 888 Tokens Sie besitzen.
+token_title_2	Was sind Dividenden? Und wieso schwankt sie?
+token_text_2	Dividenden werden aus dem Erlös von 888TRON, also dem Hausvorteil, abgeleitet. Der Dividendenpool wird ständig schwanken, je nachdem, ob die Nutzer auf 888TRON.Com gewinnen oder verlieren.
+token_title_3	Kann ich 888 Tokens kaufen?
+token_text_3	888 kann nicht direkt gekauft werden und kann nur durch Spielen auf 888TRON.com abgebaut werden. In Zukunft werden 888 Tokens auf DEXs und andere Krypto-Vermittlungsstellen verfügbar sein.
+token_title_4	Ich habe meine 888 Tokens abgehoben, wo kann ich sie sehen?
+token_text_4	Sie können Ihre 888 Token zu Tron Link hinzufügen. Wählen Sie den Abschnitt Token und drücken Sie Adresse hinzufügen "TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3". Sobald Ihre 888 Token hinzugefügt wurden, können Sie sie nach Belieben verwalten.
+token_title_5	Nachdem wir unsere Dividenden bekommen haben, werden die 888 Tokens verbrannt?
+token_text_5	Nein! 888 Token werden für immer bei Ihnen sein, sofern Sie sich nicht für einen DEX-Austausch entscheiden. Solange Sie 888 Token in Ihrem Wallet haben, erhalten Sie Dividenden von 888TRON.com. Wenn sich die Anzahl der 888 Token, die Sie besitzen, im Laufe der Zeit nicht ändert, kann sich die Höhe der Dividenden, die Sie erhalten, im Laufe der Zeit verringern.
+token_title_6	Wie viel sind 888 Token wert? Kann ich jetzt meine 888-Token austauschen?
+token_text_6	Sie können auf der Registerkarte „Dividenden“ nach Informationen zu 888 in Echtzeit suchen. Der Wert von 888 hängt von der gesamten Plattform und der Community von 888TRON.com ab. 888 Token können zukünftig an DEX- und anderen Krypto-Börsen ausgetauscht werden.
+token_title_7	Wie erhalte ich Dividenden auf meine 888 Token?
+token_text_7	Um Dividenden zu erhalten, müssen Sie Ihre 888-Token abheben, sie einfrieren, bis die Dividendenausschüttungsperiode abgelaufen ist, und anschließend Ihre Tokens auftauen. Die Token, die am Ende jeder Bergbaustufe nicht eingefroren wurden, nehmen nicht an der Ausschüttung von Dividenden teil. Die Dividenden werden automatisch vom Smart-Vertrag auf Ihr Konto überwiesen, nachdem Ihre 888 Token nicht eingefroren wurden.
+alreadyExist	Existiert bereits!
+copy_link	Link kopieren
+noMoney	Nicht genug TRX im Wallet.
+reward_sum	Belohnung:
+cards	Dice52
+prediction	Vorhersage
+result	Ergebnis
+draw_under	Niedrigere Karte
+draw_equal	Gleiche Karte
+draw_over	Höhere Karte
+payout_win	Auszahlung bei Gewinn:
+multiplayer	Multiplikator:
+win_chance	Gewinn Chance
+how_dice	4. Das Deck enthält 52 Karten. Der niedrigste Rang ist 2 und der höchste Rang ist A (Ass). Der Spieler wählt eine beliebige Karte aus dem Deck. Der Spieler setzt dann eine Wette auf eines der folgenden drei Ergebnisse: Die nächste Karte (eine der 51 verbleibenden Karten), die zufällig ausgewählt wird, ist a) HÖHER, b) NIEDRIGER oder c) GLEICH im Rang als die erste Karte, die der Spieler aus dem Deck gezogen hat. Kartensymbole haben dabei eine Bedeutung im Spiel. Wenn der Spieler das Ergebnis erraten kann, gewinnt er oder sie die Wette multipliziert mit der Quote, die von der Karte und dem vom Spieler gewählten Ergebnis abhängt.
+total_mined	Insgesamt abgebaut
+unfreezeToWithdraw	Auftauen der 888 Tokens um abzuheben
+subscribe	Abonnieren
+your_email	Ihre Email
+still_have_questions	Haben Sie noch Fragen?
+send_email	Senden Sie uns eine e-mail:
+bet_tooltip	Kleine Wetten (TRX 50-100) benutzen die selbe Energie im Tron-Netzwerk wie hohe Wetten, aber bauen dabei weniger Tokens ab und sind somit weniger profitabel, wenn man gewinnt.
+support	Support:
+exchange	Börse
+leaderboard	Bestenliste
+roadmap	Roadmap
+roadmap_date_1	März
+roadmap_text_1	Deutsche und Japanische Website Lokalisierung hinzufügen
+roadmap_date_2	März
+roadmap_text_2	Allgemeine Plattformverbesserungen und -optimierung (Geschwindigkeit und Transaktionskosten).
+roadmap_date_3	April
+roadmap_text_3	Start des europäischen Roulette-Spiels.
+roadmap_date_4	April
+roadmap_text_4	Vorstellung des 888 Ökosystemkonzepts und erste Schritte zum Entwicklungserfolg.
+roadmap_date_5	Mai
+roadmap_text_5	Start des Black Jack Spiels.
+roadmap_date_6	Mai
+roadmap_text_6	Bester Dev.Team-Wettbewerbsstart mit Preisgeldern über USD 100.000.
+roadmap_date_7	Ab Juni
+roadmap_text_7	erste Integration von Spielen und DAPPs, erstellt von externen dev.teams.
+roadmap_date_8	Juli
+roadmap_text_8	Rechtsrecherche (Gegenstand: Lizenzierung von 888tron.com)
+question_1	Ich habe meine Wette (Gewinne) nicht wiederbekommen.
+answer_1	Verwenden Sie Ihre TRX-Wallet-Nummer auf tronscan.org - Interne Transaktionen. Alle gewinnenden Auszahlungen stammen von dieser Adresse: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
+question_2	Ich habe meine Dividende nicht erhalten.
+answer_2	Stellen Sie sicher, dass Ihre Token zum Zeitpunkt der Ausschüttung der Dividenden eingefroren wurden. Verwenden Sie Ihre TRX-Wallet-Nummer auf tronscan.org - Interne Transaktionen. Alle Divs-Auszahlungen stammen von dieser Adresse: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
+question_3	Ich habe eine Menge TRX, die ich beim Spielen fehlen.
+answer_3	888Tron.com ist eine vollständig dezentralisierte Plattform. Wenn Ihre Wette von Smart Contract akzeptiert wurde, bedeutet dies, dass sie von Blockchain verarbeitet wurde und einfach über tronscan.org - Interne Transaktionen abgerufen werden kann. Alle gewinnenden Auszahlungen stammen von dieser Adresse: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe. Nicht akzeptierte Wetten haben keinen Einfluss auf Ihre Wallet und werden zurückgegeben. Aufgrund einer extrem hohen Anzahl von Wetten pro Sekunde (~ 15-20) können einige Wetten von Smart Contract abgelehnt werden.
+question_4	Wie kann ich mein Spielprotokoll überprüfen?
+answer_4	Sie können dieses Instrument verwenden, um Ihr Spielprotokoll zu überprüfen. https://888tron.com/api/getHistory?address= - Nach (=) geben Sie Ihre Wallet-Nummer ein.
+question_5	Meine Tronlink-Wallet wird heute nicht auf der 888tron.com-Website angezeigt.
+answer_5	Aktualisieren Sie die Website. Aktualisieren Sie Ihre Wallet oder melden Sie sich bei Bedarf erneut an. Stellen Sie sicher, dass Ihre Wallet unter dem Mainnet funktioniert. Wählen Sie im Wallet-Menü Einstellungen einen anderen benutzerdefinierten Knoten aus der verfügbaren Liste.
+question_6	Meine 888 Tokens frieren nicht ein (auftauen).
+answer_6	Vergewissern Sie sich, dass Sie mindestens 5 TRX auf Ihrem Wallet haben. Jedes Mal, wenn Sie Ihre Token einfrieren oder auftauen, benötigen Sie Energie und Bandbreite. Warten Sie 5-10 Sekunden. Wenn nichts passiert ist, aktualisieren Sie die Website. Aktualisieren Sie Ihre Wallet oder melden Sie sich bei Bedarf erneut an. Stellen Sie sicher, dass Ihre Wallet unter dem Mainnet funktioniert. Wählen Sie im Wallet-Menü Einstellungen einen anderen benutzerdefinierten Knoten aus der verfügbaren Liste.
+question_7	Mein Werbungslink funktioniert nicht.
+answer_7	Sie wurden zu einer anderen Empfehlung zu 888tron.com eingeladen. Nun ist Ihre Brieftasche an diese Überweisung gebunden und Sie können Ihren eigenen Ref.link nicht für sich selbst verwenden.
+question_8	Wie kann ich meine Dividenden von 888 Token erhalten?
+answer_8	Klicken Sie auf "Auftauen" auf 888tron.com (Abschnitt "Dividenden"), um sie zu erhalten. Dividenden werden sofort in Ihre Wallet transferiert. Vergewissern Sie sich, dass Sie 3 TRX auf Ihrem Wallet haben. Vergessen Sie nicht, Ihre Tokens erneut einzufrieren, damit Sie die nächste Dividenten-Ausschüttung nicht verpassen.
+question_9	Was muss ich tun, um auf 888tron anfangen zu spielen?
+answer_9	Sie benötigen einen Chrome-Browser. Registrieren Sie die TRONLink-Wallet, um auf dem Desktop zu spielen. <br> Um auf dem Handy zu spielen, verwenden Sie bitte Math Wallet (www.mathwallet.org), <br> TronWallet (www.TronWallet.me), <br> Banko Wallet (www.bankowallet.com).
+question_10	Wo kann ich meine Tokens tauschen?
+answer_10	Du kannst deine 888 Tokens hier tauschen: https://trontrade.io
+question_11	Wo kann ich Informationen über Ihre Tokenadresse und Ihre Plattform abrufen?
+answer_11	www.tronscan.org <br>Token address: TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3<br> 888tron game smart contract address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe <br>Github:https://github.com/888tron/contracts/blob/master/Token888.sol <br>https://github.com/888tron/contracts
+troubleshooting	Problemlösung
+question_12	I cannot find my 888 tokens after they were unfreezed.
+answer_12	You can check all your token transfers on tronscan.org (TRC-20 Transfers section) by typing in your wallet number where tokens are stored. All tokens transactions are kept in blockchain and cannot be faked or lost.
+referrals_alert	Commission is collected to avoid bots creating referral links. Commission goes to Div's smart contract for farther distribution between token holders. 
