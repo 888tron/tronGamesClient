@@ -141,3 +141,5 @@ troubleshooting	문제 해결
 question_12	동결해제 후에 지갑에서 888토큰을 찾을수 없습니다.
 answer_12	tronscan.org(TRC-20 Transfers 섹션)에서 토큰이 저장된 지갑번호를 입력하면 토큰 전송을 모두 확인할 수 있습니다. 모든 토큰 거래는 블록체인에 보관되며 위조하거나 분실할 수 없습니다.
 referrals_alert	봇을 통해 추천링크를 만드는것을 방지하기위해 수수료가 발생합니다. 그 수수료는 토큰홀더들에게 스마트컨트렉트를 통해서 배분될 것입니다.
+question_13	Will I receive dividends every round, even if I leave 888 frozen or I have to unfreeze to get TRX? 
+answer_13	Divs will be credited to your internal 888 account automatically. There is no need to unfreeze your tokens every time. To transfer TRX on your wallet you need to unfreeze tokens.
