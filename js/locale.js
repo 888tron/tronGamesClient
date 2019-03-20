@@ -42,7 +42,7 @@ function localize(lang, dictionary) {
     switch (lang) {
         case 'ru':
             $('#whitepaperLink').attr('href', 'wp/888Tron_ru.pdf');
-			$('.tgLink').attr('href', 'https://t.me/tron888_rus');
+			$('.tgLink').attr('href', 'https://t.me/Tron888rus');
             break;
 		case 'de':
 			$('.tgLink').attr('href', 'https://t.me/tron888');
