@@ -1,4 +1,4 @@
-var localeVer = '4.3';
+var localeVer = '4.4';
 
 var dictionary = {};
 
@@ -58,13 +58,10 @@ function localize(lang, dictionary) {
 		case 'kr':
             $('#whitepaperLink').attr('href', 'wp/888Tron_kr.pdf');
 			$('.tgLink').attr('href', 'https://t.me/tron888_kor');
-			$('.roadmap-link').addClass('d-none');
             break;
 		case 'tr':
             $('#whitepaperLink').attr('href', 'wp/888Tron_tr.pdf');
 			$('.tgLink').attr('href', 'https://t.me/tron888');
-			$('.roadmap-link').addClass('d-none');
-			$('.troubleshooting-link').addClass('d-none');
             break;
         }
     

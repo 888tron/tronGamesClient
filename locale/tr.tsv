@@ -76,68 +76,68 @@ token_title_7	888 token'larımdan temettü nasıl alabilirim?
 token_text_7	Temettü alabilmek için 888 token’ları çekmek ve dağıtım sürecinin bitimine kadar dondurmak gerekir, bu süreç tamamlandıktan sonra dondurma işlemini iptal etmek gerekir. Dondurulmayan token’lar için temettü alınamaz. Dondurulma işlemi bitiminde temettü akıllı sözleşmeler vasıtasıyla otomatik olarak hesabınıza aktarılır.
 alreadyExist	Zaten mevcuttur!
 copy_link	Linki Kopyala
-noMoney	Not enough TRX in your wallet.
-reward_sum	Reward:
+noMoney	Cüzdanında yeterli TRX yok.
+reward_sum	Ödüllendirme:
 cards	Dice52
-prediction	Prediction
-result	Result
-draw_under	Draw Under
-draw_equal	Draw Exact
-draw_over	Draw Over
-payout_win	Payout on Win:
-multiplayer	Multiplier
-win_chance	Win Chance
+prediction	Tahmin
+result	Sonuç
+draw_under	Altında çekilmiş
+draw_equal	Tam çekilmiş
+draw_over	Fazla çekilmiş
+payout_win	Kazanmada Ödeme:
+multiplayer	Çoklu oyuncu
+win_chance	Yenme fırsatı
 how_dice	4. Destede 52 kart vardır. En düşük kart 2'dir ve en yüksek kart A (as'tır). Oyuncu desteden herhangi bir kartı seçer. Oyuncu üç etkinlikten birine bahis yapar: sonraki kart - kalan 51 karttan biri, rastgele dağıtıldığında, oyuncu tarafından seçilen karttan BÜYÜKTÜR, KÜÇÜKTÜR VEYA EŞİT olacaktır. Oyunda kağıdın simgelerine dikkat edilmemektedir. Oyuncu Etkinliği kazandığında, oyuncu tarafından seçilen kartına ve bahis için seçilen etkinliğe karşılık gelen katsayı ile çarpılan ödeme yapılmaktadır.
-total_mined	Total mined
-unfreezeToWithdraw	Unfreeze Tokens 888 to withdraw
+total_mined	toplam elde edilen
+unfreezeToWithdraw	Çözmek için 888 Jetonlarını çöz
 subscribe	Abone ol
 your_email	Sizin e-posta edresiniz
 still_have_questions	Başka sorularınız var mı?
 send_email	Bize e-mail gönderin
-bet_tooltip	Small bets (TRX 50-100) use the same energy ~0.5 TRX as higher bets, but mine less tokens and are less profitable in case of win. 
-support	Support:
-exchange	Exchange
-leaderboard	Leaderboard
-roadmap	Roadmap
-roadmap_date_1	March
-roadmap_text_1	Adding German and Japanese web site localizations.
-roadmap_date_2	March
-roadmap_text_2	General platform improvements and optimization (speed and transaction costs).
-roadmap_date_3	April
-roadmap_text_3	European Roulette game launch.
-roadmap_date_4	April
-roadmap_text_4	Presentation of 888 ecosystem concept and first steps of development success.
-roadmap_date_5	May
-roadmap_text_5	Black Jack game launch.
-roadmap_date_6	May
-roadmap_text_6	Best dev.team competion launch with prize fund over USD 100K.
-roadmap_date_7	Starting June
-roadmap_text_7	Afirst games and DAPPs integration created by outsource dev.teams.
-roadmap_date_8	July
-roadmap_text_8	Legal research (Subject: 888tron.com licensing)
-question_1	I didn’t get my bet (winnings) back.
-answer_1	Using your TRX wallet number check on tronscan.org - Internal Transactions section. All winning payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
-question_2	I have not received my dividend.
-answer_2	Make sure your tokens were frozen at the moment ofr divs distribution. Using your TRX wallet number check on tronscan.org - Internal Transactions section. All divs payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
-question_3	I have a bunch of TRX missing from playing.
-answer_3	888Tron.com is a fully decentralized platform. If your bet was accepted by smart contract it means that it was processed by blockchain and can be easily check on tronscan.org - Internal Transactions section. All winning payouts come from this address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe. Unaccepted bets do not influence your wallet balance and will be returned. Due to an extremely high number of bets made per second (~15-20) some bets might be rejected by smart contract.
-question_4	How I can check my game log.
-answer_4	You may use this instrument to check you game log. https://888tron.com/api/getHistory?address= - After (=) you shall put your wallet number.
-question_5	My Tronlink wallet is not showing up today on the 888tron.com web site.
-answer_5	Refresh the website. Refresh your wallet or login into it again if necessary. Make sure your wallet works under the Mainnet. In the wallet Settings menu try choosing another Custom node form the list available.
-question_6	My 888 tokens don’t freeze (unfreeze).
-answer_6	Make sure you have at least TRX 5 on your wallet account. Every time you freeze or unfreeze your tokens you need energy and bandwidth. Wait 5-10 seconds. If nothing happened refresh the website. Refresh your wallet or login into it again if necessary. Make sure your wallet works under the Mainnet. In the wallet Settings menu try choosing another Custom node form the list available.
-question_7	My referral link is not working.
-answer_7	You were invited to 888tron.com by another referral. Now your wallet is tied up to that referral and you cant use your own ref.link for yourself.
-question_8	How can I get my dividends from 888 token?
-answer_8	Press “unfreeze" button on 888tron.com (Dividends section ) to get them. Divs will be transferred to your wallet immediately. Make sure you have TRX 3 on your account. Once its done do not forget to freeze your tokens again so you don’t miss next divs. distribution.
-question_9	What should I do to start playing on 888tron?
-answer_9	You need Chrome browser. Register TRONLink wallet to play on Desktop. <br>To play on mobile please use<br> Math Wallet (www. mathwallet.org), <br>TronWallet (www.TronWallet.me),<br> Banko wallet (www.bankowallet.com).
-question_10	Where I can trade my tokens?
-answer_10	You can trade 888 tokens here: https://trontrade.io
-question_11	Where I can check info about your token address and your platform?
+bet_tooltip	Küçük oranlar (50-100 TPH), büyük olanlarla aynı enerjiyi kullanır (~ 0.5 TRX), ancak daha az belirteç ve gelir getirir. 
+support	Destek:
+exchange	Borsa
+leaderboard	lider tahtası
+roadmap	Yol haritası
+roadmap_date_1	Mart
+roadmap_text_1	Almanca ve Japonca web sitesi yerelleştirmeleri ekleme.
+roadmap_date_2	Mart
+roadmap_text_2	Genel platform iyileştirmeleri ve optimizasyonu (hız ve işlem maliyetleri).
+roadmap_date_3	Nisan
+roadmap_text_3	Avrupa Ruleti oyun lansmanı.
+roadmap_date_4	Nisan
+roadmap_text_4	888 ekosistem kavramının tanıtımı ve gelişim başarısının ilk adımları.
+roadmap_date_5	Mayıs
+roadmap_text_5	Black Jack oyun lansmanı.
+roadmap_date_6	Mayıs
+roadmap_text_6	100 K USD üzerindeki ödül fonuyla en iyi temettü ekip yarışması lansmanı.
+roadmap_date_7	Haziran başlangıcı
+roadmap_text_7	Outsource dev.teams tarafından oluşturulan ilk oyun ve APP entegrasyonu.
+roadmap_date_8	Temmuz
+roadmap_text_8	Yasal araştırma (Subject: 888tron.com licensing)
+question_1	Bahsimi (kazançları) geri alamadım.
+answer_1	TRX cüzdan numaranızı kullanarak tronscan.org - Dahili İşlemler bölümünü kontrol edin. Kazanan tüm ödemeler bu adresten geliyor: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
+question_2	Temettülerimi alamadım.
+answer_2	Jetonlarınızın dağıtıldığı sırada jetonlarınızın donmuş olduğundan emin olun. TRX cüzdan numaranızı kullanarak tronscan.org - Dahili İşlemler bölümünü kontrol edin. Tüm temettüler ödemeleri bu adresten gelir: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe
+question_3	Oyunu kaçıran bir sürü TRX lerim bulunmakta.
+answer_3	888Tron.com tamamen merkezi olmayan bir platformdur. Eğer bahsiniz akıllı bir sözleşme ile kabul edilmişse, bu, blockchain tarafından işlendiğini ve tronscan.org - Dahili İşlemler bölümünden kolayca kontrol edilebildiği anlamına gelir. Kazanan tüm ödemeler bu adresten geliyor: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe. Kabul edilmeyen bahisler cüzdan bakiyenizi etkilemez ve iade edilir. Saniyede çok yüksek miktarda bahis yapıldığından (~ 15-20), bazı bahisler akıllı kontratlarla reddedilebilir.
+question_4	Oyun günlüğümü nasıl kontrol edebilirim.
+answer_4	Oyun kayıtlarını kontrol etmek için bu cihazı kullanabilirsin. https://888tron.com/api/getHistory?address= - (=) işaretinden sonra cüzdan numaranızı girmelisiniz.
+question_5	Tronlink cüzdanım bugün 888tron.com web sitesinde görünmüyor.
+answer_5	Web sitesini yenile Cüzdanınızı yenileyin veya gerekirse yeniden giriş yapın. Cüzdanınızın Mainnet’in altında çalıştığından emin olun. M-cüzdan Ayarları menüsünde, mevcut listeden başka bir Müşteri düğüm seçmeyi deneyin.
+question_6	888 nominal paralarım donmuyor (serbest bırak)
+answer_6	Cüzdan hesabınızda en az TRX 5 olduğundan emin olun. Simgelerinizi her dondurduğunuzda veya çözdüğünüzde enerji ve bant genişliğine ihtiyacınız vardır. 5-10 saniye bekleyin. Hiçbir şey olmadıysa web sitesini yenileyin. Cüzdanınızı yenileyin veya gerekirse yeniden giriş yapın. Cüzdanınızın Mainnet’in altında çalıştığından emin olun. M-cüzdan Ayarları menüsünde, mevcut listeden başka bir Müşteri düğümü seçmeyi deneyin.
+question_7	Benim yönlendirme linkim çalışmıyor
+answer_7	888tron.com'a başka bir tavsiye tarafından davet edildiniz. Şimdi cüzdanınız bu yönlendirmeye bağlandı ve kendi referans linkinizi kendiniz kullanamazsınız.
+question_8	888 token den temettülerimi nasıl alabilirim?
+answer_8	Onları almak için 888tron.com'da (Temettüler bölümü) “çöz” butonuna basın. Temettüler derhal cüzdanınıza aktarılacak. Hesabınızda TRX 3 olduğundan emin olun. İşlem bittiğinde jetonlarınızı tekrar dondurmayı unutmayın ki bir sonraki temettü dağıtımını kaçırmayın.
+question_9	888tron üzerinde oynamaya başlamak için neler yapmam gerekir?
+answer_9	Chrome internet tarayacısına ihtiyacınız var. Masaüstünde oynamak için TRONLink cüzdanına ihtiyacınız var. <br>To play on mobile please use<br> Math Wallet (www. mathwallet.org), <br>TronWallet (www.TronWallet.me),<br> Banko wallet (www.bankowallet.com).
+question_10	Tokenlerimi nerede satabilirim ?
+answer_10	888 tokenlerini burada satabilirsin: https://trontrade.io
+question_11	Token adresim ve senin platformun hakkındaki bilgiyi nerede kontrol edebilirim?
 answer_11	www.tronscan.org <br>Token address: TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3<br> 888tron game smart contract address: TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe <br>Github:https://github.com/888tron/contracts/blob/master/Token888.sol <br>https://github.com/888tron/contracts
-troubleshooting	Troubleshooting
+troubleshooting	Sorunlu atış
 question_12	I cannot find my 888 tokens after they were unfreezed.
 answer_12	You can check all your token transfers on tronscan.org (TRC-20 Transfers section) by typing in your wallet number where tokens are stored. All tokens transactions are kept in blockchain and cannot be faked or lost.
 referrals_alert	Commission is collected to avoid bots creating referral links. Commission goes to Div's smart contract for farther distribution between token holders. 

@@ -1,6 +1,6 @@
 fairness	Fairness
 how_to_play	Wie man spielt
-best_mode	Wetten gemacht
+best_mode	Abgeschlossene Wetten
 total_won	Insgesamt gewonnen
 bet_amount	Wetteinsatz
 pls_select_sector	Bitte Sektor auswählen
@@ -35,9 +35,9 @@ wagered	Gewettet
 balance	Guthaben
 my_bets	Meine Wetten
 all_bets	Alle Wetten
-high_rollers	High Rollers
+high_rollers	Hohe Einsätze
 rare_wins	Seltene Siege
-history	History
+history	Verlauf
 money	Geld
 poker_dice	Poker Dice
 crypto_slots	Crypto Slots
@@ -50,10 +50,10 @@ next_stage	Nächste Phase:
 available_dividends	Verfügbare Dividenden
 total_of 	Insgesamt
 frozen_across	sind im Netzwerk eingefroren. Du erhälst 
-available	Verfügbare Dividenden
+available	Verfügbar
 withdrawn	Abgehoben
 freeze	Einfrieren
-frozen	Eingefrozen
+frozen	Eingefroren
 unfreeze	Auftauen
 wtithdraw_text	Bitte melden Sie sich bei Ihrem TRONLink-Wallet an. Wenn Sie keine TRONLink-Geldbörse installiert haben, besuchen Sie <a href="http://u6.gg/gmc5D" target="_blank"> http://u6.gg/gmc5D </a> und laden Sie die Chrome-Erweiterung herunter. (TRONbet ist vorerst nur über den Chrome-Browser verfügbar.)
 freezing	Einfrieren
