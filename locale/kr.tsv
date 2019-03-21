@@ -143,3 +143,4 @@ answer_12	tronscan.org(TRC-20 Transfers 섹션)에서 토큰이 저장된 지갑
 referrals_alert	봇을 통해 추천링크를 만드는것을 방지하기위해 수수료가 발생합니다. 그 수수료는 토큰홀더들에게 스마트컨트렉트를 통해서 배분될 것입니다.
 question_13	Will I receive dividends every round, even if I leave 888 frozen or I have to unfreeze to get TRX? 
 answer_13	Divs will be credited to your internal 888 account automatically. There is no need to unfreeze your tokens every time. To transfer TRX on your wallet you need to unfreeze tokens.
+overview	개요
