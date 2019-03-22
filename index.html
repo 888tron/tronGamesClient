@@ -1355,8 +1355,7 @@
             <div class="modal-header border-bottom-0">
                 <div class="modal-title w-100">
                     <div class="d-flex align-items-center justify-content-center">
-                        <div class="flex-shrink-0 ml-3"><img src="img/coin888.png" style="width: 96px; height: 96px;"
-                                                             alt="888"></div>
+                        <div class="flex-shrink-0 ml-3"><img src="img/coin888.png" style="width: 96px; height: 96px;" alt="888"></div>
                         <span style="font-size: 48px;">Token 888</span>
                     </div>
                 </div>
@@ -1382,7 +1381,20 @@
                     <span class="dividendsNextStagePrice">700</span> <span data-locale="to_mine">TRX to mine 1 Token 888)</span>
                 </p>
                 <div class="border border-secondary rounded text-center p-3">
-                    <h4 class="text-secondary" data-locale="available_dividends">Available Dividends</h4>
+                    <div class="d-flex flex-wrap flex-sm-nowrap align-items-center">
+                        <div class="flex-grow-1 pl-sm-5">
+                            <h4 class="text-secondary" data-locale="available_dividends">Available Dividends</h4>
+                        </div>
+                        <div class="burn flex-grow-1 flex-sm-grow-0">
+                            <span class="d-inline-block text-center">
+                                <a href="#" class="text-white" data-toggle="modal" data-target="#burnModal">
+                                    <i class="fas fa-fire h2"></i> <br>
+                                    <span>888 Burn</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    
                     <h2 class="dividendsSum">...</h2>
 
                     <p class="text-secondary">
@@ -1477,6 +1489,55 @@
                     unfreezing 888 Tokens will take several TRX, which is why it is necessary to have them in your
                     wallet when making transactions.
                 </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="burnModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-content-dark">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title"><i class="fas fa-fire"></i> 888 Burn</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="border border-secondary rounded text-center p-3">
+                    <h3 data-locale="buyback_pool">888 Buy Back Pool</h3>
+                    <p data-locale="buyback_text">
+                        15% of the Team’s income is spent to buy back 888 tokens for the next 3 months.
+                    </p>
+                    <a class="h2 text-success text-underline" href="https://tronscan.org/#/address/TL8Bu3DWdgTd9mgSepm9VE6CLpSkBFE1Wd/20transfers" target="blank">
+                        
+                    </a>
+                </div>
+                <div class="border border-secondary rounded text-center p-3 mt-3">
+                    <h3 data-locale="to_burnt">888 to be Burnt</h3>
+                    <p data-locale="to_burnt_text">
+                        Starting April 9 every two weeks 20% of the Buy Back Pool tokens will be burned.
+                    </p>
+                    <div id="timer" class="row justify-content-center mx-auto" style="max-width: 360px;">
+                        <div class="col">
+                            <span class="days h2 text-success"></span>
+                            <div data-locale="timer_days" class="small">Days</div>
+                        </div>
+                        <div class="col">
+                            <span class="hours h2 text-success"></span>
+                            <div data-locale="timer_hours" class="small">Hours</div>
+                        </div>
+                        <div class="col">
+                            <span class="minutes h2 text-success"></span>
+                            <div data-locale="timer_minutes" class="small">Minutes</div>
+                        </div>
+                        <div class="col">
+                            <span class="seconds h2 text-success"></span>
+                            <div data-locale="timer_seconds" class="small">Seconds</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1838,6 +1899,7 @@
 <script src="js/locale.js?v=8.2"></script>
 <script src="js/main.js?v=708"></script>
 <script src="js/cards.js?v=7.1"></script>
+<script src="js/countdown.js?v=1.0"></script>
 
 <script src="js/sendgrid.js?v=1"></script>
 

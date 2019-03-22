@@ -144,3 +144,11 @@ referrals_alert	Commission is collected to avoid bots creating referral links. C
 question_13	Will I receive dividends every round, even if I leave 888 frozen or I have to unfreeze to get TRX? 
 answer_13	Divs will be credited to your internal 888 account automatically. There is no need to unfreeze your tokens every time. To transfer TRX on your wallet you need to unfreeze tokens.
 overview	Überblick
+buyback_pool	888 Token Rueckkaufmenge
+buyback_text	15% des Team Einkommens wird genutzt, um 888 Tokens für die nächsten 3 Monat zurück zu kaufen.
+to_burnt	888 Tokens werden verbrannt
+to_burnt_text	Ab 9. April werden jede 2. Woche 20% der zurückgekauften Tokens verbrannt.
+timer_days	Tage
+timer_hours	Std
+timer_minutes	Protokoll
+timer_seconds	Sekunden

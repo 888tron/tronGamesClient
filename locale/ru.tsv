@@ -144,3 +144,11 @@ referrals_alert	Комиссия взимается в целях исключе
 question_13	Мне нужно каждый раунд размораживать токены для получения дивидендов или можно оставить токены замороженными и ТРХ будут начисляться автоматически? 
 answer_13	Дивиденды начисляются на ваш баланс внутри платформы 888 автоматически. Нет необходимости каждый раз размораживать токены. Для начисления ТРХ на баланс своего кошелька токены необходимо разморозить.
 overview	Обзор
+buyback_pool	888 Buy Back Pool
+buyback_text	15% of the Team’s income is spent to buy back 888 tokens for the next 3 months. 
+to_burnt	888 to be Burnt
+to_burnt_text	Starting April 9 every two weeks 20% of the Buy Back Pool tokens will be burned.
+timer_days	Дней
+timer_hours	Часов
+timer_minutes	Минут
+timer_seconds	Секунд
