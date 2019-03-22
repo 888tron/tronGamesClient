@@ -395,6 +395,10 @@ function updateDividendsData() {
                     $('.dividendsCurrentStagePrice').html(700 + _level * 10);
                     $('.dividendsNextStagePrice').html(700 + (_level + 1) * 10);
 
+                    dividendsData.getPlayerToFrozenAmount('TL8Bu3DWdgTd9mgSepm9VE6CLpSkBFE1Wd').call()
+                        .then(playerFrozen => {
+                            $('.buyBackCount').html(money(playerFrozen));
+                        });
 
                     if (getTronlinkAddress()) {
 
