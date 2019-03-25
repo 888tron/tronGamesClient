@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css?4.2">
+    <link rel="stylesheet" href="css/custom.css?4.3">
     <title>888</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109663484-3"></script>
@@ -303,6 +303,12 @@
                 </li>
             </ul>-->
             <ul class="navbar-nav">
+                <li class="troubleshooting-link nav-item d-xl-none">
+                    <a class="nav-link" href="https://changelly.com/" target="_blank">
+                        <i class="far fa-credit-card"></i>
+                        <span data-locale="buy_trx">Buy TRX</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-toggle="modal" onclick="onDividendShow()">
                         <i class="fas fa-dollar-sign"></i>
@@ -413,7 +419,10 @@
 </header>
 <main class="d-flex">
     <section class="d-none d-lg-block sidebar flex-shrink-0">
-        <ul class="nav nav-tabs border-0 row m-0 mb-3 mt-1">
+        <div class="p-2 mt-1">
+            <a class="btn w-100 text-white btn-trx" data-locale="buy_trx" href="https://changelly.com/" target="_blank">Buy TRX</a>
+        </div>
+        <ul class="nav nav-tabs border-0 row m-0 mb-3">
             <li class="col-4 nav-item text-center p-1 mb-2">
                 <a class="navbar-brand mr-0 disabled" href="#" data-toggle="modal" data-target="#RouletteModal">
                     <span class="soon-item  position-relative">
@@ -1912,7 +1921,7 @@
 <script src="js/SoundManager.js?v=2"></script>
 <script src="js/SlotView.js?v=3"></script>
 
-<script src="js/locale.js?v=8.5"></script>
+<script src="js/locale.js?v=8.6"></script>
 <script src="js/main.js?v=709"></script>
 <script src="js/cards.js?v=7.1"></script>
 <script src="js/countdown.js?v=1.0"></script>
