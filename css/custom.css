@@ -261,11 +261,13 @@ svg.icon.good {
 }
 
 .btn-trx {
-    background: #ed3f22;
+    background: #171717;
+    border: 2px solid #ed3f22;
 }
 
 .btn-trx:hover {
-    background: #e64f34;
+    background: #171717;
+    border: 2px solid #e64f34;
 }
 
 .btn-s {
