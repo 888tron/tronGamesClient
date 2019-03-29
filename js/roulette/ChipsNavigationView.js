@@ -1,15 +1,12 @@
-!function()
-{
+!function() {
     let ChipsNavigationModel = window.classes.ChipsNavigationModel;
 
-    class ChipsNavigationView
-    {
+    class ChipsNavigationView {
         /**
          * Event.
          * @return String
          */
-        static get CLICK_EVENT()
-        {
+        static get CLICK_EVENT() {
             return 'CLICK_EVENT';
         }
 
@@ -17,8 +14,7 @@
          * Event.
          * @return String
          */
-        static get ACTIVE_CLASS_NAME()
-        {
+        static get ACTIVE_CLASS_NAME() {
             return 'active';
         }
 
@@ -29,13 +25,11 @@
          * @param cssClassPartForReplace {String} Example:
          *     'xxxx'
          */
-        constructor(model, cssClass, cssClassPartForReplace)
-        {
+        constructor(model, cssClass, cssClassPartForReplace) {
             this._model = model;
             this._chips = model;
 
-            for (let i = 0; i < this._model.length; i++)
-            {
+            for (let i = 0; i < this._model.length; i++) {
                 let value = this._model.getValueByIndex(i);
                 let className = cssClass.replace(cssClassPartForReplace, value);
                 let chip = $(className);
@@ -53,16 +47,13 @@
          * @param event.currentTarget {Object}
          * @private
          */
-        _onChipClick(event)
-        {
+        _onChipClick(event) {
             let index = $(event.currentTarget).data('index');
             $(this).trigger(ChipsNavigationView.CLICK_EVENT, index);
         }
 
-        _update()
-        {
-            for (let i = 0; i < this._model.length; i++)
-            {
+        _update() {
+            for (let i = 0; i < this._model.length; i++) {
                 let chip = this._chips[i];
                 $(chip).removeClass(ChipsNavigationView.ACTIVE_CLASS_NAME);
             }
