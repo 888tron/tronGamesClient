@@ -48,6 +48,15 @@ svg.icon.good {
     color: #D3D3D3 !important;
 }
 
+.navbar-brand .navbar-brand__new-game-icon
+{
+    fill: #7D7;
+}
+.navbar-brand .navbar-brand__new-game-name
+{
+    color: #7D7;
+}
+
 .navbar-brand,  
 .navbar-brand i,
 .navbar-brand:hover,  
@@ -63,9 +72,9 @@ svg.icon.good {
 .navbar-brand.active span,
 .navbar-brand.active i {
     color: #D2D279;
-
 }
 
+.navbar-brand.active use,
 .navbar-brand.active svg {
     fill: #D2D279;
 }

@@ -212,14 +212,22 @@ function showMinBetTooltip(value){
 
 $('.navbar-brand[href="#gameCards"]').on('shown.bs.tab', function () {
     $('a[href="#playCards"]').tab('show');
+    $('#leftTabs').find('a.active').removeClass('active');
 })
 
 $('.navbar-brand[href="#gameGear"]').on('shown.bs.tab', function () {
     $('a[href="#playGear"]').tab('show');
+    $('#leftTabs').find('a.active').removeClass('active');
 })
 
 $('.navbar-brand[href="#gameSlot"]').on('shown.bs.tab', function () {
     $('a[href="#playSlot"]').tab('show');
+    $('#leftTabs').find('a.active').removeClass('active');
+})
+
+$('.navbar-brand[href="#gameRoulette"]').on('shown.bs.tab', function () {
+    $('a[href="#playRoulette"]').tab('show');
+    $('#myHeader').find('a.active').removeClass('active');
 })
 
 
