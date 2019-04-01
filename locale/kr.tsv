@@ -150,7 +150,7 @@ to_burnt	888토큰 소각
 to_burnt_text	4월 9일부터 2주마다 바이백 풀에 쌓인 888토큰의 20%가 소각 될 것이다.
 timer_days	일
 timer_hours	시간
-timer_minutes	의사록
+timer_minutes	분
 timer_seconds	초
 total_bet	Total Bet
 tokens	토큰
