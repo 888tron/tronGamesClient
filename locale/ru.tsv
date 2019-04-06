@@ -94,7 +94,7 @@ subscribe	Подписаться
 your_email	Ваш e-mail
 still_have_questions	У вас остались вопросы? 
 send_email	Отправьте нам e-mail:
-bet_tooltip	Маленькие ставки (50-100 ТРХ) потребляют такую же энергию как и большие (~0,5 TRX), но приносят меньше токенов и доход. 
+bet_tooltip	Маленькие ставки (50-100 ТРХ) потребляют такую же энергию как и большие (~0,5 TRX), но приносят меньше токенов и доход.
 support	Техническая поддержка:
 exchange	Биржа
 leaderboard	Leaderboard
@@ -155,5 +155,11 @@ timer_seconds	Секунд
 total_bet	Общая ставка
 tokens	Токенов
 buy_trx	Купить TRX
-roulette	Рулетка
 games	Игры
+roulette	Рулетка
+baccarat	Baccarat
+black_Jjack	Black Jack
+poker	Poker
+to_the_moon	To the Moon
+white_paper	White Paper
+faq	FAQ

@@ -18,7 +18,7 @@ bet_id	赌注id
 block_number	模块编号：
 result_2	结果
 send	发送
-referrals	转交
+referrals	邀请
 referrals_text	通过邀请你的朋友获得奖励！ 获得所有其投注的0.2％。 所有奖励都通过我们的智能合约自动发送。 只需复制链接并与所有朋友分享！ 创建推荐链接的价值为8.88 TRX且低于1 TRX交易费。 您可以无限次地创建链接，而旧链接将替换为新链接。
 how_1	1. 请确认，您有一个TRONLink钱包。 为得到如何创建的更多信息, <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec" target="_blank">click here</a>.
 how_2	2. 为玩游戏，你必须有TRX，这是TRON网络的主要加密货币。
@@ -40,8 +40,8 @@ rare_wins	罕见的胜利
 history	历史
 money	钱
 poker_dice	掷骰子扑克戏
-crypto_slots	加密槽
-dividends	股息
+crypto_slots	老虎机
+dividends	分红
 soon	很快
 play	（请玩
 to_mine	TRX获得1个代币888）
@@ -50,9 +50,9 @@ next_stage	下一阶段：
 available_dividends	可用股息
 total_of 	共计
 frozen_across	网上已冻结-您
-available	可得到
-withdrawn	可允许
-freeze	冻结
+available	待提取
+withdrawn	提取
+freeze	已冻结
 frozen	冻结的
 unfreeze	解冻
 wtithdraw_text	请登录您的TRONLink钱包。 如果您没有安装TRONLink钱包，请转到<a href="http://u6.gg/gmc5D" target="_blank"> http://u6.gg/gmc5D </a>并下载Chrome扩展程序。 （TRONbet目前只在Chrome中提供）
@@ -81,12 +81,12 @@ reward_sum	奖励：
 cards	骰子52
 prediction	预测
 result	结果
-draw_under	小牌
+draw_under	小于
 draw_equal	等牌
-draw_over	大牌
+draw_over	大于
 payout_win	付款
-multiplayer	多人
-win_chance	机会
+multiplayer	赔率
+win_chance	胜率
 how_dice	4. 一副有52张牌。 小牌2，大牌A（尖）。 玩家从一副中选择任何牌。 玩家在三押一注：下一张牌是由玩家选择的第一张牌随机分配的52张牌之一，将是更大或更小或等级。 花色在游戏中是有意义的。在猜测的情况下，玩家以投标金额乘以对应于所选择的玩家牌的系数和所选择的投注比率支付。
 total_mined	总挖掘
 unfreezeToWithdraw	Unfreeze Tokens 888 to withdraw
@@ -136,7 +136,7 @@ answer_9	你需要Chrome浏览器，并注册TRONLink钱包在桌面上参与游
 question_10	我可以在哪里兑换我的代币？
 answer_10	你可以在波场去中心化交易所兑换，地址在这里: https://trontrade.io
 question_11	我可以在哪里查询有关您的令牌地址和平台的信息?
-answer_11	在tronscan.org浏览器上查询代币地址TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3；<br>游戏智能合约地址：TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe；<br>源码地址：https://github.com/888tron/contracts/blob/master/；<br>https://github.com/888tron/contracts；
+answer_11	在tronscan.org浏览器上查询代币地址TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3；<br>游戏智能合约地址：TGtGhthzyLBYPUKDysXX1YSgRKPYVTQuMe；<br>源码地址：https://github.com/888tron/contracts/blob/master/；<br>https://github.com/888tron/contracts
 troubleshooting	问题解答
 question_12	I cannot find my 888 tokens after they were unfreezed.
 answer_12	You can check all your token transfers on tronscan.org (TRC-20 Transfers section) by typing in your wallet number where tokens are stored. All tokens transactions are kept in blockchain and cannot be faked or lost.
@@ -155,5 +155,11 @@ timer_seconds	秒
 total_bet	Total Bet
 tokens	象征
 buy_trx	購買 TRX
-roulette	輪盤賭
 games	ゲーム
+roulette	轮盘赌
+baccarat	百家乐
+black_Jjack	黑杰克
+poker	扑克
+to_the_moon	爆点
+white_paper	白皮书
+faq	帮助
