@@ -140,6 +140,10 @@ svg.icon.good {
     font-size: 18px;
 }
 
+.dropdown-menu .nav-tabs .nav-item {
+    width: 100%;
+}
+
 .soon-item {
     color: #D3D3D3;
     display: inline-block;
