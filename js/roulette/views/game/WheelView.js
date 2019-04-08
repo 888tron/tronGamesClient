@@ -4,6 +4,108 @@
     class WheelView {
 
         /**
+         * @return {Number}
+         * @constructor
+         */
+        static get DEFAULT_BALL_RADIUS() {
+            return 175;
+        }
+
+        /**
+         * @return {Number}
+         * @constructor
+         */
+        static get END_BALL_RADIUS() {
+            return 97;
+        }
+
+        /**
+         * @return {Number}
+         * @constructor
+         */
+        static get BALL_MILLISECONDS_ON_ROUND() {
+            return 1200;
+        }
+
+        /**
+         * @return {Number}
+         * @constructor
+         */
+        static get NUMBERS_MILLISECONDS_ON_ROUND() {
+            return 4000;
+        }
+
+        /**
+         * @return {Number}
+         * @constructor
+         */
+        static get MILLISECONDS_TO_STOP_BALL() {
+            return 2500;
+        }
+
+        /**
+         * @return {Number}
+         * @constructor
+         */
+        static get ANGLE_TO_STOP_BALL() {
+            return 180;
+        }
+
+        /**
+         * @return {Number}
+         * @constructor
+         */
+        static get ROULETTE_ANGLE_SHIFT_ON_IMAGE() {
+            return -2;
+        }
+
+        /**
+         * @return {Number[]}
+         * @constructor
+         */
+        static get NUMBERS() {
+            return [
+                13,
+                36,
+                11,
+                30,
+                8,
+                23,
+                10,
+                5,
+                24,
+                16,
+                33,
+                1,
+                20,
+                14,
+                31,
+                9,
+                22,
+                18,
+                29,
+                7,
+                28,
+                12,
+                25,
+                3,
+                26,
+                0,
+                32,
+                15,
+                19,
+                4,
+                21,
+                2,
+                25,
+                17,
+                34,
+                6,
+                27
+            ];
+        }
+
+        /**
          * Event
          * @return {String}
          */
@@ -22,61 +124,156 @@
             this._imagesModel = imagesModel;
             this._resultModel = resultModel;
             this._canvas = canvas;
-            this._alpha = 1;
-            this._numbersAngle = 0;
-            this._ballAngle = 0;
-            this._ballRadius = 175;
-            this._resultAlpha = 0;
+
+            this._ballTween = null;
+
             $(this._stateModel).on(RouletteStateModel.CHANGE_EVENT, this._onStateModelChange.bind(this));
         }
 
         // TODO refactoring this shit
         _onStateModelChange() {
             if (this._stateModel.state === RouletteStateModel.WAITING_RESPONSE) {
-                this._numbersAngle = 0;
-                this._ballAngle = 0;
-                this._ballRadius = 175;
                 this._alpha = 0;
                 this._resultAlpha = 0;
-                new TWEEN.Tween(this)
-                    .to({_alpha: 1}, 300)
-                    .start();
-                new TWEEN.Tween(this)
-                    .to({_numbersAngle: 360}, 4000)
-                    .repeat(Infinity)
-                    .start();
-                this._ballSpinTween = new TWEEN.Tween(this)
-                    .to({_ballAngle: -360}, 1200)
-                    .repeat(Infinity)
-                    .start();
+                this._numbersAngle = 360;
+                this._ballAngle = 0;
+                this._ballRadius = WheelView.DEFAULT_BALL_RADIUS;
+                this._startInitialAnimation();
             }
             if (this._stateModel.state === RouletteStateModel.SHOW_RESULT) {
-                new TWEEN.Tween(this)
-                    .to({_ballRadius: 100}, 600)
-                    .start()
-                    .onComplete(() => {
-                        if (this._ballSpinTween) TWEEN.remove(this._ballSpinTween);
-                        let ballAngle = this._ballAngle;
-                        this._ballSpinTween = new TWEEN.Tween(this)
-                            .to({_ballAngle: ballAngle + 360}, 4000)
-                            .repeat(Infinity)
-                            .start();
-                    });
-                let circleTween = new TWEEN.Tween(this)
-                    .to({_resultAlpha: 1}, 300)
-                    .delay(1500).onUpdate(function(object) {
-                        console.log(object._resultAlpha);
-                    });
-                circleTween.start();
-
-                new TWEEN.Tween(this)
-                    .to({_alpha: 0, _resultAlpha: 0}, 300)
-                    .delay(3500)
-                    .onComplete(() => {
-                        $(this).trigger(WheelView.ANIMATION_COMPLETE_EVENT);
-                    })
-                    .start();
+                this._startResultAnimation();
             }
+        }
+
+        _removeBallAnimation() {
+            if (this._ballTween) TWEEN.remove(this._ballTween);
+            this._ballTween = null;
+        }
+
+        _removeBallRadiusAnimation() {
+            if (this._ballRadiusTween) TWEEN.remove(this._ballRadiusTween);
+            this._ballRadiusTween = null;
+        }
+
+        _removeNumbersAnimation() {
+            if (this._numbersTween) TWEEN.remove(this._numbersTween);
+            this._numbersTween = null;
+        }
+
+        _startInitialAnimation() {
+            this._removeBallAnimation();
+            this._removeNumbersAnimation();
+            new TWEEN.Tween(this)
+                .to({_alpha: 1}, 300)
+                .start();
+            this._numbersTween = new TWEEN.Tween(this)
+                .to({_numbersAngle: 0}, WheelView.NUMBERS_MILLISECONDS_ON_ROUND)
+                .repeat(Infinity)
+                .start();
+            this._ballTween = new TWEEN.Tween(this)
+                .to({_ballAngle: 360}, WheelView.BALL_MILLISECONDS_ON_ROUND)
+                .repeat(Infinity)
+                .start();
+        }
+
+        _startResultAnimation() {
+            this._ballAngleAfterStop = this._ballAngle + WheelView.ANGLE_TO_STOP_BALL - this._getAngleByResult();
+            this._numbersAngleAfterStop = this._numbersAngle -
+                360 / WheelView.NUMBERS_MILLISECONDS_ON_ROUND * WheelView.MILLISECONDS_TO_STOP_BALL;
+            this._angleToSync = this._getAngleToSync(this._numbersAngleAfterStop, this._ballAngleAfterStop);
+            this._ballSpeed = 360 / WheelView.BALL_MILLISECONDS_ON_ROUND;
+            this._numbersSpeed = 360 / WheelView.NUMBERS_MILLISECONDS_ON_ROUND;
+            this._totalSpeed = this._ballSpeed + this._numbersSpeed;
+            this._timeToSync = this._angleToSync / this._totalSpeed;
+
+            let ballAngleNew = this._ballAngle + this._timeToSync * this._ballSpeed;
+            let numbersAngleNew = this._numbersAngle - this._timeToSync * this._numbersSpeed;
+
+            this._removeBallAnimation();
+            this._removeNumbersAnimation();
+            new TWEEN.Tween(this)
+                .to({_ballAngle: ballAngleNew, _numbersAngle: numbersAngleNew}, this._timeToSync)
+                .onComplete(() => {
+                    let ballAngleEnd = ballAngleNew + WheelView.ANGLE_TO_STOP_BALL;
+                    let numbersAngleEnd = numbersAngleNew -
+                        360 / WheelView.NUMBERS_MILLISECONDS_ON_ROUND * WheelView.MILLISECONDS_TO_STOP_BALL;
+                    this._ballTween = new TWEEN.Tween(this)
+                        .to({_ballAngle: ballAngleEnd}, WheelView.MILLISECONDS_TO_STOP_BALL)
+                        .easing(TWEEN.Easing.Cubic.Out)
+                        .start();
+                    this._ballRadiusTween = new TWEEN.Tween(this)
+                        .to({_ballRadius: WheelView.END_BALL_RADIUS}, WheelView.MILLISECONDS_TO_STOP_BALL)
+                        .easing(TWEEN.Easing.Bounce.Out)
+                        .start();
+                    new TWEEN.Tween(this)
+                        .to({_numbersAngle: numbersAngleEnd}, WheelView.MILLISECONDS_TO_STOP_BALL)
+                        .onComplete(() => {
+                            this._removeBallRadiusAnimation();
+                            this._removeBallAnimation();
+                            this._removeNumbersAnimation();
+                            this._ballTween = new TWEEN.Tween(this)
+                                .to({_ballAngle: ballAngleEnd - 360, _numbersAngle: numbersAngleEnd - 360}, WheelView.NUMBERS_MILLISECONDS_ON_ROUND)
+                                .repeat(Infinity)
+                                .start();
+                        })
+                        .start();
+                })
+                .start();
+
+            let circleTween = new TWEEN.Tween(this)
+                .to({_resultAlpha: 1}, 300)
+                .delay(4500).onUpdate(function(object) {
+                    console.log(object._resultAlpha);
+                });
+            circleTween.start();
+
+            new TWEEN.Tween(this)
+                .to({_alpha: 0, _resultAlpha: 0}, 300)
+                .delay(6500)
+                .onComplete(() => {
+                    $(this).trigger(WheelView.ANIMATION_COMPLETE_EVENT);
+                })
+                .start();
+        }
+
+        /**
+         * Returns the distance in degrees that a circle and a ball must pass together to sync.
+         * Ball spin clockwise;
+         * Circle of numbers spin counter-clockwise;
+         * @param numberAngle {Number} Example:
+         *     330
+         * @param ballAngle {Number} Example:
+         *     300
+         * @return {Number} Example:
+         *     10
+         * @private
+         */
+        _getAngleToSync(numberAngle, ballAngle) {
+            numberAngle = this._normalizeAngle(numberAngle);
+            ballAngle = this._normalizeAngle(ballAngle);
+            let angle = numberAngle - ballAngle;
+            return this._normalizeAngle(angle);
+        }
+
+        /**
+         * Return angle between 0 and 360.
+         * @param angle {Number} Example:
+         *     -455
+         * @return {Number} Example:
+         *     265
+         * @private
+         */
+        _normalizeAngle(angle) {
+            return (angle % 360 + 360) % 360;
+        }
+
+        /**
+         * Return angle for result slot on Circle of numbers.
+         * @return {Number}
+         * @private
+         */
+        _getAngleByResult() {
+            return WheelView.NUMBERS.indexOf(this._resultModel.number) * 360 / WheelView.NUMBERS.length + WheelView.ROULETTE_ANGLE_SHIFT_ON_IMAGE;
         }
 
         update() {
