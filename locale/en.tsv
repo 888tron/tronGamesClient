@@ -84,7 +84,7 @@ result	Result
 draw_under	Draw Under
 draw_equal	Draw Exact
 draw_over	Draw Over
-payout_win	Payout:
+payout_win	Payout on Win:
 multiplayer	Multiplier
 win_chance	Win Chance
 how_dice	4. There are 52 cards in the deck. The lowest rank is 2 and the highest rank is A (ace). The player chooses any card from the deck. The player then makes a bet on one of the following three outcomes to happen: the next card (one of the 51 cards left in the deck), which will be chosen randomly, will be a) HIGHER, b) LOWER, or c) EQUAL in rank to the first card drawn from the deck by the player. Suits are matter in this game. If the player guesses the outcome, he or she will win the bet multiplied by the odds which depend on the card and the outcome chosen by the player.
@@ -155,5 +155,24 @@ timer_seconds	Seconds
 total_bet	Total Bet
 tokens	Tokens
 buy_trx	Buy TRX
-roulette	Roulette
 games	Games
+roulette	Roulette
+baccarat	Baccarat
+black_Jjack	Black Jack
+poker	Poker
+to_the_moon	To the Moon
+white_paper	White Paper
+faq	FAQ
+promo	PROMO
+logo	LOGO
+banners	Banners
+facts_title	8 facts about 888tron.com
+fact_1	1. 888tron.com is a fully decentralized platform built on TRON blockchain smart contracts.
+fact_2	2. Playing there takes place directly from the user's crypto wallet. Passwords and access to a personal wallet are not requested by the 888tron platform and are not saved.
+fact_3	3. Reward payments are instantly sent to the player’s wallet. The payout speed depends only on the network bandwidth TRON.
+fact_4	4. The player receives 888 tokens for every bet. The purpose of the 888 token is to receive dividends that are credited every 48 hours. Owners of 888 tokens receive 65% of all profits of the 888tron platform in the form of dividend payments.
+fact_5	5. The 888tron platform set a record among the DApps of all blockchains in payout. One-time dividend payments reached more than 250M TRX, which is more than $5.8M.
+fact_6	6. 888tron smart contracts and TRON blockchain showed stable operation without failures and errors. During peak loads, more than 40% of all TRON blockchain transactions belonged to 888tron platform (more than 30 transactions per second).
+fact_7	7. 888 platform is the only one which first launched crypto slots and makes unique decentralized games.
+fact_8	8. 888 platform is the winner of the Tron Network accelerator.
+social	Social

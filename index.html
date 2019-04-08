@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css?4.4">
+    <link rel="stylesheet" href="css/custom.css?4.5">
     <title>888</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109663484-3"></script>
@@ -131,7 +131,7 @@
                                     <svg class="icon">
                                         <use xlink:href="img/games.svg#poker"></use>
                                     </svg>
-                                    <span style="color: #ed3f22;">Roulette</span>
+                                    <span style="color: #ed3f22;" data-locale="roulette">Roulette</span>
                                     <span class="soon" data-locale="soon">soon</span>
                                 </span>
                             </a>
@@ -142,7 +142,7 @@
                                     <svg class="icon">
                                         <use xlink:href="img/games.svg#cards"></use>
                                     </svg>
-                                    <span>Baccarat</span>
+                                    <span data-locale="baccarat">Baccarat</span>
                                     <span class="soon" data-locale="soon">soon</span>
                                 </span>
                             </a>
@@ -153,7 +153,7 @@
                                     <svg class="icon">
                                         <use xlink:href="img/games.svg#cards-1"></use>
                                     </svg>
-                                    <span>Black Jack</span>
+                                    <span data-locale="black_Jjack">Black Jack</span>
                                     <span class="soon" data-locale="soon">soon</span>
                                 </span>
                             </a>
@@ -164,7 +164,7 @@
                                     <svg class="icon">
                                         <use xlink:href="img/games.svg#card"></use>
                                     </svg>
-                                    <span>Poker</span>
+                                    <span data-locale="poker">Poker</span>
                                     <span class="soon" data-locale="soon">soon</span>
                                 </span>
                             </a>
@@ -173,7 +173,7 @@
                             <a class="navbar-brand mr-0 disabled" href="#">
                                 <span class="soon-item position-relative">
                                     <i class="fas fa-rocket"></i>
-                                    <span>To the Moon</span>
+                                    <span data-locale="to_the_moon">To the Moon</span>
                                     <span class="soon" data-locale="soon">soon</span>
                                 </span>
                             </a>
@@ -324,13 +324,13 @@
                 <li class="nav-item">
                     <a id="whitepaperLink" class="nav-link" href="wp/888Tron_en.pdf" target="_blank">
                         <i class="fas fa-map"></i>
-                        <span>White Paper</span>
+                        <span data-locale="white_paper">White Paper</span>
                     </a>
                 </li>
                 <li class="nav-item dropdown d-none d-xl-block">
                     <button class="btn dropdown-toggle pr-0" type="button" id="dropdownFAQ" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-question"></i>
-                        <span>FAQ</span>
+                        <span data-locale="faq">FAQ</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownFAQ">
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#fairnessModal">
@@ -345,9 +345,13 @@
                             <i class="fas fa-sync"></i>
                             <span data-locale="exchange">Exchange</span>
                         </a>
-                        <a class="roadmap-link dropdown-item" href="#" data-toggle="modal" data-target="#roadmapModal">
+                        <!--<a class="roadmap-link dropdown-item" href="#" data-toggle="modal" data-target="#roadmapModal">
                             <i class="fas fa-road"></i>
                             <span data-locale="roadmap">Roadmap</span>
+                        </a>-->
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#promoModal">
+                            <i class="fas fa-bullhorn"></i>
+                            <span data-locale="promo">PROMO</span>
                         </a>
                         <a class="troubleshooting-link dropdown-item" href="#" data-toggle="modal" data-target="#troubleshootingModal">
                             <i class="fas fa-life-ring"></i>
@@ -371,10 +375,16 @@
                         <span data-locale="fairness">Fairness</span>
                     </a>
                 </li>
-                <li class="roadmap-link nav-item d-xl-none">
+               <!--<li class="roadmap-link nav-item d-xl-none">
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#roadmapModal">
                         <i class="fas fa-road"></i>
                         <span data-locale="roadmap">Roadmap</span>
+                    </a>
+                </li>-->
+                <li class="roadmap-link nav-item d-xl-none"></li>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#promoModal">
+                        <i class="fas fa-bullhorn"></i>
+                        <span data-locale="promo">PROMO</span>
                     </a>
                 </li>
                 <li class="troubleshooting-link nav-item d-xl-none">
@@ -429,7 +439,7 @@
                         <svg class="icon">
                             <use xlink:href="img/games.svg#poker"></use>
                         </svg>
-                        <span style="color: #ed3f22;">Roulette</span>
+                        <span style="color: #ed3f22;" data-locale="roulette">Roulette</span>
                         <span class="soon" data-locale="soon">soon</span>
                     </span>
                 </a>
@@ -440,7 +450,7 @@
                         <svg class="icon">
                             <use xlink:href="img/games.svg#cards"></use>
                         </svg>
-                        <span>Baccarat</span>
+                        <span data-locale="baccarat">Baccarat</span>
                         <span class="soon" data-locale="soon">soon</span>
                     </span>
                 </a>
@@ -451,7 +461,7 @@
                         <svg class="icon">
                             <use xlink:href="img/games.svg#cards-1"></use>
                         </svg>
-                        <span>Black Jack</span>
+                        <span data-locale="black_Jjack">Black Jack</span>
                         <span class="soon" data-locale="soon">soon</span>
                     </span>
                 </a>
@@ -462,7 +472,7 @@
                         <svg class="icon">
                             <use xlink:href="img/games.svg#card"></use>
                         </svg>
-                        <span>Poker</span>
+                        <span data-locale="poker">Poker</span>
                         <span class="soon" data-locale="soon">soon</span>
                     </span>
                 </a>
@@ -471,7 +481,7 @@
                 <a class="navbar-brand mr-0 disabled" href="#">
                     <span class="soon-item position-relative">
                         <i class="fas fa-rocket"></i>
-                        <span>To the Moon</span>
+                        <span data-locale="to_the_moon">To the Moon</span>
                         <span class="soon" data-locale="soon">soon</span>
                     </span>
                 </a>
@@ -982,7 +992,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-md-6 col-xl-3 ml-3 mb-0 mb-sm-0">
+                            <div class="form-group col-md-6 col-xl-4 ml-3 mb-0 mb-sm-0">
 
                                 <div class="input-group row">
                                     <div class="form-group row justify-content-center  mb-2">
@@ -1746,7 +1756,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="roadmapModal" tabindex="-1" role="dialog" aria-labelledby="roadmapModalLabel"
+<!--<div class="modal fade" id="roadmapModal" tabindex="-1" role="dialog" aria-labelledby="roadmapModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-content-dark">
@@ -1808,6 +1818,74 @@
                                 <h5 data-locale="roadmap_date_8">July</h5>
                                 <p data-locale="roadmap_text_8">Legal research (Subject: 888tron.com licensing)</p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<div class="modal fade" id="promoModal" tabindex="-1" role="dialog" aria-labelledby="promoModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-content-dark">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" data-locale="promo">PROMO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4 data-locale="logo">LOGO</h4>
+                        <img class="img-fluid m-2" src="img/promo/888logo.png" style="max-width: 128px;"><br>
+                        <a class="mr-2" href="img/promo/888logo.png" download>PNG</a>
+                        <a href="img/promo/888logo.svg" download><span>SVG</a>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4 data-locale="banners">Banners</h4>
+                        <div class="d-inline-block text-left">
+                            <span class="d-inline-block mr-2">294х180:</span>
+                            <a class="mr-2" href="img/promo/888tron294х180.jpg" download>JPG</a>
+                            <a href="img/promo/888tron294х180.psd" download>PSD</a><br>
+                            <span class="d-inline-block mr-2">364х180:</span>
+                            <a class="mr-2" href="img/promo/888tron364х180.jpg" download>JPG</a>
+                            <a href="img/promo/888tron364х180.psd" download>PSD</a><br>
+                            <span class="d-inline-block mr-2">380х95:</span>
+                            <a class="mr-2" href="img/promo/888tron380х95.jpg" download>JPG</a>
+                            <a href="img/promo/888tron380х95.psd" download>PSD</a><br>
+                            <span class="d-inline-block mr-2">750х320:</span>
+                            <a class="mr-2" href="img/promo/888tron750х320.jpg" download>JPG</a>
+                            <a href="img/promo/888tron750х320.psd" download>PSD</a><br>
+                            <span class="d-inline-block mr-2">960х95:</span>
+                            <a class="mr-2" href="img/promo/888tron960х95.jpg" download>JPG</a>
+                            <a href="img/promo/888tron960х95.psd" download>PSD</a><br>
+                            <span class="d-inline-block mr-2">1345х95:</span>
+                            <a class="mr-2" href="img/promo/888tron1345х95.jpg" download>JPG</a>
+                            <a href="img/promo/888tron1345х95.psd" download>PSD</a><br>
+                        </div>
+                    </div>
+                    <div class="col-12 text-left mt-3">
+                        <h4 class="text-center" data-locale="facts_title">8 facts about 888tron.com</h4>
+                        <p data-locale="fact_1">1. 888tron.com is a fully decentralized platform built on TRON blockchain smart contracts.</p>
+                        <p data-locale="fact_2">2. Playing there takes place directly from the user's crypto wallet. Passwords and access to a personal wallet are not requested by the 888tron platform and are not saved.</p>
+                        <p data-locale="fact_3">3. Reward payments are instantly sent to the player’s wallet. The payout speed depends only on the network bandwidth TRON.</p>
+                        <p data-locale="fact_4">4. The player receives 888 tokens for every bet. The purpose of the 888 token is to receive dividends that are credited every 48 hours. Owners of 888 tokens receive 65% of all profits of the 888tron platform in the form of dividend payments.</p>
+                        <p data-locale="fact_5">5. The 888tron platform set a record among the DApps of all blockchains in payout. One-time dividend payments reached more than 250M TRX, which is more than $5.8M.</p>
+                        <p data-locale="fact_6">6. 888tron smart contracts and TRON blockchain showed stable operation without failures and errors. During peak loads, more than 40% of all TRON blockchain transactions belonged to 888tron platform (more than 30 transactions per second).</p>
+                        <p data-locale="fact_7">7. 888 platform is the only one which first launched crypto slots and makes unique decentralized games.</p>
+                        <p data-locale="fact_8">8. 888 platform is the winner of the Tron Network accelerator.</p>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <h4 data-locale="social">Social</h4>
+                        <div class="d-inline-block text-left">
+                            <span class="d-inline-block mr-2">Telegram:</span><a href="https://t.me/tron888" target="_blank">https://t.me/tron888</a><br>
+                            <span class="d-inline-block mr-2">Twitter:</span><a href="https://twitter.com/888Tron" target="_blank">https://twitter.com/888Tron</a><br>
+                            <span class="d-inline-block mr-2">YouTube:</span><a href="https://www.youtube.com/channel/UCIzO4UkI75lkgVmYHy2zNpA" target="_blank">https://www.youtube.com/channel/UCIzO4UkI75lkgVmYHy2zNpA</a><br>
+                            <span class="d-inline-block mr-2">Instagram:</span><a href="https://www.instagram.com/888_tron" target="_blank">https://www.instagram.com/888_tron</a><br>
+                            <span class="d-inline-block mr-2">Facebook:</span><a href="https://www.facebook.com/888tron" target="_blank">https://www.facebook.com/888tron</a>
                         </div>
                     </div>
                 </div>
@@ -1921,7 +1999,7 @@
 <script src="js/SoundManager.js?v=2"></script>
 <script src="js/SlotView.js?v=3"></script>
 
-<script src="js/locale.js?v=8.8"></script>
+<script src="js/locale.js?v=9.2"></script>
 <script src="js/main.js?v=709"></script>
 <script src="js/cards.js?v=7.1"></script>
 <script src="js/countdown.js?v=1.0"></script>
