@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="TRON blockchain games. DApp on TRON blockchain.  Best 888 games based on TRON smart contracts and blockchain technology.">
+    <meta name="google-site-verification" content="dnVevbRiXOVVqcYurDFxeYTaVz2nYlDQHbxFQagMlU0"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/fav.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/custom.css?4.5">
+    <title>888</title>
+
+</head>
+<body>
+
+<header>
+</header>
+<main class="d-flex">
+
+    <form class="container">
+        <div class="row">
+            <div class="form-group row">
+                <label id="addressLabel" class="col-form-label w-100">...</label>
+                <label id="burnLabel" class="col-form-label w-100">Burn amount:</label>
+                <!--<input type="text" class="form-control mb-2" id="burnAmount">-->
+                <label class="form-control mb-2" id="burnAmount"></label>
+                <button type="button" class="btn btn-primary w-100" onclick="onBurn()">Burn!
+                </button>
+
+                <label class="col-form-label w-100">Tronscan link:</label>
+
+                <a id="hashLabel" class="col-form-label w-100"
+                   target="_blank"
+                   href=""
+                ></a>
+
+            </div>
+
+        </div>
+    </form>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/svg4everybody/2.1.9/svg4everybody.min.js"
+        integrity="sha256-kTezPOsOi5ZsWUKr7/D/EWcONq/hdrc0gPwk5/IUYy0=" crossorigin="anonymous"></script>
+
+<script src="libs/bootstrap/bootstrap.min.js"></script>
+
+<script src="libs/TronWeb.js?v=1"></script>
+
+<script src="libs/bootstrap/bootstrap-input-spinner.js"></script>
+
+<script type="text/javascript">
+
+    const tokenAddress = 'TLvDJcvKJDi3QuHgFbJC6SeTj3UacmtQU3';
+
+    function getContract(address) {
+        return getTronweb().then(tronweb => {
+            return tronweb.contract().at(address).catch(err => {
+                console.log('getContract ' + address, err);
+                return delay(100).then(() => {
+                    return getContract(address);
+                });
+            })
+        });
+
+    }
+
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms))
+    }
+
+    function getTronweb() {
+        if (this.tronWeb) return Promise.resolve(this.tronWeb);
+
+        return delay(1000).then(() => {
+            return getTronweb();
+        })
+    }
+
+    function getTronlinkAddress() {
+        if (this.tronWeb && this.tronWeb.defaultAddress && this.tronWeb.defaultAddress.base58) {
+            return this.tronWeb.defaultAddress.base58;
+        }
+
+        return null;
+    }
+
+    window.onload = function () {
+        const watchTronlinkAddress = () => {
+            if (this.lastTronLinkAddress !== getTronlinkAddress()) {
+                this.lastTronLinkAddress = getTronlinkAddress();
+                onTronlinkAddressChange();
+            }
+            setTimeout(watchTronlinkAddress, 1000);
+        };
+
+        watchTronlinkAddress();
+        onTronlinkAddressChange();
+    };
+
+    function onTronlinkAddressChange() {
+        $('#addressLabel').html(getTronlinkAddress());
+
+        getContract(tokenAddress).then(contract => {
+            contract.balanceOf(getTronlinkAddress()).call().then(balance => {
+
+                const b = balance.toNumber() / 1000000;
+                $('#burnAmount').html(b + ' * 0.2  = ' + b * 0.2);
+
+            });
+        })
+    }
+
+    function onBurn() {
+        return getContract(tokenAddress).then(contract => {
+            return contract.balanceOf(getTronlinkAddress()).call().then(balance => {
+                let burnAmount = Math.floor(balance.toNumber() * 0.2);
+
+                console.log('burnAmount', burnAmount);
+
+                return contract.burn(burnAmount).send({
+                    feeLimit: 1000000
+                }).then(res => {
+
+                    const url = 'https://tronscan.org/#/transaction/' + res;
+                    $('#hashLabel').html(url);
+                    $('#hashLabel').attr("href", url);
+                });
+            });
+        })
+    }
+</script>
+
+</body>
+</html>
