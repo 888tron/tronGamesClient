@@ -51,14 +51,14 @@ available_dividends	可用股息
 total_of 	共计
 frozen_across	网上已冻结-您
 available	待提取
-withdrawn	提取
-freeze	已冻结
-frozen	冻结的
+withdrawn	已提取
+freeze	冻结
+frozen	已冻结
 unfreeze	解冻
 wtithdraw_text	请登录您的TRONLink钱包。 如果您没有安装TRONLink钱包，请转到<a href="http://u6.gg/gmc5D" target="_blank"> http://u6.gg/gmc5D </a>并下载Chrome扩展程序。 （TRONbet目前只在Chrome中提供）
 freezing	冻结
 freezing_text	1.要获得股息，必须将代币888冻结到水平结束并在其结束后解冻。<br> 2。股息仅对冻结代币888发行。<br> 3。为冻结1的最小888代币数。 <br> 4。在等级结束后对代币888进行解冻时，股息将由智能合约的内部交易自动收取。<br> 5。如果冻结时，在帐户中已有冻结代币，则旧代币会自动解冻，然后整个金额完全冻结。如果在旧代币上产生股息，它们会通过内部智能合约交易自动转移到玩家的钱包中。 <br> 6。冻结和解冻代币888消耗几个TRX，必须在执行交易时，钱包里有它们。
-withdraw	撤消
+withdraw	提取
 token_about	888 Token代币
 token_title_1	什么是888代币及其用途是什么？
 token_text_1	888代币是TRON区块链上的TRC20代币。 总共可以开采100000000888个代币（有关代币888分配的信息，请查看我们的白皮书）。 代币888的持有人将向TRX支付股息，具体取决于他们拥有多少888个代币。
