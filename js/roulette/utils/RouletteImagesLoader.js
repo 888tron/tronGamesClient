@@ -13,6 +13,7 @@
                 'img/roulette/wheelLightMap.png',
                 'img/roulette/wheelNumbers.png',
                 'img/roulette/wheelStatic.png',
+                'img/roulette/wheelResultLightMap.png',
             ]
         }
 

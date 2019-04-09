@@ -229,7 +229,7 @@
 
             new TWEEN.Tween(this)
                 .to({_alpha: 0, _resultAlpha: 0}, 300)
-                .delay(6500)
+                .delay(7500)
                 .onComplete(() => {
                     $(this).trigger(WheelView.ANIMATION_COMPLETE_EVENT);
                 })
@@ -339,23 +339,55 @@
             if (this._stateModel.state !== RouletteStateModel.SHOW_RESULT) return;
             this._canvas.context.save();
             this._canvas.context.globalAlpha = this._resultAlpha;
-            this._canvas.context.fillStyle = this._resultModel.win ? 'rgba(0, 170, 0, 0.9)' : 'rgba(170, 0, 0, 0.9)';
+            this._canvas.context.fillStyle = this._getColorByNumber();
             this._canvas.context.beginPath();
             this._canvas.context.arc(this._canvas.canvas.width / 2, this._canvas.canvas.height / 2, 88, 0, 2 * Math.PI);
             this._canvas.context.fill();
 
-            this._canvas.context.font = '100px bold Helvetica';
+            this._canvas.context.drawImage(this._imagesModel.getImage('img/roulette/wheelResultLightMap.png'), (this._canvas.canvas.width - 480) / 2, 0, 480, 480);
+
+            this._canvas.context.font = '90px bold Helvetica,Arial,Courier,monospace';
             this._canvas.context.fillStyle = 'white';
             this._canvas.context.textAlign = 'center';
-            this._canvas.context.fillText(this._resultModel.number, this._canvas.canvas.width / 2, this._canvas.canvas.height / 2 + 30);
+            this._canvas.context.fillText(this._resultModel.number, this._canvas.canvas.width / 2, this._canvas.canvas.height / 2 + 35);
 
             let text = this._resultModel.win ? 'WIN' : 'NO WIN';
-            this._canvas.context.font = '18px bold Helvetica';
+            this._canvas.context.font = '18px bold Helvetica,Arial,Courier,monospace';
             this._canvas.context.fillStyle = 'white';
             this._canvas.context.textAlign = 'center';
             this._canvas.context.fillText(text, this._canvas.canvas.width / 2, this._canvas.canvas.height / 2 + 70);
 
+            text = this._getLowHighText();
+            this._canvas.context.font = '16px bold Helvetica,Arial,Courier,monospace';
+            this._canvas.context.fillStyle = 'white';
+            this._canvas.context.textAlign = 'left';
+            this._canvas.context.fillText(text, this._canvas.canvas.width / 2 - 55, this._canvas.canvas.height / 2 -50);
+
+            text = this._getOddText();
+            this._canvas.context.font = '16px bold Helvetica,Arial,Courier,monospace';
+            this._canvas.context.fillStyle = 'white';
+            this._canvas.context.textAlign = 'right';
+            this._canvas.context.fillText(text, this._canvas.canvas.width / 2 + 55, this._canvas.canvas.height / 2 -50);
+
             this._canvas.context.restore();
+        }
+
+        _getColorByNumber() {
+            if (this._resultModel.number === 0) return '#363';
+            let zeroIndex = WheelView.NUMBERS.indexOf(0);
+            let numberIndex = WheelView.NUMBERS.indexOf(this._resultModel.number);
+            if (numberIndex < zeroIndex) return (numberIndex % 2) ? '#900' : '#000';
+            else return (numberIndex % 2) ? '#000' : '#900';
+        }
+
+        _getLowHighText() {
+            if (this._resultModel.number === 0) return '';
+            return (this._resultModel.number < 19) ? 'LOW' : 'HIGH';
+        }
+
+        _getOddText() {
+            if (this._resultModel.number === 0) return '';
+            return (this._resultModel.number % 2) ? 'ODD' : 'EVEN';
         }
     }
 
